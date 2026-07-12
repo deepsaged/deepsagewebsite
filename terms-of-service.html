@@ -5,85 +5,300 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Terms of Service - DeepSage</title>
   <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      line-height: 1.6;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-      color: #333;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scrollbar-width: none; }
+    html::-webkit-scrollbar { display: none; }
+
+    :root {
+      --teal:  #00ffcc;
+      --blue:  #00aaff;
+      --text:  #c8e8ff;
+      --muted: #4a7a8a;
+      --serif: Georgia, 'Times New Roman', serif;
+      --sans:  system-ui, -apple-system, sans-serif;
     }
-    h1, h2 { margin-top: 2em; margin-bottom: 0.5em; }
-    h1 { font-size: 2em; }
-    h2 { font-size: 1.3em; }
-    a { color: #0066cc; }
-    .breadcrumb { margin-bottom: 2em; }
-    .breadcrumb a { margin-right: 10px; }
-    .last-updated { color: #666; font-size: 0.9em; margin-bottom: 2em; }
+
+    body {
+      background: #000;
+      color: var(--text);
+      font-family: var(--serif);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    a { color: var(--teal); text-decoration: none; transition: opacity 0.2s; }
+    a:hover { opacity: 0.7; }
+
+    .page-container {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .page-grad-top {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 10%, #001828aa 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .page-grad-bottom {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 35%;
+      background: linear-gradient(to top, #000 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .page-content {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 860px;
+      padding: 48px 24px;
+    }
+
+    .page-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 0 48px 0;
+      border-bottom: 1px solid #00ffcc15;
+      margin-bottom: 48px;
+    }
+
+    .page-logo {
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 6px;
+      color: #ffffff88;
+      text-transform: uppercase;
+    }
+
+    .back-link {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: 1px solid #00ffcc44;
+      background: transparent;
+      color: var(--teal);
+      padding: 7px 16px;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+      text-decoration: none;
+    }
+
+    .back-link:hover { background: #00ffcc15; border-color: var(--teal); }
+
+    .page-title {
+      font-size: clamp(42px, 8vw, 72px);
+      font-family: var(--serif);
+      font-weight: 300;
+      letter-spacing: 1px;
+      color: #ffffff;
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+
+    .last-updated {
+      font-family: var(--sans);
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 48px;
+    }
+
+    .page-section { margin-bottom: 48px; }
+
+    .section-title {
+      font-size: 20px;
+      font-family: var(--serif);
+      font-weight: 300;
+      letter-spacing: 0.5px;
+      color: #ffffff;
+      margin-bottom: 16px;
+      margin-top: 32px;
+    }
+
+    .section-title:first-of-type { margin-top: 0; }
+
+    p {
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    ul, ol { margin-left: 20px; margin-bottom: 16px; }
+
+    li {
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    strong { color: var(--teal); font-weight: 600; }
+
+    hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #00ffcc15, transparent);
+      margin: 48px 0;
+    }
+
+    .page-footer {
+      margin-top: 48px;
+      padding-top: 48px;
+      border-top: 1px solid #00ffcc15;
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      font-family: var(--sans);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .footer-links a {
+      color: #00ffcc33;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: #00ffccaa; }
+
+    .footer-divider { color: #00ffcc15; }
+
+    .footer-copyright {
+      margin-top: 24px;
+      font-family: var(--sans);
+      font-size: 9px;
+      color: #00ffcc15;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 600px) {
+      .page-content { padding: 32px 16px; }
+      .page-header { flex-direction: column; gap: 16px; }
+      .page-title { font-size: 38px; }
+    }
   </style>
 </head>
 <body>
 
-<div class="breadcrumb">
-  <a href="/">← Back to Home</a>
-</div>
+<section class="page-container">
+  <div class="page-grad-top"></div>
+  <div class="page-grad-bottom"></div>
 
-<h1>Terms of Service</h1>
-<p class="last-updated">Last updated: July 12, 2026</p>
+  <div class="page-content">
+    <div class="page-header">
+      <div class="page-logo">DeepSage</div>
+      <a href="/" class="back-link">← Back to Home</a>
+    </div>
 
-<h2>1. Agreement to Terms</h2>
-<p>By accessing and using the DeepSage website, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.</p>
+    <h1 class="page-title">Terms of Service</h1>
+    <p class="last-updated">Last updated: July 12, 2026</p>
 
-<h2>2. Use License</h2>
-<p>Permission is granted to temporarily download one copy of the materials (information or software) on DeepSage's website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:</p>
-<ul>
-  <li>Modify or copy the materials (except as permitted by law)</li>
-  <li>Use the materials for any commercial purpose or for any public display</li>
-  <li>Attempt to decompile or reverse engineer any software contained on the website</li>
-  <li>Remove any copyright or other proprietary notations from the materials</li>
-  <li>Transfer the materials to another person or "mirror" the materials on any other server</li>
-  <li>Attempt to gain unauthorized access to any portion of the website</li>
-</ul>
+    <div class="page-section">
+      <h2 class="section-title">1. Agreement to Terms</h2>
+      <p>By accessing and using the DeepSage website, you accept and agree to be bound by these terms. If you do not agree, please do not use this service.</p>
+    </div>
 
-<h2>3. Email List Terms</h2>
-<p>By signing up for the DeepSage early access list, you agree that:</p>
-<ul>
-  <li>Your email address will be used only to send you updates about DeepSage</li>
-  <li>You will not receive unsolicited marketing emails unrelated to DeepSage</li>
-  <li>You can unsubscribe at any time by following the unsubscribe link in any email</li>
-  <li>Your email will not be shared with third parties without your consent</li>
-  <li>We may use your email address to contact you regarding technical issues or policy changes</li>
-</ul>
+    <div class="page-section">
+      <h2 class="section-title">2. Use License</h2>
+      <p>Permission is granted to temporarily download materials for personal, non-commercial viewing only. You may not:</p>
+      <ul>
+        <li>Modify or copy materials (except as permitted by law)</li>
+        <li>Use materials for commercial purposes or public display</li>
+        <li>Decompile or reverse engineer any software</li>
+        <li>Remove copyright or proprietary notations</li>
+        <li>Transfer materials to another person or mirror on other servers</li>
+        <li>Attempt unauthorized access to the website</li>
+      </ul>
+    </div>
 
-<h2>4. Disclaimer</h2>
-<p>The materials on DeepSage's website are provided on an "as is" basis. DeepSage makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.</p>
+    <div class="page-section">
+      <h2 class="section-title">3. Email List Terms</h2>
+      <p>By signing up for DeepSage early access, you agree that:</p>
+      <ul>
+        <li>Your email will only be used for DeepSage updates</li>
+        <li>You won't receive unrelated marketing emails</li>
+        <li>You can unsubscribe anytime</li>
+        <li>Your email won't be shared with third parties without consent</li>
+        <li>We may contact you about technical issues or policy changes</li>
+      </ul>
+    </div>
 
-<h2>5. Limitations of Liability</h2>
-<p>In no event shall DeepSage or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on DeepSage's website, even if DeepSage or an authorized representative has been notified orally or in writing of the possibility of such damage.</p>
+    <div class="page-section">
+      <h2 class="section-title">4. Disclaimer</h2>
+      <p>Materials on DeepSage are provided "as is". We make no warranties and hereby disclaim all warranties including implied warranties of merchantability, fitness for a particular purpose, or non-infringement of rights.</p>
+    </div>
 
-<h2>6. Accuracy of Materials</h2>
-<p>The materials appearing on DeepSage's website could include technical, typographical, or photographic errors. DeepSage does not warrant that any of the materials on the website are accurate, complete, or current. DeepSage may make changes to the materials contained on its website at any time without notice.</p>
+    <div class="page-section">
+      <h2 class="section-title">5. Limitations of Liability</h2>
+      <p>DeepSage shall not be liable for damages (including loss of data or profit, or business interruption) arising from use or inability to use the website, even if notified of such damage possibility.</p>
+    </div>
 
-<h2>7. Links</h2>
-<p>DeepSage has not reviewed all of the sites linked to its website and is not responsible for the contents of any such linked site. The inclusion of any link does not imply endorsement by DeepSage of the site. Use of any such linked website is at the user's own risk.</p>
+    <div class="page-section">
+      <h2 class="section-title">6. Accuracy of Materials</h2>
+      <p>Materials may include technical, typographical, or photographic errors. DeepSage does not warrant that materials are accurate, complete, or current. We may change materials at any time without notice.</p>
+    </div>
 
-<h2>8. Modifications</h2>
-<p>DeepSage may revise these terms of service for its website at any time without notice. By using this website, you are agreeing to be bound by the then current version of these terms of service.</p>
+    <div class="page-section">
+      <h2 class="section-title">7. Links</h2>
+      <p>DeepSage has not reviewed all linked sites and is not responsible for their content. Inclusion of links does not imply endorsement. Use of linked websites is at your own risk.</p>
+    </div>
 
-<h2>9. Governing Law</h2>
-<p>These terms and conditions are governed by and construed in accordance with the laws of [GOVERNING_LAW_JURISDICTION] and you irrevocably submit to the exclusive jurisdiction of the courts located in that location.</p>
+    <div class="page-section">
+      <h2 class="section-title">8. Modifications</h2>
+      <p>DeepSage may revise these terms at any time without notice. By using this website, you agree to be bound by the then-current version of these terms.</p>
+    </div>
 
-<h2>10. Contact Information</h2>
-<p>If you have any questions about these Terms of Service, please contact us at:</p>
-<p><strong>[YOUR_CONTACT_EMAIL]</strong></p>
+    <div class="page-section">
+      <h2 class="section-title">9. Governing Law</h2>
+      <p>These terms are governed by and construed in accordance with the laws of United States and you irrevocably submit to the exclusive jurisdiction of the courts located there.</p>
+    </div>
 
-<hr>
+    <div class="page-section">
+      <h2 class="section-title">10. Contact Information</h2>
+      <p>Questions about these Terms of Service? Contact: <strong>deepsaged@gmail.com</strong></p>
+    </div>
 
-<p style="margin-top: 2em;">
-  <a href="/">Home</a> |
-  <a href="/privacy-policy.html">Privacy Policy</a> |
-  <a href="/cookie-policy.html">Cookie Policy</a>
-</p>
+    <hr>
+
+    <div class="page-footer">
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <span class="footer-divider">·</span>
+        <a href="/privacy-policy.html">Privacy Policy</a>
+        <span class="footer-divider">·</span>
+        <a href="/cookie-policy.html">Cookie Policy</a>
+      </div>
+      <p class="footer-copyright">DeepSage · © 2026</p>
+    </div>
+  </div>
+</section>
 
 </body>
 </html>

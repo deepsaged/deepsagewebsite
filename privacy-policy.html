@@ -5,107 +5,329 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy Policy - DeepSage</title>
   <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      line-height: 1.6;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-      color: #333;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scrollbar-width: none; }
+    html::-webkit-scrollbar { display: none; }
+
+    :root {
+      --teal:  #00ffcc;
+      --blue:  #00aaff;
+      --text:  #c8e8ff;
+      --muted: #4a7a8a;
+      --serif: Georgia, 'Times New Roman', serif;
+      --sans:  system-ui, -apple-system, sans-serif;
     }
-    h1, h2 { margin-top: 2em; margin-bottom: 0.5em; }
-    h1 { font-size: 2em; }
-    h2 { font-size: 1.3em; }
-    a { color: #0066cc; }
-    .breadcrumb { margin-bottom: 2em; }
-    .breadcrumb a { margin-right: 10px; }
-    .last-updated { color: #666; font-size: 0.9em; margin-bottom: 2em; }
+
+    body {
+      background: #000;
+      color: var(--text);
+      font-family: var(--serif);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    a { color: var(--teal); text-decoration: none; transition: opacity 0.2s; }
+    a:hover { opacity: 0.7; }
+
+    .page-container {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .page-grad-top {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 10%, #001828aa 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .page-grad-bottom {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 35%;
+      background: linear-gradient(to top, #000 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .page-content {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 860px;
+      padding: 48px 24px;
+    }
+
+    .page-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 0 48px 0;
+      border-bottom: 1px solid #00ffcc15;
+      margin-bottom: 48px;
+    }
+
+    .page-logo {
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 6px;
+      color: #ffffff88;
+      text-transform: uppercase;
+    }
+
+    .back-link {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: 1px solid #00ffcc44;
+      background: transparent;
+      color: var(--teal);
+      padding: 7px 16px;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+      text-decoration: none;
+    }
+
+    .back-link:hover { background: #00ffcc15; border-color: var(--teal); }
+
+    .page-title {
+      font-size: clamp(42px, 8vw, 72px);
+      font-family: var(--serif);
+      font-weight: 300;
+      letter-spacing: 1px;
+      color: #ffffff;
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+
+    .last-updated {
+      font-family: var(--sans);
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 48px;
+    }
+
+    .page-section { margin-bottom: 48px; }
+
+    .section-title {
+      font-size: 20px;
+      font-family: var(--serif);
+      font-weight: 300;
+      letter-spacing: 0.5px;
+      color: #ffffff;
+      margin-bottom: 16px;
+      margin-top: 32px;
+    }
+
+    .section-title:first-of-type { margin-top: 0; }
+
+    .section-subtitle {
+      font-size: 14px;
+      font-family: var(--sans);
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: var(--teal);
+      text-transform: uppercase;
+      margin-top: 24px;
+      margin-bottom: 12px;
+    }
+
+    p {
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    ul, ol { margin-left: 20px; margin-bottom: 16px; }
+
+    li {
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    strong { color: var(--teal); font-weight: 600; }
+
+    hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #00ffcc15, transparent);
+      margin: 48px 0;
+    }
+
+    .page-footer {
+      margin-top: 48px;
+      padding-top: 48px;
+      border-top: 1px solid #00ffcc15;
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      font-family: var(--sans);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .footer-links a {
+      color: #00ffcc33;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: #00ffccaa; }
+
+    .footer-divider { color: #00ffcc15; }
+
+    .footer-copyright {
+      margin-top: 24px;
+      font-family: var(--sans);
+      font-size: 9px;
+      color: #00ffcc15;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 600px) {
+      .page-content { padding: 32px 16px; }
+      .page-header { flex-direction: column; gap: 16px; }
+      .page-title { font-size: 38px; }
+    }
   </style>
 </head>
 <body>
 
-<div class="breadcrumb">
-  <a href="/">← Back to Home</a>
-</div>
+<section class="page-container">
+  <div class="page-grad-top"></div>
+  <div class="page-grad-bottom"></div>
 
-<h1>Privacy Policy</h1>
-<p class="last-updated">Last updated: July 12, 2026</p>
+  <div class="page-content">
+    <div class="page-header">
+      <div class="page-logo">DeepSage</div>
+      <a href="/" class="back-link">← Back to Home</a>
+    </div>
 
-<h2>1. Introduction</h2>
-<p>DeepSage ("we," "us," "our," or "Company") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website.</p>
+    <h1 class="page-title">Privacy Policy</h1>
+    <p class="last-updated">Last updated: July 12, 2026</p>
 
-<h2>2. Information We Collect</h2>
-<h3>Email Address</h3>
-<p>When you sign up for our early access list, we collect your email address. This is used solely for sending you updates about DeepSage.</p>
+    <div class="page-section">
+      <h2 class="section-title">1. Introduction</h2>
+      <p>DeepSage ("we," "us," "our," or "Company") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website.</p>
+    </div>
 
-<h3>Automatic Information</h3>
-<p>When you visit our website, we automatically collect certain information about your device and browsing activity through cookies and analytics tools, including:</p>
-<ul>
-  <li>IP address</li>
-  <li>Browser type and version</li>
-  <li>Pages visited and time spent on each page</li>
-  <li>Referrer information</li>
-  <li>Device type (mobile, desktop)</li>
-</ul>
+    <div class="page-section">
+      <h2 class="section-title">2. Information We Collect</h2>
+      <h3 class="section-subtitle">Email Address</h3>
+      <p>When you sign up for our early access list, we collect your email address for updates about DeepSage.</p>
+      <h3 class="section-subtitle">Automatic Information</h3>
+      <p>We automatically collect information through cookies and analytics:</p>
+      <ul>
+        <li>IP address</li>
+        <li>Browser type and version</li>
+        <li>Pages visited and time spent</li>
+        <li>Referrer information</li>
+        <li>Device type</li>
+      </ul>
+    </div>
 
-<h2>3. How We Use Your Information</h2>
-<ul>
-  <li><strong>Email:</strong> To send you updates about DeepSage, announcements, and early access information. You can unsubscribe at any time.</li>
-  <li><strong>Analytics Data:</strong> To understand how users interact with our site, improve user experience, and optimize our marketing efforts.</li>
-  <li><strong>Cookies:</strong> To remember your preferences and provide a better browsing experience.</li>
-</ul>
+    <div class="page-section">
+      <h2 class="section-title">3. How We Use Your Information</h2>
+      <ul>
+        <li><strong>Email:</strong> To send you updates about DeepSage. You can unsubscribe anytime.</li>
+        <li><strong>Analytics Data:</strong> To understand user behavior and improve user experience.</li>
+        <li><strong>Cookies:</strong> To remember preferences and provide better browsing.</li>
+      </ul>
+    </div>
 
-<h2>4. Legal Basis for Processing</h2>
-<p>We process your information based on:</p>
-<ul>
-  <li><strong>Consent:</strong> For non-essential cookies and marketing communications (you can withdraw this at any time)</li>
-  <li><strong>Legitimate Interest:</strong> For analytics and site optimization</li>
-  <li><strong>Contract:</strong> For managing your email subscription</li>
-</ul>
+    <div class="page-section">
+      <h2 class="section-title">4. Legal Basis for Processing</h2>
+      <ul>
+        <li><strong>Consent:</strong> For non-essential cookies and marketing (you can withdraw anytime)</li>
+        <li><strong>Legitimate Interest:</strong> For analytics and site optimization</li>
+        <li><strong>Contract:</strong> For managing your email subscription</li>
+      </ul>
+    </div>
 
-<h2>5. Third-Party Services</h2>
-<p>We use the following third-party services that may collect data:</p>
-<ul>
-  <li><strong>Google Analytics:</strong> Analytics and behavior tracking. <a href="https://policies.google.com/privacy" target="_blank">Google Privacy Policy</a></li>
-  <li><strong>[OTHER_SERVICES]:</strong> [PLACEHOLDER - Add any other tracking tools used]</li>
-</ul>
+    <div class="page-section">
+      <h2 class="section-title">5. Third-Party Services</h2>
+      <ul>
+        <li><strong>Google Analytics:</strong> <a href="https://policies.google.com/privacy" target="_blank">Privacy Policy</a></li>
+        <li><strong>[OTHER_SERVICES]:</strong></li>
+      </ul>
+    </div>
 
-<h2>6. Data Retention</h2>
-<ul>
-  <li><strong>Email addresses:</strong> Retained until you unsubscribe or [DATA_RETENTION_PERIOD] (typically 3 years), whichever comes first</li>
-  <li><strong>Analytics data:</strong> Retained per Google Analytics default settings (14-26 months)</li>
-  <li><strong>Cookies:</strong> As specified in our <a href="/cookie-policy.html">Cookie Policy</a></li>
-</ul>
+    <div class="page-section">
+      <h2 class="section-title">6. Data Retention</h2>
+      <ul>
+        <li><strong>Email addresses:</strong> Until unsubscribed or [DATA_RETENTION_PERIOD]</li>
+        <li><strong>Analytics data:</strong> Per Google Analytics settings (14-26 months)</li>
+        <li><strong>Cookies:</strong> As specified in our <a href="/cookie-policy.html">Cookie Policy</a></li>
+      </ul>
+    </div>
 
-<h2>7. Your Privacy Rights</h2>
-<p>Under GDPR and other privacy laws, you have the right to:</p>
-<ul>
-  <li><strong>Access:</strong> Request a copy of the personal data we hold about you</li>
-  <li><strong>Correction:</strong> Request correction of inaccurate data</li>
-  <li><strong>Deletion:</strong> Request deletion of your data (right to be forgotten)</li>
-  <li><strong>Portability:</strong> Request your data in a portable format</li>
-  <li><strong>Withdraw Consent:</strong> Withdraw consent to marketing communications or analytics at any time</li>
-</ul>
+    <div class="page-section">
+      <h2 class="section-title">7. Your Privacy Rights</h2>
+      <p>Under GDPR, you have the right to:</p>
+      <ul>
+        <li><strong>Access:</strong> Get a copy of your personal data</li>
+        <li><strong>Correction:</strong> Fix inaccurate data</li>
+        <li><strong>Deletion:</strong> Delete your data (right to be forgotten)</li>
+        <li><strong>Portability:</strong> Get your data in portable format</li>
+        <li><strong>Withdraw Consent:</strong> Anytime</li>
+      </ul>
+      <p>Contact: <strong>deepsaged@gmail.com</strong></p>
+    </div>
 
-<p>To exercise these rights, contact us at: <strong>[YOUR_CONTACT_EMAIL]</strong></p>
+    <div class="page-section">
+      <h2 class="section-title">8. Security</h2>
+      <p>We implement appropriate measures to protect your information. However, no method is 100% secure.</p>
+    </div>
 
-<h2>8. Security</h2>
-<p>We implement appropriate technical and organizational measures to protect your information from unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the internet is 100% secure.</p>
+    <div class="page-section">
+      <h2 class="section-title">9. Contact Us</h2>
+      <p>Questions? Email: <strong>deepsaged@gmail.com</strong></p>
+    </div>
 
-<h2>9. Contact Us</h2>
-<p>If you have questions about this Privacy Policy or our privacy practices, please contact us at:</p>
-<p><strong>[YOUR_CONTACT_EMAIL]</strong></p>
+    <div class="page-section">
+      <h2 class="section-title">10. Changes to This Policy</h2>
+      <p>We may update this policy anytime. We'll notify you of material changes by posting updates here.</p>
+    </div>
 
-<h2>10. Changes to This Policy</h2>
-<p>We may update this Privacy Policy from time to time. We will notify you of any material changes by posting the updated policy on our website and updating the "Last updated" date.</p>
+    <hr>
 
-<hr>
-
-<p style="margin-top: 2em;">
-  <a href="/">Home</a> |
-  <a href="/cookie-policy.html">Cookie Policy</a> |
-  <a href="/terms-of-service.html">Terms of Service</a>
-</p>
+    <div class="page-footer">
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <span class="footer-divider">·</span>
+        <a href="/cookie-policy.html">Cookie Policy</a>
+        <span class="footer-divider">·</span>
+        <a href="/terms-of-service.html">Terms of Service</a>
+      </div>
+      <p class="footer-copyright">DeepSage · © 2026</p>
+    </div>
+  </div>
+</section>
 
 </body>
 </html>

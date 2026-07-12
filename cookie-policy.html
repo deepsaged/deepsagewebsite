@@ -5,158 +5,372 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cookie Policy - DeepSage</title>
   <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      line-height: 1.6;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-      color: #333;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scrollbar-width: none; }
+    html::-webkit-scrollbar { display: none; }
+
+    :root {
+      --teal:  #00ffcc;
+      --blue:  #00aaff;
+      --text:  #c8e8ff;
+      --muted: #4a7a8a;
+      --serif: Georgia, 'Times New Roman', serif;
+      --sans:  system-ui, -apple-system, sans-serif;
     }
-    h1, h2, h3 { margin-top: 1.5em; margin-bottom: 0.5em; }
-    h1 { font-size: 2em; }
-    h2 { font-size: 1.3em; }
-    h3 { font-size: 1.1em; }
-    table { width: 100%; border-collapse: collapse; margin: 1em 0; }
-    table th, table td { border: 1px solid #ddd; padding: 10px; text-align: left; }
-    table th { background-color: #f5f5f5; font-weight: bold; }
-    a { color: #0066cc; }
-    .breadcrumb { margin-bottom: 2em; }
-    .breadcrumb a { margin-right: 10px; }
-    .last-updated { color: #666; font-size: 0.9em; margin-bottom: 2em; }
+
+    body {
+      background: #000;
+      color: var(--text);
+      font-family: var(--serif);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    a { color: var(--teal); text-decoration: none; transition: opacity 0.2s; }
+    a:hover { opacity: 0.7; }
+
+    .page-container {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .page-grad-top {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 10%, #001828aa 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .page-grad-bottom {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 35%;
+      background: linear-gradient(to top, #000 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .page-content {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 860px;
+      padding: 48px 24px;
+    }
+
+    .page-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 0 48px 0;
+      border-bottom: 1px solid #00ffcc15;
+      margin-bottom: 48px;
+    }
+
+    .page-logo {
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 6px;
+      color: #ffffff88;
+      text-transform: uppercase;
+    }
+
+    .back-link {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: 1px solid #00ffcc44;
+      background: transparent;
+      color: var(--teal);
+      padding: 7px 16px;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+      text-decoration: none;
+    }
+
+    .back-link:hover { background: #00ffcc15; border-color: var(--teal); }
+
+    .page-title {
+      font-size: clamp(42px, 8vw, 72px);
+      font-family: var(--serif);
+      font-weight: 300;
+      letter-spacing: 1px;
+      color: #ffffff;
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+
+    .last-updated {
+      font-family: var(--sans);
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 48px;
+    }
+
+    .page-section { margin-bottom: 48px; }
+
+    .section-title {
+      font-size: 20px;
+      font-family: var(--serif);
+      font-weight: 300;
+      letter-spacing: 0.5px;
+      color: #ffffff;
+      margin-bottom: 16px;
+      margin-top: 32px;
+    }
+
+    .section-title:first-of-type { margin-top: 0; }
+
+    .section-subtitle {
+      font-size: 14px;
+      font-family: var(--sans);
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: var(--teal);
+      text-transform: uppercase;
+      margin-top: 24px;
+      margin-bottom: 12px;
+    }
+
+    p {
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    ul, ol { margin-left: 20px; margin-bottom: 16px; }
+
+    li {
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    strong { color: var(--teal); font-weight: 600; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-family: var(--sans);
+      font-size: 13px;
+    }
+
+    table th, table td {
+      border: 1px solid #00ffcc22;
+      padding: 10px;
+      text-align: left;
+    }
+
+    table th {
+      background-color: #00ffcc08;
+      color: var(--teal);
+      font-weight: 600;
+    }
+
+    hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #00ffcc15, transparent);
+      margin: 48px 0;
+    }
+
+    .page-footer {
+      margin-top: 48px;
+      padding-top: 48px;
+      border-top: 1px solid #00ffcc15;
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      font-family: var(--sans);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .footer-links a {
+      color: #00ffcc33;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: #00ffccaa; }
+
+    .footer-divider { color: #00ffcc15; }
+
+    .footer-copyright {
+      margin-top: 24px;
+      font-family: var(--sans);
+      font-size: 9px;
+      color: #00ffcc15;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 600px) {
+      .page-content { padding: 32px 16px; }
+      .page-header { flex-direction: column; gap: 16px; }
+      .page-title { font-size: 38px; }
+      table { font-size: 12px; }
+    }
   </style>
 </head>
 <body>
 
-<div class="breadcrumb">
-  <a href="/">← Back to Home</a>
-</div>
+<section class="page-container">
+  <div class="page-grad-top"></div>
+  <div class="page-grad-bottom"></div>
 
-<h1>Cookie Policy</h1>
-<p class="last-updated">Last updated: July 12, 2026</p>
+  <div class="page-content">
+    <div class="page-header">
+      <div class="page-logo">DeepSage</div>
+      <a href="/" class="back-link">← Back to Home</a>
+    </div>
 
-<h2>1. What Are Cookies?</h2>
-<p>Cookies are small text files stored on your device (computer, tablet, phone) by your web browser. They help websites remember your preferences and improve your browsing experience. Cookies do not contain viruses or malware.</p>
+    <h1 class="page-title">Cookie Policy</h1>
+    <p class="last-updated">Last updated: July 12, 2026</p>
 
-<h2>2. How We Use Cookies</h2>
-<p>We use cookies to:</p>
-<ul>
-  <li>Remember your cookie preferences</li>
-  <li>Understand how you use our website</li>
-  <li>Improve site performance and user experience</li>
-  <li>Measure the effectiveness of marketing campaigns</li>
-</ul>
+    <div class="page-section">
+      <h2 class="section-title">1. What Are Cookies?</h2>
+      <p>Cookies are small text files stored on your device by your web browser. They help websites remember preferences and improve browsing experience. Cookies do not contain viruses or malware.</p>
+    </div>
 
-<h2>3. Cookie Categories</h2>
+    <div class="page-section">
+      <h2 class="section-title">2. How We Use Cookies</h2>
+      <ul>
+        <li>Remember your cookie preferences</li>
+        <li>Understand how you use our website</li>
+        <li>Improve site performance and user experience</li>
+        <li>Measure marketing campaign effectiveness</li>
+      </ul>
+    </div>
 
-<h3>Essential Cookies (No Consent Required)</h3>
-<p>These cookies are necessary for the website to function properly. They are automatically enabled and cannot be disabled.</p>
-<table>
-  <tr>
-    <th>Cookie Name</th>
-    <th>Purpose</th>
-    <th>Retention</th>
-  </tr>
-  <tr>
-    <td>deepsage_cookie_consent</td>
-    <td>Stores your cookie preference choices</td>
-    <td>12 months</td>
-  </tr>
-  <tr>
-    <td>_session_id</td>
-    <td>Session management and form data</td>
-    <td>Session (expires when browser closes)</td>
-  </tr>
-</table>
+    <div class="page-section">
+      <h2 class="section-title">3. Cookie Categories</h2>
 
-<h3>Analytics Cookies (Consent Required)</h3>
-<p>These cookies help us understand how you use the website and measure site performance. You must consent to these cookies for them to be set.</p>
-<table>
-  <tr>
-    <th>Cookie Name</th>
-    <th>Provider</th>
-    <th>Purpose</th>
-    <th>Retention</th>
-  </tr>
-  <tr>
-    <td>_ga, _ga_*</td>
-    <td>Google Analytics</td>
-    <td>Track page views, user behavior, and session duration</td>
-    <td>14-26 months</td>
-  </tr>
-  <tr>
-    <td>_gid</td>
-    <td>Google Analytics</td>
-    <td>Distinguish unique users</td>
-    <td>24 hours</td>
-  </tr>
-  <tr>
-    <td>[PLACEHOLDER_ADDITIONAL_COOKIES]</td>
-    <td>[PLACEHOLDER_PROVIDER]</td>
-    <td>[PLACEHOLDER_PURPOSE]</td>
-    <td>[PLACEHOLDER_RETENTION]</td>
-  </tr>
-</table>
+      <h3 class="section-subtitle">Essential Cookies (No Consent Required)</h3>
+      <p>These cookies are necessary for the website to function properly.</p>
+      <table>
+        <tr>
+          <th>Cookie Name</th>
+          <th>Purpose</th>
+          <th>Retention</th>
+        </tr>
+        <tr>
+          <td>deepsage_cookie_consent</td>
+          <td>Stores your cookie preferences</td>
+          <td>12 months</td>
+        </tr>
+        <tr>
+          <td>_session_id</td>
+          <td>Session management</td>
+          <td>Session</td>
+        </tr>
+      </table>
 
-<h3>Marketing Cookies (Consent Required)</h3>
-<p>These cookies track your interactions across websites to show you targeted advertisements and measure campaign effectiveness. You must consent to these cookies for them to be set.</p>
-<table>
-  <tr>
-    <th>Cookie Name</th>
-    <th>Provider</th>
-    <th>Purpose</th>
-    <th>Retention</th>
-  </tr>
-  <tr>
-    <td>[PLACEHOLDER_MARKETING_COOKIE]</td>
-    <td>[PLACEHOLDER_PROVIDER]</td>
-    <td>Retargeting and ad performance tracking</td>
-    <td>[PLACEHOLDER_RETENTION]</td>
-  </tr>
-</table>
+      <h3 class="section-subtitle">Analytics Cookies (Consent Required)</h3>
+      <p>Help us understand how you use the website.</p>
+      <table>
+        <tr>
+          <th>Cookie Name</th>
+          <th>Provider</th>
+          <th>Purpose</th>
+          <th>Retention</th>
+        </tr>
+        <tr>
+          <td>_ga, _ga_*</td>
+          <td>Google Analytics</td>
+          <td>Track page views and user behavior</td>
+          <td>14-26 months</td>
+        </tr>
+        <tr>
+          <td>_gid</td>
+          <td>Google Analytics</td>
+          <td>Distinguish unique users</td>
+          <td>24 hours</td>
+        </tr>
+      </table>
 
-<h2>4. Managing Your Cookies</h2>
+      <h3 class="section-subtitle">Marketing Cookies (Consent Required)</h3>
+      <p>Track interactions to show targeted ads.</p>
+      <table>
+        <tr>
+          <th>Purpose</th>
+          <th>Retention</th>
+        </tr>
+        <tr>
+          <td>Retargeting and ad performance</td>
+          <td>Varies by platform</td>
+        </tr>
+      </table>
+    </div>
 
-<h3>Via Our Cookie Banner</h3>
-<p>You can manage your cookie preferences anytime by clicking the cookie preferences link in the banner at the bottom of our website.</p>
+    <div class="page-section">
+      <h2 class="section-title">4. Managing Your Cookies</h2>
 
-<h3>Via Your Browser</h3>
-<p>You can also control cookies through your browser settings:</p>
-<ul>
-  <li><strong>Chrome:</strong> Settings → Privacy and Security → Cookies and other site data</li>
-  <li><strong>Firefox:</strong> Settings → Privacy & Security → Cookies and Site Data</li>
-  <li><strong>Safari:</strong> Preferences → Privacy → Cookies and website data</li>
-  <li><strong>Edge:</strong> Settings → Privacy → Clear browsing data → Cookies and other site data</li>
-</ul>
+      <h3 class="section-subtitle">Via Our Banner</h3>
+      <p>Manage preferences anytime using our cookie banner.</p>
 
-<h3>Disable All Cookies</h3>
-<p>You can disable all cookies in your browser, but this may affect website functionality and user experience.</p>
+      <h3 class="section-subtitle">Via Your Browser</h3>
+      <ul>
+        <li><strong>Chrome:</strong> Settings → Privacy → Cookies and site data</li>
+        <li><strong>Firefox:</strong> Settings → Privacy → Cookies and Site Data</li>
+        <li><strong>Safari:</strong> Preferences → Privacy → Cookies and data</li>
+        <li><strong>Edge:</strong> Settings → Privacy → Browsing data → Cookies</li>
+      </ul>
+    </div>
 
-<h2>5. Do Not Track</h2>
-<p>Some browsers include a "Do Not Track" feature. Our website currently does not respond to Do Not Track signals, but you can always use browser settings to control cookie usage.</p>
+    <div class="page-section">
+      <h2 class="section-title">5. Third-Party Cookies</h2>
+      <p>We use Google Analytics which may set cookies from Google. Opt-out options:</p>
+      <ul>
+        <li>Use our cookie banner to disable Analytics</li>
+        <li>Install <a href="https://tools.google.com/dlpage/gaoptout" target="_blank">Google Analytics Opt-out Add-on</a></li>
+        <li>Adjust your browser settings</li>
+      </ul>
+    </div>
 
-<h2>6. Third-Party Cookies</h2>
-<p>Our website uses Google Analytics, which may set cookies from Google. You can opt-out of Google Analytics tracking by:</p>
-<ul>
-  <li>Using our cookie consent banner to disable Analytics cookies</li>
-  <li>Installing the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank">Google Analytics Opt-out Browser Add-on</a></li>
-  <li>Adjusting your browser settings</li>
-</ul>
+    <div class="page-section">
+      <h2 class="section-title">6. Contact Us</h2>
+      <p>Questions? Email: <strong>deepsaged@gmail.com</strong></p>
+    </div>
 
-<h2>7. Contact Us</h2>
-<p>If you have questions about this Cookie Policy, contact us at:</p>
-<p><strong>[YOUR_CONTACT_EMAIL]</strong></p>
+    <hr>
 
-<h2>8. Changes to This Policy</h2>
-<p>We may update this Cookie Policy from time to time. We will notify you of any material changes by posting the updated policy on our website.</p>
-
-<hr>
-
-<p style="margin-top: 2em;">
-  <a href="/">Home</a> |
-  <a href="/privacy-policy.html">Privacy Policy</a> |
-  <a href="/terms-of-service.html">Terms of Service</a>
-</p>
+    <div class="page-footer">
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <span class="footer-divider">·</span>
+        <a href="/privacy-policy.html">Privacy Policy</a>
+        <span class="footer-divider">·</span>
+        <a href="/terms-of-service.html">Terms of Service</a>
+      </div>
+      <p class="footer-copyright">DeepSage · © 2026</p>
+    </div>
+  </div>
+</section>
 
 </body>
 </html>
