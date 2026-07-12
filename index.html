@@ -1,102 +1,714 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DeepSage - Upcoming Educational Game</title>
+  <title>DeepSage — A Signal From The Void</title>
+  <meta name="description" content="Something is falling. Something is waking. Wishlist DeepSage.">
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+import { 
+    getAuth, 
+    GoogleAuthProvider, 
+    createUserWithEmailAndPassword, 
+    signInWithEmailAndPassword, 
+    signOut, 
+    onAuthStateChanged, 
+    signInWithPopup 
+  } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js";
+
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyAjiW7UXat-UHZBFCBXhZdlPz64Zpwkjbo",
+    authDomain: "deepsage-aac5a.firebaseapp.com",
+    projectId: "deepsage-aac5a",
+    storageBucket: "deepsage-aac5a.firebasestorage.app",
+    messagingSenderId: "10532051582",
+    appId: "1:10532051582:web:029846f62f0edd01f3162f",
+    measurementId: "G-33MSQXQ8G9"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+
+    const auth = getAuth(app);
+    const gProvider = new GoogleAuthProvider();
+
+    /* ── expose to window so inline handlers can reach them ── */
+    window._sf = { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, gProvider, signInWithPopup };
+
+    /* ── Auth state observer ── */
+    onAuthStateChanged(auth, user => {
+      const loggedOut = document.getElementById('auth-panel');
+      const loggedIn  = document.getElementById('user-panel');
+      const userName  = document.getElementById('user-name');
+      if (!loggedOut || !loggedIn) return;
+      if (user) {
+        loggedOut.style.display = 'none';
+        loggedIn.style.display  = 'flex';
+        userName.textContent    = user.displayName || user.email || 'Explorer';
+        trackWishlist(user.email);
+      } else {
+        loggedOut.style.display = 'flex';
+        loggedIn.style.display  = 'none';
+      }
+    });
+
+    function trackWishlist(email) {
+      /* In production, write to Firestore here */
+      console.log('Wishlisted by:', email);
+    }
+  </script>
+
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    /* ── Reset & base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scrollbar-width: none; }
+    html::-webkit-scrollbar { display: none; }
+
+    :root {
+      --teal:  #00ffcc;
+      --blue:  #00aaff;
+      --dark:  #000408;
+      --text:  #c8e8ff;
+      --muted: #4a7a8a;
+      --serif: Georgia, 'Times New Roman', serif;
+      --sans:  system-ui, -apple-system, sans-serif;
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      line-height: 1.6;
-      color: #333;
-      background: #f9f9f9;
+      background: #000;
+      color: var(--text);
+      font-family: var(--serif);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
     }
 
-    main {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 40px 20px;
-    }
+    a { color: inherit; text-decoration: none; }
 
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 20px;
-      color: #1a1a1a;
-    }
-
-    h2 {
-      font-size: 1.5em;
-      margin-top: 30px;
-      margin-bottom: 15px;
-      color: #1a1a1a;
-    }
-
-    p {
-      margin-bottom: 15px;
-      color: #555;
-    }
-
-    #wishlistForm {
+    /* ── HERO SECTION ── */
+    #hero {
+      position: relative;
+      min-height: 100svh;
       display: flex;
       flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      overflow: hidden;
+      background: #000;
+    }
+
+    /* Star canvas */
+    #starCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    /* Gradient overlays */
+    .hero-grad-top {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 10%, #001828aa 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .hero-grad-bottom {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 35%;
+      background: linear-gradient(to top, #000 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* ── INNER LAYOUT ── */
+    .hero-inner {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 860px;
+      padding: 0 24px 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    /* ── HEADER NAV ── */
+    .site-nav {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 0 0;
+    }
+
+    .nav-logo {
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 6px;
+      color: #ffffff88;
+      text-transform: uppercase;
+    }
+
+    .nav-auth {
+      display: flex;
+      align-items: center;
       gap: 10px;
-      margin: 30px 0;
     }
 
-    input[type="email"] {
-      padding: 12px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      font-size: 16px;
-      font-family: inherit;
-    }
-
-    input[type="email"]:focus {
-      outline: none;
-      border-color: #0066cc;
-      box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
-    }
-
-    button {
-      padding: 12px 20px;
-      background-color: #0066cc;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      font-size: 16px;
-      font-weight: 600;
+    .nav-btn {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: 1px solid #00ffcc44;
+      background: transparent;
+      color: var(--teal);
+      padding: 7px 16px;
+      border-radius: 2px;
       cursor: pointer;
-      transition: background-color 0.2s;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .nav-btn:hover { background: #00ffcc15; border-color: var(--teal); }
+    .nav-btn--ghost { border-color: transparent; color: var(--muted); }
+    .nav-btn--ghost:hover { color: var(--text); background: transparent; }
+
+    /* ── GAME INFO SECTION ── */
+    .game-info {
+      width: 100%;
+      max-width: 780px;
+      margin-top: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      text-align: center;
     }
 
-    button:hover {
-      background-color: #0052a3;
+    .eyebrow {
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin: 0;
     }
 
-    #message {
+    .game-title {
+      margin: 0;
+      font-size: clamp(42px, 8vw, 72px);
+      font-family: var(--serif);
+      font-weight: 300;
+      letter-spacing: 1px;
+      color: #ffffff;
+      line-height: 1.2;
+    }
+
+    .game-description,
+    .wishlist-call {
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text);
+      margin: 0;
+    }
+
+    .wishlist-call {
+      color: #00ffcc88;
+      font-size: 13px;
+    }
+
+    /* ── VIDEO EMBED ── */
+    .video-wrap {
+      margin-top: 36px;
+    }
+
+    .video-wrap {
+      width: 100%;
+      max-width: 780px;
+      position: relative;
+      border: 1px solid #00ffcc22;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 0 60px #00ffcc0a, 0 0 120px #00aaff06;
+    }
+
+    .video-wrap::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--teal), transparent);
+      opacity: 0.5;
+      z-index: 2;
+    }
+
+    .video-ratio {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+    }
+
+    .video-ratio iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    /* ── WISHLIST SECTION ── */
+    .wishlist-title {
+      margin: 0 0 24px 0;
+      font-size: clamp(28px, 5vw, 48px);
+      font-family: var(--serif);
+      font-weight: 300;
+      letter-spacing: 1px;
+      color: #ffffff;
+      line-height: 1.2;
+    }
+
+    .wishlist-description {
+      margin-top: 24px;
+      font-family: var(--sans);
+      font-size: 13px;
+      line-height: 1.7;
+      color: #00ffcc88;
+      max-width: 480px;
+    }
+
+    /* ── AUTH CARD ── */
+    .auth-section {
+      width: 100%;
+      max-width: 480px;
+      margin-top: 40px;
+    }
+
+    /* Auth panel (logged-out) */
+    #auth-panel {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      background: #000d1888;
+      border: 1px solid #00ffcc22;
+      border-radius: 4px;
+      overflow: hidden;
+      backdrop-filter: blur(8px);
+    }
+
+    .auth-tabs {
+      display: flex;
+      border-bottom: 1px solid #00ffcc15;
+    }
+
+    .auth-tab {
+      flex: 1;
+      background: transparent;
+      border: none;
+      padding: 14px;
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      cursor: pointer;
+      transition: color 0.2s, background 0.2s;
+    }
+
+    .auth-tab.active {
+      color: var(--teal);
+      background: #00ffcc08;
+      border-bottom: 1px solid var(--teal);
+      margin-bottom: -1px;
+    }
+
+    .auth-form-wrap {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .auth-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .auth-field label {
+      font-family: var(--sans);
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: #00ffcc44;
+      text-transform: uppercase;
+    }
+
+    .auth-field input {
+      background: #000e18;
+      border: 1px solid #00ffcc22;
+      border-radius: 2px;
+      padding: 11px 14px;
+      color: var(--text);
+      font-size: 14px;
+      font-family: var(--serif);
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+
+    .auth-field input:focus { border-color: var(--teal); }
+    .auth-field input::placeholder { color: #1a4050; }
+
+    .auth-submit {
+      background: linear-gradient(135deg, var(--teal), var(--blue));
+      border: none;
+      padding: 13px;
+      color: #000d18;
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: opacity 0.2s;
+      margin-top: 4px;
+    }
+
+    .auth-submit:hover { opacity: 0.85; }
+
+    .auth-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 4px 0;
+    }
+
+    .auth-divider::before,
+    .auth-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #00ffcc15;
+    }
+
+    .auth-divider span {
+      font-family: var(--sans);
+      font-size: 9px;
+      color: var(--muted);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .google-btn {
+      background: transparent;
+      border: 1px solid #00ffcc22;
+      border-radius: 2px;
+      padding: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 12px;
+      letter-spacing: 2px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .google-btn:hover { border-color: var(--teal); background: #00ffcc08; }
+
+    .google-icon {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+
+    .auth-msg {
+      font-family: var(--sans);
+      font-size: 11px;
+      color: #ff6688;
+      text-align: center;
+      min-height: 16px;
+      letter-spacing: 1px;
+    }
+
+    /* User panel (logged-in) */
+    #user-panel {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      background: #000d1888;
+      border: 1px solid #00ffcc22;
+      border-radius: 4px;
+      padding: 24px;
+      backdrop-filter: blur(8px);
+      text-align: center;
+    }
+
+    .user-welcome {
+      font-family: var(--sans);
+      font-size: 10px;
+      letter-spacing: 4px;
+      color: var(--teal);
+      text-transform: uppercase;
+    }
+
+    #user-name {
+      font-size: clamp(16px, 3vw, 22px);
+      color: #fff;
+      font-weight: 300;
+    }
+
+    .wishlist-badge {
+      background: linear-gradient(135deg, #00ffcc15, #00aaff10);
+      border: 1px solid #00ffcc33;
+      border-radius: 20px;
+      padding: 8px 20px;
+      font-family: var(--sans);
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: var(--teal);
+      text-transform: uppercase;
+    }
+
+    .sign-out-btn {
+      background: transparent;
+      border: none;
+      font-family: var(--sans);
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--muted);
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .sign-out-btn:hover { color: var(--text); }
+
+    /* ── SOCIALS ── */
+    .social-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      margin-top: 36px;
+    }
+
+    .social-line {
+      width: 36px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #00ffcc33, transparent);
+      flex-shrink: 0;
+    }
+
+    .social-node {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid #00ffcc33;
+      background: #000d18cc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #00ffcc88;
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      position: relative;
+      transition: border-color 0.3s, color 0.3s, box-shadow 0.3s;
+      flex-shrink: 0;
+      text-decoration: none;
+    }
+
+    .social-node--sm { font-size: 10px; }
+
+    .social-node:hover {
+      border-color: var(--teal);
+      color: var(--teal);
+      box-shadow: 0 0 18px #00ffcc30;
+    }
+
+    .social-node::after {
+      content: '';
+      position: absolute;
+      inset: -5px;
+      border-radius: 50%;
+      border: 1px solid #00ffcc15;
+      animation: nodePulse 3s ease-in-out infinite;
+    }
+
+    @keyframes nodePulse {
+      0%, 100% { transform: scale(1);   opacity: 0.4; }
+      50%       { transform: scale(1.1); opacity: 1; }
+    }
+
+    .social-labels {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
       margin-top: 10px;
-      color: #28a745;
-      font-weight: 600;
     }
 
-    /* Cookie Banner Styles */
+    .social-label-spacer { width: calc(36px + 44px + 36px); flex-shrink: 0; } /* line+node+line */
+
+    .social-label {
+      width: calc(36px + 44px + 36px);
+      text-align: center;
+      font-family: var(--sans);
+      font-size: 8px;
+      letter-spacing: 2px;
+      color: #00ffcc33;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
+    /* ── STEAM CTA ── */
+    .steam-cta {
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .steam-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #1b2838, #2a475e);
+      border: 1px solid #4a9fc855;
+      border-radius: 3px;
+      padding: 14px 28px;
+      color: #c6d4df;
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+    }
+
+    .steam-btn:hover {
+      border-color: #4a9fc8aa;
+      box-shadow: 0 0 24px #4a9fc820;
+    }
+
+    .steam-icon {
+      width: 20px;
+      height: 20px;
+      opacity: 0.8;
+    }
+
+    .steam-note {
+      font-family: var(--sans);
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: #00ffcc22;
+      text-transform: uppercase;
+    }
+
+    /* ── CONSENT & DATA NOTE ── */
+    .consent-wrap {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      cursor: pointer;
+      margin-top: 2px;
+    }
+
+    .consent-wrap input[type="checkbox"] {
+      flex-shrink: 0;
+      margin-top: 2px;
+      width: 14px;
+      height: 14px;
+      accent-color: var(--teal);
+      cursor: pointer;
+    }
+
+    .consent-text {
+      font-family: var(--sans);
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.6;
+      letter-spacing: 0.3px;
+    }
+
+    .consent-link {
+      color: var(--teal);
+      opacity: 0.7;
+      text-decoration: underline;
+      transition: opacity 0.2s;
+    }
+    .consent-link:hover { opacity: 1; }
+
+    .data-note {
+      font-family: var(--sans);
+      font-size: 10px;
+      color: #00ffcc25;
+      text-align: center;
+      line-height: 1.6;
+      letter-spacing: 0.3px;
+      padding-top: 4px;
+    }
+
+    /* ── FOOTER ── */
+    .hero-footer {
+      margin-top: 48px;
+      font-family: var(--sans);
+      font-size: 9px;
+      color: #00ffcc15;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    /* ── MODAL overlay for auth ── */
+    /* (tabs handle sign-in/sign-up toggle inline, no modal needed) */
+
+    .footer-link {
+      color: #00ffcc33;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-link:hover { color: #00ffccaa; }
+
+    /* ── COOKIE CONSENT BANNER ── */
     #cookieBanner {
       position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
-      background: white;
-      border-top: 1px solid #ddd;
-      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+      background: #000d1888;
+      border-top: 1px solid #00ffcc22;
+      backdrop-filter: blur(8px);
       padding: 20px;
       z-index: 1000;
-      font-size: 14px;
       display: none;
     }
 
@@ -111,17 +723,22 @@
 
     .cookie-banner-text {
       margin-bottom: 15px;
-      color: #555;
+      color: var(--text);
       line-height: 1.5;
+      font-family: var(--sans);
+      font-size: 13px;
+      letter-spacing: 0.3px;
     }
 
     .cookie-banner-text a {
-      color: #0066cc;
-      text-decoration: none;
+      color: var(--teal);
+      text-decoration: underline;
+      opacity: 0.8;
+      transition: opacity 0.2s;
     }
 
     .cookie-banner-text a:hover {
-      text-decoration: underline;
+      opacity: 1;
     }
 
     .cookie-banner-buttons {
@@ -132,28 +749,51 @@
 
     .cookie-banner-buttons button {
       padding: 10px 16px;
-      font-size: 14px;
+      font-size: 11px;
+      font-family: var(--sans);
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
       flex: 1;
       min-width: 120px;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    #cookieAccept {
+      background: linear-gradient(135deg, var(--teal), var(--blue));
+      border: none;
+      color: #000d18;
+    }
+
+    #cookieAccept:hover {
+      opacity: 0.85;
     }
 
     #cookieReject {
-      background-color: #6c757d;
+      background: transparent;
+      border: 1px solid #00ffcc44;
+      color: var(--teal);
     }
 
     #cookieReject:hover {
-      background-color: #5a6268;
+      border-color: var(--teal);
+      background: #00ffcc08;
     }
 
     #cookieCustomize {
-      background-color: #6c757d;
+      background: transparent;
+      border: 1px solid #00ffcc44;
+      color: var(--teal);
     }
 
     #cookieCustomize:hover {
-      background-color: #5a6268;
+      border-color: var(--teal);
+      background: #00ffcc08;
     }
 
-    /* Cookie Modal Styles */
+    /* Cookie Modal */
     #cookieModal {
       display: none;
       position: fixed;
@@ -162,7 +802,7 @@
       top: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.4);
+      background-color: rgba(0, 0, 0, 0.6);
     }
 
     #cookieModal.show {
@@ -172,18 +812,23 @@
     }
 
     .cookie-modal-content {
-      background-color: white;
+      background-color: #000d18;
+      border: 1px solid #00ffcc22;
+      border-radius: 4px;
       padding: 30px;
-      border-radius: 8px;
       max-width: 400px;
       width: 90%;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 0 60px #00ffcc0a;
+      backdrop-filter: blur(8px);
     }
 
     .cookie-modal-content h2 {
-      margin-top: 0;
-      margin-bottom: 20px;
-      font-size: 1.3em;
+      margin: 0 0 20px 0;
+      font-size: 20px;
+      font-family: var(--serif);
+      font-weight: 300;
+      color: #ffffff;
+      letter-spacing: 1px;
     }
 
     .cookie-preference {
@@ -194,22 +839,29 @@
     }
 
     .cookie-preference input[type="checkbox"] {
-      width: 18px;
-      height: 18px;
+      width: 16px;
+      height: 16px;
       cursor: pointer;
+      accent-color: var(--teal);
+      flex-shrink: 0;
     }
 
     .cookie-preference label {
       cursor: pointer;
       margin: 0;
       flex: 1;
+      font-family: var(--sans);
+      font-size: 12px;
+      color: var(--text);
     }
 
     .cookie-preference-description {
-      font-size: 12px;
-      color: #666;
-      margin-left: 28px;
+      font-size: 10px;
+      color: var(--muted);
+      margin-left: 26px;
       margin-bottom: 10px;
+      font-family: var(--sans);
+      letter-spacing: 0.3px;
     }
 
     .cookie-modal-buttons {
@@ -221,52 +873,212 @@
     .cookie-modal-buttons button {
       flex: 1;
       padding: 10px;
-      font-size: 14px;
+      font-size: 10px;
+      font-family: var(--sans);
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    #cookieModalSave {
+      background: linear-gradient(135deg, var(--teal), var(--blue));
+      border: none;
+      color: #000d18;
+    }
+
+    #cookieModalSave:hover {
+      opacity: 0.85;
     }
 
     #cookieModalCancel {
-      background-color: #6c757d;
+      background: transparent;
+      border: 1px solid #00ffcc44;
+      color: var(--teal);
     }
 
     #cookieModalCancel:hover {
-      background-color: #5a6268;
+      border-color: var(--teal);
+      background: #00ffcc08;
     }
 
+    /* ── RESPONSIVE ── */
     @media (max-width: 600px) {
-      .cookie-banner-buttons {
-        flex-direction: column;
-      }
+      .game-title { letter-spacing: 0.25em; }
+      .social-line { width: 20px; }
+      .social-label { width: calc(20px + 44px + 20px); }
+      .hero-inner { padding: 0 16px 50px; }
+      .eyebrow { margin-top: 36px; }
+    }
 
-      .cookie-banner-buttons button {
-        min-width: auto;
-      }
+    @media (max-width: 380px) {
+      .game-title { font-size: 38px; letter-spacing: 0.15em; }
+    }
+
+    /* ── Shooting star animation ── */
+    @keyframes shoot {
+      0%   { transform: translateX(0) translateY(0); opacity: 0; }
+      5%   { opacity: 1; }
+      80%  { opacity: 0.6; }
+      100% { transform: translateX(180px) translateY(60px); opacity: 0; }
     }
   </style>
 </head>
 <body>
 
-<main>
-  <h1>DeepSage: An Upcoming Educational Game</h1>
+<section id="hero">
+  <canvas id="starCanvas"></canvas>
+  <div class="hero-grad-top"></div>
+  <div class="hero-grad-bottom"></div>
 
-  <p>Welcome to DeepSage, an innovative educational game designed to make learning engaging and fun. Whether you're exploring new concepts or deepening your understanding, DeepSage offers an immersive experience that combines entertainment with education.</p>
+  <div class="hero-inner">
 
-  <h2>Join Our Early Access List</h2>
-  <p>Be among the first to experience DeepSage! Sign up below to join our wish list and receive early access notifications, exclusive updates, and insider information about our upcoming release.</p>
+    <!-- NAV -->
+    <nav class="site-nav">
+      <div class="nav-logo">DeepSage</div>
+      <div class="nav-auth" id="nav-auth-btns">
+        <!-- dynamically swapped by auth state -->
+      </div>
+    </nav>
+    
+       <!-- GAME TITLE & DESCRIPTION -->                                                                                       
+<div class="game-info">                                                                                               
+                                                          
+<h2 class="game-title">DeepSage: Learn Through Adventure</h2>                                                        
+                                
+</div>  
 
-  <form id="wishlistForm">
-    <input
-      type="email"
-      id="email"
-      placeholder="Your email"
-      required
-    >
-    <button type="submit">
-      Wish This Product
-    </button>
-  </form>
+    <!-- VIDEO -->
+    <div class="video-wrap">
+      <div class="video-ratio">
+        <!--
+          Replace VIDEO_ID with your YouTube video ID.
+          Example: if your URL is youtube.com/watch?v=dQw4w9WgXcQ
+          then VIDEO_ID = dQw4w9WgXcQ
+        -->
+        <iframe
+          src="https://www.youtube.com/embed/QNbl5ciAAJo?rel=0&modestbranding=1&color=black"
+          title="DeepSage — Official Trailer"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
 
-  <p id="message"></p>
-</main>
+    <!-- WISHLIST TITLE -->
+<div class="game-info">       
+<h2 class="game-title">Join Game Wishlist</h2>  
+ </div>
+    <!-- AUTH SECTION -->
+    <div class="auth-section">
+
+      <!-- LOGGED OUT -->
+      <div id="auth-panel">
+        <div class="auth-tabs">
+          <button class="auth-tab active" onclick="switchTab('signin', this)">Sign In</button>
+          <button class="auth-tab" onclick="switchTab('signup', this)">Create Account</button>
+        </div>
+
+        <div class="auth-form-wrap">
+          <!-- GDPR consent — always visible, required for any auth method -->
+          <label class="consent-wrap" id="consent-row">
+            <input type="checkbox" id="consent-check">
+            <span class="consent-text">I agree to receive game updates from the STARFALL team. You can unsubscribe at any time. See our <a href="/privacy.html" target="_blank" rel="noopener" class="consent-link">Privacy Policy</a>.</span>
+          </label>
+
+          <!-- Google -->
+          <button class="google-btn" onclick="authGoogle()">
+            <svg class="google-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+            </svg>
+            Continue with Google
+          </button>
+
+          <div class="auth-divider"><span>or</span></div>
+
+          <!-- Email/pass -->
+          <div class="auth-field">
+            <label for="auth-email">Email</label>
+            <input type="email" id="auth-email" placeholder="your@signal.com" autocomplete="email">
+          </div>
+          <div class="auth-field">
+            <label for="auth-pass">Password</label>
+            <input type="password" id="auth-pass" placeholder="••••••••" autocomplete="current-password">
+          </div>
+
+          <p class="auth-msg" id="auth-msg"></p>
+          <button class="auth-submit" id="auth-submit-btn" onclick="authSubmit()">
+            Sign In &amp; Wishlist
+          </button>
+
+          <p class="data-note">We only collect your email to send game updates. No spam, no third-party sharing. Stored securely via Firebase.</p>
+        </div>
+      </div>
+
+      <!-- LOGGED IN -->
+      <div id="user-panel">
+        <div class="user-welcome">Welcome back, explorer</div>
+        <div id="user-name"></div>
+        <div class="wishlist-badge">✦ Wishlisted</div>
+        <button class="sign-out-btn" onclick="doSignOut()">Sign out</button>
+      </div>
+
+    </div>
+
+    <!-- WISHLIST DESCRIPTION -->
+    <p class="wishlist-description">Be among the first to experience DeepSage. Join our wish list for early access, exclusive updates, and insider information about the game's development and launch.</p>
+
+    <!-- STEAM CTA
+    <div class="steam-cta">
+      <a href="https://store.steampowered.com" target="_blank" rel="noopener" class="steam-btn">
+        <svg class="steam-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C6.477 2 2 6.477 2 12c0 4.236 2.636 7.855 6.356 9.312-.088-.791-.167-2.005.035-2.868.181-.78 1.172-4.971 1.172-4.971s-.299-.598-.299-1.482c0-1.388.806-2.428 1.808-2.428.852 0 1.265.64 1.265 1.408 0 .858-.546 2.141-.828 3.33-.236.995.497 1.806 1.475 1.806 1.77 0 3.132-1.865 3.132-4.559 0-2.382-1.713-4.049-4.158-4.049-2.832 0-4.494 2.124-4.494 4.319 0 .855.329 1.771.74 2.271a.3.3 0 0 1 .07.286c-.076.311-.244.994-.277 1.134-.044.183-.145.222-.335.134-1.249-.582-2.03-2.407-2.03-3.874 0-3.154 2.292-6.052 6.608-6.052 3.469 0 6.165 2.473 6.165 5.776 0 3.447-2.173 6.22-5.19 6.22-1.013 0-1.967-.527-2.292-1.148l-.623 2.378c-.226.869-.835 1.958-1.244 2.621.937.29 1.931.446 2.962.446 5.523 0 10-4.477 10-10S17.523 2 12 2Z"/>
+        </svg>
+        Wishlist on Steam
+      </a>
+      <p class="steam-note">Free to wishlist · No spam</p>
+    </div>
+-->
+
+
+
+    <!-- SOCIALS 
+    <div>
+      <div class="social-row">
+        <div class="social-line"></div>
+        <a href="#" class="social-node" aria-label="Twitter / X" target="_blank" rel="noopener">𝕏</a>
+        <div class="social-line"></div>
+        <a href="#" class="social-node" aria-label="YouTube" target="_blank" rel="noopener">▶</a>
+        <div class="social-line"></div>
+        <a href="#" class="social-node social-node--sm" aria-label="Discord" target="_blank" rel="noopener">DC</a>
+        <div class="social-line"></div>
+        <a href="#" class="social-node social-node--sm" aria-label="TikTok" target="_blank" rel="noopener">TT</a>
+        <div class="social-line"></div>
+      </div>
+      <div class="social-labels">
+        <div class="social-label">Twitter</div>
+        <div class="social-label">YouTube</div>
+        <div class="social-label">Discord</div>
+        <div class="social-label">TikTok</div>
+      </div>
+    </div>
+-->
+    <!-- FOOTER -->
+    <p class="hero-footer">
+      Wishlist · A Signal From The Void · © 2026
+      &nbsp;·&nbsp;
+      <a href="/privacy.html" target="_blank" rel="noopener" class="footer-link">Privacy Policy</a>
+      &nbsp;·&nbsp;
+      <a href="mailto:privacy@deepsage.com" class="footer-link">Data Requests</a>
+    </p>
+
+  </div>
+</section>
 
 <!-- Cookie Consent Banner -->
 <div id="cookieBanner">
@@ -283,9 +1095,9 @@
 </div>
 
 <!-- Cookie Preferences Modal -->
-<div id="cookieModal" role="dialog" aria-modal="true" aria-labelledby="cookieModalTitle">
+<div id="cookieModal">
   <div class="cookie-modal-content">
-    <h2 id="cookieModalTitle">Cookie Preferences</h2>
+    <h2>Cookie Preferences</h2>
 
     <div class="cookie-preference">
       <input type="checkbox" id="cookieEssential" checked disabled>
@@ -319,166 +1131,276 @@
 </div>
 
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbwsvEMZh7GBLFb3SZUgHbc2ciNNVu0YQ0Q0o03eFYUape58DhvCGc8LDNgGOdt8bWFxKQ/exec";
+/* ── Tab switching ── */
+let activeMode = 'signin';
 
-// ============================================================================
-// COOKIE CONSENT MANAGEMENT
-// ============================================================================
+function switchTab(mode, btn) {
+  activeMode = mode;
+  document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
 
-const CONSENT_KEY = 'deepsage_cookie_consent';
-const CONSENT_EXPIRY = 12 * 30 * 24 * 60 * 60 * 1000; // 12 months in milliseconds
+  const submitBtn  = document.getElementById('auth-submit-btn');
+  const passInput  = document.getElementById('auth-pass');
 
-// Get stored consent or return null if expired
-function getStoredConsent() {
-  const stored = localStorage.getItem(CONSENT_KEY);
-  if (!stored) return null;
+  if (mode === 'signin') {
+    submitBtn.textContent  = 'Sign In & Wishlist';
+    passInput.autocomplete = 'current-password';
+  } else {
+    submitBtn.textContent  = 'Create Account & Wishlist';
+    passInput.autocomplete = 'new-password';
+  }
+  setMsg('');
+}
+
+function setMsg(txt, color) {
+  const el = document.getElementById('auth-msg');
+  el.textContent = txt;
+  el.style.color = color || '#ff6688';
+}
+
+/* ── Email/pass auth ── */
+async function authSubmit() {
+  const sf    = window._sf;
+  if (!sf) return setMsg('Firebase not initialized yet.');
+  const email = document.getElementById('auth-email').value.trim();
+  const pass  = document.getElementById('auth-pass').value;
+  if (!email || !pass) return setMsg('Please fill in all fields.');
+
+  /* GDPR: require explicit consent for all auth methods */
+  const consentCheck = document.getElementById('consent-check');
+  if (!consentCheck || !consentCheck.checked) {
+    return setMsg('Please tick the consent box to continue.');
+  }
+
+  const btn = document.getElementById('auth-submit-btn');
+  btn.textContent = '…';
+  btn.disabled    = true;
 
   try {
-    const consent = JSON.parse(stored);
-    const now = Date.now();
+    if (activeMode === 'signin') {
+      await sf.signInWithEmailAndPassword(sf.auth, email, pass);
+    } else {
+      await sf.createUserWithEmailAndPassword(sf.auth, email, pass);
+    }
+    setMsg('');
+  } catch (err) {
+    const msgs = {
+      'auth/user-not-found':       'No account with that email.',
+      'auth/wrong-password':       'Incorrect password.',
+      'auth/email-already-in-use': 'Email already registered. Sign in instead.',
+      'auth/weak-password':        'Password must be at least 6 characters.',
+      'auth/invalid-email':        'Please enter a valid email.',
+    };
+    setMsg(msgs[err.code] || err.message);
+  } finally {
+    btn.disabled = false;
+    switchTab(activeMode, document.querySelector('.auth-tab.active'));
+  }
+}
 
-    // Check if consent has expired (12 months)
-    if (now - consent.timestamp > CONSENT_EXPIRY) {
+/* ── Google auth ── */
+async function authGoogle() {
+  const sf = window._sf;
+  if (!sf) return setMsg('Firebase not initialized yet.');
+
+  const consentCheck = document.getElementById('consent-check');
+  if (!consentCheck || !consentCheck.checked) {
+    return setMsg('Please tick the consent box to continue.');
+  }
+
+  try {
+    await sf.signInWithPopup(sf.auth, sf.gProvider);
+  } catch (err) {
+    if (err.code !== 'auth/popup-closed-by-user') {
+      setMsg(err.message);
+    }
+  }
+}
+
+/* ── Sign out ── */
+async function doSignOut() {
+  const sf = window._sf;
+  if (sf) await sf.signOut(sf.auth);
+}
+
+/* ── Star field canvas ── */
+(function() {
+  const canvas = document.getElementById('starCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, stars, shooters;
+
+  function randShooter() {
+    return {
+      x:   W * 0.1 + Math.random() * W * 0.8,
+      y:   -80,
+      vx:  (Math.random() - 0.5) * 1.0,
+      vy:  2.5 + Math.random() * 3.5,
+      len: 60 + Math.random() * 50,
+      op:  0,
+      col: ['#00ffcc','#ffffff','#00aaff'][Math.random() * 3 | 0],
+    };
+  }
+
+  function init() {
+    W = canvas.width  = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+    stars = Array.from({ length: 280 }, () => ({
+      x:   Math.random() * W,
+      y:   Math.random() * H,
+      r:   Math.random() * 1.3 + 0.2,
+      op:  Math.random() * 0.55 + 0.2,
+      tw:  Math.random() * Math.PI * 2,
+      teal: Math.random() < 0.08,
+    }));
+    shooters = [randShooter(), randShooter(), randShooter()];
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+
+    stars.forEach(s => {
+      s.tw += 0.009;
+      const t = 0.5 + 0.5 * Math.sin(s.tw);
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = s.teal
+        ? `rgba(0,255,204,${(s.op * t * 0.7).toFixed(2)})`
+        : `rgba(255,255,255,${(s.op * t).toFixed(2)})`;
+      ctx.fill();
+    });
+
+    shooters.forEach((s, i) => {
+      s.x += s.vx; s.y += s.vy;
+      s.op = Math.min(1, s.op + 0.04);
+      if (s.y > H + 100) shooters[i] = randShooter();
+      const a  = Math.atan2(s.vy, s.vx);
+      const x0 = s.x - Math.cos(a) * s.len;
+      const y0 = s.y - Math.sin(a) * s.len;
+      const g  = ctx.createLinearGradient(x0, y0, s.x, s.y);
+      g.addColorStop(0, 'transparent');
+      g.addColorStop(1, s.col + 'bb');
+      ctx.beginPath();
+      ctx.moveTo(x0, y0);
+      ctx.lineTo(s.x, s.y);
+      ctx.strokeStyle = g;
+      ctx.lineWidth   = 1.5;
+      ctx.globalAlpha = s.op;
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+    });
+
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', init);
+  init();
+  draw();
+})();
+
+/* ── COOKIE CONSENT MANAGEMENT ── */
+(function() {
+  const CONSENT_KEY = 'deepsage_cookie_consent';
+  const CONSENT_EXPIRY = 12 * 30 * 24 * 60 * 60 * 1000; // 12 months in milliseconds
+
+  function getStoredConsent() {
+    const stored = localStorage.getItem(CONSENT_KEY);
+    if (!stored) return null;
+    try {
+      const consent = JSON.parse(stored);
+      const now = Date.now();
+      if (now - consent.timestamp > CONSENT_EXPIRY) {
+        localStorage.removeItem(CONSENT_KEY);
+        return null;
+      }
+      return consent;
+    } catch (error) {
+      console.error("Invalid consent data:", error);
       localStorage.removeItem(CONSENT_KEY);
       return null;
     }
-
-    return consent;
-  } catch (error) {
-    console.error("Invalid consent data in localStorage, resetting:", error);
-    localStorage.removeItem(CONSENT_KEY);
-    return null;
   }
-}
 
-// Save consent choice to localStorage
-function saveConsent(essential, analytics, marketing) {
-  const consent = {
-    essential: true, // always true
-    analytics: analytics,
-    marketing: marketing,
-    timestamp: Date.now()
-  };
-  localStorage.setItem(CONSENT_KEY, JSON.stringify(consent));
-}
-
-// Initialize banner: show if no consent stored, hide if consent exists
-function initializeCookieBanner() {
-  const storedConsent = getStoredConsent();
-  const banner = document.getElementById('cookieBanner');
-
-  if (!storedConsent) {
-    // No consent stored or expired, show banner
-    banner.classList.add('show');
-  } else {
-    // Consent already given, hide banner
-    banner.classList.remove('show');
-    // Load non-essential cookies based on stored consent
-    loadCookiesBasedOnConsent(storedConsent);
+  function saveConsent(essential, analytics, marketing) {
+    const consent = {
+      essential: true,
+      analytics: analytics,
+      marketing: marketing,
+      timestamp: Date.now()
+    };
+    localStorage.setItem(CONSENT_KEY, JSON.stringify(consent));
   }
-}
 
-// Load external scripts/cookies based on user consent
-function loadCookiesBasedOnConsent(consent) {
-  if (consent.analytics) {
-    loadGoogleAnalytics();
-  }
-  if (consent.marketing) {
-    // Load marketing/tracking pixels here if needed
-  }
-}
-
-// Load Google Analytics (only if consent given)
-function loadGoogleAnalytics() {
-  // Only load Google Analytics if user consented to analytics
-  // This is a placeholder - actual GA implementation would go here
-  console.log('Google Analytics would be loaded here');
-  // window.dataLayer = window.dataLayer || [];
-  // function gtag(){dataLayer.push(arguments);}
-  // gtag('js', new Date());
-  // gtag('config', 'GA_MEASUREMENT_ID');
-}
-
-// Banner button handlers
-document.getElementById('cookieAccept').addEventListener('click', function() {
-  saveConsent(true, true, true);
-  loadCookiesBasedOnConsent({ essential: true, analytics: true, marketing: true });
-  document.getElementById('cookieBanner').classList.remove('show');
-});
-
-document.getElementById('cookieReject').addEventListener('click', function() {
-  saveConsent(true, false, false);
-  document.getElementById('cookieBanner').classList.remove('show');
-});
-
-document.getElementById('cookieCustomize').addEventListener('click', function() {
-  const storedConsent = getStoredConsent();
-  if (storedConsent) {
-    document.getElementById('cookieAnalytics').checked = storedConsent.analytics;
-    document.getElementById('cookieMarketing').checked = storedConsent.marketing;
-  }
-  document.getElementById('cookieModal').classList.add('show');
-});
-
-document.getElementById('cookieModalCancel').addEventListener('click', function() {
-  document.getElementById('cookieModal').classList.remove('show');
-});
-
-document.getElementById('cookieModalSave').addEventListener('click', function() {
-  const analytics = document.getElementById('cookieAnalytics').checked;
-  const marketing = document.getElementById('cookieMarketing').checked;
-
-  saveConsent(true, analytics, marketing);
-  loadCookiesBasedOnConsent({ essential: true, analytics: analytics, marketing: marketing });
-
-  document.getElementById('cookieModal').classList.remove('show');
-  document.getElementById('cookieBanner').classList.remove('show');
-});
-
-// Handle ESC key to close modal
-document.addEventListener('keydown', function(event) {
-  if (event.key === 'Escape') {
-    const modal = document.getElementById('cookieModal');
-    if (modal.classList.contains('show')) {
-      document.getElementById('cookieModalCancel').click();
+  function loadCookiesBasedOnConsent(consent) {
+    if (consent.analytics) {
+      console.log('Google Analytics consent granted');
+    }
+    if (consent.marketing) {
+      console.log('Marketing cookies consent granted');
     }
   }
-});
 
-// Initialize on page load
-document.addEventListener('DOMContentLoaded', initializeCookieBanner);
+  function initializeCookieBanner() {
+    const storedConsent = getStoredConsent();
+    const banner = document.getElementById('cookieBanner');
 
-// ============================================================================
-// EMAIL FORM SUBMISSION
-// ============================================================================
-
-document.getElementById("wishlistForm").addEventListener("submit", async function(e) {
-  e.preventDefault();
-
-  const messageEl = document.getElementById("message");
-  const email = document.getElementById("email").value;
-
-  try {
-    const response = await fetch(scriptURL, {
-      method: "POST",
-      body: JSON.stringify({
-        email: email
-      })
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+    if (!storedConsent) {
+      banner.classList.add('show');
+    } else {
+      banner.classList.remove('show');
+      loadCookiesBasedOnConsent(storedConsent);
     }
-
-    messageEl.innerText = "Saved successfully!";
-    messageEl.style.color = "#28a745";
-    document.getElementById("email").value = "";
-  } catch (error) {
-    console.error("Form submission error:", error);
-    messageEl.innerText = "Error saving email. Please try again.";
-    messageEl.style.color = "#dc3545";
   }
-});
+
+  // Banner button handlers
+  document.getElementById('cookieAccept').addEventListener('click', function() {
+    saveConsent(true, true, true);
+    loadCookiesBasedOnConsent({ essential: true, analytics: true, marketing: true });
+    document.getElementById('cookieBanner').classList.remove('show');
+  });
+
+  document.getElementById('cookieReject').addEventListener('click', function() {
+    saveConsent(true, false, false);
+    document.getElementById('cookieBanner').classList.remove('show');
+  });
+
+  document.getElementById('cookieCustomize').addEventListener('click', function() {
+    const storedConsent = getStoredConsent();
+    if (storedConsent) {
+      document.getElementById('cookieAnalytics').checked = storedConsent.analytics;
+      document.getElementById('cookieMarketing').checked = storedConsent.marketing;
+    }
+    document.getElementById('cookieModal').classList.add('show');
+  });
+
+  document.getElementById('cookieModalCancel').addEventListener('click', function() {
+    document.getElementById('cookieModal').classList.remove('show');
+  });
+
+  document.getElementById('cookieModalSave').addEventListener('click', function() {
+    const analytics = document.getElementById('cookieAnalytics').checked;
+    const marketing = document.getElementById('cookieMarketing').checked;
+
+    saveConsent(true, analytics, marketing);
+    loadCookiesBasedOnConsent({ essential: true, analytics: analytics, marketing: marketing });
+
+    document.getElementById('cookieModal').classList.remove('show');
+    document.getElementById('cookieBanner').classList.remove('show');
+  });
+
+  // Handle ESC key to close modal
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      const modal = document.getElementById('cookieModal');
+      if (modal.classList.contains('show')) {
+        document.getElementById('cookieModalCancel').click();
+      }
+    }
+  });
+
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', initializeCookieBanner);
+})();
 </script>
 
 </body>
