@@ -13,15 +13,22 @@
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
-import { 
-    getAuth, 
-    GoogleAuthProvider, 
-    createUserWithEmailAndPassword, 
-    signInWithEmailAndPassword, 
-    signOut, 
-    onAuthStateChanged, 
-    signInWithPopup 
+import {
+    getAuth,
+    GoogleAuthProvider,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged,
+    signInWithPopup
   } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js";
+
+  import {
+    getFirestore,
+    doc,
+    setDoc,
+    serverTimestamp
+  } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
 
 
   // Your web app's Firebase configuration
@@ -41,6 +48,7 @@ import {
   const analytics = getAnalytics(app);
 
     const auth = getAuth(app);
+    const firestoreDb = getFirestore(app);
     const gProvider = new GoogleAuthProvider();
 
     /* ── expose to window so inline handlers can reach them ── */
@@ -56,16 +64,27 @@ import {
         loggedOut.style.display = 'none';
         loggedIn.style.display  = 'flex';
         userName.textContent    = user.displayName || user.email || 'Explorer';
-        trackWishlist(user.email);
+        trackWishlist(user);
       } else {
         loggedOut.style.display = 'flex';
         loggedIn.style.display  = 'none';
       }
     });
 
-    function trackWishlist(email) {
-      /* In production, write to Firestore here */
-      console.log('Wishlisted by:', email);
+    async function trackWishlist(user) {
+      try {
+        await setDoc(doc(firestoreDb, 'wishlist', user.uid), {
+          email: user.email || null,
+          displayName: user.displayName || null,
+          wishlistedAt: serverTimestamp(),
+        }, { merge: true });
+      } catch (err) {
+        // Non-fatal: sign-in already succeeded (Firebase Auth is the
+        // source of truth for the user existing). If this fails, it's
+        // most likely a Firestore security rules issue — check the
+        // Firebase console rules for the `wishlist` collection.
+        console.error('Failed to record wishlist entry:', err);
+      }
     }
   </script>
 
