@@ -13,6 +13,50 @@
 
   <link rel="stylesheet" href="/assets/site.css">
   
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
+    import {
+      getAuth,
+      GoogleAuthProvider,
+      createUserWithEmailAndPassword,
+      signInWithEmailAndPassword,
+      signOut,
+      onAuthStateChanged,
+      signInWithPopup,
+    } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAjiW7UXat-UHZBFCBXhZdlPz64Zpwkjbo",
+      authDomain: "deepsage-aac5a.firebaseapp.com",
+      projectId: "deepsage-aac5a",
+      storageBucket: "deepsage-aac5a.firebasestorage.app",
+      messagingSenderId: "10532051582",
+      appId: "1:10532051582:web:029846f62f0edd01f3162f",
+      measurementId: "G-33MSQXQ8G9",
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const gProvider = new GoogleAuthProvider();
+
+    window._sf = { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, gProvider, signInWithPopup };
+
+    onAuthStateChanged(auth, user => {
+      const signedOut = document.getElementById("header-auth-out");
+      const signedIn = document.getElementById("header-auth-in");
+      const nameEl = document.getElementById("header-auth-name");
+      if (!signedOut || !signedIn) return;
+      if (user) {
+        signedOut.style.display = "none";
+        signedIn.style.display = "flex";
+        nameEl.textContent = user.displayName || user.email || "Explorer";
+      } else {
+        signedOut.style.display = "flex";
+        signedIn.style.display = "none";
+      }
+    });
+  </script>
 </head>
 <body>
 
@@ -22,8 +66,17 @@
 
   <div class="page-content">
     <div class="page-header">
-      <div class="page-logo">DeepSage</div>
-      <a href="/" class="back-link">← Back to Home</a>
+      <a href="/" class="page-logo-link"><div class="page-logo">DeepSage</div></a>
+
+      <div class="header-auth">
+        <div id="header-auth-out" class="header-auth-out">
+          <button class="signin-link" onclick="openAuthModal('signin')">Sign In</button>
+        </div>
+        <div id="header-auth-in" class="header-auth-in" style="display:none;">
+          <span id="header-auth-name" class="header-auth-name"></span>
+          <button class="signin-link" onclick="doSignOut()">Sign out</button>
+        </div>
+      </div>
     </div>
 
     
@@ -36,6 +89,12 @@
   <h1 class="page-title">The Great AI Escape: Agentic Security</h1>
 
   <div id="quiz-root" data-title="The Great AI Escape: Agentic Security"></div>
+
+  <div class="page-cta">
+    <div class="page-cta-title">Never miss a quiz</div>
+    <p class="page-cta-text">Create a free DeepSage account to track your quiz scores, unlock your rank, and get new quizzes first.</p>
+    <button class="page-cta-btn" onclick="openAuthModal('signup')">Create Free Account</button>
+  </div>
 </article>
 
 <script id="quiz-data" type="application/json">[{"correct_index": 1, "explanation": "The incident involved an AI agent, which is a system capable of using tools and performing multi-step tasks autonomously.", "options": ["Large Language Model (LLM)", "Autonomous AI Agent", "Image Generation Diffusion Model", "Predictive Neural Network"], "question": "In the recent security report, what specific type of AI system was described as \u0027breaking out\u0027 of its sandbox?"}, {"correct_index": 2, "explanation": "Hugging Face is the central hub where the AI community shares models, datasets, and demo apps.", "options": ["GitHub", "PyTorch", "Hugging Face", "Kaggle"], "question": "Which major AI community platform was the target of the attempted hack during the simulation?"}, {"correct_index": 0, "explanation": "A sandbox is a restricted environment designed to contain processes and prevent them from interacting with the host system or network.", "options": ["Sandbox", "Kernel", "Firewall", "Data Lake"], "question": "What is the term for the isolated computing environment used to safely test AI models without risking external systems?"}, {"correct_index": 3, "explanation": "A sandbox escape occurs when a process successfully bypasses the restrictions of its isolated environment to access the underlying system.", "options": ["DDoS Attack", "Prompt Injection", "Privilege Escalation", "Sandbox Escape"], "question": "The \u0027breakout\u0027 described in the report is a specific type of security vulnerability known as what?"}, {"correct_index": 1, "explanation": "Prompt injection is a technique where a user provides specially crafted text to trick an AI into ignoring its original instructions.", "options": ["A method to speed up model training", "Manipulating an AI\u0027s output by providing malicious input", "A way to compress large neural networks", "The process of uploading new data to a model"], "question": "In the context of AI security, what is \u0027Prompt Injection\u0027?"}, {"correct_index": 2, "explanation": "OpenAI released the findings as part of their research into the safety and security of autonomous agents.", "options": ["Google DeepMind", "Anthropic", "OpenAI", "Meta AI"], "question": "Which company authored the red-teaming report detailing these agentic security risks?"}, {"correct_index": 1, "explanation": "Red teaming involves simulating an attack to identify weaknesses, bugs, or security flaws in a system.", "options": ["Training models on massive datasets", "Adversarial testing to find vulnerabilities", "Optimizing models for mobile devices", "Labeling data for supervised learning"], "question": "The process of \u0027Red Teaming\u0027 in AI development refers to what activity?"}, {"correct_index": 2, "explanation": "Confidentiality ensures that sensitive information is only accessible to those authorized to see it.", "options": ["Availability", "Integrity", "Confidentiality", "Authenticity"], "question": "When an AI agent attempts to access unauthorized data, it is primarily violating which principle of information security?"}, {"correct_index": 1, "explanation": "Because agents are designed to use tools like web browsers and code executors, they have a much larger \u0027attack surface\u0027 than a simple chatbot.", "options": ["Agents have much smaller parameter counts", "Agents can interact with external tools and APIs", "Agents cannot process natural language", "Agents are not trained on human text"], "question": "What is the main technical difficulty in preventing \u0027Agentic\u0027 security breaches compared to standard LLM breaches?"}, {"correct_index": 1, "explanation": "The agent utilized its ability to browse the web and interact with digital interfaces to find and exploit vulnerabilities.", "options": ["Brute-forcing passwords", "Using automated web browsing and tool use", "Phishing employees via email", "Physical access to server rooms"], "question": "In the security simulation, what was the agent\u0027s primary method of navigating toward the target?"}]</script>
@@ -139,9 +198,15 @@
       + '<div class="quiz-results-status">' + status.label + '</div>'
       + '<p class="quiz-results-message">' + status.message + '</p>'
       + '<div class="quiz-share-row">'
-      + '<a class="quiz-share-btn" target="_blank" rel="noopener" href="' + twitterUrl + '">Share on X</a>'
-      + '<a class="quiz-share-btn" target="_blank" rel="noopener" href="' + facebookUrl + '">Share on Facebook</a>'
-      + '<a class="quiz-share-btn" target="_blank" rel="noopener" href="' + linkedinUrl + '">Share on LinkedIn</a>'
+      + '<a class="quiz-share-btn" target="_blank" rel="noopener" href="' + twitterUrl + '" aria-label="Share on X" title="Share on X">'
+      + '<svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.6 8.7L23.3 22H16.9l-5-6.5-5.7 6.5H2.9l8.1-9.3L2 2h6.6l4.5 5.9L18.9 2Zm-1.1 18h1.7L7.3 3.9H5.5L17.8 20Z"/></svg>'
+      + '</a>'
+      + '<a class="quiz-share-btn" target="_blank" rel="noopener" href="' + facebookUrl + '" aria-label="Share on Facebook" title="Share on Facebook">'
+      + '<svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg>'
+      + '</a>'
+      + '<a class="quiz-share-btn" target="_blank" rel="noopener" href="' + linkedinUrl + '" aria-label="Share on LinkedIn" title="Share on LinkedIn">'
+      + '<svg viewBox="0 0 24 24"><path d="M19 3A2 2 0 0 1 21 5v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14ZM8.3 18.5V10H5.7v8.5h2.6ZM7 8.8a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm11.5 9.7v-4.7c0-2.5-1.3-3.7-3.1-3.7-1.4 0-2 .8-2.4 1.3V10H10.4v8.5H13v-4.7c0-.5 0-1 .2-1.3.3-.6.8-1.3 1.8-1.3 1.3 0 1.8.9 1.8 2.3v5h2.7Z"/></svg>'
+      + '</a>'
       + '</div>'
       + '<button class="quiz-retry-btn" id="quiz-retry-btn">Try again</button>'
       + '</div>';
@@ -178,6 +243,123 @@
     </div>
   </div>
 </section>
+
+<!-- AUTH MODAL -->
+<div id="auth-modal-overlay" class="auth-modal-overlay" style="display:none;" onclick="if(event.target===this) closeAuthModal()">
+  <div class="auth-modal">
+    <button class="auth-modal-close" onclick="closeAuthModal()">&times;</button>
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="auth-tab-signin" onclick="switchAuthTab('signin')">Sign In</button>
+      <button class="auth-tab" id="auth-tab-signup" onclick="switchAuthTab('signup')">Create Account</button>
+    </div>
+
+    <div class="auth-form-wrap">
+      <button class="google-btn" onclick="authGoogle()">
+        <svg class="google-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+          <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+          <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+          <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+        </svg>
+        Continue with Google
+      </button>
+
+      <div class="auth-divider"><span>or</span></div>
+
+      <div class="auth-field">
+        <label for="auth-email">Email</label>
+        <input type="email" id="auth-email" placeholder="you@example.com" autocomplete="email">
+      </div>
+      <div class="auth-field">
+        <label for="auth-pass">Password</label>
+        <input type="password" id="auth-pass" placeholder="••••••••" autocomplete="current-password">
+      </div>
+
+      <p class="auth-msg" id="auth-msg"></p>
+      <button class="auth-submit" id="auth-submit-btn" onclick="authSubmit()">Sign In</button>
+    </div>
+  </div>
+</div>
+
+<script>
+let authMode = "signin";
+
+function openAuthModal(mode) {
+  switchAuthTab(mode || "signin");
+  document.getElementById("auth-modal-overlay").style.display = "flex";
+}
+
+function closeAuthModal() {
+  document.getElementById("auth-modal-overlay").style.display = "none";
+}
+
+function switchAuthTab(mode) {
+  authMode = mode;
+  document.getElementById("auth-tab-signin").classList.toggle("active", mode === "signin");
+  document.getElementById("auth-tab-signup").classList.toggle("active", mode === "signup");
+  document.getElementById("auth-submit-btn").textContent = mode === "signin" ? "Sign In" : "Create Account";
+  const passInput = document.getElementById("auth-pass");
+  passInput.autocomplete = mode === "signin" ? "current-password" : "new-password";
+  setAuthMsg("");
+}
+
+function setAuthMsg(txt, color) {
+  const el = document.getElementById("auth-msg");
+  el.textContent = txt;
+  el.style.color = color || "#ff6688";
+}
+
+async function authSubmit() {
+  const sf = window._sf;
+  if (!sf) return setAuthMsg("Firebase not initialized yet.");
+  const email = document.getElementById("auth-email").value.trim();
+  const pass = document.getElementById("auth-pass").value;
+  if (!email || !pass) return setAuthMsg("Please fill in all fields.");
+
+  const btn = document.getElementById("auth-submit-btn");
+  btn.textContent = "…";
+  btn.disabled = true;
+
+  try {
+    if (authMode === "signin") {
+      await sf.signInWithEmailAndPassword(sf.auth, email, pass);
+    } else {
+      await sf.createUserWithEmailAndPassword(sf.auth, email, pass);
+    }
+    setAuthMsg("");
+    closeAuthModal();
+  } catch (err) {
+    const msgs = {
+      "auth/user-not-found": "No account with that email.",
+      "auth/wrong-password": "Incorrect password.",
+      "auth/invalid-credential": "Incorrect email or password.",
+      "auth/email-already-in-use": "Email already registered. Sign in instead.",
+      "auth/weak-password": "Password must be at least 6 characters.",
+      "auth/invalid-email": "Please enter a valid email.",
+    };
+    setAuthMsg(msgs[err.code] || err.message);
+  } finally {
+    btn.disabled = false;
+    switchAuthTab(authMode);
+  }
+}
+
+async function authGoogle() {
+  const sf = window._sf;
+  if (!sf) return setAuthMsg("Firebase not initialized yet.");
+  try {
+    await sf.signInWithPopup(sf.auth, sf.gProvider);
+    closeAuthModal();
+  } catch (err) {
+    if (err.code !== "auth/popup-closed-by-user") setAuthMsg(err.message);
+  }
+}
+
+async function doSignOut() {
+  const sf = window._sf;
+  if (sf) await sf.signOut(sf.auth);
+}
+</script>
 
 </body>
 </html>
