@@ -432,16 +432,22 @@ hr {
 }
 
 /* ── ARTICLE BODY ── */
+.article-body { overflow-wrap: break-word; word-break: break-word; }
 .article-body h2 { margin-top: 32px; }
 .article-body h3 { color: var(--teal); font-size: 15px; text-transform: uppercase; letter-spacing: 1px; margin: 24px 0 8px; }
-.article-body a { text-decoration: underline; }
-.article-body img { max-width: 100%; border-radius: 4px; margin: 16px 0; border: 1px solid #00ffcc22; }
+.article-body a { text-decoration: underline; overflow-wrap: break-word; }
+.article-body img { max-width: 100%; height: auto; border-radius: 4px; margin: 16px 0; border: 1px solid #00ffcc22; }
 .article-body blockquote { border-left: 2px solid var(--teal); padding-left: 16px; color: var(--muted); margin: 16px 0; }
-.article-body code { background: #00ffcc10; padding: 2px 6px; border-radius: 2px; font-size: 13px; }
+.article-body code { background: #00ffcc10; padding: 2px 6px; border-radius: 2px; font-size: 13px; word-break: break-word; }
+.article-body pre { max-width: 100%; overflow-x: auto; margin: 16px 0; }
+.article-body pre code { padding: 12px 16px; display: block; }
+.article-body table { max-width: 100%; display: block; overflow-x: auto; }
 
 /* ── INLINE ANIMATION (auto-generated looping clip) ── */
 .article-animation {
   width: 100%;
+  max-width: 100%;
+  height: auto;
   border-radius: 4px;
   border: 1px solid #00ffcc22;
   box-shadow: 0 0 24px #00ffcc22;
