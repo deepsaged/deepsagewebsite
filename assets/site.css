@@ -536,6 +536,30 @@ table th {
   margin: 0;
 }
 
+/* ── 404 PAGE ── */
+.not-found { text-align: center; padding: 40px 0; }
+.not-found .page-title { font-size: 96px; margin-bottom: 8px; }
+.not-found-text { color: var(--muted); margin: 20px 0; }
+.not-found-links { display: flex; justify-content: center; gap: 24px; margin-top: 24px; }
+.not-found-links a { color: var(--teal); text-decoration: underline; font-family: var(--sans); }
+
+/* ── SHORT LINK (article + quiz) ── */
+.short-link {
+  text-align: center;
+  margin: -8px 0 20px;
+  font-family: var(--sans);
+  font-size: 13px;
+}
+.short-link a {
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: 0.3px;
+}
+.short-link a:hover {
+  color: var(--teal);
+  text-decoration: underline;
+}
+
 /* ── SHARE BUTTONS (article + quiz) ── */
 .share-row {
   display: flex;
