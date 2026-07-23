@@ -14,7 +14,7 @@ html { scroll-behavior: smooth; }
   --blue:  #00aaff;
   --dark:  #000408;
   --text:  #c8e8ff;
-  --muted: #4a7a8a;
+  --muted: #8fb4c2;
   --serif: Georgia, 'Times New Roman', serif;
   --sans:  system-ui, -apple-system, sans-serif;
 }
@@ -351,8 +351,8 @@ a:hover { opacity: 0.7; }
 
 .last-updated {
   font-family: var(--sans);
-  font-size: 10px;
-  letter-spacing: 2px;
+  font-size: 12px;
+  letter-spacing: 1.5px;
   color: var(--muted);
   text-transform: uppercase;
   margin-bottom: 48px;
@@ -413,22 +413,22 @@ hr {
   gap: 20px;
   flex-wrap: wrap;
   font-family: var(--sans);
-  font-size: 10px;
-  letter-spacing: 2px;
+  font-size: 13px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
 }
 
-.footer-links a { color: #00ffcc33; transition: color 0.2s; }
-.footer-links a:hover { color: #00ffccaa; }
+.footer-links a { color: #6fe0c8; transition: color 0.2s; }
+.footer-links a:hover { color: var(--teal); }
 
-.footer-divider { color: #00ffcc15; }
+.footer-divider { color: #00ffcc44; }
 
 .footer-copyright {
   margin-top: 24px;
   font-family: var(--sans);
-  font-size: 9px;
-  color: #00ffcc15;
-  letter-spacing: 3px;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 2px;
   text-transform: uppercase;
 }
 
