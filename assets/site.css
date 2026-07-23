@@ -2,8 +2,12 @@
    privacy-policy.html so generated content pages look native to the site. */
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; scrollbar-width: none; }
-html::-webkit-scrollbar { display: none; }
+/* NOTE: scrollbar is intentionally NOT hidden (scrollbar-width/::-webkit-scrollbar
+   display:none used to be set here and on every standalone legal page) — hiding the
+   scrollbar removed the user's only visual affordance that a long page (privacy
+   policy, terms of service) continues below the fold, which read as "scrolling is
+   broken/hidden". Keep the native scrollbar so long-form pages are discoverable. */
+html { scroll-behavior: smooth; }
 
 :root {
   --teal:  #00ffcc;
@@ -15,10 +19,16 @@ html::-webkit-scrollbar { display: none; }
   --sans:  system-ui, -apple-system, sans-serif;
 }
 
+/* ── TYPOGRAPHY SCALE ──
+   Medium.com-inspired reading experience: larger base size, generous
+   line-height, comfortable measure. Brand colors/theme unchanged — this is
+   a sizing pass only. */
 body {
   background: #000;
   color: var(--text);
   font-family: var(--serif);
+  font-size: 18px;
+  line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
@@ -333,7 +343,7 @@ a:hover { opacity: 0.7; }
 
 .page-dek {
   font-family: var(--sans);
-  font-size: 16px;
+  font-size: 20px;
   line-height: 1.7;
   color: var(--text);
   margin-bottom: 32px;
@@ -351,33 +361,33 @@ a:hover { opacity: 0.7; }
 .page-section { margin-bottom: 48px; }
 
 .section-title {
-  font-size: 20px;
+  font-size: 26px;
   font-family: var(--serif);
   font-weight: 300;
   letter-spacing: 0.5px;
   color: #ffffff;
-  margin-bottom: 16px;
-  margin-top: 32px;
+  margin-bottom: 20px;
+  margin-top: 40px;
 }
 
 .section-title:first-of-type { margin-top: 0; }
 
 p {
   font-family: var(--sans);
-  font-size: 14px;
-  line-height: 1.8;
+  font-size: 19px;
+  line-height: 1.75;
   color: var(--text);
-  margin-bottom: 16px;
+  margin-bottom: 24px;
 }
 
-ul, ol { margin-left: 20px; margin-bottom: 16px; }
+ul, ol { margin-left: 24px; margin-bottom: 24px; }
 
 li {
   font-family: var(--sans);
-  font-size: 14px;
-  line-height: 1.8;
+  font-size: 19px;
+  line-height: 1.75;
   color: var(--text);
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 
 strong { color: var(--teal); font-weight: 600; }
@@ -422,6 +432,45 @@ hr {
   text-transform: uppercase;
 }
 
+/* ── LEGAL DOC SECTION SUBTITLES & TABLES (privacy/cookie policy) ──
+   Moved here from the old standalone privacy-policy.html / cookie-policy.html
+   inline <style> blocks so both pages (and any future legal page) share one
+   source of truth instead of duplicating these rules. */
+.section-subtitle {
+  font-size: 15px;
+  font-family: var(--sans);
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--teal);
+  text-transform: uppercase;
+  margin-top: 28px;
+  margin-bottom: 14px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-family: var(--sans);
+  font-size: 16px;
+}
+
+table th, table td {
+  border: 1px solid #00ffcc22;
+  padding: 12px;
+  text-align: left;
+}
+
+table th {
+  background-color: #00ffcc08;
+  color: var(--teal);
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  table { font-size: 13px; }
+}
+
 /* ── HERO IMAGE (articles/quizzes) ── */
 .hero-image {
   width: 100%;
@@ -432,9 +481,9 @@ hr {
 }
 
 /* ── ARTICLE BODY ── */
-.article-body { overflow-wrap: break-word; word-break: break-word; }
-.article-body h2 { margin-top: 32px; }
-.article-body h3 { color: var(--teal); font-size: 15px; text-transform: uppercase; letter-spacing: 1px; margin: 24px 0 8px; }
+.article-body { overflow-wrap: break-word; word-break: break-word; font-size: 20px; line-height: 1.75; }
+.article-body h2 { margin-top: 40px; font-size: 28px; }
+.article-body h3 { color: var(--teal); font-size: 17px; text-transform: uppercase; letter-spacing: 1px; margin: 28px 0 10px; }
 .article-body a { text-decoration: underline; overflow-wrap: break-word; }
 .article-body img { max-width: 100%; height: auto; border-radius: 4px; margin: 16px 0; border: 1px solid #00ffcc22; }
 .article-body blockquote { border-left: 2px solid var(--teal); padding-left: 16px; color: var(--muted); margin: 16px 0; }
@@ -550,7 +599,7 @@ hr {
 
 .quiz-question {
   font-family: var(--sans);
-  font-size: 18px;
+  font-size: 22px;
   line-height: 1.6;
   color: #ffffff;
   margin-bottom: 28px;
@@ -566,7 +615,7 @@ hr {
 
 .quiz-option {
   font-family: var(--sans);
-  font-size: 14px;
+  font-size: 17px;
   color: var(--text);
   background: #000d1888;
   border: 1px solid #00ffcc22;
@@ -584,10 +633,11 @@ hr {
 
 .quiz-option.is-correct { border-color: var(--teal); background: #00ffcc1a; color: #ffffff; }
 .quiz-option.is-wrong { border-color: #ff5566; background: #ff556618; color: #ffffff; }
+.quiz-option.is-idk { border-color: #ffb84d; background: #ffb84d18; color: #ffffff; }
 
 .quiz-explanation {
   font-family: var(--sans);
-  font-size: 13px;
+  font-size: 16px;
   line-height: 1.7;
   color: var(--text);
   background: #000d1888;
@@ -759,7 +809,7 @@ hr {
 
 .content-card-title {
   font-family: var(--serif);
-  font-size: 17px;
+  font-size: 19px;
   font-weight: 400;
   color: #ffffff;
   line-height: 1.35;
@@ -767,7 +817,7 @@ hr {
 
 .content-card-preview {
   font-family: var(--sans);
-  font-size: 12px;
+  font-size: 14px;
   color: var(--muted);
   line-height: 1.5;
 }

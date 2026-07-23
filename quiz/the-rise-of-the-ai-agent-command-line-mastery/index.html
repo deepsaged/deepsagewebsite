@@ -103,7 +103,7 @@
   var QUESTIONS = JSON.parse(document.getElementById("quiz-data").textContent);
   var TITLE = document.getElementById("quiz-root").dataset.title;
   var root = document.getElementById("quiz-root");
-  var LETTERS = ["A", "B", "C", "D"];
+  var LETTERS = ["A", "B", "C", "D", "E", "F"];
 
   var STATUS_LEVELS = [
     { min: 0,  label: "Just Getting Started", message: "Every expert starts somewhere — dive into more DeepSage quizzes to sharpen up." },
@@ -122,7 +122,7 @@
     return level;
   }
 
-  var state = { index: 0, correctCount: 0, answered: false };
+  var state = { index: 0, points: 0, answered: false };
 
   function render() {
     if (state.index >= QUESTIONS.length) {
@@ -156,14 +156,15 @@
     if (state.answered) return;
     state.answered = true;
     var q = QUESTIONS[state.index];
-    var correct = chosenIndex === q.correct_index;
-    if (correct) state.correctCount++;
+    if (chosenIndex === q.correct_index) state.points += 1;
+    else if (chosenIndex === q.idk_index) state.points += 0.5;
 
     var buttons = root.querySelectorAll(".quiz-option");
     buttons.forEach(function (btn) {
       var i = parseInt(btn.dataset.index, 10);
       btn.disabled = true;
       if (i === q.correct_index) btn.classList.add("is-correct");
+      else if (i === q.idk_index && i === chosenIndex) btn.classList.add("is-idk");
       else if (i === chosenIndex) btn.classList.add("is-wrong");
     });
 
@@ -179,11 +180,15 @@
     nextSlot.appendChild(nextBtn);
   }
 
+  function formatScore(n) {
+    return n % 1 === 0 ? String(n) : n.toFixed(1);
+  }
+
   function renderResults() {
-    var percent = Math.round((state.correctCount / QUESTIONS.length) * 100);
+    var percent = Math.round((state.points / QUESTIONS.length) * 100);
     var status = statusFor(percent);
     var pageUrl = window.location.href;
-    var shareText = "I scored " + state.correctCount + "/" + QUESTIONS.length
+    var shareText = "I scored " + formatScore(state.points) + "/" + QUESTIONS.length
       + " (" + percent + "%) on the DeepSage quiz \"" + TITLE + "\" and reached " + status.label + " level!";
 
     var twitterUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(shareText) + "&url=" + encodeURIComponent(pageUrl);
@@ -193,7 +198,7 @@
     root.innerHTML = ''
       + '<div class="quiz-results">'
       + '<div class="quiz-progress-track"><div class="quiz-progress-fill" style="width:100%"></div></div>'
-      + '<div class="quiz-results-score">' + state.correctCount + '/' + QUESTIONS.length + '</div>'
+      + '<div class="quiz-results-score">' + formatScore(state.points) + '/' + QUESTIONS.length + '</div>'
       + '<div class="quiz-results-percent">' + percent + '% correct</div>'
       + '<div class="quiz-results-status">' + status.label + '</div>'
       + '<p class="quiz-results-message">' + status.message + '</p>'
@@ -212,7 +217,7 @@
       + '</div>';
 
     document.getElementById("quiz-retry-btn").addEventListener("click", function () {
-      state.index = 0; state.correctCount = 0; render();
+      state.index = 0; state.points = 0; render();
     });
   }
 
@@ -360,6 +365,8 @@ async function doSignOut() {
   if (sf) await sf.signOut(sf.auth);
 }
 </script>
+
+
 
 </body>
 </html>

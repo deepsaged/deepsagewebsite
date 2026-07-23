@@ -4,220 +4,59 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy Policy - DeepSage</title>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; scrollbar-width: none; }
-    html::-webkit-scrollbar { display: none; }
+  <meta name="description" content="DeepSage Privacy Policy">
 
-    :root {
-      --teal:  #00ffcc;
-      --blue:  #00aaff;
-      --text:  #c8e8ff;
-      --muted: #4a7a8a;
-      --serif: Georgia, 'Times New Roman', serif;
-      --sans:  system-ui, -apple-system, sans-serif;
-    }
+  <meta property="og:title" content="Privacy Policy - DeepSage">
+  <meta property="og:description" content="DeepSage Privacy Policy">
+  <meta property="og:image" content="">
+  <meta property="og:type" content="article">
 
-    body {
-      background: #000;
-      color: var(--text);
-      font-family: var(--serif);
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-      min-height: 100vh;
-    }
+  <link rel="stylesheet" href="/assets/site.css">
+  
 
-    a { color: var(--teal); text-decoration: none; transition: opacity 0.2s; }
-    a:hover { opacity: 0.7; }
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
+    import {
+      getAuth,
+      GoogleAuthProvider,
+      createUserWithEmailAndPassword,
+      signInWithEmailAndPassword,
+      signOut,
+      onAuthStateChanged,
+      signInWithPopup,
+    } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js";
 
-    .page-container {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      overflow: hidden;
-      background: #000;
-    }
+    const firebaseConfig = {
+      apiKey: "AIzaSyAjiW7UXat-UHZBFCBXhZdlPz64Zpwkjbo",
+      authDomain: "deepsage-aac5a.firebaseapp.com",
+      projectId: "deepsage-aac5a",
+      storageBucket: "deepsage-aac5a.firebasestorage.app",
+      messagingSenderId: "10532051582",
+      appId: "1:10532051582:web:029846f62f0edd01f3162f",
+      measurementId: "G-33MSQXQ8G9",
+    };
 
-    .page-grad-top {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 50% 10%, #001828aa 0%, transparent 60%);
-      pointer-events: none;
-      z-index: 1;
-    }
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const gProvider = new GoogleAuthProvider();
 
-    .page-grad-bottom {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 35%;
-      background: linear-gradient(to top, #000 0%, transparent 100%);
-      pointer-events: none;
-      z-index: 1;
-    }
+    window._sf = { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, gProvider, signInWithPopup };
 
-    .page-content {
-      position: relative;
-      z-index: 10;
-      width: 100%;
-      max-width: 860px;
-      padding: 48px 24px;
-    }
-
-    .page-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 28px 0 48px 0;
-      border-bottom: 1px solid #00ffcc15;
-      margin-bottom: 48px;
-    }
-
-    .page-logo {
-      font-family: var(--sans);
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 6px;
-      color: #ffffff88;
-      text-transform: uppercase;
-    }
-
-    .page-logo-link { text-decoration: none; }
-    .page-logo-link:hover { opacity: 0.8; }
-
-    .back-link {
-      font-family: var(--sans);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      border: 1px solid #00ffcc44;
-      background: transparent;
-      color: var(--teal);
-      padding: 7px 16px;
-      border-radius: 2px;
-      cursor: pointer;
-      transition: background 0.2s, border-color 0.2s;
-      text-decoration: none;
-    }
-
-    .back-link:hover { background: #00ffcc15; border-color: var(--teal); }
-
-    .page-title {
-      font-size: clamp(42px, 8vw, 72px);
-      font-family: var(--serif);
-      font-weight: 300;
-      letter-spacing: 1px;
-      color: #ffffff;
-      margin-bottom: 24px;
-      line-height: 1.2;
-    }
-
-    .last-updated {
-      font-family: var(--sans);
-      font-size: 10px;
-      letter-spacing: 2px;
-      color: var(--muted);
-      text-transform: uppercase;
-      margin-bottom: 48px;
-    }
-
-    .page-section { margin-bottom: 48px; }
-
-    .section-title {
-      font-size: 20px;
-      font-family: var(--serif);
-      font-weight: 300;
-      letter-spacing: 0.5px;
-      color: #ffffff;
-      margin-bottom: 16px;
-      margin-top: 32px;
-    }
-
-    .section-title:first-of-type { margin-top: 0; }
-
-    .section-subtitle {
-      font-size: 14px;
-      font-family: var(--sans);
-      font-weight: 600;
-      letter-spacing: 1px;
-      color: var(--teal);
-      text-transform: uppercase;
-      margin-top: 24px;
-      margin-bottom: 12px;
-    }
-
-    p {
-      font-family: var(--sans);
-      font-size: 14px;
-      line-height: 1.8;
-      color: var(--text);
-      margin-bottom: 16px;
-    }
-
-    ul, ol { margin-left: 20px; margin-bottom: 16px; }
-
-    li {
-      font-family: var(--sans);
-      font-size: 14px;
-      line-height: 1.8;
-      color: var(--text);
-      margin-bottom: 8px;
-    }
-
-    strong { color: var(--teal); font-weight: 600; }
-
-    hr {
-      border: none;
-      height: 1px;
-      background: linear-gradient(to right, transparent, #00ffcc15, transparent);
-      margin: 48px 0;
-    }
-
-    .page-footer {
-      margin-top: 48px;
-      padding-top: 48px;
-      border-top: 1px solid #00ffcc15;
-      text-align: center;
-    }
-
-    .footer-links {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      font-family: var(--sans);
-      font-size: 10px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    .footer-links a {
-      color: #00ffcc33;
-      transition: color 0.2s;
-    }
-
-    .footer-links a:hover { color: #00ffccaa; }
-
-    .footer-divider { color: #00ffcc15; }
-
-    .footer-copyright {
-      margin-top: 24px;
-      font-family: var(--sans);
-      font-size: 9px;
-      color: #00ffcc15;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-    }
-
-    @media (max-width: 600px) {
-      .page-content { padding: 32px 16px; }
-      .page-header { flex-direction: column; gap: 16px; }
-      .page-title { font-size: 38px; }
-    }
-  </style>
+    onAuthStateChanged(auth, user => {
+      const signedOut = document.getElementById("header-auth-out");
+      const signedIn = document.getElementById("header-auth-in");
+      const nameEl = document.getElementById("header-auth-name");
+      if (!signedOut || !signedIn) return;
+      if (user) {
+        signedOut.style.display = "none";
+        signedIn.style.display = "flex";
+        nameEl.textContent = user.displayName || user.email || "Explorer";
+      } else {
+        signedOut.style.display = "flex";
+        signedIn.style.display = "none";
+      }
+    });
+  </script>
 </head>
 <body>
 
@@ -228,101 +67,119 @@
   <div class="page-content">
     <div class="page-header">
       <a href="/" class="page-logo-link"><div class="page-logo">DeepSage</div></a>
+
+      <div class="header-auth">
+        <div id="header-auth-out" class="header-auth-out">
+          <button class="signin-link" onclick="openAuthModal('signin')">Sign In</button>
+        </div>
+        <div id="header-auth-in" class="header-auth-in" style="display:none;">
+          <span id="header-auth-name" class="header-auth-name"></span>
+          <button class="signin-link" onclick="doSignOut()">Sign out</button>
+        </div>
+      </div>
     </div>
 
-    <h1 class="page-title">Privacy Policy</h1>
-    <p class="last-updated">Last updated: July 12, 2026</p>
+    
+<article>
+  <h1 class="page-title">Privacy Policy</h1>
+  <p class="last-updated">Last updated: July 12, 2026</p>
 
-    <div class="page-section">
-      <h2 class="section-title">1. Introduction</h2>
-      <p>DeepSage ("we," "us," "our," or "Company") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website.</p>
-    </div>
+  <div class="page-section">
+    <h2 class="section-title">1. Introduction</h2>
+    <p>DeepSage ("we," "us," "our," or "Company") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website.</p>
+  </div>
 
-    <div class="page-section">
-      <h2 class="section-title">2. Information We Collect</h2>
-      <h3 class="section-subtitle">Email Address</h3>
-      <p>When you sign up for our early access list, we collect your email address for updates about DeepSage.</p>
-      <h3 class="section-subtitle">Automatic Information</h3>
-      <p>We automatically collect information through cookies and analytics:</p>
-      <ul>
-        <li>IP address</li>
-        <li>Browser type and version</li>
-        <li>Pages visited and time spent</li>
-        <li>Referrer information</li>
-        <li>Device type</li>
-      </ul>
-    </div>
+  <div class="page-section">
+    <h2 class="section-title">2. Information We Collect</h2>
+    <h3 class="section-subtitle">Email Address</h3>
+    <p>When you sign up for our early access list, we collect your email address for updates about DeepSage.</p>
+    <h3 class="section-subtitle">Automatic Information</h3>
+    <p>We automatically collect information through cookies and analytics:</p>
+    <ul>
+      <li>IP address</li>
+      <li>Browser type and version</li>
+      <li>Pages visited and time spent</li>
+      <li>Referrer information</li>
+      <li>Device type</li>
+    </ul>
+  </div>
 
-    <div class="page-section">
-      <h2 class="section-title">3. How We Use Your Information</h2>
-      <ul>
-        <li><strong>Email:</strong> To send you updates about DeepSage. You can unsubscribe anytime.</li>
-        <li><strong>Analytics Data:</strong> To understand user behavior and improve user experience.</li>
-        <li><strong>Cookies:</strong> To remember preferences and provide better browsing.</li>
-      </ul>
-    </div>
+  <div class="page-section">
+    <h2 class="section-title">3. How We Use Your Information</h2>
+    <ul>
+      <li><strong>Email:</strong> To send you updates about DeepSage. You can unsubscribe anytime.</li>
+      <li><strong>Analytics Data:</strong> To understand user behavior and improve user experience.</li>
+      <li><strong>Cookies:</strong> To remember preferences and provide better browsing.</li>
+    </ul>
+  </div>
 
-    <div class="page-section">
-      <h2 class="section-title">4. Legal Basis for Processing</h2>
-      <ul>
-        <li><strong>Consent:</strong> For non-essential cookies and marketing (you can withdraw anytime)</li>
-        <li><strong>Legitimate Interest:</strong> For analytics and site optimization</li>
-        <li><strong>Contract:</strong> For managing your email subscription</li>
-      </ul>
-    </div>
+  <div class="page-section">
+    <h2 class="section-title">4. Legal Basis for Processing</h2>
+    <ul>
+      <li><strong>Consent:</strong> For non-essential cookies and marketing (you can withdraw anytime)</li>
+      <li><strong>Legitimate Interest:</strong> For analytics and site optimization</li>
+      <li><strong>Contract:</strong> For managing your email subscription</li>
+    </ul>
+  </div>
 
-    <div class="page-section">
-      <h2 class="section-title">5. Third-Party Services</h2>
-      <ul>
-        <li><strong>Google Analytics:</strong> <a href="https://policies.google.com/privacy" target="_blank">Privacy Policy</a></li>
-        <li><strong>[OTHER_SERVICES]:</strong></li>
-      </ul>
-    </div>
+  <div class="page-section">
+    <h2 class="section-title">5. Third-Party Services</h2>
+    <ul>
+      <li><strong>Google Analytics:</strong> <a href="https://policies.google.com/privacy" target="_blank">Privacy Policy</a></li>
+      <li><strong>[OTHER_SERVICES]:</strong></li>
+    </ul>
+  </div>
 
-    <div class="page-section">
-      <h2 class="section-title">6. Data Retention</h2>
-      <ul>
-        <li><strong>Email addresses:</strong> Until unsubscribed or [DATA_RETENTION_PERIOD]</li>
-        <li><strong>Analytics data:</strong> Per Google Analytics settings (14-26 months)</li>
-        <li><strong>Cookies:</strong> As specified in our <a href="/cookie-policy.html">Cookie Policy</a></li>
-      </ul>
-    </div>
+  <div class="page-section">
+    <h2 class="section-title">6. Data Retention</h2>
+    <ul>
+      <li><strong>Email addresses:</strong> Until unsubscribed or [DATA_RETENTION_PERIOD]</li>
+      <li><strong>Analytics data:</strong> Per Google Analytics settings (14-26 months)</li>
+      <li><strong>Cookies:</strong> As specified in our <a href="/cookie-policy.html">Cookie Policy</a></li>
+    </ul>
+  </div>
 
-    <div class="page-section">
-      <h2 class="section-title">7. Your Privacy Rights</h2>
-      <p>Under GDPR, you have the right to:</p>
-      <ul>
-        <li><strong>Access:</strong> Get a copy of your personal data</li>
-        <li><strong>Correction:</strong> Fix inaccurate data</li>
-        <li><strong>Deletion:</strong> Delete your data (right to be forgotten)</li>
-        <li><strong>Portability:</strong> Get your data in portable format</li>
-        <li><strong>Withdraw Consent:</strong> Anytime</li>
-      </ul>
-      <p>Contact: <strong>deepsaged@gmail.com</strong></p>
-    </div>
+  <div class="page-section">
+    <h2 class="section-title">7. Your Privacy Rights</h2>
+    <p>Under GDPR, you have the right to:</p>
+    <ul>
+      <li><strong>Access:</strong> Get a copy of your personal data</li>
+      <li><strong>Correction:</strong> Fix inaccurate data</li>
+      <li><strong>Deletion:</strong> Delete your data (right to be forgotten)</li>
+      <li><strong>Portability:</strong> Get your data in portable format</li>
+      <li><strong>Withdraw Consent:</strong> Anytime</li>
+    </ul>
+    <p>Contact: <strong>deepsaged@gmail.com</strong></p>
+  </div>
 
-    <div class="page-section">
-      <h2 class="section-title">8. Security</h2>
-      <p>We implement appropriate measures to protect your information. However, no method is 100% secure.</p>
-    </div>
+  <div class="page-section">
+    <h2 class="section-title">8. Security</h2>
+    <p>We implement appropriate measures to protect your information. However, no method is 100% secure.</p>
+  </div>
 
-    <div class="page-section">
-      <h2 class="section-title">9. Contact Us</h2>
-      <p>Questions? Email: <strong>deepsaged@gmail.com</strong></p>
-    </div>
+  <div class="page-section">
+    <h2 class="section-title">9. Contact Us</h2>
+    <p>Questions? Email: <strong>deepsaged@gmail.com</strong></p>
+  </div>
 
-    <div class="page-section">
-      <h2 class="section-title">10. Changes to This Policy</h2>
-      <p>We may update this policy anytime. We'll notify you of material changes by posting updates here.</p>
-    </div>
+  <div class="page-section">
+    <h2 class="section-title">10. Changes to This Policy</h2>
+    <p>We may update this policy anytime. We'll notify you of material changes by posting updates here.</p>
+  </div>
 
-    <hr>
+  <hr>
+</article>
+
 
     <div class="page-footer">
       <div class="footer-links">
         <a href="/">Home</a>
         <span class="footer-divider">·</span>
-        <a href="/cookie-policy.html">Cookie Policy</a>
+        <a href="/article/">Articles</a>
+        <span class="footer-divider">·</span>
+        <a href="/quiz/">Quizzes</a>
+        <span class="footer-divider">·</span>
+        <a href="/privacy-policy.html">Privacy Policy</a>
         <span class="footer-divider">·</span>
         <a href="/terms-of-service.html">Terms of Service</a>
       </div>
@@ -330,6 +187,125 @@
     </div>
   </div>
 </section>
+
+<!-- AUTH MODAL -->
+<div id="auth-modal-overlay" class="auth-modal-overlay" style="display:none;" onclick="if(event.target===this) closeAuthModal()">
+  <div class="auth-modal">
+    <button class="auth-modal-close" onclick="closeAuthModal()">&times;</button>
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="auth-tab-signin" onclick="switchAuthTab('signin')">Sign In</button>
+      <button class="auth-tab" id="auth-tab-signup" onclick="switchAuthTab('signup')">Create Account</button>
+    </div>
+
+    <div class="auth-form-wrap">
+      <button class="google-btn" onclick="authGoogle()">
+        <svg class="google-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+          <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+          <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+          <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+        </svg>
+        Continue with Google
+      </button>
+
+      <div class="auth-divider"><span>or</span></div>
+
+      <div class="auth-field">
+        <label for="auth-email">Email</label>
+        <input type="email" id="auth-email" placeholder="you@example.com" autocomplete="email">
+      </div>
+      <div class="auth-field">
+        <label for="auth-pass">Password</label>
+        <input type="password" id="auth-pass" placeholder="••••••••" autocomplete="current-password">
+      </div>
+
+      <p class="auth-msg" id="auth-msg"></p>
+      <button class="auth-submit" id="auth-submit-btn" onclick="authSubmit()">Sign In</button>
+    </div>
+  </div>
+</div>
+
+<script>
+let authMode = "signin";
+
+function openAuthModal(mode) {
+  switchAuthTab(mode || "signin");
+  document.getElementById("auth-modal-overlay").style.display = "flex";
+}
+
+function closeAuthModal() {
+  document.getElementById("auth-modal-overlay").style.display = "none";
+}
+
+function switchAuthTab(mode) {
+  authMode = mode;
+  document.getElementById("auth-tab-signin").classList.toggle("active", mode === "signin");
+  document.getElementById("auth-tab-signup").classList.toggle("active", mode === "signup");
+  document.getElementById("auth-submit-btn").textContent = mode === "signin" ? "Sign In" : "Create Account";
+  const passInput = document.getElementById("auth-pass");
+  passInput.autocomplete = mode === "signin" ? "current-password" : "new-password";
+  setAuthMsg("");
+}
+
+function setAuthMsg(txt, color) {
+  const el = document.getElementById("auth-msg");
+  el.textContent = txt;
+  el.style.color = color || "#ff6688";
+}
+
+async function authSubmit() {
+  const sf = window._sf;
+  if (!sf) return setAuthMsg("Firebase not initialized yet.");
+  const email = document.getElementById("auth-email").value.trim();
+  const pass = document.getElementById("auth-pass").value;
+  if (!email || !pass) return setAuthMsg("Please fill in all fields.");
+
+  const btn = document.getElementById("auth-submit-btn");
+  btn.textContent = "…";
+  btn.disabled = true;
+
+  try {
+    if (authMode === "signin") {
+      await sf.signInWithEmailAndPassword(sf.auth, email, pass);
+    } else {
+      await sf.createUserWithEmailAndPassword(sf.auth, email, pass);
+    }
+    setAuthMsg("");
+    closeAuthModal();
+  } catch (err) {
+    const msgs = {
+      "auth/user-not-found": "No account with that email.",
+      "auth/wrong-password": "Incorrect password.",
+      "auth/invalid-credential": "Incorrect email or password.",
+      "auth/email-already-in-use": "Email already registered. Sign in instead.",
+      "auth/weak-password": "Password must be at least 6 characters.",
+      "auth/invalid-email": "Please enter a valid email.",
+    };
+    setAuthMsg(msgs[err.code] || err.message);
+  } finally {
+    btn.disabled = false;
+    switchAuthTab(authMode);
+  }
+}
+
+async function authGoogle() {
+  const sf = window._sf;
+  if (!sf) return setAuthMsg("Firebase not initialized yet.");
+  try {
+    await sf.signInWithPopup(sf.auth, sf.gProvider);
+    closeAuthModal();
+  } catch (err) {
+    if (err.code !== "auth/popup-closed-by-user") setAuthMsg(err.message);
+  }
+}
+
+async function doSignOut() {
+  const sf = window._sf;
+  if (sf) await sf.signOut(sf.auth);
+}
+</script>
+
+
 
 </body>
 </html>
