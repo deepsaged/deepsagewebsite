@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google&#39;s Visionary Future: The Galaxy Unpacked 26 Recap · DeepSage Quiz</title>
+  <meta name="description" content="Test your knowledge: Google&#39;s Visionary Future: The Galaxy Unpacked 26 Recap">
+
+  <meta property="og:title" content="Google&#39;s Visionary Future: The Galaxy Unpacked 26 Recap">
+  <meta property="og:description" content="Test your knowledge: Google&#39;s Visionary Future: The Galaxy Unpacked 26 Recap">
+  <meta property="og:image" content="/quiz/google-s-visionary-future-the-galaxy-unpacked-26-recap/hero.png">
+  <meta property="og:type" content="article">
+
+  <link rel="stylesheet" href="/assets/site.css">
+  
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
+    import {
+      getAuth,
+      GoogleAuthProvider,
+      createUserWithEmailAndPassword,
+      signInWithEmailAndPassword,
+      signOut,
+      onAuthStateChanged,
+      signInWithPopup,
+    } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAjiW7UXat-UHZBFCBXhZdlPz64Zpwkjbo",
+      authDomain: "deepsage-aac5a.firebaseapp.com",
+      projectId: "deepsage-aac5a",
+      storageBucket: "deepsage-aac5a.firebasestorage.app",
+      messagingSenderId: "10532051582",
+      appId: "1:10532051582:web:029846f62f0edd01f3162f",
+      measurementId: "G-33MSQXQ8G9",
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const gProvider = new GoogleAuthProvider();
+
+    window._sf = { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, gProvider, signInWithPopup };
+
+    onAuthStateChanged(auth, user => {
+      const signedOut = document.getElementById("header-auth-out");
+      const signedIn = document.getElementById("header-auth-in");
+      const nameEl = document.getElementById("header-auth-name");
+      if (!signedOut || !signedIn) return;
+      if (user) {
+        signedOut.style.display = "none";
+        signedIn.style.display = "flex";
+        nameEl.textContent = user.displayName || user.email || "Explorer";
+      } else {
+        signedOut.style.display = "flex";
+        signedIn.style.display = "none";
+      }
+    });
+  </script>
+</head>
+<body>
+
+<section class="page-container">
+  <div class="page-grad-top"></div>
+  <div class="page-grad-bottom"></div>
+
+  <div class="page-content">
+    <div class="page-header">
+      <a href="/" class="page-logo-link"><div class="page-logo">DeepSage</div></a>
+
+      <div class="header-auth">
+        <div id="header-auth-out" class="header-auth-out">
+          <button class="signin-link" onclick="openAuthModal('signin')">Sign In</button>
+        </div>
+        <div id="header-auth-in" class="header-auth-in" style="display:none;">
+          <span id="header-auth-name" class="header-auth-name"></span>
+          <button class="signin-link" onclick="doSignOut()">Sign out</button>
+        </div>
+      </div>
+    </div>
+
+    
+<article>
+  
+  
+  <img class="hero-image" src="/quiz/google-s-visionary-future-the-galaxy-unpacked-26-recap/hero.png" alt="Google&#39;s Visionary Future: The Galaxy Unpacked 26 Recap">
+  
+
+  <h1 class="page-title">Google&#39;s Visionary Future: The Galaxy Unpacked 26 Recap</h1>
+
+  <div id="quiz-root" data-title="Google&#39;s Visionary Future: The Galaxy Unpacked 26 Recap"></div>
+
+  <div class="page-cta">
+    <div class="page-cta-title">Never miss a quiz</div>
+    <p class="page-cta-text">Create a free DeepSage account to track your quiz scores, unlock your rank, and get new quizzes first.</p>
+    <button class="page-cta-btn" onclick="openAuthModal('signup')">Create Free Account</button>
+  </div>
+</article>
+
+<script id="quiz-data" type="application/json">[{"correct_index": 0, "explanation": "The updates were specifically showcased as part of the integration within the Samsung Galaxy ecosystem.", "options": ["Samsung Galaxy", "Apple iOS", "Microsoft Windows", "Pixel Tablet"], "question": "At the Galaxy Unpacked 2026 event, which major tech ecosystem was the focus of the new Google software updates?"}, {"correct_index": 1, "explanation": "Gentle Monster was highlighted for its high-fashion approach to integrating Google\u0027s AI capabilities into smart eyewear.", "options": ["Ray-Ban", "Gentle Monster", "Oakley", "Warby Parker"], "question": "Which eyewear brand collaborated with Google to showcase smart, AI-integrated glasses during the presentation?"}, {"correct_index": 2, "explanation": "The demo showed the AI\u0027s ability to use visual recognition to retrieve deep historical context about photographed architecture.", "options": ["Translate the signs", "Calculate the age", "Provide the history of the building", "Find the nearest gift shop"], "question": "In the new multimodal demo, what can a user ask the AI to do when pointing the camera at a historical landmark?"}, {"correct_index": 2, "explanation": "The AI moved beyond just \u0027knowing\u0027 things to \u0027doing\u0027 things, like interacting with reservation systems to book a table.", "options": ["Reviewing the menu", "Ordering food for delivery", "Booking a table", "Calculating the tip"], "question": "The new Google AI update demonstrated the ability to perform \u0027agentic\u0027 tasks, such as what action regarding a restaurant?"}, {"correct_index": 0, "explanation": "Warby Parker was showcased alongside Gentle Monster to demonstrate the broad accessibility of smart eyewear technology.", "options": ["Warby Parker", "Zenni Optical", "Luxottica", "Smith Optics"], "question": "Which eyewear brand was also featured in the context of smart, AI-powered vision during the updates?"}, {"correct_index": 1, "explanation": "Multimodal models allow the AI to process and relate different types of data, like images and text, simultaneously.", "options": ["Optical Character Recognition (OCR)", "Multimodal Large Language Models", "GPS Geofencing", "Bluetooth Proximity"], "question": "What is the primary technological mechanism allowing the AI to understand a pictured restaurant or building?"}, {"correct_index": 1, "explanation": "AI Agents are systems designed to navigate software interfaces and complete complex, multi-step tasks on behalf of a user.", "options": ["Generative Art", "AI Agents", "Data Scraping", "Large Language Models"], "question": "The ability to book a table via a camera prompt is an example of which emerging AI trend?"}, {"correct_index": 1, "explanation": "The AI integrates visual recognition with Google Maps\u0027 massive database of places and business information.", "options": ["Social media likes", "Google Maps data", "Local weather reports", "Bluetooth signals"], "question": "When the AI identifies a restaurant from a photo, what secondary data source does it likely use to confirm the location?"}, {"correct_index": 2, "explanation": "While searching for a recipe is retrieval, making a reservation is an action-oriented task that requires executing a transaction.", "options": ["Searching for a recipe", "Reading a Wikipedia page", "Making a reservation", "Checking the weather"], "question": "Which of these represents a shift from \u0027Information Retrieval\u0027 to \u0027Action-Oriented\u0027 AI as seen in the Unpacked demo?"}, {"correct_index": 2, "explanation": "By using a camera, users can access information instantly without the \u0027friction\u0027 of pulling out a phone and typing a query.", "options": ["Screen addiction", "Decreased battery life", "The friction of manual searching", "Increased data costs"], "question": "The integration of Google AI into eyewear aims to solve which user experience problem?"}]</script>
+<script>
+(function () {
+  var QUESTIONS = JSON.parse(document.getElementById("quiz-data").textContent);
+  var TITLE = document.getElementById("quiz-root").dataset.title;
+  var root = document.getElementById("quiz-root");
+  var LETTERS = ["A", "B", "C", "D"];
+
+  var STATUS_LEVELS = [
+    { min: 0,  label: "Just Getting Started", message: "Every expert starts somewhere — dive into more DeepSage quizzes to sharpen up." },
+    { min: 20, label: "Curious Beginner",     message: "You're picking up the basics. Keep exploring DeepSage to level up." },
+    { min: 40, label: "Rising Learner",       message: "Solid grasp of the fundamentals — you're closing in on expert territory." },
+    { min: 60, label: "Sharp Thinker",        message: "Impressive! You clearly follow this space closely." },
+    { min: 80, label: "Certified Expert",     message: "Excellent work — you really know your stuff." },
+    { min: 95, label: "DeepSage Master",      message: "Near-perfect score. You could've written this quiz yourself." }
+  ];
+
+  function statusFor(percent) {
+    var level = STATUS_LEVELS[0];
+    for (var i = 0; i < STATUS_LEVELS.length; i++) {
+      if (percent >= STATUS_LEVELS[i].min) level = STATUS_LEVELS[i];
+    }
+    return level;
+  }
+
+  var state = { index: 0, correctCount: 0, answered: false };
+
+  function render() {
+    if (state.index >= QUESTIONS.length) {
+      renderResults();
+      return;
+    }
+    var q = QUESTIONS[state.index];
+    state.answered = false;
+
+    var pct = Math.round((state.index / QUESTIONS.length) * 100);
+    var html = ''
+      + '<div class="quiz-progress-track"><div class="quiz-progress-fill" style="width:' + pct + '%"></div></div>'
+      + '<div class="quiz-progress-label">Question ' + (state.index + 1) + ' of ' + QUESTIONS.length + '</div>'
+      + '<p class="quiz-question">' + escapeHtml(q.question) + '</p>'
+      + '<ul class="quiz-options" id="quiz-options-list">'
+      + q.options.map(function (opt, i) {
+          return '<li><button class="quiz-option" data-index="' + i + '">' + LETTERS[i] + '. ' + escapeHtml(opt) + '</button></li>';
+        }).join('')
+      + '</ul>'
+      + '<div id="quiz-explanation-slot"></div>'
+      + '<div id="quiz-next-slot"></div>';
+    root.innerHTML = html;
+
+    var buttons = root.querySelectorAll(".quiz-option");
+    buttons.forEach(function (btn) {
+      btn.addEventListener("click", function () { onAnswer(parseInt(btn.dataset.index, 10)); });
+    });
+  }
+
+  function onAnswer(chosenIndex) {
+    if (state.answered) return;
+    state.answered = true;
+    var q = QUESTIONS[state.index];
+    var correct = chosenIndex === q.correct_index;
+    if (correct) state.correctCount++;
+
+    var buttons = root.querySelectorAll(".quiz-option");
+    buttons.forEach(function (btn) {
+      var i = parseInt(btn.dataset.index, 10);
+      btn.disabled = true;
+      if (i === q.correct_index) btn.classList.add("is-correct");
+      else if (i === chosenIndex) btn.classList.add("is-wrong");
+    });
+
+    document.getElementById("quiz-explanation-slot").innerHTML =
+      '<p class="quiz-explanation">' + escapeHtml(q.explanation) + '</p>';
+
+    var isLast = state.index === QUESTIONS.length - 1;
+    var nextSlot = document.getElementById("quiz-next-slot");
+    var nextBtn = document.createElement("button");
+    nextBtn.className = "quiz-next-btn";
+    nextBtn.textContent = isLast ? "See results" : "Next question";
+    nextBtn.addEventListener("click", function () { state.index++; render(); });
+    nextSlot.appendChild(nextBtn);
+  }
+
+  function renderResults() {
+    var percent = Math.round((state.correctCount / QUESTIONS.length) * 100);
+    var status = statusFor(percent);
+    var pageUrl = window.location.href;
+    var shareText = "I scored " + state.correctCount + "/" + QUESTIONS.length
+      + " (" + percent + "%) on the DeepSage quiz \"" + TITLE + "\" and reached " + status.label + " level!";
+
+    var twitterUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(shareText) + "&url=" + encodeURIComponent(pageUrl);
+    var facebookUrl = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(pageUrl) + "&quote=" + encodeURIComponent(shareText);
+    var linkedinUrl = "https://www.linkedin.com/sharing/share-offsite/?url=" + encodeURIComponent(pageUrl);
+
+    root.innerHTML = ''
+      + '<div class="quiz-results">'
+      + '<div class="quiz-progress-track"><div class="quiz-progress-fill" style="width:100%"></div></div>'
+      + '<div class="quiz-results-score">' + state.correctCount + '/' + QUESTIONS.length + '</div>'
+      + '<div class="quiz-results-percent">' + percent + '% correct</div>'
+      + '<div class="quiz-results-status">' + status.label + '</div>'
+      + '<p class="quiz-results-message">' + status.message + '</p>'
+      + '<div class="quiz-share-row">'
+      + '<a class="quiz-share-btn" target="_blank" rel="noopener" href="' + twitterUrl + '" aria-label="Share on X" title="Share on X">'
+      + '<svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.6 8.7L23.3 22H16.9l-5-6.5-5.7 6.5H2.9l8.1-9.3L2 2h6.6l4.5 5.9L18.9 2Zm-1.1 18h1.7L7.3 3.9H5.5L17.8 20Z"/></svg>'
+      + '</a>'
+      + '<a class="quiz-share-btn" target="_blank" rel="noopener" href="' + facebookUrl + '" aria-label="Share on Facebook" title="Share on Facebook">'
+      + '<svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg>'
+      + '</a>'
+      + '<a class="quiz-share-btn" target="_blank" rel="noopener" href="' + linkedinUrl + '" aria-label="Share on LinkedIn" title="Share on LinkedIn">'
+      + '<svg viewBox="0 0 24 24"><path d="M19 3A2 2 0 0 1 21 5v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14ZM8.3 18.5V10H5.7v8.5h2.6ZM7 8.8a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm11.5 9.7v-4.7c0-2.5-1.3-3.7-3.1-3.7-1.4 0-2 .8-2.4 1.3V10H10.4v8.5H13v-4.7c0-.5 0-1 .2-1.3.3-.6.8-1.3 1.8-1.3 1.3 0 1.8.9 1.8 2.3v5h2.7Z"/></svg>'
+      + '</a>'
+      + '</div>'
+      + '<button class="quiz-retry-btn" id="quiz-retry-btn">Try again</button>'
+      + '</div>';
+
+    document.getElementById("quiz-retry-btn").addEventListener("click", function () {
+      state.index = 0; state.correctCount = 0; render();
+    });
+  }
+
+  function escapeHtml(str) {
+    var div = document.createElement("div");
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  render();
+})();
+</script>
+
+
+    <div class="page-footer">
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <span class="footer-divider">·</span>
+        <a href="/article/">Articles</a>
+        <span class="footer-divider">·</span>
+        <a href="/quiz/">Quizzes</a>
+        <span class="footer-divider">·</span>
+        <a href="/privacy-policy.html">Privacy Policy</a>
+        <span class="footer-divider">·</span>
+        <a href="/terms-of-service.html">Terms of Service</a>
+      </div>
+      <p class="footer-copyright">DeepSage · © 2026</p>
+    </div>
+  </div>
+</section>
+
+<!-- AUTH MODAL -->
+<div id="auth-modal-overlay" class="auth-modal-overlay" style="display:none;" onclick="if(event.target===this) closeAuthModal()">
+  <div class="auth-modal">
+    <button class="auth-modal-close" onclick="closeAuthModal()">&times;</button>
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="auth-tab-signin" onclick="switchAuthTab('signin')">Sign In</button>
+      <button class="auth-tab" id="auth-tab-signup" onclick="switchAuthTab('signup')">Create Account</button>
+    </div>
+
+    <div class="auth-form-wrap">
+      <button class="google-btn" onclick="authGoogle()">
+        <svg class="google-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+          <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+          <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+          <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+        </svg>
+        Continue with Google
+      </button>
+
+      <div class="auth-divider"><span>or</span></div>
+
+      <div class="auth-field">
+        <label for="auth-email">Email</label>
+        <input type="email" id="auth-email" placeholder="you@example.com" autocomplete="email">
+      </div>
+      <div class="auth-field">
+        <label for="auth-pass">Password</label>
+        <input type="password" id="auth-pass" placeholder="••••••••" autocomplete="current-password">
+      </div>
+
+      <p class="auth-msg" id="auth-msg"></p>
+      <button class="auth-submit" id="auth-submit-btn" onclick="authSubmit()">Sign In</button>
+    </div>
+  </div>
+</div>
+
+<script>
+let authMode = "signin";
+
+function openAuthModal(mode) {
+  switchAuthTab(mode || "signin");
+  document.getElementById("auth-modal-overlay").style.display = "flex";
+}
+
+function closeAuthModal() {
+  document.getElementById("auth-modal-overlay").style.display = "none";
+}
+
+function switchAuthTab(mode) {
+  authMode = mode;
+  document.getElementById("auth-tab-signin").classList.toggle("active", mode === "signin");
+  document.getElementById("auth-tab-signup").classList.toggle("active", mode === "signup");
+  document.getElementById("auth-submit-btn").textContent = mode === "signin" ? "Sign In" : "Create Account";
+  const passInput = document.getElementById("auth-pass");
+  passInput.autocomplete = mode === "signin" ? "current-password" : "new-password";
+  setAuthMsg("");
+}
+
+function setAuthMsg(txt, color) {
+  const el = document.getElementById("auth-msg");
+  el.textContent = txt;
+  el.style.color = color || "#ff6688";
+}
+
+async function authSubmit() {
+  const sf = window._sf;
+  if (!sf) return setAuthMsg("Firebase not initialized yet.");
+  const email = document.getElementById("auth-email").value.trim();
+  const pass = document.getElementById("auth-pass").value;
+  if (!email || !pass) return setAuthMsg("Please fill in all fields.");
+
+  const btn = document.getElementById("auth-submit-btn");
+  btn.textContent = "…";
+  btn.disabled = true;
+
+  try {
+    if (authMode === "signin") {
+      await sf.signInWithEmailAndPassword(sf.auth, email, pass);
+    } else {
+      await sf.createUserWithEmailAndPassword(sf.auth, email, pass);
+    }
+    setAuthMsg("");
+    closeAuthModal();
+  } catch (err) {
+    const msgs = {
+      "auth/user-not-found": "No account with that email.",
+      "auth/wrong-password": "Incorrect password.",
+      "auth/invalid-credential": "Incorrect email or password.",
+      "auth/email-already-in-use": "Email already registered. Sign in instead.",
+      "auth/weak-password": "Password must be at least 6 characters.",
+      "auth/invalid-email": "Please enter a valid email.",
+    };
+    setAuthMsg(msgs[err.code] || err.message);
+  } finally {
+    btn.disabled = false;
+    switchAuthTab(authMode);
+  }
+}
+
+async function authGoogle() {
+  const sf = window._sf;
+  if (!sf) return setAuthMsg("Firebase not initialized yet.");
+  try {
+    await sf.signInWithPopup(sf.auth, sf.gProvider);
+    closeAuthModal();
+  } catch (err) {
+    if (err.code !== "auth/popup-closed-by-user") setAuthMsg(err.message);
+  }
+}
+
+async function doSignOut() {
+  const sf = window._sf;
+  if (sf) await sf.signOut(sf.auth);
+}
+</script>
+
+</body>
+</html>

@@ -435,9 +435,85 @@ hr {
 .article-body h2 { margin-top: 32px; }
 .article-body h3 { color: var(--teal); font-size: 15px; text-transform: uppercase; letter-spacing: 1px; margin: 24px 0 8px; }
 .article-body a { text-decoration: underline; }
-.article-body img { max-width: 100%; border-radius: 4px; margin: 16px 0; }
+.article-body img { max-width: 100%; border-radius: 4px; margin: 16px 0; border: 1px solid #00ffcc22; }
 .article-body blockquote { border-left: 2px solid var(--teal); padding-left: 16px; color: var(--muted); margin: 16px 0; }
 .article-body code { background: #00ffcc10; padding: 2px 6px; border-radius: 2px; font-size: 13px; }
+
+/* ── INLINE ANIMATION (auto-generated looping clip) ── */
+.article-animation {
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid #00ffcc22;
+  box-shadow: 0 0 24px #00ffcc22;
+  margin: 24px 0;
+  display: block;
+}
+
+/* ── KEY INFO CALLOUT ── */
+.key-info-block {
+  margin: 28px 0;
+  padding: 20px 24px;
+  background: linear-gradient(135deg, #001a2688, #00101888);
+  border: 1px solid #00ffcc44;
+  border-radius: 8px;
+  box-shadow: 0 0 24px #00ffcc22;
+}
+
+.key-info-label {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #001018;
+  background: linear-gradient(to right, var(--blue), var(--teal));
+  padding: 4px 10px;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+
+.key-info-block p {
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.6;
+  color: #ffffff;
+  margin: 0;
+}
+
+/* ── RELATED READING (auto-appended internal links) ── */
+.related-reading {
+  margin-top: 40px;
+  padding: 20px 24px;
+  border: 1px solid #00ffcc22;
+  border-radius: 8px;
+  background: #000d1866;
+}
+
+.related-reading-title {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 12px;
+}
+
+.related-reading ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.related-reading li { margin-bottom: 8px; }
+.related-reading a {
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--text);
+  text-decoration: underline;
+}
+.related-reading a:hover { color: var(--teal); }
 
 /* ── QUIZ (interactive, multi-question) ── */
 .quiz-progress-track {
