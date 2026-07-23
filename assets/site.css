@@ -293,23 +293,29 @@ hr {
   margin-bottom: 24px;
 }
 
+#quiz-next-slot {
+  text-align: center;
+  margin-top: 8px;
+}
+
 .quiz-next-btn {
   font-family: var(--sans);
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
-  background: var(--teal);
+  background: linear-gradient(to right, var(--blue), var(--teal));
   color: #001018;
   border: none;
-  border-radius: 3px;
-  padding: 14px 28px;
+  border-radius: 6px;
+  padding: 18px 48px;
   cursor: pointer;
-  transition: opacity 0.2s;
+  box-shadow: 0 0 24px #00ffcc55;
+  transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
 }
 
-.quiz-next-btn:hover { opacity: 0.85; }
-.quiz-next-btn:disabled { opacity: 0.3; cursor: default; }
+.quiz-next-btn:hover { opacity: 0.92; transform: translateY(-2px) scale(1.03); box-shadow: 0 0 32px #00ffcc88; }
+.quiz-next-btn:disabled { opacity: 0.3; cursor: default; transform: none; box-shadow: none; }
 
 /* Results screen */
 .quiz-results { text-align: center; }
@@ -382,14 +388,25 @@ hr {
 
 .quiz-retry-btn {
   font-family: var(--sans);
-  font-size: 11px;
+  font-size: 15px;
+  font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: var(--muted);
-  background: none;
-  border: none;
+  color: var(--teal);
+  background: transparent;
+  border: 1px solid var(--teal);
+  border-radius: 6px;
+  padding: 16px 40px;
   cursor: pointer;
-  text-decoration: underline;
+  text-decoration: none;
+  margin-top: 8px;
+  transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+}
+
+.quiz-retry-btn:hover {
+  background: #00ffcc15;
+  box-shadow: 0 0 24px #00ffcc55;
+  transform: translateY(-2px) scale(1.03);
 }
 
 /* ── CARD GRID (index pages + homepage partial) ── */
