@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google&#39;s AI Spending Spree: Profit or Panic? · DeepSage Quiz</title>
+  <meta name="description" content="Test your knowledge: Google&#39;s AI Spending Spree: Profit or Panic?">
+
+  <meta property="og:title" content="Google&#39;s AI Spending Spree: Profit or Panic?">
+  <meta property="og:description" content="Test your knowledge: Google&#39;s AI Spending Spree: Profit or Panic?">
+  <meta property="og:image" content="">
+  <meta property="og:type" content="article">
+
+  <link rel="stylesheet" href="/assets/site.css">
+  
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
+    import {
+      getAuth,
+      GoogleAuthProvider,
+      createUserWithEmailAndPassword,
+      signInWithEmailAndPassword,
+      signOut,
+      onAuthStateChanged,
+      signInWithPopup,
+    } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAjiW7UXat-UHZBFCBXhZdlPz64Zpwkjbo",
+      authDomain: "deepsage-aac5a.firebaseapp.com",
+      projectId: "deepsage-aac5a",
+      storageBucket: "deepsage-aac5a.firebasestorage.app",
+      messagingSenderId: "10532051582",
+      appId: "1:10532051582:web:029846f62f0edd01f3162f",
+      measurementId: "G-33MSQXQ8G9",
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const gProvider = new GoogleAuthProvider();
+
+    window._sf = { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, gProvider, signInWithPopup };
+
+    onAuthStateChanged(auth, user => {
+      const signedOut = document.getElementById("header-auth-out");
+      const signedIn = document.getElementById("header-auth-in");
+      const nameEl = document.getElementById("header-auth-name");
+      if (!signedOut || !signedIn) return;
+      if (user) {
+        signedOut.style.display = "none";
+        signedIn.style.display = "flex";
+        nameEl.textContent = user.displayName || user.email || "Explorer";
+      } else {
+        signedOut.style.display = "flex";
+        signedIn.style.display = "none";
+      }
+    });
+  </script>
+</head>
+<body>
+
+<section class="page-container">
+  <div class="page-grad-top"></div>
+  <div class="page-grad-bottom"></div>
+
+  <div class="page-content">
+    <div class="page-header">
+      <a href="/" class="page-logo-link"><div class="page-logo">DeepSage</div></a>
+
+      <div class="header-auth">
+        <div id="header-auth-out" class="header-auth-out">
+          <button class="signin-link" onclick="openAuthModal('signin')">Sign In</button>
+        </div>
+        <div id="header-auth-in" class="header-auth-in" style="display:none;">
+          <span id="header-auth-name" class="header-auth-name"></span>
+          <button class="signin-link" onclick="doSignOut()">Sign out</button>
+        </div>
+      </div>
+    </div>
+
+    
+<article>
+  
+  <h1 class="page-title">Google&#39;s AI Spending Spree: Profit or Panic?</h1>
+
+  <div class="share-row" id="share-row-top"></div>
+  
+  <p class="short-link"><a href="/s/oRehMw/">deepsage.com/s/oRehMw</a></p>
+  
+
+  
+
+  <div id="quiz-root" data-title="Google&#39;s AI Spending Spree: Profit or Panic?"></div>
+
+  <div class="page-cta">
+    <div class="page-cta-title">Never miss a quiz</div>
+    <p class="page-cta-text">Create a free DeepSage account to track your quiz scores, unlock your rank, and get new quizzes first.</p>
+    <button class="page-cta-btn" onclick="openAuthModal('signup')">Create Free Account</button>
+  </div>
+</article>
+
+<script id="quiz-data" type="application/json">[{"correct_index": 0, "explanation": "While revenue remains high, the sheer cost of building AI infrastructure has caused a rare negative cash flow dip in certain reporting segments.", "idk_index": 2, "options": ["Net income/Cash flow", "The number of employees who still use Google Search", "I\u0027m just here for the vibes, not the math", "Total number of pixels in the Google logo", "Quarterly revenue growth"], "question": "In the most recent quarterly reports, what specific financial metric did Google experience a rare dip in due to massive AI investments?"}, {"correct_index": 1, "explanation": "Google is pouring billions into GPUs and specialized hardware to power the next generation of Large Language Models.", "idk_index": 3, "options": ["Buying a private island for the CEO", "Investing in AI infrastructure and data centers", "The sudden, inexplicable rise in the cost of paperclips", "My brain has officially entered power-saving mode", "Expanding their fleet of branded delivery drones"], "question": "What is the primary driver behind Google\u0027s skyrocketing capital expenditures (CapEx) recently?"}, {"correct_index": 0, "explanation": "GPUs, particularly those from NVIDIA, are the essential \u0027engines\u0027 required to train and run massive AI models.", "idk_index": 2, "options": ["High-end GPUs (Graphics Processing Units)", "Standard 1990s-era floppy disks", "I\u0027d rather talk about literally anything else", "Mechanical keyboards with excessive RGB lighting", "Quantum-powered toaster ovens"], "question": "Which specific type of hardware is at the heart of this expensive AI arms race?"}, {"correct_index": 0, "explanation": "CapEx refers to the funds a company uses to acquire, upgrade, and maintain physical assets like the massive data centers needed for AI.", "idk_index": 2, "options": ["Physical assets like servers, data centers, and hardware", "Paying for more frequent office snacks", "I\u0027ve reached my cognitive limit for the day", "A massive marketing campaign featuring talking hamsters", "Subsidizing employee commutes via unicycles"], "question": "When a tech giant\u0027s \u0027CapEx\u0027 (Capital Expenditure) goes up, what are they actually spending money on?"}, {"correct_index": 0, "explanation": "Google\u0027s core advertising engine is still printing money, even if the AI bills are starting to pile up.", "idk_index": 2, "options": ["The advertising market", "The \u0027I\u0027ll do it tomorrow\u0027 productivity app", "I don\u0027t know and I\u0027m not even sorry", "Their collection of vintage Tamagotchis", "The number of people who accidentally click ads"], "question": "Despite the spending concerns, what part of Google\u0027s business is still showing massive, healthy revenue?"}, {"correct_index": 1, "explanation": "If Google spends billions on hardware but can\u0027t find a way to monetize the AI features, they face a massive loss on their investment.", "idk_index": 2, "options": ["The servers might get bored and stop working", "A massive \u0027Return on Investment\u0027 (ROI) deficit", "All my neurons have gone offline", "The internet might become too intelligent for us", "An unexpected shortage of colorful beanbag chairs"], "question": "Which of these is a major risk associated with \u0027overspending\u0027 on AI infrastructure if the \u0027killer app\u0027 doesn\u0027t arrive?"}, {"correct_index": 0, "explanation": "Margin compression happens when costs (like AI infrastructure) rise faster than the revenue generated from those costs.", "idk_index": 3, "options": ["The shrinking of profit margins due to rising costs", "The physical squeezing of servers into smaller racks", "A new type of extremely tiny smartphone", "I\u0027m currently experiencing a 404 error in my memory", "The way investors feel when they see high CapEx"], "question": "In the context of tech earnings, what does \u0027margin compression\u0027 refer to?"}, {"correct_index": 0, "explanation": "The \u0027arms race\u0027 refers to the intense competition between Google, Microsoft, and Meta to dominate the AI market through massive spending.", "idk_index": 3, "options": ["Companies competing to build the most powerful AI models", "The literal battle for control over silicon chip manufacturing", "A highly aggressive game of office ping-pong", "Please, just skip this question and move on", "The struggle to find enough engineers who know Python"], "question": "What is the \u0027arms race\u0027 metaphor in the current tech landscape referring to?"}, {"correct_index": 0, "explanation": "Revenue is the top line (total sales), but cash flow accounts for all the expenses and cash movements, which is why you can have high revenue but negative cash flow.", "idk_index": 2, "options": ["Cash flow tracks the actual movement of money in and out, whereas revenue is just total sales recorded", "Revenue is what you want; Cash flow is what you actually have in your pockets", "I\u0027ve lost the ability to distinguish between different types of money", "Revenue is only for companies that use spreadsheets", "Cash flow is the amount of coffee consumed by developers"], "question": "Why is \u0027Cash Flow\u0027 different from \u0027Revenue\u0027?"}, {"correct_index": 0, "explanation": "Persistent negative cash flow without a corresponding increase in profit can lead to a liquidity crisis, where the company can no longer pay its bills.", "idk_index": 2, "options": ["They might run out of cash and face a liquidity crisis", "The company will spontaneously turn into a unicorn", "I\u0027m completely lost in the hype cycle", "They will eventually be replaced by a single clever algorithm", "Their stock price will become a permanent upward line"], "question": "If a company\u0027s spending is \u0027skyrocketing\u0027 while revenue is \u0027steady,\u0027 what is the most likely long-term outcome if they don\u0027t innovate?"}]</script>
+<script>
+(function () {
+  var QUESTIONS = JSON.parse(document.getElementById("quiz-data").textContent);
+  var TITLE = document.getElementById("quiz-root").dataset.title;
+  var root = document.getElementById("quiz-root");
+  var LETTERS = ["A", "B", "C", "D", "E", "F"];
+
+  var STATUS_LEVELS = [
+    { min: 0,  label: "Just Getting Started", message: "Every expert starts somewhere — dive into more DeepSage quizzes to sharpen up." },
+    { min: 20, label: "Curious Beginner",     message: "You're picking up the basics. Keep exploring DeepSage to level up." },
+    { min: 40, label: "Rising Learner",       message: "Solid grasp of the fundamentals — you're closing in on expert territory." },
+    { min: 60, label: "Sharp Thinker",        message: "Impressive! You clearly follow this space closely." },
+    { min: 80, label: "Certified Expert",     message: "Excellent work — you really know your stuff." },
+    { min: 95, label: "DeepSage Master",      message: "Near-perfect score. You could've written this quiz yourself." }
+  ];
+
+  function statusFor(percent) {
+    var level = STATUS_LEVELS[0];
+    for (var i = 0; i < STATUS_LEVELS.length; i++) {
+      if (percent >= STATUS_LEVELS[i].min) level = STATUS_LEVELS[i];
+    }
+    return level;
+  }
+
+  function shareButtonsHtml(shareText) {
+    var pageUrl = window.location.href;
+    var twitterUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(shareText) + "&url=" + encodeURIComponent(pageUrl);
+    var facebookUrl = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(pageUrl) + "&quote=" + encodeURIComponent(shareText);
+    var linkedinUrl = "https://www.linkedin.com/sharing/share-offsite/?url=" + encodeURIComponent(pageUrl);
+    return ''
+      + '<a class="share-btn" target="_blank" rel="noopener" href="' + twitterUrl + '" aria-label="Share on X" title="Share on X">'
+      + '<svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.6 8.7L23.3 22H16.9l-5-6.5-5.7 6.5H2.9l8.1-9.3L2 2h6.6l4.5 5.9L18.9 2Zm-1.1 18h1.7L7.3 3.9H5.5L17.8 20Z"/></svg>'
+      + '</a>'
+      + '<a class="share-btn" target="_blank" rel="noopener" href="' + facebookUrl + '" aria-label="Share on Facebook" title="Share on Facebook">'
+      + '<svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg>'
+      + '</a>'
+      + '<a class="share-btn" target="_blank" rel="noopener" href="' + linkedinUrl + '" aria-label="Share on LinkedIn" title="Share on LinkedIn">'
+      + '<svg viewBox="0 0 24 24"><path d="M19 3A2 2 0 0 1 21 5v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14ZM8.3 18.5V10H5.7v8.5h2.6ZM7 8.8a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm11.5 9.7v-4.7c0-2.5-1.3-3.7-3.1-3.7-1.4 0-2 .8-2.4 1.3V10H10.4v8.5H13v-4.7c0-.5 0-1 .2-1.3.3-.6.8-1.3 1.8-1.3 1.3 0 1.8.9 1.8 2.3v5h2.7Z"/></svg>'
+      + '</a>';
+  }
+
+  var topShareRow = document.getElementById("share-row-top");
+  if (topShareRow) topShareRow.innerHTML = shareButtonsHtml("Test your knowledge: " + TITLE);
+
+  var state = { index: 0, points: 0, answered: false };
+
+  function render() {
+    if (state.index >= QUESTIONS.length) {
+      renderResults();
+      return;
+    }
+    var q = QUESTIONS[state.index];
+    state.answered = false;
+
+    var pct = Math.round((state.index / QUESTIONS.length) * 100);
+    var html = ''
+      + '<div class="quiz-progress-track"><div class="quiz-progress-fill" style="width:' + pct + '%"></div></div>'
+      + '<div class="quiz-progress-label">Question ' + (state.index + 1) + ' of ' + QUESTIONS.length + '</div>'
+      + '<p class="quiz-question">' + escapeHtml(q.question) + '</p>'
+      + '<ul class="quiz-options" id="quiz-options-list">'
+      + q.options.map(function (opt, i) {
+          return '<li><button class="quiz-option" data-index="' + i + '">' + LETTERS[i] + '. ' + escapeHtml(opt) + '</button></li>';
+        }).join('')
+      + '</ul>'
+      + '<div id="quiz-explanation-slot"></div>'
+      + '<div id="quiz-next-slot"></div>';
+    root.innerHTML = html;
+
+    var buttons = root.querySelectorAll(".quiz-option");
+    buttons.forEach(function (btn) {
+      btn.addEventListener("click", function () { onAnswer(parseInt(btn.dataset.index, 10)); });
+    });
+  }
+
+  function onAnswer(chosenIndex) {
+    if (state.answered) return;
+    state.answered = true;
+    var q = QUESTIONS[state.index];
+    if (chosenIndex === q.correct_index) state.points += 1;
+    else if (chosenIndex === q.idk_index) state.points += 0.5;
+
+    var buttons = root.querySelectorAll(".quiz-option");
+    buttons.forEach(function (btn) {
+      var i = parseInt(btn.dataset.index, 10);
+      btn.disabled = true;
+      if (i === q.correct_index) btn.classList.add("is-correct");
+      else if (i === q.idk_index && i === chosenIndex) btn.classList.add("is-idk");
+      else if (i === chosenIndex) btn.classList.add("is-wrong");
+    });
+
+    document.getElementById("quiz-explanation-slot").innerHTML =
+      '<p class="quiz-explanation">' + escapeHtml(q.explanation) + '</p>';
+
+    var isLast = state.index === QUESTIONS.length - 1;
+    var nextSlot = document.getElementById("quiz-next-slot");
+    var nextBtn = document.createElement("button");
+    nextBtn.className = "quiz-next-btn";
+    nextBtn.textContent = isLast ? "See results" : "Next question";
+    nextBtn.addEventListener("click", function () { state.index++; render(); });
+    nextSlot.appendChild(nextBtn);
+  }
+
+  function formatScore(n) {
+    return n % 1 === 0 ? String(n) : n.toFixed(1);
+  }
+
+  function renderResults() {
+    var percent = Math.round((state.points / QUESTIONS.length) * 100);
+    var status = statusFor(percent);
+    var shareText = "I scored " + formatScore(state.points) + "/" + QUESTIONS.length
+      + " (" + percent + "%) on the DeepSage quiz \"" + TITLE + "\" and reached " + status.label + " level!";
+
+    root.innerHTML = ''
+      + '<div class="quiz-results">'
+      + '<div class="quiz-progress-track"><div class="quiz-progress-fill" style="width:100%"></div></div>'
+      + '<div class="quiz-results-score">' + formatScore(state.points) + '/' + QUESTIONS.length + '</div>'
+      + '<div class="quiz-results-percent">' + percent + '% correct</div>'
+      + '<div class="quiz-results-status">' + status.label + '</div>'
+      + '<p class="quiz-results-message">' + status.message + '</p>'
+      + '<div class="share-row">' + shareButtonsHtml(shareText) + '</div>'
+      + '<button class="quiz-retry-btn" id="quiz-retry-btn">Try again</button>'
+      + '</div>';
+
+    document.getElementById("quiz-retry-btn").addEventListener("click", function () {
+      state.index = 0; state.points = 0; render();
+    });
+  }
+
+  function escapeHtml(str) {
+    var div = document.createElement("div");
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  render();
+})();
+</script>
+
+
+    <div class="page-footer">
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <span class="footer-divider">·</span>
+        <a href="/article/">Articles</a>
+        <span class="footer-divider">·</span>
+        <a href="/quiz/">Quizzes</a>
+        <span class="footer-divider">·</span>
+        <a href="/privacy-policy.html">Privacy Policy</a>
+        <span class="footer-divider">·</span>
+        <a href="/terms-of-service.html">Terms of Service</a>
+      </div>
+      <p class="footer-copyright">DeepSage · © 2026</p>
+    </div>
+  </div>
+</section>
+
+<!-- AUTH MODAL -->
+<div id="auth-modal-overlay" class="auth-modal-overlay" style="display:none;" onclick="if(event.target===this) closeAuthModal()">
+  <div class="auth-modal">
+    <button class="auth-modal-close" onclick="closeAuthModal()">&times;</button>
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="auth-tab-signin" onclick="switchAuthTab('signin')">Sign In</button>
+      <button class="auth-tab" id="auth-tab-signup" onclick="switchAuthTab('signup')">Create Account</button>
+    </div>
+
+    <div class="auth-form-wrap">
+      <button class="google-btn" onclick="authGoogle()">
+        <svg class="google-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+          <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+          <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+          <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+        </svg>
+        Continue with Google
+      </button>
+
+      <div class="auth-divider"><span>or</span></div>
+
+      <div class="auth-field">
+        <label for="auth-email">Email</label>
+        <input type="email" id="auth-email" placeholder="you@example.com" autocomplete="email">
+      </div>
+      <div class="auth-field">
+        <label for="auth-pass">Password</label>
+        <input type="password" id="auth-pass" placeholder="••••••••" autocomplete="current-password">
+      </div>
+
+      <p class="auth-msg" id="auth-msg"></p>
+      <button class="auth-submit" id="auth-submit-btn" onclick="authSubmit()">Sign In</button>
+    </div>
+  </div>
+</div>
+
+<script>
+let authMode = "signin";
+
+function openAuthModal(mode) {
+  switchAuthTab(mode || "signin");
+  document.getElementById("auth-modal-overlay").style.display = "flex";
+}
+
+function closeAuthModal() {
+  document.getElementById("auth-modal-overlay").style.display = "none";
+}
+
+function switchAuthTab(mode) {
+  authMode = mode;
+  document.getElementById("auth-tab-signin").classList.toggle("active", mode === "signin");
+  document.getElementById("auth-tab-signup").classList.toggle("active", mode === "signup");
+  document.getElementById("auth-submit-btn").textContent = mode === "signin" ? "Sign In" : "Create Account";
+  const passInput = document.getElementById("auth-pass");
+  passInput.autocomplete = mode === "signin" ? "current-password" : "new-password";
+  setAuthMsg("");
+}
+
+function setAuthMsg(txt, color) {
+  const el = document.getElementById("auth-msg");
+  el.textContent = txt;
+  el.style.color = color || "#ff6688";
+}
+
+async function authSubmit() {
+  const sf = window._sf;
+  if (!sf) return setAuthMsg("Firebase not initialized yet.");
+  const email = document.getElementById("auth-email").value.trim();
+  const pass = document.getElementById("auth-pass").value;
+  if (!email || !pass) return setAuthMsg("Please fill in all fields.");
+
+  const btn = document.getElementById("auth-submit-btn");
+  btn.textContent = "…";
+  btn.disabled = true;
+
+  try {
+    if (authMode === "signin") {
+      await sf.signInWithEmailAndPassword(sf.auth, email, pass);
+    } else {
+      await sf.createUserWithEmailAndPassword(sf.auth, email, pass);
+    }
+    setAuthMsg("");
+    closeAuthModal();
+  } catch (err) {
+    const msgs = {
+      "auth/user-not-found": "No account with that email.",
+      "auth/wrong-password": "Incorrect password.",
+      "auth/invalid-credential": "Incorrect email or password.",
+      "auth/email-already-in-use": "Email already registered. Sign in instead.",
+      "auth/weak-password": "Password must be at least 6 characters.",
+      "auth/invalid-email": "Please enter a valid email.",
+    };
+    setAuthMsg(msgs[err.code] || err.message);
+  } finally {
+    btn.disabled = false;
+    switchAuthTab(authMode);
+  }
+}
+
+async function authGoogle() {
+  const sf = window._sf;
+  if (!sf) return setAuthMsg("Firebase not initialized yet.");
+  try {
+    await sf.signInWithPopup(sf.auth, sf.gProvider);
+    closeAuthModal();
+  } catch (err) {
+    if (err.code !== "auth/popup-closed-by-user") setAuthMsg(err.message);
+  }
+}
+
+async function doSignOut() {
+  const sf = window._sf;
+  if (sf) await sf.signOut(sf.auth);
+}
+</script>
+
+
+
+</body>
+</html>
