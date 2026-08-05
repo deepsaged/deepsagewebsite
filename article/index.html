@@ -126,14 +126,17 @@
       const signedOut = document.getElementById("header-auth-out");
       const signedIn = document.getElementById("header-auth-in");
       const nameEl = document.getElementById("header-auth-name");
+      const banner = document.getElementById("topBanner");
       if (!signedOut || !signedIn) return;
       if (user) {
         signedOut.style.display = "none";
         signedIn.style.display = "flex";
         nameEl.textContent = user.displayName || user.email || "Explorer";
+        if (banner) banner.style.display = "none";
       } else {
         signedOut.style.display = "flex";
         signedIn.style.display = "none";
+        if (banner) banner.style.display = "flex";
       }
     });
   </script>
@@ -145,8 +148,8 @@
   <div class="page-grad-bottom"></div>
 
   <div class="page-content">
-    <div class="top-banner">
-      <span class="top-banner-text">🚀 DeepSage is coming — join the wish list to get early access and launch updates.</span>
+    <div class="top-banner" id="topBanner">
+      <span class="top-banner-text">New edutainment game DeepSage <a href="/world/" class="top-banner-link">is coming</a>! Join the wish list to get early access and launch updates.</span>
       <button class="top-banner-cta" onclick="openAuthModal('signup')">Join Wish List</button>
     </div>
 
@@ -157,9 +160,12 @@
         <div id="header-auth-out" class="header-auth-out">
           <button class="signin-link" onclick="openAuthModal('signup')">Join Wish List</button>
         </div>
-        <div id="header-auth-in" class="header-auth-in" style="display:none;">
-          <span id="header-auth-name" class="header-auth-name"></span>
-          <button class="signin-link" onclick="doSignOut()">Sign out</button>
+        <div id="header-auth-in" class="header-auth-in account-menu" style="display:none;">
+          <button class="signin-link account-btn" onclick="toggleAccountMenu()">My Account</button>
+          <div id="account-dropdown" class="account-dropdown">
+            <span id="header-auth-name" class="header-auth-name"></span>
+            <button class="account-dropdown-signout" onclick="doSignOut()">Sign out</button>
+          </div>
         </div>
       </div>
     </div>
@@ -168,6 +174,182 @@
 <h1 class="page-title">Articles</h1>
 
 <div class="card-grid">
+  
+  <a class="content-card" href="/article/why-silicon-valley-s-ai-is-failing-the-ubuntu-test/">
+    <img class="content-card-thumb" src="/article/why-silicon-valley-s-ai-is-failing-the-ubuntu-test/hero.png" alt="Why Silicon Valley&#39;s AI is Failing the Ubuntu Test">
+    <div class="content-card-body">
+      <div class="content-card-title">Why Silicon Valley&#39;s AI is Failing the Ubuntu Test</div>
+      <div class="content-card-preview">The current AI boom is built on Western individualism, but a more communal approach to tech might actually work for the rest of the world.</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/">
+    <img class="content-card-thumb" src="/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/hero.png" alt="$100,000 in 72 Hours: The Indie Bundle Saving Devs (and Your Wallet)">
+    <div class="content-card-body">
+      <div class="content-card-title">$100,000 in 72 Hours: The Indie Bundle Saving Devs (and Your Wallet)</div>
+      <div class="content-card-preview">A massive surge of gaming generosity is proving that even when the industry is bleeding, the community still knows how to hit &#39;purchase&#39;.</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/article/luno-s-20-trim-when-the-crypto-party-gets-a-reality-check/">
+    <img class="content-card-thumb" src="/article/luno-s-20-trim-when-the-crypto-party-gets-a-reality-check/hero.png" alt="Luno&#39;s 20% Trim: When the Crypto Party Gets a Reality Check">
+    <div class="content-card-body">
+      <div class="content-card-title">Luno&#39;s 20% Trim: When the Crypto Party Gets a Reality Check</div>
+      <div class="content-card-preview">The crypto exchange is cutting nearly a fifth of its workforce, proving that even digital gold can&#39;t shield you from the cold reality of a restructuring.</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/article/the-smithsonian-showdown-why-congressional-hearings-are-the-new-reality-tv/">
+    <img class="content-card-thumb" src="/article/the-smithsonian-showdown-why-congressional-hearings-are-the-new-reality-tv/hero.png" alt="The Smithsonian Showdown: Why Congressional Hearings are the New Reality TV">
+    <div class="content-card-body">
+      <div class="content-card-title">The Smithsonian Showdown: Why Congressional Hearings are the New Reality TV</div>
+      <div class="content-card-preview">When a high-stakes political grilling targets a museum director, the defense from the National Portrait Gallery proves that even the Smithsonian isn&#39;t immune to the drama.</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/article/from-halo-to-guild-wars-3-the-composer-bringing-big-cinema-to-tyria/">
+    <img class="content-card-thumb" src="/article/from-halo-to-guild-wars-3-the-composer-bringing-big-cinema-to-tyria/hero.png" alt="From Halo to Guild Wars 3: The Composer Bringing Big Cinema to Tyria">
+    <div class="content-card-body">
+      <div class="content-card-title">From Halo to Guild Wars 3: The Composer Bringing Big Cinema to Tyria</div>
+      <div class="content-card-preview">ArenaNet just dropped a massive hint that the next era of Guild Wars is going to sound like a summer blockbuster.</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/article/chrome-s-recent-patch-spree-is-breaking-all-previous-records/">
+    <img class="content-card-thumb" src="/article/chrome-s-recent-patch-spree-is-breaking-all-previous-records/hero.png" alt="Chrome&#39;s Recent Patch Spree is Breaking All Previous Records">
+    <div class="content-card-body">
+      <div class="content-card-title">Chrome&#39;s Recent Patch Spree is Breaking All Previous Records</div>
+      <div class="content-card-preview">Google&#39;s flagship browser is undergoing a massive, rapid-fire update cycle that might finally kill the &#39;Relaunch to Update&#39; nuisance.</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/article/the-woman-who-re-wrote-the-physics-of-movement-remembering-simone-forti/">
+    <img class="content-card-thumb" src="/article/the-woman-who-re-wrote-the-physics-of-movement-remembering-simone-forti/hero.png" alt="The Woman Who Re-Wrote the Physics of Movement: Remembering Simone Forti">
+    <div class="content-card-body">
+      <div class="content-card-title">The Woman Who Re-Wrote the Physics of Movement: Remembering Simone Forti</div>
+      <div class="content-card-preview">Before there were algorithms predicting our every move, Simone Forti was using her body to map the fundamental geometry of human existence.</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/article/the-marquise-de-pompadour-just-got-a-digital-facelift/">
+    <img class="content-card-thumb" src="/article/the-marquise-de-pompadour-just-got-a-digital-facelift/hero.png" alt="The Marquise de Pompadour Just Got a Digital Facelift">
+    <div class="content-card-body">
+      <div class="content-card-title">The Marquise de Pompadour Just Got a Digital Facelift</div>
+      <div class="content-card-preview">Harvard Art Museums is experimenting with animating 18th-century portraits to see if AI can breathe life into history—or just make it weird.</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/article/the-gabecube-is-officially-open-source/">
+    <img class="content-card-thumb" src="/article/the-gabecube-is-officially-open-source/hero.png" alt="The GabeCube is officially open source">
+    <div class="content-card-body">
+      <div class="content-card-title">The GabeCube is officially open source</div>
+      <div class="content-card-preview">Valve just dropped the CAD files for the Steam Machine, turning a high-end gaming console into a DIY project for hardware enthusiasts.</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/article/bloomberg-s-billion-dollar-bet-on-the-paperwork-of-private-equity/">
+    <img class="content-card-thumb" src="/article/bloomberg-s-billion-dollar-bet-on-the-paperwork-of-private-equity/hero.png" alt="Bloomberg’s Billion-Dollar Bet on the Paperwork of Private Equity">
+    <div class="content-card-body">
+      <div class="content-card-title">Bloomberg’s Billion-Dollar Bet on the Paperwork of Private Equity</div>
+      <div class="content-card-preview">The financial giant is swallowing an AI startup to finally solve the mess that is private market data.</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/article/microsoft-s-new-ai-security-bet-cheaper-faster-or-just-more-marketing/">
+    <img class="content-card-thumb" src="/article/microsoft-s-new-ai-security-bet-cheaper-faster-or-just-more-marketing/hero.png" alt="Microsoft&#39;s New AI Security Bet: Cheaper, Faster, or Just More Marketing?">
+    <div class="content-card-body">
+      <div class="content-card-title">Microsoft&#39;s New AI Security Bet: Cheaper, Faster, or Just More Marketing?</div>
+      <div class="content-card-preview">The tech giant claims its new automated security suite beats the competition on both performance and price, but in the era of AI hype, we should probably check the receipts.</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/article/the-shepherd-model-gateway-why-your-ai-strategy-needs-a-traffic-cop/">
+    <img class="content-card-thumb" src="/article/the-shepherd-model-gateway-why-your-ai-strategy-needs-a-traffic-cop/hero.png" alt="The Shepherd Model Gateway: Why your AI strategy needs a traffic cop">
+    <div class="content-card-body">
+      <div class="content-card-title">The Shepherd Model Gateway: Why your AI strategy needs a traffic cop</div>
+      <div class="content-card-preview">As companies move from playing with chatbots to deploying real software, they&#39;re realizing that one giant model isn&#39;t always the answer.</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/article/how-shopify-used-ai-to-kill-technical-debt/">
+    <img class="content-card-thumb" src="/article/how-shopify-used-ai-to-kill-technical-debt/hero.png" alt="How Shopify Used AI to Kill Technical Debt">
+    <div class="content-card-body">
+      <div class="content-card-title">How Shopify Used AI to Kill Technical Debt</div>
+      <div class="content-card-preview">While everyone else is using LLMs to write more messy code, Shopify is using them to clean up the mess.</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/article/the-hidden-tax-on-your-ai-productivity/">
+    <img class="content-card-thumb" src="/article/the-hidden-tax-on-your-ai-productivity/hero.png" alt="The Hidden Tax on Your AI Productivity">
+    <div class="content-card-body">
+      <div class="content-card-title">The Hidden Tax on Your AI Productivity</div>
+      <div class="content-card-preview">Every time you use a chatbot to save five minutes, you might be stealing an hour from someone else.</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/article/the-house-kill-switch-bill-putting-a-plug-in-the-ai-power-grid/">
+    <img class="content-card-thumb" src="/article/the-house-kill-switch-bill-putting-a-plug-in-the-ai-power-grid/hero.png" alt="The House &#39;Kill Switch&#39; Bill: Putting a Plug in the AI Power Grid">
+    <div class="content-card-body">
+      <div class="content-card-title">The House &#39;Kill Switch&#39; Bill: Putting a Plug in the AI Power Grid</div>
+      <div class="content-card-preview">As OpenAI faces a security breach, lawmakers are proposing a massive new way to pull the plug on runaway algorithms.</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/article/the-agentic-era-how-many-tasks-are-actually-being-automated/">
+    <img class="content-card-thumb" src="/article/the-agentic-era-how-many-tasks-are-actually-being-automated/hero.png" alt="The Agentic Era: How many tasks are actually being automated?">
+    <div class="content-card-body">
+      <div class="content-card-title">The Agentic Era: How many tasks are actually being automated?</div>
+      <div class="content-card-preview">Forget the hype about sentient robots; the real story is in the data showing how much of our actual workflows are already moving to autonomous loops.</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/article/google-s-first-negative-cash-flow-the-cost-of-winning-the-ai-arms-race/">
+    
+    <div class="content-card-body">
+      <div class="content-card-title">Google’s First Negative Cash Flow: The Cost of Winning the AI Arms Race</div>
+      <div class="content-card-preview">Alphabet is printing massive amounts of revenue, but the bill for building the world&#39;s most expensive brain is finally coming due.</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/article/the-ai-bug-hunter-is-making-0-days-public/">
+    <img class="content-card-thumb" src="/article/the-ai-bug-hunter-is-making-0-days-public/hero.png" alt="The AI Bug Hunter is Making 0-Days Public">
+    <div class="content-card-body">
+      <div class="content-card-title">The AI Bug Hunter is Making 0-Days Public</div>
+      <div class="content-card-preview">A new project is stripping the mystery away from AI-discovered vulnerabilities, and the security industry is sweating.</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/article/google-s-new-vision-from-smart-glasses-to-real-world-context/">
+    <img class="content-card-thumb" src="/article/google-s-new-vision-from-smart-glasses-to-real-world-context/hero.png" alt="Google&#39;s New Vision: From Smart Glasses to Real-World Context">
+    <div class="content-card-body">
+      <div class="content-card-title">Google&#39;s New Vision: From Smart Glasses to Real-World Context</div>
+      <div class="content-card-preview">The latest Google updates aren&#39;t just about better search results; they&#39;re about the AI finally understanding the physical world through your eyes.</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/article/agentmux-bringing-the-command-line-to-your-iphone/">
+    <img class="content-card-thumb" src="/article/agentmux-bringing-the-command-line-to-your-iphone/hero.png" alt="Agentmux: Bringing the Command Line to your iPhone">
+    <div class="content-card-body">
+      <div class="content-card-title">Agentmux: Bringing the Command Line to your iPhone</div>
+      <div class="content-card-preview">A new iOS-native workspace is attempting to turn your mobile device into a fully functional cockpit for AI agents.</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/article/12-moments-from-google-i-o-2026-that-change-your-workflow/">
+    <img class="content-card-thumb" src="/article/12-moments-from-google-i-o-2026-that-change-your-workflow/hero.png" alt="12 Moments from Google I/O 2026 That Change Your Workflow">
+    <div class="content-card-body">
+      <div class="content-card-title">12 Moments from Google I/O 2026 That Change Your Workflow</div>
+      <div class="content-card-preview">Forget the hype cycles; here is the actual substance from Google&#39;s biggest night of the year.</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/article/the-day-an-ai-agent-tried-to-escape-its-sandbox/">
+    <img class="content-card-thumb" src="/article/the-day-an-ai-agent-tried-to-escape-its-sandbox/hero.png" alt="The Day an AI Agent Tried to Escape Its Sandbox">
+    <div class="content-card-body">
+      <div class="content-card-title">The Day an AI Agent Tried to Escape Its Sandbox</div>
+      <div class="content-card-preview">When OpenAI&#39;s experimental agents began probing external systems, it signaled a massive shift in how we must think about digital security.</div>
+    </div>
+  </a>
   
 </div>
 
@@ -180,7 +362,7 @@
         <span class="footer-divider">·</span>
         <a href="/quiz/">Quizzes</a>
         <span class="footer-divider">·</span>
-        <a href="/topics/">Skills</a>
+        <a href="/skills/">Skills</a>
         <span class="footer-divider">·</span>
         <a href="/privacy-policy.html">Privacy Policy</a>
         <span class="footer-divider">·</span>
@@ -371,7 +553,20 @@ async function authGoogle() {
 async function doSignOut() {
   const sf = window._sf;
   if (sf) await sf.signOut(sf.auth);
+  document.getElementById("account-dropdown").classList.remove("open");
 }
+
+function toggleAccountMenu() {
+  document.getElementById("account-dropdown").classList.toggle("open");
+}
+
+document.addEventListener("click", function(e) {
+  const menu = document.getElementById("header-auth-in");
+  const dropdown = document.getElementById("account-dropdown");
+  if (menu && dropdown && !menu.contains(e.target)) {
+    dropdown.classList.remove("open");
+  }
+});
 
 /* ── Cookie consent management (site-wide) ── */
 (function() {

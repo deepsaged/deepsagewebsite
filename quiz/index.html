@@ -126,14 +126,17 @@
       const signedOut = document.getElementById("header-auth-out");
       const signedIn = document.getElementById("header-auth-in");
       const nameEl = document.getElementById("header-auth-name");
+      const banner = document.getElementById("topBanner");
       if (!signedOut || !signedIn) return;
       if (user) {
         signedOut.style.display = "none";
         signedIn.style.display = "flex";
         nameEl.textContent = user.displayName || user.email || "Explorer";
+        if (banner) banner.style.display = "none";
       } else {
         signedOut.style.display = "flex";
         signedIn.style.display = "none";
+        if (banner) banner.style.display = "flex";
       }
     });
   </script>
@@ -145,8 +148,8 @@
   <div class="page-grad-bottom"></div>
 
   <div class="page-content">
-    <div class="top-banner">
-      <span class="top-banner-text">🚀 DeepSage is coming — join the wish list to get early access and launch updates.</span>
+    <div class="top-banner" id="topBanner">
+      <span class="top-banner-text">New edutainment game DeepSage <a href="/world/" class="top-banner-link">is coming</a>! Join the wish list to get early access and launch updates.</span>
       <button class="top-banner-cta" onclick="openAuthModal('signup')">Join Wish List</button>
     </div>
 
@@ -157,9 +160,12 @@
         <div id="header-auth-out" class="header-auth-out">
           <button class="signin-link" onclick="openAuthModal('signup')">Join Wish List</button>
         </div>
-        <div id="header-auth-in" class="header-auth-in" style="display:none;">
-          <span id="header-auth-name" class="header-auth-name"></span>
-          <button class="signin-link" onclick="doSignOut()">Sign out</button>
+        <div id="header-auth-in" class="header-auth-in account-menu" style="display:none;">
+          <button class="signin-link account-btn" onclick="toggleAccountMenu()">My Account</button>
+          <div id="account-dropdown" class="account-dropdown">
+            <span id="header-auth-name" class="header-auth-name"></span>
+            <button class="account-dropdown-signout" onclick="doSignOut()">Sign out</button>
+          </div>
         </div>
       </div>
     </div>
@@ -168,6 +174,158 @@
 <h1 class="page-title">Quizzes</h1>
 
 <div class="card-grid">
+  
+  <a class="content-card" href="/quiz/silicon-valley-vs-ubuntu-the-ai-ethics-face-off/">
+    <img class="content-card-thumb" src="/quiz/silicon-valley-vs-ubuntu-the-ai-ethics-face-off/hero.png" alt="Silicon Valley vs. Ubuntu: The AI Ethics Face-off">
+    <div class="content-card-body">
+      <div class="content-card-title">Silicon Valley vs. Ubuntu: The AI Ethics Face-off</div>
+      <div class="content-card-preview">10 questions — test your knowledge</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/quiz/the-indie-bundle-saving-devs-and-your-wallet/">
+    <img class="content-card-thumb" src="/quiz/the-indie-bundle-saving-devs-and-your-wallet/hero.png" alt="The Indie Bundle: Saving Devs (and Your Wallet)">
+    <div class="content-card-body">
+      <div class="content-card-title">The Indie Bundle: Saving Devs (and Your Wallet)</div>
+      <div class="content-card-preview">10 questions — test your knowledge</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/quiz/luno-s-great-crypto-trim/">
+    <img class="content-card-thumb" src="/quiz/luno-s-great-crypto-trim/hero.png" alt="Luno&#39;s Great Crypto Trim">
+    <div class="content-card-body">
+      <div class="content-card-title">Luno&#39;s Great Crypto Trim</div>
+      <div class="content-card-preview">10 questions — test your knowledge</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/quiz/museum-mayhem-congressional-hearings-cultural-clout/">
+    <img class="content-card-thumb" src="/quiz/museum-mayhem-congressional-hearings-cultural-clout/hero.png" alt="Museum Mayhem: Congressional Hearings &amp; Cultural Clout">
+    <div class="content-card-body">
+      <div class="content-card-title">Museum Mayhem: Congressional Hearings &amp; Cultural Clout</div>
+      <div class="content-card-preview">10 questions — test your knowledge</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/quiz/the-orchestral-epic-jinnouchi-the-gw3-hype/">
+    <img class="content-card-thumb" src="/quiz/the-orchestral-epic-jinnouchi-the-gw3-hype/hero.png" alt="The Orchestral Epic: Jinnouchi &amp; The GW3 Hype">
+    <div class="content-card-body">
+      <div class="content-card-title">The Orchestral Epic: Jinnouchi &amp; The GW3 Hype</div>
+      <div class="content-card-preview">10 questions — test your knowledge</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/quiz/chrome-the-never-ending-update-saga/">
+    <img class="content-card-thumb" src="/quiz/chrome-the-never-ending-update-saga/hero.png" alt="Chrome: The Never-Ending Update Saga">
+    <div class="content-card-body">
+      <div class="content-card-title">Chrome: The Never-Ending Update Saga</div>
+      <div class="content-card-preview">10 questions — test your knowledge</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/quiz/the-art-of-movement-remembering-simone-forti/">
+    <img class="content-card-thumb" src="/quiz/the-art-of-movement-remembering-simone-forti/hero.png" alt="The Art of Movement: Remembering Simone Forti">
+    <div class="content-card-body">
+      <div class="content-card-title">The Art of Movement: Remembering Simone Forti</div>
+      <div class="content-card-preview">10 questions — test your knowledge</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/quiz/the-steam-machine-cad-files-and-cube-dreams/">
+    <img class="content-card-thumb" src="/quiz/the-steam-machine-cad-files-and-cube-dreams/hero.png" alt="The Steam Machine: CAD Files and Cube Dreams">
+    <div class="content-card-body">
+      <div class="content-card-title">The Steam Machine: CAD Files and Cube Dreams</div>
+      <div class="content-card-preview">10 questions — test your knowledge</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/quiz/bloomberg-s-private-market-power-grab/">
+    <img class="content-card-thumb" src="/quiz/bloomberg-s-private-market-power-grab/hero.png" alt="Bloomberg’s Private Market Power Grab">
+    <div class="content-card-body">
+      <div class="content-card-title">Bloomberg’s Private Market Power Grab</div>
+      <div class="content-card-preview">10 questions — test your knowledge</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/quiz/the-shepherd-model-gateway-managing-the-llm-zoo/">
+    <img class="content-card-thumb" src="/quiz/the-shepherd-model-gateway-managing-the-llm-zoo/hero.png" alt="The Shepherd Model Gateway: Managing the LLM Zoo">
+    <div class="content-card-body">
+      <div class="content-card-title">The Shepherd Model Gateway: Managing the LLM Zoo</div>
+      <div class="content-card-preview">10 questions — test your knowledge</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/quiz/the-hidden-cost-of-ai-efficiency-or-exploitation/">
+    <img class="content-card-thumb" src="/quiz/the-hidden-cost-of-ai-efficiency-or-exploitation/hero.png" alt="The Hidden Cost of AI: Efficiency or Exploitation?">
+    <div class="content-card-body">
+      <div class="content-card-title">The Hidden Cost of AI: Efficiency or Exploitation?</div>
+      <div class="content-card-preview">10 questions — test your knowledge</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/quiz/panic-buttons-prompt-injections-the-ai-kill-switch-era/">
+    <img class="content-card-thumb" src="/quiz/panic-buttons-prompt-injections-the-ai-kill-switch-era/hero.png" alt="Panic Buttons &amp; Prompt Injections: The AI Kill Switch Era">
+    <div class="content-card-body">
+      <div class="content-card-title">Panic Buttons &amp; Prompt Injections: The AI Kill Switch Era</div>
+      <div class="content-card-preview">10 questions — test your knowledge</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/quiz/agentic-era-counting-the-chaos/">
+    <img class="content-card-thumb" src="/quiz/agentic-era-counting-the-chaos/hero.png" alt="Agentic Era: Counting the Chaos">
+    <div class="content-card-body">
+      <div class="content-card-title">Agentic Era: Counting the Chaos</div>
+      <div class="content-card-preview">10 questions — test your knowledge</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/quiz/google-s-ai-spending-spree-profit-or-panic/">
+    <img class="content-card-thumb" src="/quiz/google-s-ai-spending-spree-profit-or-panic/hero.png" alt="Google&#39;s AI Spending Spree: Profit or Panic?">
+    <div class="content-card-body">
+      <div class="content-card-title">Google&#39;s AI Spending Spree: Profit or Panic?</div>
+      <div class="content-card-preview">10 questions — test your knowledge</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/quiz/ai-vs-the-zero-day-the-new-security-frontier/">
+    <img class="content-card-thumb" src="/quiz/ai-vs-the-zero-day-the-new-security-frontier/hero.png" alt="AI vs. The Zero-Day: The New Security Frontier">
+    <div class="content-card-body">
+      <div class="content-card-title">AI vs. The Zero-Day: The New Security Frontier</div>
+      <div class="content-card-preview">10 questions — test your knowledge</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/quiz/the-rise-of-the-ai-agent-command-line-mastery/">
+    <img class="content-card-thumb" src="/quiz/the-rise-of-the-ai-agent-command-line-mastery/hero.png" alt="The Rise of the AI Agent: Command Line Mastery">
+    <div class="content-card-body">
+      <div class="content-card-title">The Rise of the AI Agent: Command Line Mastery</div>
+      <div class="content-card-preview">10 questions — test your knowledge</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/quiz/google-i-o-2026-the-future-of-ai-android/">
+    <img class="content-card-thumb" src="/quiz/google-i-o-2026-the-future-of-ai-android/hero.png" alt="Google I/O 2026: The Future of AI &amp; Android">
+    <div class="content-card-body">
+      <div class="content-card-title">Google I/O 2026: The Future of AI &amp; Android</div>
+      <div class="content-card-preview">10 questions — test your knowledge</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/quiz/google-s-visionary-future-the-galaxy-unpacked-26-recap/">
+    <img class="content-card-thumb" src="/quiz/google-s-visionary-future-the-galaxy-unpacked-26-recap/hero.png" alt="Google&#39;s Visionary Future: The Galaxy Unpacked 26 Recap">
+    <div class="content-card-body">
+      <div class="content-card-title">Google&#39;s Visionary Future: The Galaxy Unpacked 26 Recap</div>
+      <div class="content-card-preview">10 questions — test your knowledge</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/quiz/the-great-ai-escape-agentic-security/">
+    <img class="content-card-thumb" src="/quiz/the-great-ai-escape-agentic-security/hero.png" alt="The Great AI Escape: Agentic Security">
+    <div class="content-card-body">
+      <div class="content-card-title">The Great AI Escape: Agentic Security</div>
+      <div class="content-card-preview">10 questions — test your knowledge</div>
+    </div>
+  </a>
   
 </div>
 
@@ -180,7 +338,7 @@
         <span class="footer-divider">·</span>
         <a href="/quiz/">Quizzes</a>
         <span class="footer-divider">·</span>
-        <a href="/topics/">Skills</a>
+        <a href="/skills/">Skills</a>
         <span class="footer-divider">·</span>
         <a href="/privacy-policy.html">Privacy Policy</a>
         <span class="footer-divider">·</span>
@@ -371,7 +529,20 @@ async function authGoogle() {
 async function doSignOut() {
   const sf = window._sf;
   if (sf) await sf.signOut(sf.auth);
+  document.getElementById("account-dropdown").classList.remove("open");
 }
+
+function toggleAccountMenu() {
+  document.getElementById("account-dropdown").classList.toggle("open");
+}
+
+document.addEventListener("click", function(e) {
+  const menu = document.getElementById("header-auth-in");
+  const dropdown = document.getElementById("account-dropdown");
+  if (menu && dropdown && !menu.contains(e.target)) {
+    dropdown.classList.remove("open");
+  }
+});
 
 /* ── Cookie consent management (site-wide) ── */
 (function() {

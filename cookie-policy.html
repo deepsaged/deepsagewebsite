@@ -126,14 +126,17 @@
       const signedOut = document.getElementById("header-auth-out");
       const signedIn = document.getElementById("header-auth-in");
       const nameEl = document.getElementById("header-auth-name");
+      const banner = document.getElementById("topBanner");
       if (!signedOut || !signedIn) return;
       if (user) {
         signedOut.style.display = "none";
         signedIn.style.display = "flex";
         nameEl.textContent = user.displayName || user.email || "Explorer";
+        if (banner) banner.style.display = "none";
       } else {
         signedOut.style.display = "flex";
         signedIn.style.display = "none";
+        if (banner) banner.style.display = "flex";
       }
     });
   </script>
@@ -145,8 +148,8 @@
   <div class="page-grad-bottom"></div>
 
   <div class="page-content">
-    <div class="top-banner">
-      <span class="top-banner-text">🚀 DeepSage is coming — join the wish list to get early access and launch updates.</span>
+    <div class="top-banner" id="topBanner">
+      <span class="top-banner-text">New edutainment game DeepSage <a href="/world/" class="top-banner-link">is coming</a>! Join the wish list to get early access and launch updates.</span>
       <button class="top-banner-cta" onclick="openAuthModal('signup')">Join Wish List</button>
     </div>
 
@@ -157,9 +160,12 @@
         <div id="header-auth-out" class="header-auth-out">
           <button class="signin-link" onclick="openAuthModal('signup')">Join Wish List</button>
         </div>
-        <div id="header-auth-in" class="header-auth-in" style="display:none;">
-          <span id="header-auth-name" class="header-auth-name"></span>
-          <button class="signin-link" onclick="doSignOut()">Sign out</button>
+        <div id="header-auth-in" class="header-auth-in account-menu" style="display:none;">
+          <button class="signin-link account-btn" onclick="toggleAccountMenu()">My Account</button>
+          <div id="account-dropdown" class="account-dropdown">
+            <span id="header-auth-name" class="header-auth-name"></span>
+            <button class="account-dropdown-signout" onclick="doSignOut()">Sign out</button>
+          </div>
         </div>
       </div>
     </div>
@@ -286,7 +292,7 @@
         <span class="footer-divider">·</span>
         <a href="/quiz/">Quizzes</a>
         <span class="footer-divider">·</span>
-        <a href="/topics/">Skills</a>
+        <a href="/skills/">Skills</a>
         <span class="footer-divider">·</span>
         <a href="/privacy-policy.html">Privacy Policy</a>
         <span class="footer-divider">·</span>
@@ -477,7 +483,20 @@ async function authGoogle() {
 async function doSignOut() {
   const sf = window._sf;
   if (sf) await sf.signOut(sf.auth);
+  document.getElementById("account-dropdown").classList.remove("open");
 }
+
+function toggleAccountMenu() {
+  document.getElementById("account-dropdown").classList.toggle("open");
+}
+
+document.addEventListener("click", function(e) {
+  const menu = document.getElementById("header-auth-in");
+  const dropdown = document.getElementById("account-dropdown");
+  if (menu && dropdown && !menu.contains(e.target)) {
+    dropdown.classList.remove("open");
+  }
+});
 
 /* ── Cookie consent management (site-wide) ── */
 (function() {

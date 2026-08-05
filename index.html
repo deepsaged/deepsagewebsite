@@ -412,6 +412,28 @@
     padding-top: 4px;
   }
 
+  .game-explainer {
+    width: 100%;
+    max-width: 700px;
+    margin-top: 48px;
+    text-align: left;
+  }
+
+  .game-explainer .section-title {
+    text-align: center;
+    color: #fff;
+  }
+
+  .game-explainer p {
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+
+  .game-explainer p:last-child { margin-bottom: 0; }
+
   #latest-content { max-width: 860px; margin: 0 auto; padding: 48px 24px; }
 
   @media (max-width: 600px) {
@@ -547,14 +569,17 @@
       const signedOut = document.getElementById("header-auth-out");
       const signedIn = document.getElementById("header-auth-in");
       const nameEl = document.getElementById("header-auth-name");
+      const banner = document.getElementById("topBanner");
       if (!signedOut || !signedIn) return;
       if (user) {
         signedOut.style.display = "none";
         signedIn.style.display = "flex";
         nameEl.textContent = user.displayName || user.email || "Explorer";
+        if (banner) banner.style.display = "none";
       } else {
         signedOut.style.display = "flex";
         signedIn.style.display = "none";
+        if (banner) banner.style.display = "flex";
       }
     });
   </script>
@@ -566,8 +591,8 @@
   <div class="page-grad-bottom"></div>
 
   <div class="page-content">
-    <div class="top-banner">
-      <span class="top-banner-text">🚀 DeepSage is coming — join the wish list to get early access and launch updates.</span>
+    <div class="top-banner" id="topBanner">
+      <span class="top-banner-text">New edutainment game DeepSage <a href="/world/" class="top-banner-link">is coming</a>! Join the wish list to get early access and launch updates.</span>
       <button class="top-banner-cta" onclick="openAuthModal('signup')">Join Wish List</button>
     </div>
 
@@ -578,9 +603,12 @@
         <div id="header-auth-out" class="header-auth-out">
           <button class="signin-link" onclick="openAuthModal('signup')">Join Wish List</button>
         </div>
-        <div id="header-auth-in" class="header-auth-in" style="display:none;">
-          <span id="header-auth-name" class="header-auth-name"></span>
-          <button class="signin-link" onclick="doSignOut()">Sign out</button>
+        <div id="header-auth-in" class="header-auth-in account-menu" style="display:none;">
+          <button class="signin-link account-btn" onclick="toggleAccountMenu()">My Account</button>
+          <div id="account-dropdown" class="account-dropdown">
+            <span id="header-auth-name" class="header-auth-name"></span>
+            <button class="account-dropdown-signout" onclick="doSignOut()">Sign out</button>
+          </div>
         </div>
       </div>
     </div>
@@ -610,9 +638,12 @@
       </div>
     </div>
 
-    <!-- WISHLIST TITLE -->
-    <div class="game-info">
-      <h2 class="game-title">Join Game Wishlist</h2>
+    <!-- WHAT IS DEEPSAGE -->
+    <div class="game-explainer">
+      <h2 class="section-title">What Is DeepSage?</h2>
+      <p>DeepSage is an upcoming edutainment game built around a simple idea: real knowledge should feel like a superpower. Every battle in the game — called a <strong>Reckoning</strong> — is fought with questions and answers instead of button-mashing. Face a rival, and you're both trading real questions across subjects like science, history, and logic. Answer well and you prevail; answer wrong and it costs you. Skill at the game <em>is</em> skill at learning.</p>
+      <p>Underneath that loop sits a wide, strange world. Minds who have achieved a kind of immortality reach down from a vast, computed afterlife into physical bodies, chasing the one thing their perfect world can't give them: something genuinely real. What they find down here — through the eyes of the characters you'll play — is a story built to swing between humor, wonder, and real feeling, not just spectacle.</p>
+      <p>It's a world worth exploring — and every fight in it is a chance to actually get smarter.</p>
     </div>
 
     <!-- AUTH SECTION -->
@@ -686,6 +717,60 @@
 
 <div class="card-grid">
   
+  <a class="content-card" href="/article/why-silicon-valley-s-ai-is-failing-the-ubuntu-test/">
+    <img class="content-card-thumb" src="/article/why-silicon-valley-s-ai-is-failing-the-ubuntu-test/hero.png" alt="Why Silicon Valley&#39;s AI is Failing the Ubuntu Test">
+    <div class="content-card-body">
+      <span class="content-card-badge">Article</span>
+      <div class="content-card-title">Why Silicon Valley&#39;s AI is Failing the Ubuntu Test</div>
+      <div class="content-card-preview">The current AI boom is built on Western individualism, but a more communal approach to tech might actually work for the rest of the world.</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/quiz/silicon-valley-vs-ubuntu-the-ai-ethics-face-off/">
+    <img class="content-card-thumb" src="/quiz/silicon-valley-vs-ubuntu-the-ai-ethics-face-off/hero.png" alt="Silicon Valley vs. Ubuntu: The AI Ethics Face-off">
+    <div class="content-card-body">
+      <span class="content-card-badge">Quiz</span>
+      <div class="content-card-title">Silicon Valley vs. Ubuntu: The AI Ethics Face-off</div>
+      <div class="content-card-preview">10 questions — test your knowledge</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/">
+    <img class="content-card-thumb" src="/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/hero.png" alt="$100,000 in 72 Hours: The Indie Bundle Saving Devs (and Your Wallet)">
+    <div class="content-card-body">
+      <span class="content-card-badge">Article</span>
+      <div class="content-card-title">$100,000 in 72 Hours: The Indie Bundle Saving Devs (and Your Wallet)</div>
+      <div class="content-card-preview">A massive surge of gaming generosity is proving that even when the industry is bleeding, the community still knows how to hit &#39;purchase&#39;.</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/quiz/the-indie-bundle-saving-devs-and-your-wallet/">
+    <img class="content-card-thumb" src="/quiz/the-indie-bundle-saving-devs-and-your-wallet/hero.png" alt="The Indie Bundle: Saving Devs (and Your Wallet)">
+    <div class="content-card-body">
+      <span class="content-card-badge">Quiz</span>
+      <div class="content-card-title">The Indie Bundle: Saving Devs (and Your Wallet)</div>
+      <div class="content-card-preview">10 questions — test your knowledge</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/article/luno-s-20-trim-when-the-crypto-party-gets-a-reality-check/">
+    <img class="content-card-thumb" src="/article/luno-s-20-trim-when-the-crypto-party-gets-a-reality-check/hero.png" alt="Luno&#39;s 20% Trim: When the Crypto Party Gets a Reality Check">
+    <div class="content-card-body">
+      <span class="content-card-badge">Article</span>
+      <div class="content-card-title">Luno&#39;s 20% Trim: When the Crypto Party Gets a Reality Check</div>
+      <div class="content-card-preview">The crypto exchange is cutting nearly a fifth of its workforce, proving that even digital gold can&#39;t shield you from the cold reality of a restructuring.</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/quiz/luno-s-great-crypto-trim/">
+    <img class="content-card-thumb" src="/quiz/luno-s-great-crypto-trim/hero.png" alt="Luno&#39;s Great Crypto Trim">
+    <div class="content-card-body">
+      <span class="content-card-badge">Quiz</span>
+      <div class="content-card-title">Luno&#39;s Great Crypto Trim</div>
+      <div class="content-card-preview">10 questions — test your knowledge</div>
+    </div>
+  </a>
+  
 </div><!-- LATEST_CONTENT_END -->
 </section>
 
@@ -699,7 +784,7 @@
         <span class="footer-divider">·</span>
         <a href="/quiz/">Quizzes</a>
         <span class="footer-divider">·</span>
-        <a href="/topics/">Skills</a>
+        <a href="/skills/">Skills</a>
         <span class="footer-divider">·</span>
         <a href="/privacy-policy.html">Privacy Policy</a>
         <span class="footer-divider">·</span>
@@ -890,7 +975,20 @@ async function authGoogle() {
 async function doSignOut() {
   const sf = window._sf;
   if (sf) await sf.signOut(sf.auth);
+  document.getElementById("account-dropdown").classList.remove("open");
 }
+
+function toggleAccountMenu() {
+  document.getElementById("account-dropdown").classList.toggle("open");
+}
+
+document.addEventListener("click", function(e) {
+  const menu = document.getElementById("header-auth-in");
+  const dropdown = document.getElementById("account-dropdown");
+  if (menu && dropdown && !menu.contains(e.target)) {
+    dropdown.classList.remove("open");
+  }
+});
 
 /* ── Cookie consent management (site-wide) ── */
 (function() {
