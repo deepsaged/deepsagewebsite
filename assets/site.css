@@ -82,6 +82,56 @@ a:hover { opacity: 0.7; }
   margin-bottom: 48px;
 }
 
+/* ── TOP ANNOUNCEMENT BANNER ──
+   Sits above .page-header on every page. Text wraps (no truncation/ellipsis)
+   at every width so the invite to join the wish list is always fully
+   readable, from small phones up. */
+.top-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: center;
+  background: linear-gradient(90deg, #00ffcc12, #00aaff12);
+  border: 1px solid #00ffcc33;
+  border-radius: 6px;
+  padding: 12px 20px;
+  margin-top: 20px;
+}
+
+.top-banner-text {
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text);
+  letter-spacing: 0.2px;
+}
+
+.top-banner-cta {
+  flex-shrink: 0;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border: 1px solid var(--teal);
+  background: #00ffcc15;
+  color: var(--teal);
+  padding: 8px 16px;
+  border-radius: 3px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+.top-banner-cta:hover { background: #00ffcc2a; }
+
+@media (max-width: 600px) {
+  .top-banner { padding: 10px 14px; margin-top: 12px; }
+  .top-banner-text { font-size: 12px; }
+}
+
 .page-logo {
   font-family: var(--sans);
   font-size: 13px;
@@ -261,6 +311,40 @@ a:hover { opacity: 0.7; }
 }
 
 .auth-field input:focus { outline: none; border-color: var(--teal); }
+
+/* ── GDPR consent checkbox (shared auth modal, homepage inline hero widget) ── */
+.consent-wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  margin: 4px 0 14px;
+}
+
+.consent-wrap input[type="checkbox"] {
+  flex-shrink: 0;
+  margin-top: 2px;
+  width: 14px;
+  height: 14px;
+  accent-color: var(--teal);
+  cursor: pointer;
+}
+
+.consent-text {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+  letter-spacing: 0.3px;
+}
+
+.consent-link {
+  color: var(--teal);
+  opacity: 0.7;
+  text-decoration: underline;
+  transition: opacity 0.2s;
+}
+.consent-link:hover { opacity: 1; }
 
 .auth-msg {
   font-family: var(--sans);

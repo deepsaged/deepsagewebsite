@@ -145,12 +145,17 @@
   <div class="page-grad-bottom"></div>
 
   <div class="page-content">
+    <div class="top-banner">
+      <span class="top-banner-text">🚀 DeepSage is coming — join the wish list to get early access and launch updates.</span>
+      <button class="top-banner-cta" onclick="openAuthModal('signup')">Join Wish List</button>
+    </div>
+
     <div class="page-header">
       <a href="/" class="page-logo-link"><div class="page-logo">DeepSage</div></a>
 
       <div class="header-auth">
         <div id="header-auth-out" class="header-auth-out">
-          <button class="signin-link" onclick="openAuthModal('signin')">Sign In</button>
+          <button class="signin-link" onclick="openAuthModal('signup')">Join Wish List</button>
         </div>
         <div id="header-auth-in" class="header-auth-in" style="display:none;">
           <span id="header-auth-name" class="header-auth-name"></span>
@@ -281,6 +286,8 @@
         <span class="footer-divider">·</span>
         <a href="/quiz/">Quizzes</a>
         <span class="footer-divider">·</span>
+        <a href="/topics/">Skills</a>
+        <span class="footer-divider">·</span>
         <a href="/privacy-policy.html">Privacy Policy</a>
         <span class="footer-divider">·</span>
         <a href="/terms-of-service.html">Terms of Service</a>
@@ -295,8 +302,8 @@
   <div class="auth-modal">
     <button class="auth-modal-close" onclick="closeAuthModal()">&times;</button>
     <div class="auth-tabs">
-      <button class="auth-tab active" id="auth-tab-signin" onclick="switchAuthTab('signin')">Sign In</button>
-      <button class="auth-tab" id="auth-tab-signup" onclick="switchAuthTab('signup')">Create Account</button>
+      <button class="auth-tab" id="auth-tab-signin" onclick="switchAuthTab('signin')">Sign In</button>
+      <button class="auth-tab active" id="auth-tab-signup" onclick="switchAuthTab('signup')">Join Wish List</button>
     </div>
 
     <div class="auth-form-wrap">
@@ -320,6 +327,11 @@
         <label for="auth-pass">Password</label>
         <input type="password" id="auth-pass" placeholder="••••••••" autocomplete="current-password">
       </div>
+
+      <label class="consent-wrap" id="auth-consent-row">
+        <input type="checkbox" id="auth-consent-check">
+        <span class="consent-text">I agree to receive game updates from DeepSage and join the wish list. You can unsubscribe at any time. See our <a href="/privacy-policy.html" target="_blank" rel="noopener" class="consent-link">Privacy Policy</a>.</span>
+      </label>
 
       <p class="auth-msg" id="auth-msg"></p>
       <button class="auth-submit" id="auth-submit-btn" onclick="authSubmit()">Sign In</button>
@@ -393,7 +405,8 @@ function switchAuthTab(mode) {
   authMode = mode;
   document.getElementById("auth-tab-signin").classList.toggle("active", mode === "signin");
   document.getElementById("auth-tab-signup").classList.toggle("active", mode === "signup");
-  document.getElementById("auth-submit-btn").textContent = mode === "signin" ? "Sign In" : "Create Account";
+  document.getElementById("auth-submit-btn").textContent = mode === "signin" ? "Sign In" : "Join Wish List";
+  document.getElementById("auth-consent-row").style.display = mode === "signin" ? "none" : "flex";
   const passInput = document.getElementById("auth-pass");
   passInput.autocomplete = mode === "signin" ? "current-password" : "new-password";
   setAuthMsg("");
@@ -411,6 +424,10 @@ async function authSubmit() {
   const email = document.getElementById("auth-email").value.trim();
   const pass = document.getElementById("auth-pass").value;
   if (!email || !pass) return setAuthMsg("Please fill in all fields.");
+
+  if (authMode === "signup" && !document.getElementById("auth-consent-check").checked) {
+    return setAuthMsg("Please tick the consent box to continue.");
+  }
 
   const btn = document.getElementById("auth-submit-btn");
   btn.textContent = "…";
@@ -444,6 +461,9 @@ async function authSubmit() {
 async function authGoogle() {
   const sf = window._sf;
   if (!sf) return setAuthMsg("Firebase not initialized yet.");
+  if (authMode === "signup" && !document.getElementById("auth-consent-check").checked) {
+    return setAuthMsg("Please tick the consent box to continue.");
+  }
   try {
     const result = await sf.signInWithPopup(sf.auth, sf.gProvider);
     const info = sf.getAdditionalUserInfo(result);

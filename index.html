@@ -566,12 +566,17 @@
   <div class="page-grad-bottom"></div>
 
   <div class="page-content">
+    <div class="top-banner">
+      <span class="top-banner-text">🚀 DeepSage is coming — join the wish list to get early access and launch updates.</span>
+      <button class="top-banner-cta" onclick="openAuthModal('signup')">Join Wish List</button>
+    </div>
+
     <div class="page-header">
       <a href="/" class="page-logo-link"><div class="page-logo">DeepSage</div></a>
 
       <div class="header-auth">
         <div id="header-auth-out" class="header-auth-out">
-          <button class="signin-link" onclick="openAuthModal('signin')">Sign In</button>
+          <button class="signin-link" onclick="openAuthModal('signup')">Join Wish List</button>
         </div>
         <div id="header-auth-in" class="header-auth-in" style="display:none;">
           <span id="header-auth-name" class="header-auth-name"></span>
@@ -614,21 +619,21 @@
     <div class="auth-section">
 
       <!-- LOGGED OUT -->
-      <div id="auth-panel">
+      <div id="hero-auth-panel">
         <div class="auth-tabs">
-          <button class="auth-tab active" onclick="switchTab('signin', this)">Sign In</button>
-          <button class="auth-tab" onclick="switchTab('signup', this)">Create Account</button>
+          <button class="auth-tab active" onclick="heroSwitchTab('signin', this)">Sign In</button>
+          <button class="auth-tab" onclick="heroSwitchTab('signup', this)">Create Account</button>
         </div>
 
         <div class="auth-form-wrap">
           <!-- GDPR consent — always visible, required for any auth method -->
-          <label class="consent-wrap" id="consent-row">
-            <input type="checkbox" id="consent-check">
+          <label class="consent-wrap" id="hero-consent-row">
+            <input type="checkbox" id="hero-consent-check">
             <span class="consent-text">I agree to receive game updates from DeepSage. You can unsubscribe at any time. See our <a href="/privacy-policy.html" target="_blank" rel="noopener" class="consent-link">Privacy Policy</a>.</span>
           </label>
 
           <!-- Google -->
-          <button class="google-btn" onclick="authGoogle()">
+          <button class="google-btn" onclick="heroAuthGoogle()">
             <svg class="google-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
               <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
@@ -642,16 +647,16 @@
 
           <!-- Email/pass -->
           <div class="auth-field">
-            <label for="auth-email">Email</label>
-            <input type="email" id="auth-email" placeholder="your@signal.com" autocomplete="email">
+            <label for="hero-auth-email">Email</label>
+            <input type="email" id="hero-auth-email" placeholder="your@signal.com" autocomplete="email">
           </div>
           <div class="auth-field">
-            <label for="auth-pass">Password</label>
-            <input type="password" id="auth-pass" placeholder="••••••••" autocomplete="current-password">
+            <label for="hero-auth-pass">Password</label>
+            <input type="password" id="hero-auth-pass" placeholder="••••••••" autocomplete="current-password">
           </div>
 
-          <p class="auth-msg" id="auth-msg"></p>
-          <button class="auth-submit" id="auth-submit-btn" onclick="authSubmit()">
+          <p class="auth-msg" id="hero-auth-msg"></p>
+          <button class="auth-submit" id="hero-auth-submit-btn" onclick="heroAuthSubmit()">
             Sign In &amp; Wishlist
           </button>
 
@@ -681,60 +686,6 @@
 
 <div class="card-grid">
   
-  <a class="content-card" href="/article/why-silicon-valley-s-ai-is-failing-the-ubuntu-test/">
-    <img class="content-card-thumb" src="/article/why-silicon-valley-s-ai-is-failing-the-ubuntu-test/hero.png" alt="Why Silicon Valley&#39;s AI is Failing the Ubuntu Test">
-    <div class="content-card-body">
-      <span class="content-card-badge">Article</span>
-      <div class="content-card-title">Why Silicon Valley&#39;s AI is Failing the Ubuntu Test</div>
-      <div class="content-card-preview">The current AI boom is built on Western individualism, but a more communal approach to tech might actually work for the rest of the world.</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/quiz/silicon-valley-vs-ubuntu-the-ai-ethics-face-off/">
-    <img class="content-card-thumb" src="/quiz/silicon-valley-vs-ubuntu-the-ai-ethics-face-off/hero.png" alt="Silicon Valley vs. Ubuntu: The AI Ethics Face-off">
-    <div class="content-card-body">
-      <span class="content-card-badge">Quiz</span>
-      <div class="content-card-title">Silicon Valley vs. Ubuntu: The AI Ethics Face-off</div>
-      <div class="content-card-preview">10 questions — test your knowledge</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/">
-    <img class="content-card-thumb" src="/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/hero.png" alt="$100,000 in 72 Hours: The Indie Bundle Saving Devs (and Your Wallet)">
-    <div class="content-card-body">
-      <span class="content-card-badge">Article</span>
-      <div class="content-card-title">$100,000 in 72 Hours: The Indie Bundle Saving Devs (and Your Wallet)</div>
-      <div class="content-card-preview">A massive surge of gaming generosity is proving that even when the industry is bleeding, the community still knows how to hit &#39;purchase&#39;.</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/quiz/the-indie-bundle-saving-devs-and-your-wallet/">
-    <img class="content-card-thumb" src="/quiz/the-indie-bundle-saving-devs-and-your-wallet/hero.png" alt="The Indie Bundle: Saving Devs (and Your Wallet)">
-    <div class="content-card-body">
-      <span class="content-card-badge">Quiz</span>
-      <div class="content-card-title">The Indie Bundle: Saving Devs (and Your Wallet)</div>
-      <div class="content-card-preview">10 questions — test your knowledge</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/article/luno-s-20-trim-when-the-crypto-party-gets-a-reality-check/">
-    <img class="content-card-thumb" src="/article/luno-s-20-trim-when-the-crypto-party-gets-a-reality-check/hero.png" alt="Luno&#39;s 20% Trim: When the Crypto Party Gets a Reality Check">
-    <div class="content-card-body">
-      <span class="content-card-badge">Article</span>
-      <div class="content-card-title">Luno&#39;s 20% Trim: When the Crypto Party Gets a Reality Check</div>
-      <div class="content-card-preview">The crypto exchange is cutting nearly a fifth of its workforce, proving that even digital gold can&#39;t shield you from the cold reality of a restructuring.</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/quiz/luno-s-great-crypto-trim/">
-    <img class="content-card-thumb" src="/quiz/luno-s-great-crypto-trim/hero.png" alt="Luno&#39;s Great Crypto Trim">
-    <div class="content-card-body">
-      <span class="content-card-badge">Quiz</span>
-      <div class="content-card-title">Luno&#39;s Great Crypto Trim</div>
-      <div class="content-card-preview">10 questions — test your knowledge</div>
-    </div>
-  </a>
-  
 </div><!-- LATEST_CONTENT_END -->
 </section>
 
@@ -747,6 +698,8 @@
         <a href="/article/">Articles</a>
         <span class="footer-divider">·</span>
         <a href="/quiz/">Quizzes</a>
+        <span class="footer-divider">·</span>
+        <a href="/topics/">Skills</a>
         <span class="footer-divider">·</span>
         <a href="/privacy-policy.html">Privacy Policy</a>
         <span class="footer-divider">·</span>
@@ -762,8 +715,8 @@
   <div class="auth-modal">
     <button class="auth-modal-close" onclick="closeAuthModal()">&times;</button>
     <div class="auth-tabs">
-      <button class="auth-tab active" id="auth-tab-signin" onclick="switchAuthTab('signin')">Sign In</button>
-      <button class="auth-tab" id="auth-tab-signup" onclick="switchAuthTab('signup')">Create Account</button>
+      <button class="auth-tab" id="auth-tab-signin" onclick="switchAuthTab('signin')">Sign In</button>
+      <button class="auth-tab active" id="auth-tab-signup" onclick="switchAuthTab('signup')">Join Wish List</button>
     </div>
 
     <div class="auth-form-wrap">
@@ -787,6 +740,11 @@
         <label for="auth-pass">Password</label>
         <input type="password" id="auth-pass" placeholder="••••••••" autocomplete="current-password">
       </div>
+
+      <label class="consent-wrap" id="auth-consent-row">
+        <input type="checkbox" id="auth-consent-check">
+        <span class="consent-text">I agree to receive game updates from DeepSage and join the wish list. You can unsubscribe at any time. See our <a href="/privacy-policy.html" target="_blank" rel="noopener" class="consent-link">Privacy Policy</a>.</span>
+      </label>
 
       <p class="auth-msg" id="auth-msg"></p>
       <button class="auth-submit" id="auth-submit-btn" onclick="authSubmit()">Sign In</button>
@@ -860,7 +818,8 @@ function switchAuthTab(mode) {
   authMode = mode;
   document.getElementById("auth-tab-signin").classList.toggle("active", mode === "signin");
   document.getElementById("auth-tab-signup").classList.toggle("active", mode === "signup");
-  document.getElementById("auth-submit-btn").textContent = mode === "signin" ? "Sign In" : "Create Account";
+  document.getElementById("auth-submit-btn").textContent = mode === "signin" ? "Sign In" : "Join Wish List";
+  document.getElementById("auth-consent-row").style.display = mode === "signin" ? "none" : "flex";
   const passInput = document.getElementById("auth-pass");
   passInput.autocomplete = mode === "signin" ? "current-password" : "new-password";
   setAuthMsg("");
@@ -878,6 +837,10 @@ async function authSubmit() {
   const email = document.getElementById("auth-email").value.trim();
   const pass = document.getElementById("auth-pass").value;
   if (!email || !pass) return setAuthMsg("Please fill in all fields.");
+
+  if (authMode === "signup" && !document.getElementById("auth-consent-check").checked) {
+    return setAuthMsg("Please tick the consent box to continue.");
+  }
 
   const btn = document.getElementById("auth-submit-btn");
   btn.textContent = "…";
@@ -911,6 +874,9 @@ async function authSubmit() {
 async function authGoogle() {
   const sf = window._sf;
   if (!sf) return setAuthMsg("Firebase not initialized yet.");
+  if (authMode === "signup" && !document.getElementById("auth-consent-check").checked) {
+    return setAuthMsg("Please tick the consent box to continue.");
+  }
   try {
     const result = await sf.signInWithPopup(sf.auth, sf.gProvider);
     const info = sf.getAdditionalUserInfo(result);
@@ -1077,7 +1043,7 @@ document.addEventListener('click', function(e) {
     }
 
     sf.onAuthStateChanged(sf.auth, user => {
-      const loggedOut = document.getElementById("auth-panel");
+      const loggedOut = document.getElementById("hero-auth-panel");
       const loggedIn = document.getElementById("user-panel");
       const userName = document.getElementById("user-name");
       if (!loggedOut || !loggedIn) return;
@@ -1097,17 +1063,22 @@ document.addEventListener('click', function(e) {
 </script>
 
 <script>
-/* ── Homepage inline auth-card tab switching (separate widget from the
-   shared header sign-in modal defined in base.html) ── */
-let activeMode = 'signin';
+/* ── Homepage inline auth-card (separate widget from the shared header
+   sign-in modal defined in base.html) — all names are namespaced with a
+   "hero" prefix so this never overwrites the shared modal's global
+   authSubmit/authGoogle/doSignOut/setAuthMsg functions or DOM ids. That
+   collision used to break the header "Join Wish List" popup on this page
+   only, since this script runs after base.html's and silently won the
+   naming conflict. ── */
+let heroActiveMode = 'signin';
 
-function switchTab(mode, btn) {
-  activeMode = mode;
-  document.querySelectorAll('#auth-panel .auth-tab').forEach(t => t.classList.remove('active'));
+function heroSwitchTab(mode, btn) {
+  heroActiveMode = mode;
+  document.querySelectorAll('#hero-auth-panel .auth-tab').forEach(t => t.classList.remove('active'));
   btn.classList.add('active');
 
-  const submitBtn  = document.getElementById('auth-submit-btn');
-  const passInput  = document.getElementById('auth-pass');
+  const submitBtn  = document.getElementById('hero-auth-submit-btn');
+  const passInput  = document.getElementById('hero-auth-pass');
 
   if (mode === 'signin') {
     submitBtn.textContent  = 'Sign In & Wishlist';
@@ -1116,39 +1087,39 @@ function switchTab(mode, btn) {
     submitBtn.textContent  = 'Create Account & Wishlist';
     passInput.autocomplete = 'new-password';
   }
-  setMsg('');
+  heroSetMsg('');
 }
 
-function setMsg(txt, color) {
-  const el = document.getElementById('auth-msg');
+function heroSetMsg(txt, color) {
+  const el = document.getElementById('hero-auth-msg');
   el.textContent = txt;
   el.style.color = color || '#ff6688';
 }
 
-async function authSubmit() {
+async function heroAuthSubmit() {
   const sf    = window._sf;
-  if (!sf) return setMsg('Firebase not initialized yet.');
-  const email = document.getElementById('auth-email').value.trim();
-  const pass  = document.getElementById('auth-pass').value;
-  if (!email || !pass) return setMsg('Please fill in all fields.');
+  if (!sf) return heroSetMsg('Firebase not initialized yet.');
+  const email = document.getElementById('hero-auth-email').value.trim();
+  const pass  = document.getElementById('hero-auth-pass').value;
+  if (!email || !pass) return heroSetMsg('Please fill in all fields.');
 
-  const consentCheck = document.getElementById('consent-check');
+  const consentCheck = document.getElementById('hero-consent-check');
   if (!consentCheck || !consentCheck.checked) {
-    return setMsg('Please tick the consent box to continue.');
+    return heroSetMsg('Please tick the consent box to continue.');
   }
 
-  const btn = document.getElementById('auth-submit-btn');
+  const btn = document.getElementById('hero-auth-submit-btn');
   btn.textContent = '…';
   btn.disabled    = true;
 
   try {
-    if (activeMode === 'signin') {
+    if (heroActiveMode === 'signin') {
       await sf.signInWithEmailAndPassword(sf.auth, email, pass);
     } else {
       const cred = await sf.createUserWithEmailAndPassword(sf.auth, email, pass);
       await sf.recordUserSignup(cred.user, true);
     }
-    setMsg('');
+    heroSetMsg('');
   } catch (err) {
     const msgs = {
       'auth/user-not-found':       'No account with that email.',
@@ -1157,20 +1128,20 @@ async function authSubmit() {
       'auth/weak-password':        'Password must be at least 6 characters.',
       'auth/invalid-email':        'Please enter a valid email.',
     };
-    setMsg(msgs[err.code] || err.message);
+    heroSetMsg(msgs[err.code] || err.message);
   } finally {
     btn.disabled = false;
-    switchTab(activeMode, document.querySelector('#auth-panel .auth-tab.active'));
+    heroSwitchTab(heroActiveMode, document.querySelector('#hero-auth-panel .auth-tab.active'));
   }
 }
 
-async function authGoogle() {
+async function heroAuthGoogle() {
   const sf = window._sf;
-  if (!sf) return setMsg('Firebase not initialized yet.');
+  if (!sf) return heroSetMsg('Firebase not initialized yet.');
 
-  const consentCheck = document.getElementById('consent-check');
+  const consentCheck = document.getElementById('hero-consent-check');
   if (!consentCheck || !consentCheck.checked) {
-    return setMsg('Please tick the consent box to continue.');
+    return heroSetMsg('Please tick the consent box to continue.');
   }
 
   try {
@@ -1179,14 +1150,9 @@ async function authGoogle() {
     await sf.recordUserSignup(result.user, !!(info && info.isNewUser));
   } catch (err) {
     if (err.code !== 'auth/popup-closed-by-user') {
-      setMsg(err.message);
+      heroSetMsg(err.message);
     }
   }
-}
-
-async function doSignOut() {
-  const sf = window._sf;
-  if (sf) await sf.signOut(sf.auth);
 }
 
 /* ── Star field canvas ── */
