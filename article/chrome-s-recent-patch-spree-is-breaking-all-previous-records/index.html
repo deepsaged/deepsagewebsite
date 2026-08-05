@@ -126,14 +126,17 @@
       const signedOut = document.getElementById("header-auth-out");
       const signedIn = document.getElementById("header-auth-in");
       const nameEl = document.getElementById("header-auth-name");
+      const banner = document.getElementById("topBanner");
       if (!signedOut || !signedIn) return;
       if (user) {
         signedOut.style.display = "none";
         signedIn.style.display = "flex";
         nameEl.textContent = user.displayName || user.email || "Explorer";
+        if (banner) banner.style.display = "none";
       } else {
         signedOut.style.display = "flex";
         signedIn.style.display = "none";
+        if (banner) banner.style.display = "flex";
       }
     });
   </script>
