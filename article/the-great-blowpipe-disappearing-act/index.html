@@ -3,195 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DeepSage - A Signal From The Void</title>
-  <meta name="description" content="Something is falling. Something is waking. Wishlist DeepSage.">
+  <title>The Great Blowpipe Disappearing Act · DeepSage</title>
+  <meta name="description" content="Ubisoft&#39;s latest patch for Black Flag Resynced proves that sometimes, the best way to improve a pirate&#39;s look is to simply make his weaponry stop existing.">
 
-  <meta property="og:title" content="DeepSage - A Signal From The Void">
-  <meta property="og:description" content="Something is falling. Something is waking. Wishlist DeepSage.">
-  <meta property="og:image" content="">
+  <meta property="og:title" content="The Great Blowpipe Disappearing Act">
+  <meta property="og:description" content="Ubisoft&#39;s latest patch for Black Flag Resynced proves that sometimes, the best way to improve a pirate&#39;s look is to simply make his weaponry stop existing.">
+  <meta property="og:image" content="/article/the-great-blowpipe-disappearing-act/hero.png">
   <meta property="og:type" content="article">
 
   <link rel="stylesheet" href="/assets/site.css">
   
-<style>
-  /* ── Homepage-only styles ──
-     Shared page shell (.page-container/.page-header/.page-footer/.page-content)
-     and shared typography now live in site.css / base.html - everything below
-     is unique to the hero/wishlist experience on this page only. */
-
-  #hero {
-    position: relative;
-    min-height: 100svh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    overflow: hidden;
-    background: #000;
-    margin: -48px -24px 0;
-    padding: 0 24px;
-  }
-
-  #starCanvas {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-  }
-
-  .hero-grad-top {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 50% 10%, #001828aa 0%, transparent 60%);
-    pointer-events: none;
-    z-index: 1;
-  }
-  .hero-grad-bottom {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 35%;
-    background: linear-gradient(to top, #000 0%, transparent 100%);
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  .hero-inner {
-    position: relative;
-    z-index: 10;
-    width: 100%;
-    max-width: 860px;
-    padding: 24px 0 60px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
-  }
-
-  .game-info {
-    width: 100%;
-    max-width: 780px;
-    margin-top: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    text-align: center;
-  }
-
-  .eyebrow {
-    font-family: var(--sans);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--teal);
-    margin: 0;
-  }
-
-  .game-title {
-    margin: 0;
-    font-size: clamp(42px, 8vw, 72px);
-    font-family: var(--serif);
-    font-weight: 300;
-    letter-spacing: 1px;
-    color: #ffffff;
-    line-height: 1.2;
-  }
-
-  .game-description,
-  .wishlist-call {
-    font-family: var(--sans);
-    font-size: 16px;
-    line-height: 1.7;
-    color: var(--text);
-    margin: 0;
-  }
-
-  .wishlist-call {
-    color: #00ffcc88;
-    font-size: 15px;
-  }
-
-  .video-wrap {
-    margin-top: 36px;
-    width: 100%;
-    max-width: 780px;
-    position: relative;
-    border: 1px solid #00ffcc22;
-    border-radius: 4px;
-    overflow: hidden;
-    box-shadow: 0 0 60px #00ffcc0a, 0 0 120px #00aaff06;
-  }
-
-  .video-wrap::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--teal), transparent);
-    opacity: 0.5;
-    z-index: 2;
-  }
-
-  .video-ratio {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%;
-  }
-
-  .video-ratio iframe {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-    display: block;
-  }
-
-  .game-explainer {
-    width: 100%;
-    max-width: 700px;
-    margin-top: 48px;
-    text-align: left;
-  }
-
-  .game-explainer .section-title {
-    text-align: center;
-    color: #fff;
-  }
-
-  .game-explainer p {
-    font-family: var(--sans);
-    font-size: 15px;
-    line-height: 1.8;
-    color: var(--text);
-    margin-bottom: 16px;
-  }
-
-  .game-explainer p:last-child { margin-bottom: 0; }
-
-  #latest-content { max-width: 860px; margin: 0 auto; padding: 48px 24px; }
-
-  @media (max-width: 600px) {
-    .game-title { letter-spacing: 0.25em; }
-  }
-
-  @media (max-width: 380px) {
-    .game-title { font-size: 38px; letter-spacing: 0.15em; }
-  }
-
-  @keyframes shoot {
-    0%   { transform: translateX(0) translateY(0); opacity: 0; }
-    5%   { opacity: 1; }
-    80%  { opacity: 0.6; }
-    100% { transform: translateX(180px) translateY(60px); opacity: 0; }
-  }
-
-  /* ── COOKIE CONSENT BANNER (homepage-only feature) ── */
-  /* Cookie consent banner/modal styles now live in site.css (shared,
-     site-wide) since the banner itself moved to base.html. */
-</style>
-
 
   <!-- Attribution capture: first-touch referrer/landing page, before anything else runs -->
   <script>
@@ -351,104 +172,75 @@
     </div>
 
     
-<section id="hero">
-  <canvas id="starCanvas"></canvas>
-  <div class="hero-grad-top"></div>
-  <div class="hero-grad-bottom"></div>
+<article>
+  
+  <h1 class="page-title">The Great Blowpipe Disappearing Act</h1>
+  <p class="page-dek">Ubisoft&#39;s latest patch for Black Flag Resynced proves that sometimes, the best way to improve a pirate&#39;s look is to simply make his weaponry stop existing.</p>
 
-  <div class="hero-inner">
+  <div class="share-row" id="share-row-top"></div>
+  
+  <p class="short-link"><a href="/s/VYehYf/">deepsage.com/s/VYehYf</a></p>
+  
 
-    <!-- GAME TITLE & DESCRIPTION -->
-    <div class="game-info">
-      <h2 class="game-title">DeepSage: Learn Through Adventure</h2>
-    </div>
+  
+  <img class="hero-image" src="/article/the-great-blowpipe-disappearing-act/hero.png" alt="The Great Blowpipe Disappearing Act">
+  
 
-    <!-- VIDEO -->
-    <div class="video-wrap">
-      <div class="video-ratio">
-        <iframe
-          src="https://www.youtube.com/embed/QNbl5ciAAJo?rel=0&modestbranding=1&color=black"
-          title="DeepSage - Official Trailer"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
-      </div>
-    </div>
-
-    <!-- WHAT IS DEEPSAGE -->
-    <div class="game-explainer">
-      <h2 class="section-title">What Is DeepSage?</h2>
-      <p>DeepSage is an upcoming edutainment game built around a simple idea: real knowledge should feel like a superpower. Every battle in the game is fought with questions and answers instead of button-mashing. Face a rival, and you're both trading real questions across subjects like science, history, and logic. Answer well and you prevail; answer wrong and it costs you. Skill at the game <em>is</em> skill at learning.</p>
-      <p>DeepSage is set in a science-fiction world built to give those battles a story worth showing up for - the details are best discovered by playing.</p>
-      <p>It's a world worth exploring - and every fight in it is a chance to actually get smarter.</p>
-    </div>
-
+  <div class="article-body">
+    <h2>The Problem of the Unwanted Tube</h2>
+<p>There is a specific type of chaos that occurs when a piece of 3D geometry refuses to cooperate with a high-end fabric texture. It is called 'clipping,' and in the case of <em>Assassin's Creed Black Flag Resynced</em>, it has been a persistent, plastic-looking nuisance. Specifically, Edward Kenway’s blowpipe. </p>
+<p>For the last few weeks, Edward has been walking around with a hollow tube perpetually protruding from his back, occasionally punching through his finest pirate regalia like a rogue structural support beam. It wasn't just an aesthetic hiccup; it was a disruption of the vibe. I once built a machine to calculate the exact degree of visual annoyance caused by polygon overlap, but the investors pulled the funding because the machine started judging their choice of office wallpaper. </p>
+<p>Fortunately, Ubisoft has released Update 1.06 to address this. You can now, quite simply, make the blowpipe vanish. </p>
+<h2>The 'Hide Gear' Mechanism</h2>
+<p>Implementing this was, from a purely engineering standpoint, the most reasonable way to fix a problem. You don't need a complex physics overhaul or a way to re-route the character's spinal column. You just need a toggle. </p>
+<p>To use this new feature, you navigate to your inventory, hover over your current outfit, and press R2 (or RT on Xbox). There is a new 'Hide Gear' option. If you press it again, the pipe reappears. It is a binary solution for a binary problem. I personally prefer my machines to have more layers-I once built a toaster that would only toast bread if it detected a significant sense of existential dread in the room-but for a pirate, a simple toggle is plenty.</p>
+<p>Some players had already found workarounds to hide the pipe before this patch, which is a testament to the human spirit and a certain level of boredom. But now, the developers have officially sanctioned the disappearance of Edward's secondary breathing apparatus. </p>
+<h2>A Move Toward Cinematic Immersion</h2>
+<p>Now, here is the part that might interest the more contemplative members of our audience. While the patch notes frame this as a fix for 'clipping' and 'aesthetics,' I believe we are seeing the early blueprints for a new standard in remakes: the 'Cinematic Mode' for character models.</p>
+<p>In the original era of gaming, if a character had a weapon, that weapon had to be visible. It was a matter of mechanical transparency. But as we move into an era of high-fidelity remakes, players are increasingly prioritizing visual immersion over literal weapon presence. We want the character to look like a person in a beautifully rendered 4K world, not a walking armory. </p>
+<p>This shift is a fundamental change in how we interact with digital avatars. We are moving away from 'this is a toolset' and toward 'this is a cinematic protagonist.' The ability to strip away the UI and the clunky gear is the first step toward a game that looks less like a simulation of combat and more like a playable period drama. It is a subtle pivot, much like the way I once tried to pivot my automated pancake flipper to also serve as a small, slightly dangerous desk fan. The goal remains the same: seamlessness.</p>
+<h2>More Than Just Tubes and Pipes</h2>
+<p>While the blowpipe disappearance is the headline, the update brings a few other notable changes. The developers have also increased the number of autosaves, bumping the limit from five to ten. This is a sensible move; even in the high-stakes world of Caribbean piracy, nobody wants to lose progress because of a sudden power outage or a particularly aggressive shark.</p>
+<p>There is also a new tutorial element for throwing money. Yes, you read that correctly. In a world of cutthroats and naval combat, the developers felt it was vital to ensure you know exactly how to toss coins with precision. It is a small addition, but in the grand ecosystem of pirate life, the economy of distraction is just as important as the economy of gunpowder.</p>
+<h2>The Verdict</h2>
+<p>Update 1.06 isn't a structural overhaul, but it is a refinement of the experience. By addressing the visual clutter of the blowpipe and the anxiety of lost progress, the developers are smoothing out the edges of the simulation. It is about making the world of <em>Black Flag</em> feel less like a collection of assets and more like a cohesive, immersive reality-one where the only thing you have to worry about is the British Navy, and not whether your equipment is clipping through your shoulder blades.</p>
   </div>
-</section>
 
-<!-- Latest articles & quizzes, spliced in by deepsage-content/generator/build.py -->
-<section id="latest-content">
-  <!-- LATEST_CONTENT_START -->
+  <div class="share-row" id="share-row-bottom"></div>
 
-<div class="card-grid">
   
-  <a class="content-card" href="/article/the-great-blowpipe-disappearing-act/">
-    <img class="content-card-thumb" src="/article/the-great-blowpipe-disappearing-act/hero.png" alt="The Great Blowpipe Disappearing Act">
-    <div class="content-card-body">
-      <span class="content-card-badge">Article</span>
-      <div class="content-card-title">The Great Blowpipe Disappearing Act</div>
-      <div class="content-card-preview">Ubisoft&#39;s latest patch for Black Flag Resynced proves that sometimes, the best way to improve a pirate&#39;s look is to simply make his weaponry stop existing.</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/article/italy-s-100-room-nuclear-bunker-is-finally-opening-to-the-public/">
-    <img class="content-card-thumb" src="/article/italy-s-100-room-nuclear-bunker-is-finally-opening-to-the-public/hero.png" alt="Italy&#39;s 100-Room Nuclear Bunker is Finally Opening to the Public">
-    <div class="content-card-body">
-      <span class="content-card-badge">Article</span>
-      <div class="content-card-title">Italy&#39;s 100-Room Nuclear Bunker is Finally Opening to the Public</div>
-      <div class="content-card-preview">Step inside a half-mile of underground tunnels designed for the end of the world, now repurposed for museum tours.</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/quiz/doomsday-ready-the-italian-bunker-revival/">
-    <img class="content-card-thumb" src="/quiz/doomsday-ready-the-italian-bunker-revival/hero.png" alt="Doomsday Ready: The Italian Bunker Revival">
-    <div class="content-card-body">
-      <span class="content-card-badge">Quiz</span>
-      <div class="content-card-title">Doomsday Ready: The Italian Bunker Revival</div>
-      <div class="content-card-preview">10 questions - test your knowledge</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/article/the-executive-efficiency-engine-why-ea-s-paycheck-is-a-masterclass-in-variable-cost-optimization/">
-    <img class="content-card-thumb" src="/article/the-executive-efficiency-engine-why-ea-s-paycheck-is-a-masterclass-in-variable-cost-optimization/hero.png" alt="The Executive Efficiency Engine: Why EA&#39;s Paycheck is a Masterclass in Variable Cost Optimization">
-    <div class="content-card-body">
-      <span class="content-card-badge">Article</span>
-      <div class="content-card-title">The Executive Efficiency Engine: Why EA&#39;s Paycheck is a Masterclass in Variable Cost Optimization</div>
-      <div class="content-card-preview">Forget morality; I&#39;ve built a machine that turns developer layoffs into executive stock options!</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/article/scotiabank-is-building-an-ai-brain-for-its-employees/">
-    <img class="content-card-thumb" src="/article/scotiabank-is-building-an-ai-brain-for-its-employees/hero.png" alt="Scotiabank is building an AI brain for its employees">
-    <div class="content-card-body">
-      <span class="content-card-badge">Article</span>
-      <div class="content-card-title">Scotiabank is building an AI brain for its employees</div>
-      <div class="content-card-preview">Forget the sci-fi takeover; the bank is just trying to stop its staff from drowning in their own spreadsheets.</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/quiz/scotiabank-s-ai-pivot-banking-or-bot-ing/">
-    <img class="content-card-thumb" src="/quiz/scotiabank-s-ai-pivot-banking-or-bot-ing/hero.png" alt="Scotiabank&#39;s AI Pivot: Banking or Bot-ing?">
-    <div class="content-card-body">
-      <span class="content-card-badge">Quiz</span>
-      <div class="content-card-title">Scotiabank&#39;s AI Pivot: Banking or Bot-ing?</div>
-      <div class="content-card-preview">10 questions - test your knowledge</div>
-    </div>
-  </a>
-  
-</div><!-- LATEST_CONTENT_END -->
-</section>
 
+  <div class="page-cta">
+    <div class="page-cta-title">Never miss a story</div>
+    <p class="page-cta-text">Create a free DeepSage account to save articles, track quiz results, and get the daily briefing first.</p>
+    <button class="page-cta-btn" onclick="openAuthModal('signup')">Create Free Account</button>
+  </div>
+</article>
+
+<script>
+(function () {
+  var pageUrl = window.location.href;
+  var shareText = "The Great Blowpipe Disappearing Act";
+
+  var twitterUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(shareText) + "&url=" + encodeURIComponent(pageUrl);
+  var facebookUrl = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(pageUrl) + "&quote=" + encodeURIComponent(shareText);
+  var linkedinUrl = "https://www.linkedin.com/sharing/share-offsite/?url=" + encodeURIComponent(pageUrl);
+
+  var html = ''
+    + '<a class="share-btn" target="_blank" rel="noopener" href="' + twitterUrl + '" aria-label="Share on X" title="Share on X">'
+    + '<svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.6 8.7L23.3 22H16.9l-5-6.5-5.7 6.5H2.9l8.1-9.3L2 2h6.6l4.5 5.9L18.9 2Zm-1.1 18h1.7L7.3 3.9H5.5L17.8 20Z"/></svg>'
+    + '</a>'
+    + '<a class="share-btn" target="_blank" rel="noopener" href="' + facebookUrl + '" aria-label="Share on Facebook" title="Share on Facebook">'
+    + '<svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg>'
+    + '</a>'
+    + '<a class="share-btn" target="_blank" rel="noopener" href="' + linkedinUrl + '" aria-label="Share on LinkedIn" title="Share on LinkedIn">'
+    + '<svg viewBox="0 0 24 24"><path d="M19 3A2 2 0 0 1 21 5v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14ZM8.3 18.5V10H5.7v8.5h2.6ZM7 8.8a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm11.5 9.7v-4.7c0-2.5-1.3-3.7-3.1-3.7-1.4 0-2 .8-2.4 1.3V10H10.4v8.5H13v-4.7c0-.5 0-1 .2-1.3.3-.6.8-1.3 1.8-1.3 1.3 0 1.8.9 1.8 2.3v5h2.7Z"/></svg>'
+    + '</a>';
+
+  document.getElementById("share-row-top").innerHTML = html;
+  document.getElementById("share-row-bottom").innerHTML = html;
+})();
+</script>
 
 
     <div class="page-footer">
@@ -786,83 +578,6 @@ document.addEventListener('click', function(e) {
 });
 </script>
 
-
-<script>
-/* ── Star field canvas ── */
-(function() {
-  const canvas = document.getElementById('starCanvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  let W, H, stars, shooters;
-
-  function randShooter() {
-    return {
-      x:   W * 0.1 + Math.random() * W * 0.8,
-      y:   -80,
-      vx:  (Math.random() - 0.5) * 1.0,
-      vy:  2.5 + Math.random() * 3.5,
-      len: 60 + Math.random() * 50,
-      op:  0,
-      col: ['#00ffcc','#ffffff','#00aaff'][Math.random() * 3 | 0],
-    };
-  }
-
-  function init() {
-    W = canvas.width  = canvas.offsetWidth;
-    H = canvas.height = canvas.offsetHeight;
-    stars = Array.from({ length: 280 }, () => ({
-      x:   Math.random() * W,
-      y:   Math.random() * H,
-      r:   Math.random() * 1.3 + 0.2,
-      op:  Math.random() * 0.55 + 0.2,
-      tw:  Math.random() * Math.PI * 2,
-      teal: Math.random() < 0.08,
-    }));
-    shooters = [randShooter(), randShooter(), randShooter()];
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-
-    stars.forEach(s => {
-      s.tw += 0.009;
-      const t = 0.5 + 0.5 * Math.sin(s.tw);
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = s.teal
-        ? `rgba(0,255,204,${(s.op * t * 0.7).toFixed(2)})`
-        : `rgba(255,255,255,${(s.op * t).toFixed(2)})`;
-      ctx.fill();
-    });
-
-    shooters.forEach((s, i) => {
-      s.x += s.vx; s.y += s.vy;
-      s.op = Math.min(1, s.op + 0.04);
-      if (s.y > H + 100) shooters[i] = randShooter();
-      const a  = Math.atan2(s.vy, s.vx);
-      const x0 = s.x - Math.cos(a) * s.len;
-      const y0 = s.y - Math.sin(a) * s.len;
-      const g  = ctx.createLinearGradient(x0, y0, s.x, s.y);
-      g.addColorStop(0, 'transparent');
-      g.addColorStop(1, s.col + 'bb');
-      ctx.beginPath();
-      ctx.moveTo(x0, y0);
-      ctx.lineTo(s.x, s.y);
-      ctx.strokeStyle = g;
-      ctx.lineWidth   = 1.5;
-      ctx.globalAlpha = s.op;
-      ctx.stroke();
-      ctx.globalAlpha = 1;
-    });
-
-    requestAnimationFrame(draw);
-  }
-
-  window.addEventListener('resize', init);
-  init();
-  draw();
-})();
-</script>
 
 
 </body>
