@@ -3,195 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DeepSage - A Signal From The Void</title>
-  <meta name="description" content="Something is falling. Something is waking. Wishlist DeepSage.">
+  <title>Scotiabank&#39;s AI Pivot: Banking or Bot-ing? · DeepSage Quiz</title>
+  <meta name="description" content="Test your knowledge: Scotiabank&#39;s AI Pivot: Banking or Bot-ing?">
 
-  <meta property="og:title" content="DeepSage - A Signal From The Void">
-  <meta property="og:description" content="Something is falling. Something is waking. Wishlist DeepSage.">
-  <meta property="og:image" content="">
+  <meta property="og:title" content="Scotiabank&#39;s AI Pivot: Banking or Bot-ing?">
+  <meta property="og:description" content="Test your knowledge: Scotiabank&#39;s AI Pivot: Banking or Bot-ing?">
+  <meta property="og:image" content="/quiz/scotiabank-s-ai-pivot-banking-or-bot-ing/hero.png">
   <meta property="og:type" content="article">
 
   <link rel="stylesheet" href="/assets/site.css">
   
-<style>
-  /* ── Homepage-only styles ──
-     Shared page shell (.page-container/.page-header/.page-footer/.page-content)
-     and shared typography now live in site.css / base.html - everything below
-     is unique to the hero/wishlist experience on this page only. */
-
-  #hero {
-    position: relative;
-    min-height: 100svh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    overflow: hidden;
-    background: #000;
-    margin: -48px -24px 0;
-    padding: 0 24px;
-  }
-
-  #starCanvas {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-  }
-
-  .hero-grad-top {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 50% 10%, #001828aa 0%, transparent 60%);
-    pointer-events: none;
-    z-index: 1;
-  }
-  .hero-grad-bottom {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 35%;
-    background: linear-gradient(to top, #000 0%, transparent 100%);
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  .hero-inner {
-    position: relative;
-    z-index: 10;
-    width: 100%;
-    max-width: 860px;
-    padding: 24px 0 60px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
-  }
-
-  .game-info {
-    width: 100%;
-    max-width: 780px;
-    margin-top: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    text-align: center;
-  }
-
-  .eyebrow {
-    font-family: var(--sans);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--teal);
-    margin: 0;
-  }
-
-  .game-title {
-    margin: 0;
-    font-size: clamp(42px, 8vw, 72px);
-    font-family: var(--serif);
-    font-weight: 300;
-    letter-spacing: 1px;
-    color: #ffffff;
-    line-height: 1.2;
-  }
-
-  .game-description,
-  .wishlist-call {
-    font-family: var(--sans);
-    font-size: 16px;
-    line-height: 1.7;
-    color: var(--text);
-    margin: 0;
-  }
-
-  .wishlist-call {
-    color: #00ffcc88;
-    font-size: 15px;
-  }
-
-  .video-wrap {
-    margin-top: 36px;
-    width: 100%;
-    max-width: 780px;
-    position: relative;
-    border: 1px solid #00ffcc22;
-    border-radius: 4px;
-    overflow: hidden;
-    box-shadow: 0 0 60px #00ffcc0a, 0 0 120px #00aaff06;
-  }
-
-  .video-wrap::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--teal), transparent);
-    opacity: 0.5;
-    z-index: 2;
-  }
-
-  .video-ratio {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%;
-  }
-
-  .video-ratio iframe {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-    display: block;
-  }
-
-  .game-explainer {
-    width: 100%;
-    max-width: 700px;
-    margin-top: 48px;
-    text-align: left;
-  }
-
-  .game-explainer .section-title {
-    text-align: center;
-    color: #fff;
-  }
-
-  .game-explainer p {
-    font-family: var(--sans);
-    font-size: 15px;
-    line-height: 1.8;
-    color: var(--text);
-    margin-bottom: 16px;
-  }
-
-  .game-explainer p:last-child { margin-bottom: 0; }
-
-  #latest-content { max-width: 860px; margin: 0 auto; padding: 48px 24px; }
-
-  @media (max-width: 600px) {
-    .game-title { letter-spacing: 0.25em; }
-  }
-
-  @media (max-width: 380px) {
-    .game-title { font-size: 38px; letter-spacing: 0.15em; }
-  }
-
-  @keyframes shoot {
-    0%   { transform: translateX(0) translateY(0); opacity: 0; }
-    5%   { opacity: 1; }
-    80%  { opacity: 0.6; }
-    100% { transform: translateX(180px) translateY(60px); opacity: 0; }
-  }
-
-  /* ── COOKIE CONSENT BANNER (homepage-only feature) ── */
-  /* Cookie consent banner/modal styles now live in site.css (shared,
-     site-wide) since the banner itself moved to base.html. */
-</style>
-
 
   <!-- Attribution capture: first-touch referrer/landing page, before anything else runs -->
   <script>
@@ -350,104 +171,190 @@
     </div>
 
     
-<section id="hero">
-  <canvas id="starCanvas"></canvas>
-  <div class="hero-grad-top"></div>
-  <div class="hero-grad-bottom"></div>
+<article>
+  
+  <h1 class="page-title">Scotiabank&#39;s AI Pivot: Banking or Bot-ing?</h1>
 
-  <div class="hero-inner">
+  <div class="share-row" id="share-row-top"></div>
+  
+  <p class="short-link"><a href="/s/OGUjzm/">deepsage.com/s/OGUjzm</a></p>
+  
 
-    <!-- GAME TITLE & DESCRIPTION -->
-    <div class="game-info">
-      <h2 class="game-title">DeepSage: Learn Through Adventure</h2>
-    </div>
+  
+  <img class="hero-image" src="/quiz/scotiabank-s-ai-pivot-banking-or-bot-ing/hero.png" alt="Scotiabank&#39;s AI Pivot: Banking or Bot-ing?">
+  
 
-    <!-- VIDEO -->
-    <div class="video-wrap">
-      <div class="video-ratio">
-        <iframe
-          src="https://www.youtube.com/embed/QNbl5ciAAJo?rel=0&modestbranding=1&color=black"
-          title="DeepSage - Official Trailer"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
-      </div>
-    </div>
+  <div id="quiz-root" data-title="Scotiabank&#39;s AI Pivot: Banking or Bot-ing?"></div>
 
-    <!-- WHAT IS DEEPSAGE -->
-    <div class="game-explainer">
-      <h2 class="section-title">What Is DeepSage?</h2>
-      <p>DeepSage is an upcoming edutainment game built around a simple idea: real knowledge should feel like a superpower. Every battle in the game is fought with questions and answers instead of button-mashing. Face a rival, and you're both trading real questions across subjects like science, history, and logic. Answer well and you prevail; answer wrong and it costs you. Skill at the game <em>is</em> skill at learning.</p>
-      <p>DeepSage is set in a science-fiction world built to give those battles a story worth showing up for - the details are best discovered by playing.</p>
-      <p>It's a world worth exploring - and every fight in it is a chance to actually get smarter.</p>
-    </div>
-
+  
+  <div class="page-cta companion-cta">
+    <div class="page-cta-title">Want the full story?</div>
+    <p class="page-cta-text">Read the article behind this quiz.</p>
+    <a class="page-cta-btn" href="/article/scotiabank-is-building-an-ai-brain-for-its-employees/">Read the Article</a>
   </div>
-</section>
+  
 
-<!-- Latest articles & quizzes, spliced in by deepsage-content/generator/build.py -->
-<section id="latest-content">
-  <!-- LATEST_CONTENT_START -->
+  <div class="page-cta">
+    <div class="page-cta-title">Never miss a quiz</div>
+    <p class="page-cta-text">Create a free DeepSage account to track your quiz scores, unlock your rank, and get new quizzes first.</p>
+    <button class="page-cta-btn" onclick="openAuthModal('signup')">Create Free Account</button>
+  </div>
+</article>
 
-<div class="card-grid">
-  
-  <a class="content-card" href="/article/scotiabank-is-building-an-ai-brain-for-its-employees/">
-    <img class="content-card-thumb" src="/article/scotiabank-is-building-an-ai-brain-for-its-employees/hero.png" alt="Scotiabank is building an AI brain for its employees">
-    <div class="content-card-body">
-      <span class="content-card-badge">Article</span>
-      <div class="content-card-title">Scotiabank is building an AI brain for its employees</div>
-      <div class="content-card-preview">Forget the sci-fi takeover; the bank is just trying to stop its staff from drowning in their own spreadsheets.</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/quiz/scotiabank-s-ai-pivot-banking-or-bot-ing/">
-    <img class="content-card-thumb" src="/quiz/scotiabank-s-ai-pivot-banking-or-bot-ing/hero.png" alt="Scotiabank&#39;s AI Pivot: Banking or Bot-ing?">
-    <div class="content-card-body">
-      <span class="content-card-badge">Quiz</span>
-      <div class="content-card-title">Scotiabank&#39;s AI Pivot: Banking or Bot-ing?</div>
-      <div class="content-card-preview">10 questions - test your knowledge</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/article/the-600-million-art-heist-without-the-heist/">
-    <img class="content-card-thumb" src="/article/the-600-million-art-heist-without-the-heist/hero.png" alt="The $600 Million Art Heist... Without the Heist">
-    <div class="content-card-body">
-      <span class="content-card-badge">Article</span>
-      <div class="content-card-title">The $600 Million Art Heist... Without the Heist</div>
-      <div class="content-card-preview">When a New York socialite goes to court to find missing papers, it&#39;s less &#39;Ocean&#39;s Eleven&#39; and more &#39;where did the inheritance go?&#39;</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/quiz/art-assets-and-alimony-the-amon-estate-drama/">
-    <img class="content-card-thumb" src="/quiz/art-assets-and-alimony-the-amon-estate-drama/hero.png" alt="Art, Assets, and Alimony: The Amon Estate Drama">
-    <div class="content-card-body">
-      <span class="content-card-badge">Quiz</span>
-      <div class="content-card-title">Art, Assets, and Alimony: The Amon Estate Drama</div>
-      <div class="content-card-preview">10 questions - test your knowledge</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/article/the-omni-reader-engine-solving-the-great-format-fragmentation-of-2026/">
-    <img class="content-card-thumb" src="/article/the-omni-reader-engine-solving-the-great-format-fragmentation-of-2026/hero.png" alt="The &#39;Omni-Reader&#39; Engine: Solving the Great Format Fragmentation of 2026!">
-    <div class="content-card-body">
-      <span class="content-card-badge">Article</span>
-      <div class="content-card-title">The &#39;Omni-Reader&#39; Engine: Solving the Great Format Fragmentation of 2026!</div>
-      <div class="content-card-preview">Why settle for just &#39;reading&#39; when you can engineer a unified linguistic interface for every byte and page in your library?</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/article/ill-the-summer-game-fest-reveal-that-might-make-you-barf/">
-    <img class="content-card-thumb" src="/article/ill-the-summer-game-fest-reveal-that-might-make-you-barf/hero.png" alt="Ill: The Summer Game Fest Reveal That Might Make You Barf">
-    <div class="content-card-body">
-      <span class="content-card-badge">Article</span>
-      <div class="content-card-title">Ill: The Summer Game Fest Reveal That Might Make You Barf</div>
-      <div class="content-card-preview">Forget zombies; there is a new, much wetter, and significantly more disturbing nightmare coming to your screen.</div>
-    </div>
-  </a>
-  
-</div><!-- LATEST_CONTENT_END -->
-</section>
+<script id="quiz-data" type="application/json">[{"correct_index": 0, "explanation": "The bank is calling its unified approach to data and AI \u0027Scotia Intelligence\u0027, because nothing says \u0027cutting edge\u0027 like a name that sounds like a 90s sci-fi movie.", "idk_index": 1, "options": ["Scotia Intelligence", "I\u0027m so lucky not to keep this information in the front of my brain", "Scotiabank Super-Brain 9000", "The Golden Vault", "Scotiabank Data-Stream"], "question": "What is the name of the unified platform Scotiabank is using to deploy its new AI-powered knowledge agents?"}, {"correct_index": 2, "explanation": "These agents are designed to help staff navigate vast amounts of internal data, essentially acting as a super-powered internal Wikipedia for employees.", "idk_index": 4, "options": ["To replace all human employees with sentient gold coins", "To manage the bank\u0027s physical security guards", "To equip employees with AI-powered access to information", "To predict exactly when a customer will forget their PIN", "My brain returned a 404 error on this specific fact"], "question": "In the context of this announcement, what is the primary purpose of these new \u0027knowledge agents\u0027?"}, {"correct_index": 1, "explanation": "The expansion refers to growing their enterprise AI capabilities, proving that even traditional banks are trying to ride the generative AI hype train.", "idk_index": 3, "options": ["Expanding the physical size of every bank branch by 20%", "Expanding the bank\u0027s enterprise AI resources", "Expanding the number of ATMs that accept expired credit cards", "I\u0027ve reached my cognitive limit for today", "An aggressive increase in the number of office plants"], "question": "Which of these best describes the \u0027expansion\u0027 mentioned in the Scotiabank announcement?"}, {"correct_index": 2, "explanation": "The move is firmly rooted in the \u0027tech\u0027 pillar, specifically focusing on integrating AI into existing enterprise workflows.", "idk_index": 3, "options": ["Blockchain (for the nostalgia)", "Quantum computing (because physics is hard)", "Tech", "I don\u0027t know and I\u0027m not even going to try to guess", "A very complicated spreadsheet"], "question": "What is the underlying technology \u0027pillar\u0027 that Scotiabank is focusing on with this move?"}, {"correct_index": 0, "explanation": "Knowledge agents are meant to parse through unstructured data, saving humans from the soul-crushing task of manual searching.", "idk_index": 3, "options": ["The difficulty of finding specific information within massive datasets", "The problem of employees being too smart for their own good", "The lack of personality in corporate communications", "Please do not hold this question against me", "The sheer volume of unread emails in the marketing department"], "question": "When a company implements \u0027knowledge agents\u0027, what are they primarily trying to solve?"}, {"correct_index": 1, "explanation": "Scotia Intelligence is designed as a single, cohesive way to handle both the bank\u0027s data and its AI initiatives.", "idk_index": 3, "options": ["A single, giant, unhackable vault", "A unified approach to data and AI", "A way to make all employees wear the same shade of blue", "I have no idea what\u0027s happening in the banking sector", "A highly efficient way to automate lunch orders"], "question": "What is the \u0027unified approach\u0027 mentioned in the announcement referring to?"}, {"correct_index": 1, "explanation": "It means they are putting more computing power and more specific AI tools (like these agents) into the hands of their workforce.", "idk_index": 3, "options": ["Hiring more people to manually type things into computers", "Increasing the deployment of AI-driven tools and infrastructure", "Buying more coffee machines for the breakroom", "My memory of this news is significantly corrupted", "A sudden influx of magic beans"], "question": "In the enterprise AI landscape, what does \u0027expanding resources\u0027 usually imply?"}, {"correct_index": 1, "explanation": "While customer bots exist, this specific announcement is about \u0027knowledge agents\u0027 for employees to help them work more efficiently.", "idk_index": 2, "options": ["True, they want to talk to everyone at 3 AM", "False, the focus here is on equipping employees", "I am currently experiencing a total mental blackout", "False, the focus is on replacing the CEO", "True, because customers love talking to bots"], "question": "True or False: Scotiabank\u0027s new initiative is focused on customer-facing chatbots rather than employee-facing knowledge agents."}, {"correct_index": 0, "explanation": "To be useful, these agents need to ingest the bank\u0027s existing, massive datasets to provide accurate, context-aware answers.", "idk_index": 3, "options": ["The bank\u0027s internal enterprise data", "The dreams and nightmares of the board of directors", "The secret recipes from the company cafeteria", "I\u0027ve lost the ability to process this information", "A continuous stream of 1990s pop lyrics"], "question": "What is the most likely \u0027input\u0027 these new knowledge agents will process?"}, {"correct_index": 0, "explanation": "The whole point of an AI agent is to cut down the \u0027search time\u0027\u2014the period where an employee is staring at a screen wondering where that one PDF went.", "idk_index": 3, "options": ["Reducing the time spent searching for information", "Making the bank\u0027s logo look slightly more futuristic", "Increasing the speed at which emails are sent to \u0027Reply All\u0027", "I\u0027ll just assume I got this right and move on", "Ensuring every transaction is accompanied by a celebratory fanfare"], "question": "If a bank implements \u0027AI-powered knowledge agents\u0027, what is the primary \u0027efficiency\u0027 goal?"}]</script>
+<script>
+(function () {
+  var QUESTIONS = JSON.parse(document.getElementById("quiz-data").textContent);
+  var TITLE = document.getElementById("quiz-root").dataset.title;
+  var root = document.getElementById("quiz-root");
+  var LETTERS = ["A", "B", "C", "D", "E", "F"];
 
+  var STATUS_LEVELS = [
+    { min: 0,  label: "Just Getting Started", message: "Every expert starts somewhere - dive into more DeepSage quizzes to sharpen up." },
+    { min: 20, label: "Curious Beginner",     message: "You're picking up the basics. Keep exploring DeepSage to level up." },
+    { min: 40, label: "Rising Learner",       message: "Solid grasp of the fundamentals - you're closing in on expert territory." },
+    { min: 60, label: "Sharp Thinker",        message: "Impressive! You clearly follow this space closely." },
+    { min: 80, label: "Certified Expert",     message: "Excellent work - you really know your stuff." },
+    { min: 95, label: "DeepSage Master",      message: "Near-perfect score. You could've written this quiz yourself." }
+  ];
+
+  function statusFor(percent) {
+    var level = STATUS_LEVELS[0];
+    for (var i = 0; i < STATUS_LEVELS.length; i++) {
+      if (percent >= STATUS_LEVELS[i].min) level = STATUS_LEVELS[i];
+    }
+    return level;
+  }
+
+  function shareButtonsHtml(shareText) {
+    var pageUrl = window.location.href;
+    var twitterUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(shareText) + "&url=" + encodeURIComponent(pageUrl);
+    var facebookUrl = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(pageUrl) + "&quote=" + encodeURIComponent(shareText);
+    var linkedinUrl = "https://www.linkedin.com/sharing/share-offsite/?url=" + encodeURIComponent(pageUrl);
+    return ''
+      + '<a class="share-btn" target="_blank" rel="noopener" href="' + twitterUrl + '" aria-label="Share on X" title="Share on X">'
+      + '<svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.6 8.7L23.3 22H16.9l-5-6.5-5.7 6.5H2.9l8.1-9.3L2 2h6.6l4.5 5.9L18.9 2Zm-1.1 18h1.7L7.3 3.9H5.5L17.8 20Z"/></svg>'
+      + '</a>'
+      + '<a class="share-btn" target="_blank" rel="noopener" href="' + facebookUrl + '" aria-label="Share on Facebook" title="Share on Facebook">'
+      + '<svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg>'
+      + '</a>'
+      + '<a class="share-btn" target="_blank" rel="noopener" href="' + linkedinUrl + '" aria-label="Share on LinkedIn" title="Share on LinkedIn">'
+      + '<svg viewBox="0 0 24 24"><path d="M19 3A2 2 0 0 1 21 5v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14ZM8.3 18.5V10H5.7v8.5h2.6ZM7 8.8a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm11.5 9.7v-4.7c0-2.5-1.3-3.7-3.1-3.7-1.4 0-2 .8-2.4 1.3V10H10.4v8.5H13v-4.7c0-.5 0-1 .2-1.3.3-.6.8-1.3 1.8-1.3 1.3 0 1.8.9 1.8 2.3v5h2.7Z"/></svg>'
+      + '</a>';
+  }
+
+  var topShareRow = document.getElementById("share-row-top");
+  if (topShareRow) topShareRow.innerHTML = shareButtonsHtml("Test your knowledge: " + TITLE);
+
+  var state = { index: 0, points: 0, answered: false };
+
+  window.dsTrack('quiz_start', { quiz_title: TITLE, question_count: QUESTIONS.length });
+
+  function render() {
+    if (state.index >= QUESTIONS.length) {
+      renderResults();
+      return;
+    }
+    var q = QUESTIONS[state.index];
+    state.answered = false;
+
+    var pct = Math.round((state.index / QUESTIONS.length) * 100);
+    var html = ''
+      + '<div class="quiz-progress-track"><div class="quiz-progress-fill" style="width:' + pct + '%"></div></div>'
+      + '<div class="quiz-progress-label">Question ' + (state.index + 1) + ' of ' + QUESTIONS.length + '</div>'
+      + '<p class="quiz-question">' + escapeHtml(q.question) + '</p>'
+      + '<ul class="quiz-options" id="quiz-options-list">'
+      + q.options.map(function (opt, i) {
+          return '<li><button class="quiz-option" data-index="' + i + '">' + LETTERS[i] + '. ' + escapeHtml(opt) + '</button></li>';
+        }).join('')
+      + '</ul>'
+      + '<div id="quiz-explanation-slot"></div>'
+      + '<div id="quiz-next-slot"></div>';
+    root.innerHTML = html;
+
+    var buttons = root.querySelectorAll(".quiz-option");
+    buttons.forEach(function (btn) {
+      btn.addEventListener("click", function () { onAnswer(parseInt(btn.dataset.index, 10)); });
+    });
+  }
+
+  function onAnswer(chosenIndex) {
+    if (state.answered) return;
+    state.answered = true;
+    var q = QUESTIONS[state.index];
+    var correct = chosenIndex === q.correct_index;
+    if (correct) state.points += 1;
+    else if (chosenIndex === q.idk_index) state.points += 0.5;
+
+    window.dsTrack('quiz_answer', {
+      quiz_title: TITLE,
+      question_index: state.index,
+      correct: correct,
+    });
+
+    var buttons = root.querySelectorAll(".quiz-option");
+    buttons.forEach(function (btn) {
+      var i = parseInt(btn.dataset.index, 10);
+      btn.disabled = true;
+      if (i === q.correct_index) btn.classList.add("is-correct");
+      else if (i === q.idk_index && i === chosenIndex) btn.classList.add("is-idk");
+      else if (i === chosenIndex) btn.classList.add("is-wrong");
+    });
+
+    document.getElementById("quiz-explanation-slot").innerHTML =
+      '<p class="quiz-explanation">' + escapeHtml(q.explanation) + '</p>';
+
+    var isLast = state.index === QUESTIONS.length - 1;
+    var nextSlot = document.getElementById("quiz-next-slot");
+    var nextBtn = document.createElement("button");
+    nextBtn.className = "quiz-next-btn";
+    nextBtn.textContent = isLast ? "See results" : "Next question";
+    nextBtn.addEventListener("click", function () { state.index++; render(); });
+    nextSlot.appendChild(nextBtn);
+  }
+
+  function formatScore(n) {
+    return n % 1 === 0 ? String(n) : n.toFixed(1);
+  }
+
+  function renderResults() {
+    var percent = Math.round((state.points / QUESTIONS.length) * 100);
+    var status = statusFor(percent);
+    var shareText = "I scored " + formatScore(state.points) + "/" + QUESTIONS.length
+      + " (" + percent + "%) on the DeepSage quiz \"" + TITLE + "\" and reached " + status.label + " level!";
+
+    window.dsTrack('quiz_complete', {
+      quiz_title: TITLE,
+      score: state.points,
+      percent: percent,
+      status: status.label,
+    });
+
+    root.innerHTML = ''
+      + '<div class="quiz-results">'
+      + '<div class="quiz-progress-track"><div class="quiz-progress-fill" style="width:100%"></div></div>'
+      + '<div class="quiz-results-score">' + formatScore(state.points) + '/' + QUESTIONS.length + '</div>'
+      + '<div class="quiz-results-percent">' + percent + '% correct</div>'
+      + '<div class="quiz-results-status">' + status.label + '</div>'
+      + '<p class="quiz-results-message">' + status.message + '</p>'
+      + '<div class="share-row">' + shareButtonsHtml(shareText) + '</div>'
+      + '<button class="quiz-retry-btn" id="quiz-retry-btn">Try again</button>'
+      + '</div>';
+
+    document.getElementById("quiz-retry-btn").addEventListener("click", function () {
+      state.index = 0; state.points = 0; render();
+    });
+  }
+
+  function escapeHtml(str) {
+    var div = document.createElement("div");
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  render();
+})();
+</script>
 
 
     <div class="page-footer">
@@ -775,83 +682,6 @@ document.addEventListener('click', function(e) {
 });
 </script>
 
-
-<script>
-/* ── Star field canvas ── */
-(function() {
-  const canvas = document.getElementById('starCanvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  let W, H, stars, shooters;
-
-  function randShooter() {
-    return {
-      x:   W * 0.1 + Math.random() * W * 0.8,
-      y:   -80,
-      vx:  (Math.random() - 0.5) * 1.0,
-      vy:  2.5 + Math.random() * 3.5,
-      len: 60 + Math.random() * 50,
-      op:  0,
-      col: ['#00ffcc','#ffffff','#00aaff'][Math.random() * 3 | 0],
-    };
-  }
-
-  function init() {
-    W = canvas.width  = canvas.offsetWidth;
-    H = canvas.height = canvas.offsetHeight;
-    stars = Array.from({ length: 280 }, () => ({
-      x:   Math.random() * W,
-      y:   Math.random() * H,
-      r:   Math.random() * 1.3 + 0.2,
-      op:  Math.random() * 0.55 + 0.2,
-      tw:  Math.random() * Math.PI * 2,
-      teal: Math.random() < 0.08,
-    }));
-    shooters = [randShooter(), randShooter(), randShooter()];
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-
-    stars.forEach(s => {
-      s.tw += 0.009;
-      const t = 0.5 + 0.5 * Math.sin(s.tw);
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = s.teal
-        ? `rgba(0,255,204,${(s.op * t * 0.7).toFixed(2)})`
-        : `rgba(255,255,255,${(s.op * t).toFixed(2)})`;
-      ctx.fill();
-    });
-
-    shooters.forEach((s, i) => {
-      s.x += s.vx; s.y += s.vy;
-      s.op = Math.min(1, s.op + 0.04);
-      if (s.y > H + 100) shooters[i] = randShooter();
-      const a  = Math.atan2(s.vy, s.vx);
-      const x0 = s.x - Math.cos(a) * s.len;
-      const y0 = s.y - Math.sin(a) * s.len;
-      const g  = ctx.createLinearGradient(x0, y0, s.x, s.y);
-      g.addColorStop(0, 'transparent');
-      g.addColorStop(1, s.col + 'bb');
-      ctx.beginPath();
-      ctx.moveTo(x0, y0);
-      ctx.lineTo(s.x, s.y);
-      ctx.strokeStyle = g;
-      ctx.lineWidth   = 1.5;
-      ctx.globalAlpha = s.op;
-      ctx.stroke();
-      ctx.globalAlpha = 1;
-    });
-
-    requestAnimationFrame(draw);
-  }
-
-  window.addEventListener('resize', init);
-  init();
-  draw();
-})();
-</script>
 
 
 </body>
