@@ -217,7 +217,8 @@ a:hover { opacity: 0.7; }
 
 .account-dropdown.open { display: flex; }
 
-.account-dropdown-signout {
+.account-dropdown-signout,
+.account-dropdown-connect {
   font-family: var(--sans);
   font-size: 11px;
   font-weight: 700;
@@ -232,7 +233,10 @@ a:hover { opacity: 0.7; }
   transition: background 0.2s, border-color 0.2s;
 }
 
-.account-dropdown-signout:hover { background: #00ffcc15; border-color: var(--teal); }
+.account-dropdown-connect:disabled { opacity: 0.5; cursor: default; }
+
+.account-dropdown-signout:hover,
+.account-dropdown-connect:hover:not(:disabled) { background: #00ffcc15; border-color: var(--teal); }
 
 /* ── AUTH MODAL ── */
 .auth-modal-overlay {
@@ -272,29 +276,14 @@ a:hover { opacity: 0.7; }
 
 .auth-modal-close:hover { color: var(--text); }
 
-.auth-tabs {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 24px;
-}
-
-.auth-tab {
-  flex: 1;
+.auth-modal-title {
   font-family: var(--sans);
-  font-size: 12px;
+  font-size: 18px;
   font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  background: transparent;
-  color: var(--muted);
-  border: 1px solid #00ffcc22;
-  border-radius: 3px;
-  padding: 10px 0;
-  cursor: pointer;
-  transition: color 0.2s, border-color 0.2s;
+  letter-spacing: 0.5px;
+  color: var(--text);
+  margin: 0 0 16px;
 }
-
-.auth-tab.active { color: var(--teal); border-color: var(--teal); }
 
 .google-btn {
   width: 100%;
