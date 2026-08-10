@@ -185,7 +185,7 @@
   <img class="hero-image" src="/quiz/chrome-the-never-ending-update-saga/hero.png" alt="Chrome: The Never-Ending Update Saga">
   
 
-  <div id="quiz-root" data-title="Chrome: The Never-Ending Update Saga"></div>
+  <div id="quiz-root" data-title="Chrome: The Never-Ending Update Saga" data-share-video="/quiz/chrome-the-never-ending-update-saga/share.mp4"></div>
 
   
   <div class="page-cta companion-cta">
@@ -207,7 +207,9 @@
 (function () {
   var QUESTIONS = JSON.parse(document.getElementById("quiz-data").textContent);
   var TITLE = document.getElementById("quiz-root").dataset.title;
+  var SHARE_VIDEO_URL = document.getElementById("quiz-root").dataset.shareVideo;
   var root = document.getElementById("quiz-root");
+  var OAUTH_WORKER_URL = "https://oauth.deepsage.com";
   var LETTERS = ["A", "B", "C", "D", "E", "F"];
 
   var STATUS_LEVELS = [
@@ -339,13 +341,125 @@
       + '<div class="quiz-results-status">' + status.label + '</div>'
       + '<p class="quiz-results-message">' + status.message + '</p>'
       + '<div class="share-row">' + shareButtonsHtml(shareText) + '</div>'
+      + (SHARE_VIDEO_URL
+          ? '<button class="quiz-tiktok-btn" id="quiz-tiktok-btn">Share result on TikTok</button><p id="quiz-tiktok-msg" class="quiz-tiktok-msg"></p>'
+          : '')
       + '<button class="quiz-retry-btn" id="quiz-retry-btn">Try again</button>'
       + '</div>';
 
     document.getElementById("quiz-retry-btn").addEventListener("click", function () {
       state.index = 0; state.points = 0; render();
     });
+
+    var tiktokBtn = document.getElementById("quiz-tiktok-btn");
+    if (tiktokBtn) {
+      tiktokBtn.addEventListener("click", function () { shareResultToTikTok(shareText); });
+    }
   }
+
+  function tiktokMsg(text, isError) {
+    var el = document.getElementById("quiz-tiktok-msg");
+    if (!el) return;
+    el.textContent = text;
+    el.style.color = isError ? "#e5534b" : "";
+  }
+
+  // Signed-in + TikTok-connected users post SHARE_VIDEO_URL (the quiz's
+  // baked share.mp4, generated at build time) with their real score/percent
+  // as the caption. If TikTok isn't connected yet, this stashes the pending
+  // share in sessionStorage and sends the user through the connect flow,
+  // resuming automatically once they land back here via ?oauth=success.
+  function shareResultToTikTok(shareText) {
+    var sf = window._sf;
+    var user = sf && sf.auth.currentUser;
+    if (!user) {
+      tiktokMsg("Sign in first to share to TikTok.", true);
+      openAuthModal();
+      return;
+    }
+
+    var btn = document.getElementById("quiz-tiktok-btn");
+    btn.disabled = true;
+    tiktokMsg("Checking TikTok connection…");
+
+    user.getIdToken().then(function (idToken) {
+      return fetch(OAUTH_WORKER_URL + "/api/connected-accounts", {
+        headers: { Authorization: "Bearer " + idToken },
+      }).then(function (res) { return res.json(); }).then(function (data) {
+        var connected = (data.connected || []).some(function (r) { return r.provider === "tiktok"; });
+        if (!connected) {
+          sessionStorage.setItem("ds_pending_tiktok_share", JSON.stringify({
+            video_url: window.location.origin + SHARE_VIDEO_URL,
+            caption: shareText,
+          }));
+          tiktokMsg("Connecting TikTok…");
+          return fetch(OAUTH_WORKER_URL + "/auth/tiktok/login", {
+            headers: { Authorization: "Bearer " + idToken },
+          }).then(function (res) { return res.json(); }).then(function (authData) {
+            window.location.href = authData.url;
+          });
+        }
+
+        tiktokMsg("Posting to TikTok…");
+        return fetch(OAUTH_WORKER_URL + "/publish/tiktok", {
+          method: "POST",
+          headers: { Authorization: "Bearer " + idToken, "Content-Type": "application/json" },
+          body: JSON.stringify({
+            video_url: window.location.origin + SHARE_VIDEO_URL,
+            caption: shareText,
+          }),
+        }).then(function (res) { return res.json().then(function (data) { return { ok: res.ok, data: data }; }); })
+          .then(function (result) {
+            btn.disabled = false;
+            if (result.ok && result.data.ok) {
+              tiktokMsg("Posted to TikTok!");
+            } else {
+              tiktokMsg("Could not post to TikTok.", true);
+            }
+          });
+      });
+    }).catch(function (err) {
+      btn.disabled = false;
+      tiktokMsg("Could not post to TikTok: " + err.message, true);
+    });
+  }
+
+  // Resume a share that was interrupted by the TikTok connect redirect.
+  (function resumePendingTikTokShare() {
+    var params = new URLSearchParams(window.location.search);
+    if (params.get("oauth") !== "success" || params.get("provider") !== "tiktok") return;
+    var pending = sessionStorage.getItem("ds_pending_tiktok_share");
+    if (!pending) return;
+    sessionStorage.removeItem("ds_pending_tiktok_share");
+    var payload = JSON.parse(pending);
+
+    var sf = window._sf;
+    if (!sf) return;
+    sf.onAuthStateChanged(sf.auth, function (user) {
+      if (!user) return;
+      var topShareRow = document.getElementById("share-row-top");
+      if (topShareRow) {
+        var note = document.createElement("p");
+        note.className = "quiz-tiktok-msg";
+        note.textContent = "Posting your quiz result to TikTok…";
+        topShareRow.parentNode.insertBefore(note, topShareRow.nextSibling);
+
+        user.getIdToken().then(function (idToken) {
+          return fetch(OAUTH_WORKER_URL + "/publish/tiktok", {
+            method: "POST",
+            headers: { Authorization: "Bearer " + idToken, "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          }).then(function (res) { return res.json().then(function (data) { return { ok: res.ok, data: data }; }); });
+        }).then(function (result) {
+          note.textContent = (result.ok && result.data.ok) ? "Posted your quiz result to TikTok!" : "Could not post to TikTok.";
+          note.style.color = (result.ok && result.data.ok) ? "" : "#e5534b";
+        }).catch(function (err) {
+          note.textContent = "Could not post to TikTok: " + err.message;
+          note.style.color = "#e5534b";
+        });
+      }
+    });
+  })();
 
   function escapeHtml(str) {
     var div = document.createElement("div");

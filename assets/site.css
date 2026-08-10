@@ -869,6 +869,42 @@ table th {
   transform: translateY(-2px) scale(1.03);
 }
 
+.quiz-tiktok-btn {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #000;
+  background: #ffffff;
+  border: 1px solid #ffffff;
+  border-radius: 6px;
+  padding: 16px 40px;
+  cursor: pointer;
+  text-decoration: none;
+  margin-top: 8px;
+  transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+}
+
+.quiz-tiktok-btn:hover {
+  box-shadow: 0 0 24px #ffffff55;
+  transform: translateY(-2px) scale(1.03);
+}
+
+.quiz-tiktok-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+  transform: none;
+  box-shadow: none;
+}
+
+.quiz-tiktok-msg {
+  font-family: var(--sans);
+  font-size: 14px;
+  opacity: 0.85;
+  margin-top: 8px;
+}
+
 /* ── CARD GRID (index pages + homepage partial) ── */
 .card-grid {
   display: grid;
