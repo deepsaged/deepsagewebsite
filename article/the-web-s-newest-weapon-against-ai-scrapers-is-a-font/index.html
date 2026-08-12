@@ -3,195 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DeepSage - A Signal From The Void</title>
-  <meta name="description" content="Something is falling. Something is waking. Wishlist DeepSage.">
+  <title>The Web&#39;s Newest Weapon Against AI Scrapers is a Font · DeepSage</title>
+  <meta name="description" content="Meet ShieldFont, the digital booby trap designed to poison AI training data while keeping your eyes from bleeding.">
 
-  <meta property="og:title" content="DeepSage - A Signal From The Void">
-  <meta property="og:description" content="Something is falling. Something is waking. Wishlist DeepSage.">
-  <meta property="og:image" content="">
+  <meta property="og:title" content="The Web&#39;s Newest Weapon Against AI Scrapers is a Font">
+  <meta property="og:description" content="Meet ShieldFont, the digital booby trap designed to poison AI training data while keeping your eyes from bleeding.">
+  <meta property="og:image" content="/article/the-web-s-newest-weapon-against-ai-scrapers-is-a-font/hero.png">
   <meta property="og:type" content="article">
 
   <link rel="stylesheet" href="/assets/site.css">
   
-<style>
-  /* ── Homepage-only styles ──
-     Shared page shell (.page-container/.page-header/.page-footer/.page-content)
-     and shared typography now live in site.css / base.html - everything below
-     is unique to the hero/wishlist experience on this page only. */
-
-  #hero {
-    position: relative;
-    min-height: 100svh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    overflow: hidden;
-    background: #000;
-    margin: -48px -24px 0;
-    padding: 0 24px;
-  }
-
-  #starCanvas {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-  }
-
-  .hero-grad-top {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 50% 10%, #001828aa 0%, transparent 60%);
-    pointer-events: none;
-    z-index: 1;
-  }
-  .hero-grad-bottom {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 35%;
-    background: linear-gradient(to top, #000 0%, transparent 100%);
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  .hero-inner {
-    position: relative;
-    z-index: 10;
-    width: 100%;
-    max-width: 860px;
-    padding: 24px 0 60px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
-  }
-
-  .game-info {
-    width: 100%;
-    max-width: 780px;
-    margin-top: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    text-align: center;
-  }
-
-  .eyebrow {
-    font-family: var(--sans);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--teal);
-    margin: 0;
-  }
-
-  .game-title {
-    margin: 0;
-    font-size: clamp(42px, 8vw, 72px);
-    font-family: var(--serif);
-    font-weight: 300;
-    letter-spacing: 1px;
-    color: #ffffff;
-    line-height: 1.2;
-  }
-
-  .game-description,
-  .wishlist-call {
-    font-family: var(--sans);
-    font-size: 16px;
-    line-height: 1.7;
-    color: var(--text);
-    margin: 0;
-  }
-
-  .wishlist-call {
-    color: #00ffcc88;
-    font-size: 15px;
-  }
-
-  .video-wrap {
-    margin-top: 36px;
-    width: 100%;
-    max-width: 780px;
-    position: relative;
-    border: 1px solid #00ffcc22;
-    border-radius: 4px;
-    overflow: hidden;
-    box-shadow: 0 0 60px #00ffcc0a, 0 0 120px #00aaff06;
-  }
-
-  .video-wrap::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--teal), transparent);
-    opacity: 0.5;
-    z-index: 2;
-  }
-
-  .video-ratio {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%;
-  }
-
-  .video-ratio iframe {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-    display: block;
-  }
-
-  .game-explainer {
-    width: 100%;
-    max-width: 700px;
-    margin-top: 48px;
-    text-align: left;
-  }
-
-  .game-explainer .section-title {
-    text-align: center;
-    color: #fff;
-  }
-
-  .game-explainer p {
-    font-family: var(--sans);
-    font-size: 15px;
-    line-height: 1.8;
-    color: var(--text);
-    margin-bottom: 16px;
-  }
-
-  .game-explainer p:last-child { margin-bottom: 0; }
-
-  #latest-content { max-width: 860px; margin: 0 auto; padding: 48px 24px; }
-
-  @media (max-width: 600px) {
-    .game-title { letter-spacing: 0.25em; }
-  }
-
-  @media (max-width: 380px) {
-    .game-title { font-size: 38px; letter-spacing: 0.15em; }
-  }
-
-  @keyframes shoot {
-    0%   { transform: translateX(0) translateY(0); opacity: 0; }
-    5%   { opacity: 1; }
-    80%  { opacity: 0.6; }
-    100% { transform: translateX(180px) translateY(60px); opacity: 0; }
-  }
-
-  /* ── COOKIE CONSENT BANNER (homepage-only feature) ── */
-  /* Cookie consent banner/modal styles now live in site.css (shared,
-     site-wide) since the banner itself moved to base.html. */
-</style>
-
 
   <!-- Attribution capture: first-touch referrer/landing page, before anything else runs -->
   <script>
@@ -351,104 +172,99 @@
     </div>
 
     
-<section id="hero">
-  <canvas id="starCanvas"></canvas>
-  <div class="hero-grad-top"></div>
-  <div class="hero-grad-bottom"></div>
+<article>
+  
+  <h1 class="page-title">The Web&#39;s Newest Weapon Against AI Scrapers is a Font</h1>
+  <p class="page-dek">Meet ShieldFont, the digital booby trap designed to poison AI training data while keeping your eyes from bleeding.</p>
 
-  <div class="hero-inner">
+  <div class="share-row" id="share-row-top"></div>
+  
+  <p class="short-link"><a href="/s/WxeYjE/">deepsage.com/s/WxeYjE</a></p>
+  
 
-    <!-- GAME TITLE & DESCRIPTION -->
-    <div class="game-info">
-      <h2 class="game-title">DeepSage: Learn Through Adventure</h2>
-    </div>
+  
+  <img class="hero-image" src="/article/the-web-s-newest-weapon-against-ai-scrapers-is-a-font/hero.png" alt="The Web&#39;s Newest Weapon Against AI Scrapers is a Font">
+  
 
-    <!-- VIDEO -->
-    <div class="video-wrap">
-      <div class="video-ratio">
-        <iframe
-          src="https://www.youtube.com/embed/QNbl5ciAAJo?rel=0&modestbranding=1&color=black"
-          title="DeepSage - Official Trailer"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
-      </div>
-    </div>
+  <div class="article-body">
+    <h2>The digital heist is happening in broad daylight</h2>
+<p>Imagine you spend years meticulously crafting a beautiful, artisanal sourdough recipe. You post it online, share your secrets, and build a community. Then, one morning, you realize a giant, faceless entity has scraped every single word of your blog to train a machine that will now serve your exact recipe to millions-for free, without even a 'thanks' or a link back. </p>
+<p>That is the current state of the internet. Large Language Models (LLMs) are essentially the world's most aggressive vacuum cleaners, sucking up every scrap of human creativity left on the web. And they aren't picky about asking for permission. It's not just writers and artists feeling the heat; the entire architecture of the web is being treated like an all-you-can-eat buffet for <a href="https://deepsage.com/article/zuckerberg-s-open-source-hail-mary/">massive AI models</a> that don't even pay the bill. </p>
+<p><img alt="" src="img_1.png" /></p>
+<h2>Enter: The Digital Booby Trap</h2>
+<p>But what if you could serve the vacuum cleaner something that looks like sourdough but tastes like literal poison? Enter ShieldFont. </p>
+<p>ShieldFont is a new technical approach to 'data poisoning.' The goal isn't to break the website for humans-we like being able to read text, after all-but to mess with the way <a href="https://deepsage.com/article/the-great-digital-bridge-and-why-we-might-need-a-bigger-crane/">machine learning algorithms</a> perceive it. It works by using specific font characters that look perfectly normal to your human eyeballs but are mathematically scrambled for a machine. </p>
+<p>To a human, the word 'Apple' looks like 'Apple.' To a scraper, it looks like 'X9!p@.' It's essentially a digital prank played on a global scale, except instead of a bucket of water over a door, it's a bucket of gibberish over a neural network.</p>
+<video class="article-animation" src="anim_1.mp4" autoplay loop muted playsinline></video>
 
-    <!-- WHAT IS DEEPSAGE -->
-    <div class="game-explainer">
-      <h2 class="section-title">What Is DeepSage?</h2>
-      <p>DeepSage is an upcoming edutainment game built around a simple idea: real knowledge should feel like a superpower. Every battle in the game is fought with questions and answers instead of button-mashing. Face a rival, and you're both trading real questions across subjects like science, history, and logic. Answer well and you prevail; answer wrong and it costs you. Skill at the game <em>is</em> skill at learning.</p>
-      <p>DeepSage is set in a science-fiction world built to give those battles a story worth showing up for - the details are best discovered by playing.</p>
-      <p>It's a world worth exploring - and every fight in it is a chance to actually get smarter.</p>
-    </div>
+<h2>How the 'Poison' Works</h2>
+<p>Here is the core mechanism: the font uses a technique called 'glyph substitution.' </p>
+<ol>
+<li><strong>The Human Layer:</strong> You open a browser and see standard, legible letters. Your brain processes the shapes and reads the sentence.</li>
+<li><strong>The Scraper Layer:</strong> The AI bot doesn't 'see' the shapes; it parses the underlying Unicode characters or the digital instructions used to render them.</li>
+<li><strong>The Chaos Factor:</strong> ShieldFont swaps standard characters for visually similar but technically different symbols. </li>
+</ol>
+<p><img alt="" src="img_2.png" /></p>
+<p>If an AI scrapes a million pages using ShieldFont, its training data becomes a chaotic soup of nonsense. If it tries to learn English from this data, it might start thinking that 'Hello' is actually 'H3ll0' or something even more nonsensical. It's like trying to learn how to drive by reading a manual where all the 'A's have been replaced by pictures of tiny, angry squirrels.</p>
+<div class="key-info-block"><div class="key-info-label">The Poisoning Effect</div><p>ShieldFont replaces standard characters with visually similar but technically different symbols to corrupt AI training datasets.</p></div>
 
+<h2>Why this isn't a silver bullet</h2>
+<p>Now, before we start celebrating the death of the scraper, let's temper that enthusiasm with a healthy dose of reality. We've seen 'anti-scraping' tech before. Usually, it's just a CAPTCHA that makes you click on all the traffic lights until you lose your will to live. </p>
+<p>ShieldFont faces some massive hurdles:</p>
+<ul>
+<li><strong>The Arms Race:</strong> As soon as a defense like this goes live, the <a href="https://deepsage.com/article/scotiabank-is-building-an-ai-brain-for-its-employees/">AI development industry</a> will start building 'de-poisoning' layers. It's a classic tech arms race where the only real winners are the people selling the ammunition.</li>
+<li><strong>The Accessibility Nightmare:</strong> If we mess too much with the underlying code to trick bots, we might accidentally break screen readers for visually impaired users. We don't want to protect our data by making the web unusable for the very people we're trying to support.</li>
+<li><strong>The Complexity Tax:</strong> Implementing custom fonts across every corner of the web is a logistical nightmare. It's much easier for a bot to just ignore the font and use Optical Character Recognition (OCR) to 'see' the text like a human would.</li>
+</ul>
+<div class="key-info-block"><div class="key-info-label">The Vulnerability</div><p>Advanced AI models can use OCR (Optical Character Recognition) to bypass font-based defenses by 'seeing' text as images.</p></div>
+
+<h2>The takeaway</h2>
+<p>We are entering an era where the very building blocks of the web-fonts, images, even CSS-are being weaponized. The internet is no longer just a place to share information; it's a battlefield of conflicting interests. </p>
+<p>ShieldFont might not stop the giants, but it proves that the 'little guys' are starting to figure out how to fight back with nothing but a few clever pixels. The question is: in a world where every piece of data is a potential target, can we ever truly 'own' our digital footprint again, or are we just decorating our cages with increasingly confusing fonts?</p>
+<p>Stay curious, and maybe keep an eye on your font settings.</p>
   </div>
-</section>
 
-<!-- Latest articles & quizzes, spliced in by deepsage-content/generator/build.py -->
-<section id="latest-content">
-  <!-- LATEST_CONTENT_START -->
+  <div class="share-row" id="share-row-bottom"></div>
 
-<div class="card-grid">
   
-  <a class="content-card" href="/article/the-web-s-newest-weapon-against-ai-scrapers-is-a-font/">
-    <img class="content-card-thumb" src="/article/the-web-s-newest-weapon-against-ai-scrapers-is-a-font/hero.png" alt="The Web&#39;s Newest Weapon Against AI Scrapers is a Font">
-    <div class="content-card-body">
-      <span class="content-card-badge">Article</span>
-      <div class="content-card-title">The Web&#39;s Newest Weapon Against AI Scrapers is a Font</div>
-      <div class="content-card-preview">Meet ShieldFont, the digital booby trap designed to poison AI training data while keeping your eyes from bleeding.</div>
-    </div>
-  </a>
+  <div class="page-cta companion-cta">
+    <div class="page-cta-title">Test what you just learned</div>
+    <p class="page-cta-text">Take the companion quiz for this story and see how you score.</p>
+    <a class="page-cta-btn" href="/quiz/the-font-wars-poisoning-the-data-well/">Take the Quiz</a>
+  </div>
   
-  <a class="content-card" href="/quiz/the-font-wars-poisoning-the-data-well/">
-    <img class="content-card-thumb" src="/quiz/the-font-wars-poisoning-the-data-well/hero.png" alt="The Font Wars: Poisoning the Data Well">
-    <div class="content-card-body">
-      <span class="content-card-badge">Quiz</span>
-      <div class="content-card-title">The Font Wars: Poisoning the Data Well</div>
-      <div class="content-card-preview">10 questions - test your knowledge</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/article/zuckerberg-s-open-source-hail-mary/">
-    <img class="content-card-thumb" src="/article/zuckerberg-s-open-source-hail-mary/hero.png" alt="Zuckerberg&#39;s Open-Source Hail Mary">
-    <div class="content-card-body">
-      <span class="content-card-badge">Article</span>
-      <div class="content-card-title">Zuckerberg&#39;s Open-Source Hail Mary</div>
-      <div class="content-card-preview">Meta is betting the entire farm on open models to catch up to the giants who actually have a working product.</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/quiz/meta-s-open-source-gambit-rebranding-the-ai-race/">
-    <img class="content-card-thumb" src="/quiz/meta-s-open-source-gambit-rebranding-the-ai-race/hero.png" alt="Meta&#39;s Open-Source Gambit: Rebranding the AI Race">
-    <div class="content-card-body">
-      <span class="content-card-badge">Quiz</span>
-      <div class="content-card-title">Meta&#39;s Open-Source Gambit: Rebranding the AI Race</div>
-      <div class="content-card-preview">10 questions - test your knowledge</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/article/the-error-correction-engine-of-beauty/">
-    <img class="content-card-thumb" src="/article/the-error-correction-engine-of-beauty/hero.png" alt="The Error-Correction Engine of Beauty">
-    <div class="content-card-body">
-      <span class="content-card-badge">Article</span>
-      <div class="content-card-title">The Error-Correction Engine of Beauty</div>
-      <div class="content-card-preview">I built a small device to calculate the precise moment a pattern becomes &#39;pretty,&#39; but it mostly just ends up vibrating when I look at sunflowers.</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/article/the-blind-spot-problem/">
-    <img class="content-card-thumb" src="/article/the-blind-spot-problem/hero.png" alt="The Blind Spot Problem">
-    <div class="content-card-body">
-      <span class="content-card-badge">Article</span>
-      <div class="content-card-title">The Blind Spot Problem</div>
-      <div class="content-card-preview">If you build a high-end sensor to find aliens but keep forgetting to turn on the lights, you aren&#39;t going to find much besides shadows.</div>
-    </div>
-  </a>
-  
-</div><!-- LATEST_CONTENT_END -->
-</section>
 
+  <div class="page-cta">
+    <div class="page-cta-title">Never miss a story</div>
+    <p class="page-cta-text">Create a free DeepSage account to save articles, track quiz results, and get the daily briefing first.</p>
+    <button class="page-cta-btn" onclick="openAuthModal('signup')">Create Free Account</button>
+  </div>
+</article>
+
+<script>
+(function () {
+  var pageUrl = window.location.href;
+  var shareText = "The Web\u0027s Newest Weapon Against AI Scrapers is a Font";
+
+  var twitterUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(shareText) + "&url=" + encodeURIComponent(pageUrl);
+  var facebookUrl = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(pageUrl) + "&quote=" + encodeURIComponent(shareText);
+  var linkedinUrl = "https://www.linkedin.com/sharing/share-offsite/?url=" + encodeURIComponent(pageUrl);
+
+  var html = ''
+    + '<a class="share-btn" target="_blank" rel="noopener" href="' + twitterUrl + '" aria-label="Share on X" title="Share on X">'
+    + '<svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.6 8.7L23.3 22H16.9l-5-6.5-5.7 6.5H2.9l8.1-9.3L2 2h6.6l4.5 5.9L18.9 2Zm-1.1 18h1.7L7.3 3.9H5.5L17.8 20Z"/></svg>'
+    + '</a>'
+    + '<a class="share-btn" target="_blank" rel="noopener" href="' + facebookUrl + '" aria-label="Share on Facebook" title="Share on Facebook">'
+    + '<svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg>'
+    + '</a>'
+    + '<a class="share-btn" target="_blank" rel="noopener" href="' + linkedinUrl + '" aria-label="Share on LinkedIn" title="Share on LinkedIn">'
+    + '<svg viewBox="0 0 24 24"><path d="M19 3A2 2 0 0 1 21 5v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14ZM8.3 18.5V10H5.7v8.5h2.6ZM7 8.8a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm11.5 9.7v-4.7c0-2.5-1.3-3.7-3.1-3.7-1.4 0-2 .8-2.4 1.3V10H10.4v8.5H13v-4.7c0-.5 0-1 .2-1.3.3-.6.8-1.3 1.8-1.3 1.3 0 1.8.9 1.8 2.3v5h2.7Z"/></svg>'
+    + '</a>';
+
+  document.getElementById("share-row-top").innerHTML = html;
+  document.getElementById("share-row-bottom").innerHTML = html;
+})();
+</script>
 
 
     <div class="page-footer">
@@ -788,83 +604,6 @@ document.addEventListener('click', function(e) {
 });
 </script>
 
-
-<script>
-/* ── Star field canvas ── */
-(function() {
-  const canvas = document.getElementById('starCanvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  let W, H, stars, shooters;
-
-  function randShooter() {
-    return {
-      x:   W * 0.1 + Math.random() * W * 0.8,
-      y:   -80,
-      vx:  (Math.random() - 0.5) * 1.0,
-      vy:  2.5 + Math.random() * 3.5,
-      len: 60 + Math.random() * 50,
-      op:  0,
-      col: ['#00ffcc','#ffffff','#00aaff'][Math.random() * 3 | 0],
-    };
-  }
-
-  function init() {
-    W = canvas.width  = canvas.offsetWidth;
-    H = canvas.height = canvas.offsetHeight;
-    stars = Array.from({ length: 280 }, () => ({
-      x:   Math.random() * W,
-      y:   Math.random() * H,
-      r:   Math.random() * 1.3 + 0.2,
-      op:  Math.random() * 0.55 + 0.2,
-      tw:  Math.random() * Math.PI * 2,
-      teal: Math.random() < 0.08,
-    }));
-    shooters = [randShooter(), randShooter(), randShooter()];
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-
-    stars.forEach(s => {
-      s.tw += 0.009;
-      const t = 0.5 + 0.5 * Math.sin(s.tw);
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = s.teal
-        ? `rgba(0,255,204,${(s.op * t * 0.7).toFixed(2)})`
-        : `rgba(255,255,255,${(s.op * t).toFixed(2)})`;
-      ctx.fill();
-    });
-
-    shooters.forEach((s, i) => {
-      s.x += s.vx; s.y += s.vy;
-      s.op = Math.min(1, s.op + 0.04);
-      if (s.y > H + 100) shooters[i] = randShooter();
-      const a  = Math.atan2(s.vy, s.vx);
-      const x0 = s.x - Math.cos(a) * s.len;
-      const y0 = s.y - Math.sin(a) * s.len;
-      const g  = ctx.createLinearGradient(x0, y0, s.x, s.y);
-      g.addColorStop(0, 'transparent');
-      g.addColorStop(1, s.col + 'bb');
-      ctx.beginPath();
-      ctx.moveTo(x0, y0);
-      ctx.lineTo(s.x, s.y);
-      ctx.strokeStyle = g;
-      ctx.lineWidth   = 1.5;
-      ctx.globalAlpha = s.op;
-      ctx.stroke();
-      ctx.globalAlpha = 1;
-    });
-
-    requestAnimationFrame(draw);
-  }
-
-  window.addEventListener('resize', init);
-  init();
-  draw();
-})();
-</script>
 
 
 </body>
