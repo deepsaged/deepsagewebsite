@@ -26,8 +26,10 @@
   .ht-btn-primary { background: var(--teal); color: #001410; font-weight: 700; border: none; }
   .ht-status { font-family: var(--sans); font-size: 16px; font-weight: 600; padding: 10px 20px; border-radius: 8px; background: #00110d; border: 1px solid #00ffcc22; min-height: 44px; display: flex; align-items: center; justify-content: center; width: 100%; max-width: 700px; color: var(--text); }
   .ht-nav { background: #00110d; padding: 14px; border-radius: 8px; width: 100%; max-width: 700px; display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; border: 1px solid #00ffcc22; }
-  .ht-slice-selector { display: flex; align-items: center; gap: 8px; background: #000; padding: 6px 12px; border-radius: 6px; border: 1px solid #00ffcc33; font-family: var(--sans); font-size: 12px; color: var(--muted); }
-  .ht-slice-selector select { padding: 4px 8px; }
+  .ht-slice-selector { display: flex; align-items: center; gap: 10px; background: #000; padding: 6px 12px; border-radius: 6px; border: 1px solid #00ffcc33; font-family: var(--sans); font-size: 12px; color: var(--muted); }
+  .ht-slice-options { display: flex; gap: 10px; }
+  .ht-slice-option { display: flex; align-items: center; gap: 4px; cursor: pointer; }
+  .ht-slice-option input[type="radio"] { accent-color: var(--teal); cursor: pointer; }
   .ht-board-container { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; width: 100%; }
   .ht-grid-wrapper { display: flex; flex-direction: column; align-items: center; gap: 6px; }
   .ht-grid-label { font-size: 11px; color: var(--muted); font-family: monospace; }
@@ -579,14 +581,15 @@ document.addEventListener('click', function(e) {
     this.totalCells = Math.pow(3, this.dim);
     this.gameOver = false;
     this.winningLine = null;
-    this.lines = this.generateWinningLines();
+    this.directions = this.generateDirections();
   }
 
-  NDimTicTacToe.prototype.generateWinningLines = function () {
-    var lines = [];
+  // Winning-line count grows as (5^N - 3^N)/2 (~122M lines at N=12), so lines
+  // are never pre-enumerated. Instead we only ever compute the handful of
+  // lines that pass through a specific cell, on demand.
+  NDimTicTacToe.prototype.generateDirections = function () {
     var N = this.dim;
     var directions = [];
-
     function genDirs(currentDir) {
       if (currentDir.length === N) {
         var firstNonZero = currentDir.find(function (v) { return v !== 0; });
@@ -600,69 +603,94 @@ document.addEventListener('click', function(e) {
       });
     }
     genDirs([]);
-
-    directions.forEach(function (dir) {
-      var startCoordsCandidate = [];
-      for (var d = 0; d < N; d++) {
-        if (dir[d] === 1) startCoordsCandidate.push([0]);
-        else if (dir[d] === -1) startCoordsCandidate.push([2]);
-        else startCoordsCandidate.push([0, 1, 2]);
-      }
-
-      function genStarts(currentStart, dimIdx) {
-        if (dimIdx === N) {
-          var line = [];
-          for (var step = 0; step < 3; step++) {
-            var cellCoord = currentStart.map(function (val, d) { return val + step * dir[d]; });
-            line.push(cellCoord.join(','));
-          }
-          lines.push(line);
-          return;
-        }
-        startCoordsCandidate[dimIdx].forEach(function (val) {
-          currentStart.push(val);
-          genStarts(currentStart, dimIdx + 1);
-          currentStart.pop();
-        });
-      }
-      genStarts([], 0);
-    });
-    return lines;
+    return directions;
   };
 
   NDimTicTacToe.prototype.getCell = function (coordStr) { return this.board.get(coordStr) || null; };
 
+  // Returns every winning line (array of coordStr arrays) that passes through coord.
+  NDimTicTacToe.prototype.linesThroughCell = function (coord) {
+    var N = this.dim;
+    var lines = [];
+    this.directions.forEach(function (dir) {
+      var d0 = 0;
+      while (d0 < N && dir[d0] === 0) d0++;
+      if (d0 === N) return;
+      var k = dir[d0] === 1 ? coord[d0] : 2 - coord[d0];
+      if (k < 0 || k > 2) return;
+      var start = new Array(N);
+      var valid = true;
+      for (var d = 0; d < N; d++) {
+        start[d] = coord[d] - k * dir[d];
+        if (dir[d] === 1 && start[d] !== 0) { valid = false; break; }
+        if (dir[d] === -1 && start[d] !== 2) { valid = false; break; }
+        if (dir[d] === 0 && start[d] !== coord[d]) { valid = false; break; }
+      }
+      if (!valid) return;
+      var line = [];
+      for (var step = 0; step < 3; step++) {
+        var cell = start.map(function (val, d) { return val + step * dir[d]; });
+        line.push(cell.join(','));
+      }
+      lines.push(line);
+    });
+    return lines;
+  };
+
   NDimTicTacToe.prototype.makeMove = function (coordStr, player) {
     if (this.gameOver || this.board.has(coordStr)) return false;
     this.board.set(coordStr, player);
-    var win = this.checkWin(player);
+    var coord = coordStr.split(',').map(Number);
+    var win = this.checkWin(player, coord);
     if (win) { this.gameOver = true; this.winningLine = win; }
     else if (this.board.size === this.totalCells) this.gameOver = true;
     return true;
   };
 
-  NDimTicTacToe.prototype.checkWin = function (player) {
+  // A win must include the cell just played, so only lines through it need checking.
+  NDimTicTacToe.prototype.checkWin = function (player, coord) {
     var board = this.board;
-    for (var i = 0; i < this.lines.length; i++) {
-      var line = this.lines[i];
-      if (line.every(function (coord) { return board.get(coord) === player; })) return line;
+    var lines = this.linesThroughCell(coord);
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i];
+      if (line.every(function (c) { return board.get(c) === player; })) return line;
     }
     return null;
+  };
+
+  // Candidate lines are gathered only from cells already on the board (both
+  // colors), which bounds the search by (stones played * directions) instead
+  // of the full combinatorial line count.
+  NDimTicTacToe.prototype.candidateLines = function () {
+    var board = this.board;
+    var seen = new Set();
+    var lines = [];
+    board.forEach(function (_player, coordStr) {
+      var coord = coordStr.split(',').map(Number);
+      this.linesThroughCell(coord).forEach(function (line) {
+        var key = line.join('|');
+        if (seen.has(key)) return;
+        seen.add(key);
+        lines.push(line);
+      });
+    }, this);
+    return lines;
   };
 
   NDimTicTacToe.prototype.getAIMove = function () {
     if (this.gameOver) return null;
     var board = this.board;
+    var lines = this.candidateLines();
 
-    for (var i = 0; i < this.lines.length; i++) {
-      var line = this.lines[i];
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i];
       var oCount = line.filter(function (c) { return board.get(c) === 'O'; }).length;
       var empty = line.filter(function (c) { return !board.has(c); });
       if (oCount === 2 && empty.length === 1) return empty[0];
     }
 
-    for (var j = 0; j < this.lines.length; j++) {
-      var line2 = this.lines[j];
+    for (var j = 0; j < lines.length; j++) {
+      var line2 = lines[j];
       var xCount = line2.filter(function (c) { return board.get(c) === 'X'; }).length;
       var empty2 = line2.filter(function (c) { return !board.has(c); });
       if (xCount === 2 && empty2.length === 1) return empty2[0];
@@ -671,7 +699,7 @@ document.addEventListener('click', function(e) {
     if (this.difficulty === 'easy') return this.getRandomMove();
 
     var cellScores = new Map();
-    this.lines.forEach(function (line) {
+    lines.forEach(function (line) {
       var xCount = line.filter(function (c) { return board.get(c) === 'X'; }).length;
       var oCount = line.filter(function (c) { return board.get(c) === 'O'; }).length;
       if (xCount === 0) {
@@ -750,22 +778,32 @@ document.addEventListener('click', function(e) {
       (function (d) {
         var navGroup = document.createElement('div');
         navGroup.className = 'ht-slice-selector';
-        var label = document.createElement('label');
+        var label = document.createElement('span');
         label.textContent = 'Dim ' + d + ' index:';
-        var select = document.createElement('select');
-        for (var i = 0; i < 3; i++) {
-          var opt = document.createElement('option');
-          opt.value = i;
-          opt.textContent = i;
-          select.appendChild(opt);
-        }
-        select.value = game.sliceCoords[d - 4] || 0;
-        select.addEventListener('change', function (e) {
-          game.sliceCoords[d - 4] = parseInt(e.target.value, 10);
-          renderBoard();
-        });
         navGroup.appendChild(label);
-        navGroup.appendChild(select);
+        var optionsWrap = document.createElement('div');
+        optionsWrap.className = 'ht-slice-options';
+        var groupName = 'ht-slice-dim-' + d;
+        var current = game.sliceCoords[d - 4] || 0;
+        for (var i = 0; i < 3; i++) {
+          var optLabel = document.createElement('label');
+          optLabel.className = 'ht-slice-option';
+          var radio = document.createElement('input');
+          radio.type = 'radio';
+          radio.name = groupName;
+          radio.value = i;
+          if (i === current) radio.checked = true;
+          radio.addEventListener('change', function (e) {
+            game.sliceCoords[d - 4] = parseInt(e.target.value, 10);
+            renderBoard();
+          });
+          var text = document.createElement('span');
+          text.textContent = i;
+          optLabel.appendChild(radio);
+          optLabel.appendChild(text);
+          optionsWrap.appendChild(optLabel);
+        }
+        navGroup.appendChild(optionsWrap);
         navPanel.appendChild(navGroup);
       })(d);
     }

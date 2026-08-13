@@ -709,12 +709,11 @@ document.addEventListener('click', function(e) {
         renderLadder();
       };
     } else {
+      var nodeNumLabel = (match.nodeIndex + 1 < 10 ? '0' : '') + (match.nodeIndex + 1);
       titleEl.textContent = 'CONNECTION SEVERED';
-      subEl.textContent = 'Final tally: ' + match.wins + ' / ' + ROUNDS_PER_MATCH + ' wins. Needed ' + WINS_NEEDED + '. Run reset to Node 01.';
-      btn.textContent = 'Retry from Node 01';
+      subEl.textContent = 'Final tally: ' + match.wins + ' / ' + ROUNDS_PER_MATCH + ' wins. Needed ' + WINS_NEEDED + '. Node ' + nodeNumLabel + ' still holds.';
+      btn.textContent = 'Retry Node ' + nodeNumLabel;
       btn.onclick = function () {
-        state.currentNode = 0;
-        state.cleared = [];
         match = null;
         renderLadder();
       };
