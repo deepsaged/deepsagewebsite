@@ -137,13 +137,17 @@ a:hover { opacity: 0.7; }
   .top-banner-text { font-size: 12px; }
 }
 
+/* The logo is a fixed-aspect wordmark image (580x120 source). Height drives the
+   size and width:auto keeps the ratio; the intrinsic width/height attributes on
+   the <img> reserve the box so the header doesn't shift as it decodes. */
 .page-logo {
-  font-family: var(--sans);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 6px;
-  color: #ffffff88;
-  text-transform: uppercase;
+  display: block;
+  height: 34px;
+  width: auto;
+}
+
+@media (max-width: 600px) {
+  .page-logo { height: 26px; }
 }
 
 .back-link {
