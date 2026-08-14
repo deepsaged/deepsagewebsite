@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DeepSage - A Signal From The Void</title>
-  <meta name="description" content="Something is falling. Something is waking. Wishlist DeepSage.">
+  <title>The Museum That Refuses to Die (Mostly) · DeepSage</title>
+  <meta name="description" content="After a 7.4 magnitude earthquake turned Colombia&#39;s Museo de Arte de Pereira into an open-air gallery, I&#39;m thinking of building a museum that is essentially just a very expensive, very sturdy cage.">
 
-  <meta property="og:title" content="DeepSage - A Signal From The Void">
-  <meta property="og:description" content="Something is falling. Something is waking. Wishlist DeepSage.">
-  <meta property="og:image" content="">
+  <meta property="og:title" content="The Museum That Refuses to Die (Mostly)">
+  <meta property="og:description" content="After a 7.4 magnitude earthquake turned Colombia&#39;s Museo de Arte de Pereira into an open-air gallery, I&#39;m thinking of building a museum that is essentially just a very expensive, very sturdy cage.">
+  <meta property="og:image" content="/article/the-museum-that-refuses-to-die-mostly/hero.png">
   <meta property="og:type" content="article">
 
   <link rel="icon" type="image/png" href="/assets/favicon.png">
@@ -16,185 +16,6 @@
 
   <link rel="stylesheet" href="/assets/site.css">
   
-<style>
-  /* ── Homepage-only styles ──
-     Shared page shell (.page-container/.page-header/.page-footer/.page-content)
-     and shared typography now live in site.css / base.html - everything below
-     is unique to the hero/wishlist experience on this page only. */
-
-  #hero {
-    position: relative;
-    min-height: 100svh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    overflow: hidden;
-    background: #000;
-    margin: -48px -24px 0;
-    padding: 0 24px;
-  }
-
-  #starCanvas {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-  }
-
-  .hero-grad-top {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 50% 10%, #001828aa 0%, transparent 60%);
-    pointer-events: none;
-    z-index: 1;
-  }
-  .hero-grad-bottom {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 35%;
-    background: linear-gradient(to top, #000 0%, transparent 100%);
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  .hero-inner {
-    position: relative;
-    z-index: 10;
-    width: 100%;
-    max-width: 860px;
-    padding: 24px 0 60px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
-  }
-
-  .game-info {
-    width: 100%;
-    max-width: 780px;
-    margin-top: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    text-align: center;
-  }
-
-  .eyebrow {
-    font-family: var(--sans);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin: 0;
-  }
-
-  .game-title {
-    margin: 0;
-    font-size: clamp(42px, 8vw, 72px);
-    font-family: var(--serif);
-    font-weight: 300;
-    letter-spacing: 1px;
-    color: #ffffff;
-    line-height: 1.2;
-  }
-
-  .game-description,
-  .wishlist-call {
-    font-family: var(--sans);
-    font-size: 16px;
-    line-height: 1.7;
-    color: var(--text);
-    margin: 0;
-  }
-
-  .wishlist-call {
-    color: #d9b97888;
-    font-size: 15px;
-  }
-
-  .video-wrap {
-    margin-top: 36px;
-    width: 100%;
-    max-width: 780px;
-    position: relative;
-    border: 1px solid #d9b97822;
-    border-radius: 4px;
-    overflow: hidden;
-    box-shadow: 0 0 60px #d9b9780a, 0 0 120px #00aaff06;
-  }
-
-  .video-wrap::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--gold), transparent);
-    opacity: 0.5;
-    z-index: 2;
-  }
-
-  .video-ratio {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%;
-  }
-
-  .video-ratio iframe {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-    display: block;
-  }
-
-  .game-explainer {
-    width: 100%;
-    max-width: 700px;
-    margin-top: 48px;
-    text-align: left;
-  }
-
-  .game-explainer .section-title {
-    text-align: center;
-    color: #fff;
-  }
-
-  .game-explainer p {
-    font-family: var(--sans);
-    font-size: 15px;
-    line-height: 1.8;
-    color: var(--text);
-    margin-bottom: 16px;
-  }
-
-  .game-explainer p:last-child { margin-bottom: 0; }
-
-  #latest-content { max-width: 860px; margin: 0 auto; padding: 48px 24px; }
-
-  @media (max-width: 600px) {
-    .game-title { letter-spacing: 0.25em; }
-  }
-
-  @media (max-width: 380px) {
-    .game-title { font-size: 38px; letter-spacing: 0.15em; }
-  }
-
-  @keyframes shoot {
-    0%   { transform: translateX(0) translateY(0); opacity: 0; }
-    5%   { opacity: 1; }
-    80%  { opacity: 0.6; }
-    100% { transform: translateX(180px) translateY(60px); opacity: 0; }
-  }
-
-  /* ── COOKIE CONSENT BANNER (homepage-only feature) ── */
-  /* Cookie consent banner/modal styles now live in site.css (shared,
-     site-wide) since the banner itself moved to base.html. */
-</style>
-
 
   <!-- Attribution capture: first-touch referrer/landing page, before anything else runs -->
   <script>
@@ -354,104 +175,76 @@
     </div>
 
     
-<section id="hero">
-  <canvas id="starCanvas"></canvas>
-  <div class="hero-grad-top"></div>
-  <div class="hero-grad-bottom"></div>
+<article>
+  
+  <h1 class="page-title">The Museum That Refuses to Die (Mostly)</h1>
+  <p class="page-dek">After a 7.4 magnitude earthquake turned Colombia&#39;s Museo de Arte de Pereira into an open-air gallery, I&#39;m thinking of building a museum that is essentially just a very expensive, very sturdy cage.</p>
 
-  <div class="hero-inner">
+  <div class="share-row" id="share-row-top"></div>
+  
+  <p class="short-link"><a href="/s/7MHaRW/">deepsage.com/s/7MHaRW</a></p>
+  
 
-    <!-- GAME TITLE & DESCRIPTION -->
-    <div class="game-info">
-      <h2 class="game-title">DeepSage: Learn Through Adventure</h2>
-    </div>
+  
+  <img class="hero-image" src="/article/the-museum-that-refuses-to-die-mostly/hero.png" alt="The Museum That Refuses to Die (Mostly)">
+  
 
-    <!-- VIDEO -->
-    <div class="video-wrap">
-      <div class="video-ratio">
-        <iframe
-          src="https://www.youtube.com/embed/QNbl5ciAAJo?rel=0&modestbranding=1&color=black"
-          title="DeepSage - Official Trailer"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
-      </div>
-    </div>
-
-    <!-- WHAT IS DEEPSAGE -->
-    <div class="game-explainer">
-      <h2 class="section-title">What Is DeepSage?</h2>
-      <p>DeepSage is an upcoming edutainment game built around a simple idea: real knowledge should feel like a superpower. Every battle in the game is fought with questions and answers instead of button-mashing. Face a rival, and you're both trading real questions across subjects like science, history, and logic. Answer well and you prevail; answer wrong and it costs you. Skill at the game <em>is</em> skill at learning.</p>
-      <p>DeepSage is set in a science-fiction world built to give those battles a story worth showing up for - the details are best discovered by playing.</p>
-      <p>It's a world worth exploring - and every fight in it is a chance to actually get smarter.</p>
-    </div>
-
+  <div class="article-body">
+    <h2>The Great Wall of Pereira (Gone Wrong)</h2>
+<p>On Monday, August 10, 2026, a 7.4 magnitude earthquake decided that the 'Zona Cafeteria' in Colombia needed a bit more kinetic energy. It was a deep one, about 64 miles down, which is probably the only reason the entire country isn't currently a pile of much prettier rubble. But for the Museo de Arte de Pereira, depth was a secondary concern to the fact that several walls simply decided to stop being vertical.</p>
+<p>If you look at the photos shared by curator Alejandro Garces, the museum currently looks less like a cultural institution and more like a high-concept installation about the fragility of existence. We're talking X-shaped fissures, collapsed walls, and a theater roof that took a direct hit from a neighboring building. It’s quite a bold look for a museum, though I suspect the 'open-air' aesthetic wasn't in the 1996 budget.</p>
+<p>I actually considered building a machine to catch falling bricks in mid-air to prevent this. It would involve a series of high-speed hydraulic nets and a very large supply of industrial-grade velcro. The investors thought the velcro was 'unnecessarily loud,' so we're back to the drawing board.</p>
+<h2>The Structural Identity Crisis</h2>
+<p>Here is where things get slightly confusing, which is usually where Halvorsen in safety review starts pointing at blueprints with a concerned expression. </p>
+<p>There is currently a disagreement regarding whether the museum is actually a building or just a very organized pile of debris. One report from a board member, Rosa Ángel, suggests the primary beams and columns are sound. This is good news. It means the 'skeleton' is still functioning, even if the 'skin' has been stripped away.</p>
+<p>However, a more recent inspection by municipal risk management officials suggests a much more drastic fate: the building is uninhabitable, and the masonry needs to be demolished. Apparently, 'mostly standing' isn't a legal classification for a public building. It’s a bit like saying my automated pancake flipper is 'structurally sound' even if it occasionally launches batter into the ceiling fan. The pancakes are fine; the kitchen is a disaster.</p>
+<h2>A Pilot for Seismic-Resilient Heritage</h2>
+<p>Now, here is the part where I stop looking at the wreckage and start looking at the blueprint. This is my proposal-and please, don't tell the investors I'm dreaming of expensive steel skeletons again. </p>
+<p>We shouldn't just rebuild the museum as it was. We should treat this as a pilot program for 'seismic-resilient heritage.' </p>
+<p>Existing fact: The 1996 structure survived the 1999 earthquake, which proves the core DNA of the building has some grit. </p>
+<p>My proposed idea: We integrate modern structural stabilization directly into the preservation of the surviving 1996 skeleton. Instead of just replacing the collapsed walls with more bricks and prayer, we use a hybrid approach. We keep the original columns-the parts that didn't move-and wrap them in a high-performance, energy-dissipating exoskeleton. </p>
+<p>Think of it like a person wearing a very sophisticated, very heavy-duty ergonomic brace. It allows the old structure to stay, but gives it the ability to absorb the next big shake without losing its walls. It turns the museum from a static monument into a dynamic, shock-absorbing machine.</p>
+<h2>The Cost of Culture</h2>
+<p>Of course, the logistics are tricky. The museum is currently facing a reality where the 'art' is effectively the rubble itself. Rebuilding in a period of crisis requires more than just concrete; it requires a way to stabilize the existing bones of the building while the world around it is still settling.</p>
+<p>It is a heavy lift, both literally and metaphorically. But if we can use this moment to pioneer a new way of repairing historical and modern landmarks-integrating modern damping technology into the very fabric of the old masonry-we might actually create something more resilient than what we lost. </p>
+<p>For now, the museum remains a site of profound loss, but also a site of profound potential. We just need to figure out how to keep the ceiling from becoming the floor.</p>
   </div>
-</section>
 
-<!-- Latest articles & quizzes, spliced in by deepsage-content/generator/build.py -->
-<section id="latest-content">
-  <!-- LATEST_CONTENT_START -->
+  <div class="share-row" id="share-row-bottom"></div>
 
-<div class="card-grid">
   
-  <a class="content-card" href="/article/the-museum-that-refuses-to-die-mostly/">
-    <img class="content-card-thumb" src="/article/the-museum-that-refuses-to-die-mostly/hero.png" alt="The Museum That Refuses to Die (Mostly)">
-    <div class="content-card-body">
-      <span class="content-card-badge">Article</span>
-      <div class="content-card-title">The Museum That Refuses to Die (Mostly)</div>
-      <div class="content-card-preview">After a 7.4 magnitude earthquake turned Colombia&#39;s Museo de Arte de Pereira into an open-air gallery, I&#39;m thinking of building a museum that is essentially just a very expensive, very sturdy cage.</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/article/the-193-000-matisse-heist-that-was-basically-a-library-hall-pass/">
-    <img class="content-card-thumb" src="/article/the-193-000-matisse-heist-that-was-basically-a-library-hall-pass/hero.png" alt="The $193,000 Matisse Heist That Was Basically a Library Hall Pass">
-    <div class="content-card-body">
-      <span class="content-card-badge">Article</span>
-      <div class="content-card-title">The $193,000 Matisse Heist That Was Basically a Library Hall Pass</div>
-      <div class="content-card-preview">Someone managed to walk out of a São Paulo library with eight Matisse masterpieces, proving that even in the age of high-tech surveillance, a bold sense of entitlement is still a viable criminal strategy.</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/quiz/matisse-mayhem-and-missing-masterpieces/">
-    <img class="content-card-thumb" src="/quiz/matisse-mayhem-and-missing-masterpieces/hero.png" alt="Matisse, Mayhem, and Missing Masterpieces">
-    <div class="content-card-body">
-      <span class="content-card-badge">Quiz</span>
-      <div class="content-card-title">Matisse, Mayhem, and Missing Masterpieces</div>
-      <div class="content-card-preview">10 questions - test your knowledge</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/article/the-death-of-the-disc-wolverine-s-final-stand/">
-    <img class="content-card-thumb" src="/article/the-death-of-the-disc-wolverine-s-final-stand/hero.png" alt="The Death of the Disc: Wolverine&#39;s Final Stand">
-    <div class="content-card-body">
-      <span class="content-card-badge">Article</span>
-      <div class="content-card-title">The Death of the Disc: Wolverine&#39;s Final Stand</div>
-      <div class="content-card-preview">Insomniac just confirmed Wolverine is coming to disc, but it might be one of the last times you actually get to hold a complete game in your hands.</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/quiz/the-wolverine-the-disc-based-dream/">
-    <img class="content-card-thumb" src="/quiz/the-wolverine-the-disc-based-dream/hero.png" alt="The Wolverine &amp; The Disc-Based Dream">
-    <div class="content-card-body">
-      <span class="content-card-badge">Quiz</span>
-      <div class="content-card-title">The Wolverine &amp; The Disc-Based Dream</div>
-      <div class="content-card-preview">10 questions - test your knowledge</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/article/the-web-s-newest-weapon-against-ai-scrapers-is-a-font/">
-    <img class="content-card-thumb" src="/article/the-web-s-newest-weapon-against-ai-scrapers-is-a-font/hero.png" alt="The Web&#39;s Newest Weapon Against AI Scrapers is a Font">
-    <div class="content-card-body">
-      <span class="content-card-badge">Article</span>
-      <div class="content-card-title">The Web&#39;s Newest Weapon Against AI Scrapers is a Font</div>
-      <div class="content-card-preview">Meet ShieldFont, the digital booby trap designed to poison AI training data while keeping your eyes from bleeding.</div>
-    </div>
-  </a>
-  
-</div><!-- LATEST_CONTENT_END -->
-</section>
 
+  <div class="page-cta">
+    <div class="page-cta-title">Never miss a story</div>
+    <p class="page-cta-text">Create a free DeepSage account to save articles, track quiz results, and get the daily briefing first.</p>
+    <button class="page-cta-btn" onclick="openAuthModal('signup')">Create Free Account</button>
+  </div>
+</article>
+
+<script>
+(function () {
+  var pageUrl = window.location.href;
+  var shareText = "The Museum That Refuses to Die (Mostly)";
+
+  var twitterUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(shareText) + "&url=" + encodeURIComponent(pageUrl);
+  var facebookUrl = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(pageUrl) + "&quote=" + encodeURIComponent(shareText);
+  var linkedinUrl = "https://www.linkedin.com/sharing/share-offsite/?url=" + encodeURIComponent(pageUrl);
+
+  var html = ''
+    + '<a class="share-btn" target="_blank" rel="noopener" href="' + twitterUrl + '" aria-label="Share on X" title="Share on X">'
+    + '<svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.6 8.7L23.3 22H16.9l-5-6.5-5.7 6.5H2.9l8.1-9.3L2 2h6.6l4.5 5.9L18.9 2Zm-1.1 18h1.7L7.3 3.9H5.5L17.8 20Z"/></svg>'
+    + '</a>'
+    + '<a class="share-btn" target="_blank" rel="noopener" href="' + facebookUrl + '" aria-label="Share on Facebook" title="Share on Facebook">'
+    + '<svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg>'
+    + '</a>'
+    + '<a class="share-btn" target="_blank" rel="noopener" href="' + linkedinUrl + '" aria-label="Share on LinkedIn" title="Share on LinkedIn">'
+    + '<svg viewBox="0 0 24 24"><path d="M19 3A2 2 0 0 1 21 5v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14ZM8.3 18.5V10H5.7v8.5h2.6ZM7 8.8a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm11.5 9.7v-4.7c0-2.5-1.3-3.7-3.1-3.7-1.4 0-2 .8-2.4 1.3V10H10.4v8.5H13v-4.7c0-.5 0-1 .2-1.3.3-.6.8-1.3 1.8-1.3 1.3 0 1.8.9 1.8 2.3v5h2.7Z"/></svg>'
+    + '</a>';
+
+  document.getElementById("share-row-top").innerHTML = html;
+  document.getElementById("share-row-bottom").innerHTML = html;
+})();
+</script>
 
 
     <div class="page-footer">
@@ -791,83 +584,6 @@ document.addEventListener('click', function(e) {
 });
 </script>
 
-
-<script>
-/* ── Star field canvas ── */
-(function() {
-  const canvas = document.getElementById('starCanvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  let W, H, stars, shooters;
-
-  function randShooter() {
-    return {
-      x:   W * 0.1 + Math.random() * W * 0.8,
-      y:   -80,
-      vx:  (Math.random() - 0.5) * 1.0,
-      vy:  2.5 + Math.random() * 3.5,
-      len: 60 + Math.random() * 50,
-      op:  0,
-      col: ['#00ffcc','#ffffff','#00aaff'][Math.random() * 3 | 0],
-    };
-  }
-
-  function init() {
-    W = canvas.width  = canvas.offsetWidth;
-    H = canvas.height = canvas.offsetHeight;
-    stars = Array.from({ length: 280 }, () => ({
-      x:   Math.random() * W,
-      y:   Math.random() * H,
-      r:   Math.random() * 1.3 + 0.2,
-      op:  Math.random() * 0.55 + 0.2,
-      tw:  Math.random() * Math.PI * 2,
-      teal: Math.random() < 0.08,
-    }));
-    shooters = [randShooter(), randShooter(), randShooter()];
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-
-    stars.forEach(s => {
-      s.tw += 0.009;
-      const t = 0.5 + 0.5 * Math.sin(s.tw);
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = s.teal
-        ? `rgba(0,255,204,${(s.op * t * 0.7).toFixed(2)})`
-        : `rgba(255,255,255,${(s.op * t).toFixed(2)})`;
-      ctx.fill();
-    });
-
-    shooters.forEach((s, i) => {
-      s.x += s.vx; s.y += s.vy;
-      s.op = Math.min(1, s.op + 0.04);
-      if (s.y > H + 100) shooters[i] = randShooter();
-      const a  = Math.atan2(s.vy, s.vx);
-      const x0 = s.x - Math.cos(a) * s.len;
-      const y0 = s.y - Math.sin(a) * s.len;
-      const g  = ctx.createLinearGradient(x0, y0, s.x, s.y);
-      g.addColorStop(0, 'transparent');
-      g.addColorStop(1, s.col + 'bb');
-      ctx.beginPath();
-      ctx.moveTo(x0, y0);
-      ctx.lineTo(s.x, s.y);
-      ctx.strokeStyle = g;
-      ctx.lineWidth   = 1.5;
-      ctx.globalAlpha = s.op;
-      ctx.stroke();
-      ctx.globalAlpha = 1;
-    });
-
-    requestAnimationFrame(draw);
-  }
-
-  window.addEventListener('resize', init);
-  init();
-  draw();
-})();
-</script>
 
 
 </body>
