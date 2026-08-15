@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DeepSage - A Signal From The Void</title>
-  <meta name="description" content="Something is falling. Something is waking. Wishlist DeepSage.">
+  <title>The Automated Reward Machine · DeepSage</title>
+  <meta name="description" content="Chime is looking at stablecoins, and while everyone is focused on the &#39;crypto&#39; part, the real magic is in the plumbing.">
 
-  <meta property="og:title" content="DeepSage - A Signal From The Void">
-  <meta property="og:description" content="Something is falling. Something is waking. Wishlist DeepSage.">
-  <meta property="og:image" content="">
+  <meta property="og:title" content="The Automated Reward Machine">
+  <meta property="og:description" content="Chime is looking at stablecoins, and while everyone is focused on the &#39;crypto&#39; part, the real magic is in the plumbing.">
+  <meta property="og:image" content="/article/the-automated-reward-machine/hero.png">
   <meta property="og:type" content="article">
 
   <link rel="icon" type="image/png" href="/assets/favicon.png">
@@ -16,185 +16,6 @@
 
   <link rel="stylesheet" href="/assets/site.css">
   
-<style>
-  /* ── Homepage-only styles ──
-     Shared page shell (.page-container/.page-header/.page-footer/.page-content)
-     and shared typography now live in site.css / base.html - everything below
-     is unique to the hero/wishlist experience on this page only. */
-
-  #hero {
-    position: relative;
-    min-height: 100svh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    overflow: hidden;
-    background: #000;
-    margin: -48px -24px 0;
-    padding: 0 24px;
-  }
-
-  #starCanvas {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-  }
-
-  .hero-grad-top {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 50% 10%, #001828aa 0%, transparent 60%);
-    pointer-events: none;
-    z-index: 1;
-  }
-  .hero-grad-bottom {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 35%;
-    background: linear-gradient(to top, #000 0%, transparent 100%);
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  .hero-inner {
-    position: relative;
-    z-index: 10;
-    width: 100%;
-    max-width: 860px;
-    padding: 24px 0 60px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
-  }
-
-  .game-info {
-    width: 100%;
-    max-width: 780px;
-    margin-top: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    text-align: center;
-  }
-
-  .eyebrow {
-    font-family: var(--sans);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin: 0;
-  }
-
-  .game-title {
-    margin: 0;
-    font-size: clamp(42px, 8vw, 72px);
-    font-family: var(--serif);
-    font-weight: 300;
-    letter-spacing: 1px;
-    color: #ffffff;
-    line-height: 1.2;
-  }
-
-  .game-description,
-  .wishlist-call {
-    font-family: var(--sans);
-    font-size: 16px;
-    line-height: 1.7;
-    color: var(--text);
-    margin: 0;
-  }
-
-  .wishlist-call {
-    color: #d9b97888;
-    font-size: 15px;
-  }
-
-  .video-wrap {
-    margin-top: 36px;
-    width: 100%;
-    max-width: 780px;
-    position: relative;
-    border: 1px solid #d9b97822;
-    border-radius: 4px;
-    overflow: hidden;
-    box-shadow: 0 0 60px #d9b9780a, 0 0 120px #00aaff06;
-  }
-
-  .video-wrap::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--gold), transparent);
-    opacity: 0.5;
-    z-index: 2;
-  }
-
-  .video-ratio {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%;
-  }
-
-  .video-ratio iframe {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-    display: block;
-  }
-
-  .game-explainer {
-    width: 100%;
-    max-width: 700px;
-    margin-top: 48px;
-    text-align: left;
-  }
-
-  .game-explainer .section-title {
-    text-align: center;
-    color: #fff;
-  }
-
-  .game-explainer p {
-    font-family: var(--sans);
-    font-size: 15px;
-    line-height: 1.8;
-    color: var(--text);
-    margin-bottom: 16px;
-  }
-
-  .game-explainer p:last-child { margin-bottom: 0; }
-
-  #latest-content { max-width: 860px; margin: 0 auto; padding: 48px 24px; }
-
-  @media (max-width: 600px) {
-    .game-title { letter-spacing: 0.25em; }
-  }
-
-  @media (max-width: 380px) {
-    .game-title { font-size: 38px; letter-spacing: 0.15em; }
-  }
-
-  @keyframes shoot {
-    0%   { transform: translateX(0) translateY(0); opacity: 0; }
-    5%   { opacity: 1; }
-    80%  { opacity: 0.6; }
-    100% { transform: translateX(180px) translateY(60px); opacity: 0; }
-  }
-
-  /* ── COOKIE CONSENT BANNER (homepage-only feature) ── */
-  /* Cookie consent banner/modal styles now live in site.css (shared,
-     site-wide) since the banner itself moved to base.html. */
-</style>
-
 
   <!-- Attribution capture: first-touch referrer/landing page, before anything else runs -->
   <script>
@@ -354,104 +175,79 @@
     </div>
 
     
-<section id="hero">
-  <canvas id="starCanvas"></canvas>
-  <div class="hero-grad-top"></div>
-  <div class="hero-grad-bottom"></div>
+<article>
+  
+  <h1 class="page-title">The Automated Reward Machine</h1>
+  <p class="page-dek">Chime is looking at stablecoins, and while everyone is focused on the &#39;crypto&#39; part, the real magic is in the plumbing.</p>
 
-  <div class="hero-inner">
+  <div class="share-row" id="share-row-top"></div>
+  
+  <p class="short-link"><a href="/s/QkTooH/">deepsage.com/s/QkTooH</a></p>
+  
 
-    <!-- GAME TITLE & DESCRIPTION -->
-    <div class="game-info">
-      <h2 class="game-title">DeepSage: Learn Through Adventure</h2>
-    </div>
+  
+  <img class="hero-image" src="/article/the-automated-reward-machine/hero.png" alt="The Automated Reward Machine">
+  
 
-    <!-- VIDEO -->
-    <div class="video-wrap">
-      <div class="video-ratio">
-        <iframe
-          src="https://www.youtube.com/embed/QNbl5ciAAJo?rel=0&modestbranding=1&color=black"
-          title="DeepSage - Official Trailer"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
-      </div>
-    </div>
-
-    <!-- WHAT IS DEEPSAGE -->
-    <div class="game-explainer">
-      <h2 class="section-title">What Is DeepSage?</h2>
-      <p>DeepSage is an upcoming edutainment game built around a simple idea: real knowledge should feel like a superpower. Every battle in the game is fought with questions and answers instead of button-mashing. Face a rival, and you're both trading real questions across subjects like science, history, and logic. Answer well and you prevail; answer wrong and it costs you. Skill at the game <em>is</em> skill at learning.</p>
-      <p>DeepSage is set in a science-fiction world built to give those battles a story worth showing up for - the details are best discovered by playing.</p>
-      <p>It's a world worth exploring - and every fight in it is a chance to actually get smarter.</p>
-    </div>
-
+  <div class="article-body">
+    <h2>The Proposal</h2>
+<p>I was sitting in the workshop the other day, looking at a pile of discarded gears and some leftover copper wiring, when I realized that Chime is currently building a very large, very shiny machine. It is a banking app that works. It is efficient, it is intuitive, and it has a lovely tiered reward system for people who direct-deposit their paychecks. </p>
+<p>But the machine is currently running on a single type of fuel: the standard US dollar. And while that fuel is reliable, it’s a bit... heavy. It moves through old, clunky pipes. </p>
+<p>According to recent reports from Bloomberg and others, Chime is currently asking blockchain infrastructure firms-including a group called Rain-to pitch them 'end-to-end' stablecoin wallet services. The goal is to let customers hold, send, and receive stablecoins without ever leaving the app. It's a way to keep the money in the ecosystem, rather than having users wander off to a separate crypto exchange like a kid escaping a classroom during recess.</p>
+<h2>The Infrastructure Problem</h2>
+<p>Now, most people hear 'stablecoin' and immediately start looking for the exit. They think of volatility, or complex jargon, or the inevitable moment when a digital asset loses its peg and becomes a digital paperweight. </p>
+<p>But a stablecoin is just a digital token tied to the dollar. It’s the same value, just a different way of carrying it. I once built a specialized hydraulic press designed specifically to move single droplets of water across a room. It was entirely unnecessary, and Halvorsen in safety review nearly had a heart attack, but it proved that the method of movement matters more than the substance being moved. </p>
+<p>Chime is looking for the plumbing. They want the 'end-to-end' solution so that the user doesn't even know they are using blockchain. They just see a transaction that happened instantly. If the machine works perfectly, the 'crypto' part becomes invisible. It just becomes a smoother gear in the existing engine.</p>
+<h2>Beyond the 'Crypto' Label</h2>
+<p>There is a common misconception here. The industry thinks this is about 'adding crypto' to a bank. That is a bit like saying you are adding 'combustion' to a car. The car already runs; you're just changing how the energy moves.</p>
+<p>Data from PYMNTS suggests that 77% of consumers would actually prefer to use a stablecoin wallet if it were inside their existing banking app. They don't want a separate, scary app with a dragon on the icon; they want their existing app to just... work better. 71% of stablecoin holders even said they would use a linked debit card to spend them. </p>
+<p>This isn't a fringe experiment. We are seeing Mastercard buying infrastructure companies and Visa launching their own stablecoin services. Even the political landscape has shifted, with the Genius Act of 2025 providing a much-needed framework. The investors are finally starting to realize that the rails are being laid, even if the trains aren't all running yet.</p>
+<h2>My Proposed Machine: Automated Tiering</h2>
+<p>Here is where I think the engineers-and by that, I mean the product designers-might be missing the most interesting part. </p>
+<p>Everyone is focused on the 'utility' of stablecoins: making payments faster or cheaper. And yes, if Chime can make a transaction cheaper than a traditional wire, they win. But I have a different idea for a feature. I call it 'The Automated Reward Tiering Engine.'</p>
+<p>Currently, Chime has a tiered experience based on how you use the account. Imagine if, instead of just giving you a little extra interest or a slightly better perk, the stablecoin rails allowed Chime to automatically rebalance your rewards. </p>
+<p>Imagine a system where, based on your spending patterns, the app automatically moves a portion of your 'loyalty' rewards into a stablecoin sub-account that earns a slightly higher yield, or automatically converts your leftover change from a transaction into a micro-fraction of a reward token. You wouldn't have to click a button or 'opt-in' to a complex crypto strategy. The machine would simply sense the flow of your money and adjust the friction of your rewards in real-time. </p>
+<p>It wouldn't be 'crypto trading.' It would just be the app being slightly more efficient at being an app. </p>
+<h2>The Bottom Line</h2>
+<p>Chime is currently at a crossroads. They can either use stablecoins to simply offer a new, slightly faster way to move money, or they can use the programmable nature of these assets to create a self-adjusting, automated financial ecosystem. </p>
+<p>One is a feature update. The other is a fundamental redesign of how a personal bank functions. I, for one, am waiting to see which blueprint they choose to follow.</p>
   </div>
-</section>
 
-<!-- Latest articles & quizzes, spliced in by deepsage-content/generator/build.py -->
-<section id="latest-content">
-  <!-- LATEST_CONTENT_START -->
+  <div class="share-row" id="share-row-bottom"></div>
 
-<div class="card-grid">
   
-  <a class="content-card" href="/article/the-automated-reward-machine/">
-    <img class="content-card-thumb" src="/article/the-automated-reward-machine/hero.png" alt="The Automated Reward Machine">
-    <div class="content-card-body">
-      <span class="content-card-badge">Article</span>
-      <div class="content-card-title">The Automated Reward Machine</div>
-      <div class="content-card-preview">Chime is looking at stablecoins, and while everyone is focused on the &#39;crypto&#39; part, the real magic is in the plumbing.</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/article/the-museum-that-refuses-to-die-mostly/">
-    <img class="content-card-thumb" src="/article/the-museum-that-refuses-to-die-mostly/hero.png" alt="The Museum That Refuses to Die (Mostly)">
-    <div class="content-card-body">
-      <span class="content-card-badge">Article</span>
-      <div class="content-card-title">The Museum That Refuses to Die (Mostly)</div>
-      <div class="content-card-preview">After a 7.4 magnitude earthquake turned Colombia&#39;s Museo de Arte de Pereira into an open-air gallery, I&#39;m thinking of building a museum that is essentially just a very expensive, very sturdy cage.</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/article/the-193-000-matisse-heist-that-was-basically-a-library-hall-pass/">
-    <img class="content-card-thumb" src="/article/the-193-000-matisse-heist-that-was-basically-a-library-hall-pass/hero.png" alt="The $193,000 Matisse Heist That Was Basically a Library Hall Pass">
-    <div class="content-card-body">
-      <span class="content-card-badge">Article</span>
-      <div class="content-card-title">The $193,000 Matisse Heist That Was Basically a Library Hall Pass</div>
-      <div class="content-card-preview">Someone managed to walk out of a São Paulo library with eight Matisse masterpieces, proving that even in the age of high-tech surveillance, a bold sense of entitlement is still a viable criminal strategy.</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/quiz/matisse-mayhem-and-missing-masterpieces/">
-    <img class="content-card-thumb" src="/quiz/matisse-mayhem-and-missing-masterpieces/hero.png" alt="Matisse, Mayhem, and Missing Masterpieces">
-    <div class="content-card-body">
-      <span class="content-card-badge">Quiz</span>
-      <div class="content-card-title">Matisse, Mayhem, and Missing Masterpieces</div>
-      <div class="content-card-preview">10 questions - test your knowledge</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/article/the-death-of-the-disc-wolverine-s-final-stand/">
-    <img class="content-card-thumb" src="/article/the-death-of-the-disc-wolverine-s-final-stand/hero.png" alt="The Death of the Disc: Wolverine&#39;s Final Stand">
-    <div class="content-card-body">
-      <span class="content-card-badge">Article</span>
-      <div class="content-card-title">The Death of the Disc: Wolverine&#39;s Final Stand</div>
-      <div class="content-card-preview">Insomniac just confirmed Wolverine is coming to disc, but it might be one of the last times you actually get to hold a complete game in your hands.</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/quiz/the-wolverine-the-disc-based-dream/">
-    <img class="content-card-thumb" src="/quiz/the-wolverine-the-disc-based-dream/hero.png" alt="The Wolverine &amp; The Disc-Based Dream">
-    <div class="content-card-body">
-      <span class="content-card-badge">Quiz</span>
-      <div class="content-card-title">The Wolverine &amp; The Disc-Based Dream</div>
-      <div class="content-card-preview">10 questions - test your knowledge</div>
-    </div>
-  </a>
-  
-</div><!-- LATEST_CONTENT_END -->
-</section>
 
+  <div class="page-cta">
+    <div class="page-cta-title">Never miss a story</div>
+    <p class="page-cta-text">Create a free DeepSage account to save articles, track quiz results, and get the daily briefing first.</p>
+    <button class="page-cta-btn" onclick="openAuthModal('signup')">Create Free Account</button>
+  </div>
+</article>
+
+<script>
+(function () {
+  var pageUrl = window.location.href;
+  var shareText = "The Automated Reward Machine";
+
+  var twitterUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(shareText) + "&url=" + encodeURIComponent(pageUrl);
+  var facebookUrl = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(pageUrl) + "&quote=" + encodeURIComponent(shareText);
+  var linkedinUrl = "https://www.linkedin.com/sharing/share-offsite/?url=" + encodeURIComponent(pageUrl);
+
+  var html = ''
+    + '<a class="share-btn" target="_blank" rel="noopener" href="' + twitterUrl + '" aria-label="Share on X" title="Share on X">'
+    + '<svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.6 8.7L23.3 22H16.9l-5-6.5-5.7 6.5H2.9l8.1-9.3L2 2h6.6l4.5 5.9L18.9 2Zm-1.1 18h1.7L7.3 3.9H5.5L17.8 20Z"/></svg>'
+    + '</a>'
+    + '<a class="share-btn" target="_blank" rel="noopener" href="' + facebookUrl + '" aria-label="Share on Facebook" title="Share on Facebook">'
+    + '<svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg>'
+    + '</a>'
+    + '<a class="share-btn" target="_blank" rel="noopener" href="' + linkedinUrl + '" aria-label="Share on LinkedIn" title="Share on LinkedIn">'
+    + '<svg viewBox="0 0 24 24"><path d="M19 3A2 2 0 0 1 21 5v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14ZM8.3 18.5V10H5.7v8.5h2.6ZM7 8.8a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm11.5 9.7v-4.7c0-2.5-1.3-3.7-3.1-3.7-1.4 0-2 .8-2.4 1.3V10H10.4v8.5H13v-4.7c0-.5 0-1 .2-1.3.3-.6.8-1.3 1.8-1.3 1.3 0 1.8.9 1.8 2.3v5h2.7Z"/></svg>'
+    + '</a>';
+
+  document.getElementById("share-row-top").innerHTML = html;
+  document.getElementById("share-row-bottom").innerHTML = html;
+})();
+</script>
 
 
     <div class="page-footer">
@@ -791,83 +587,6 @@ document.addEventListener('click', function(e) {
 });
 </script>
 
-
-<script>
-/* ── Star field canvas ── */
-(function() {
-  const canvas = document.getElementById('starCanvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  let W, H, stars, shooters;
-
-  function randShooter() {
-    return {
-      x:   W * 0.1 + Math.random() * W * 0.8,
-      y:   -80,
-      vx:  (Math.random() - 0.5) * 1.0,
-      vy:  2.5 + Math.random() * 3.5,
-      len: 60 + Math.random() * 50,
-      op:  0,
-      col: ['#00ffcc','#ffffff','#00aaff'][Math.random() * 3 | 0],
-    };
-  }
-
-  function init() {
-    W = canvas.width  = canvas.offsetWidth;
-    H = canvas.height = canvas.offsetHeight;
-    stars = Array.from({ length: 280 }, () => ({
-      x:   Math.random() * W,
-      y:   Math.random() * H,
-      r:   Math.random() * 1.3 + 0.2,
-      op:  Math.random() * 0.55 + 0.2,
-      tw:  Math.random() * Math.PI * 2,
-      teal: Math.random() < 0.08,
-    }));
-    shooters = [randShooter(), randShooter(), randShooter()];
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-
-    stars.forEach(s => {
-      s.tw += 0.009;
-      const t = 0.5 + 0.5 * Math.sin(s.tw);
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = s.teal
-        ? `rgba(0,255,204,${(s.op * t * 0.7).toFixed(2)})`
-        : `rgba(255,255,255,${(s.op * t).toFixed(2)})`;
-      ctx.fill();
-    });
-
-    shooters.forEach((s, i) => {
-      s.x += s.vx; s.y += s.vy;
-      s.op = Math.min(1, s.op + 0.04);
-      if (s.y > H + 100) shooters[i] = randShooter();
-      const a  = Math.atan2(s.vy, s.vx);
-      const x0 = s.x - Math.cos(a) * s.len;
-      const y0 = s.y - Math.sin(a) * s.len;
-      const g  = ctx.createLinearGradient(x0, y0, s.x, s.y);
-      g.addColorStop(0, 'transparent');
-      g.addColorStop(1, s.col + 'bb');
-      ctx.beginPath();
-      ctx.moveTo(x0, y0);
-      ctx.lineTo(s.x, s.y);
-      ctx.strokeStyle = g;
-      ctx.lineWidth   = 1.5;
-      ctx.globalAlpha = s.op;
-      ctx.stroke();
-      ctx.globalAlpha = 1;
-    });
-
-    requestAnimationFrame(draw);
-  }
-
-  window.addEventListener('resize', init);
-  init();
-  draw();
-})();
-</script>
 
 
 </body>
