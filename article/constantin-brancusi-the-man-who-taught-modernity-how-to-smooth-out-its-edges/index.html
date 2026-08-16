@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DeepSage - A Signal From The Void</title>
-  <meta name="description" content="Something is falling. Something is waking. Wishlist DeepSage.">
+  <title>Constantin Brancusi: The Man Who Taught Modernity How to Smooth Out Its Edges · DeepSage</title>
+  <meta name="description" content="Long before Silicon Valley obsessed over &#39;seamless user experiences,&#39; one Romanian sculptor was already perfecting the art of the minimalist curve.">
 
-  <meta property="og:title" content="DeepSage - A Signal From The Void">
-  <meta property="og:description" content="Something is falling. Something is waking. Wishlist DeepSage.">
-  <meta property="og:image" content="">
+  <meta property="og:title" content="Constantin Brancusi: The Man Who Taught Modernity How to Smooth Out Its Edges">
+  <meta property="og:description" content="Long before Silicon Valley obsessed over &#39;seamless user experiences,&#39; one Romanian sculptor was already perfecting the art of the minimalist curve.">
+  <meta property="og:image" content="/article/constantin-brancusi-the-man-who-taught-modernity-how-to-smooth-out-its-edges/hero.png">
   <meta property="og:type" content="article">
 
   <link rel="icon" type="image/png" href="/assets/favicon.png">
@@ -16,185 +16,6 @@
 
   <link rel="stylesheet" href="/assets/site.css">
   
-<style>
-  /* ── Homepage-only styles ──
-     Shared page shell (.page-container/.page-header/.page-footer/.page-content)
-     and shared typography now live in site.css / base.html - everything below
-     is unique to the hero/wishlist experience on this page only. */
-
-  #hero {
-    position: relative;
-    min-height: 100svh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    overflow: hidden;
-    background: #000;
-    margin: -48px -24px 0;
-    padding: 0 24px;
-  }
-
-  #starCanvas {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-  }
-
-  .hero-grad-top {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 50% 10%, #001828aa 0%, transparent 60%);
-    pointer-events: none;
-    z-index: 1;
-  }
-  .hero-grad-bottom {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 35%;
-    background: linear-gradient(to top, #000 0%, transparent 100%);
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  .hero-inner {
-    position: relative;
-    z-index: 10;
-    width: 100%;
-    max-width: 860px;
-    padding: 24px 0 60px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
-  }
-
-  .game-info {
-    width: 100%;
-    max-width: 780px;
-    margin-top: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    text-align: center;
-  }
-
-  .eyebrow {
-    font-family: var(--sans);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin: 0;
-  }
-
-  .game-title {
-    margin: 0;
-    font-size: clamp(42px, 8vw, 72px);
-    font-family: var(--serif);
-    font-weight: 300;
-    letter-spacing: 1px;
-    color: #ffffff;
-    line-height: 1.2;
-  }
-
-  .game-description,
-  .wishlist-call {
-    font-family: var(--sans);
-    font-size: 16px;
-    line-height: 1.7;
-    color: var(--text);
-    margin: 0;
-  }
-
-  .wishlist-call {
-    color: #d9b97888;
-    font-size: 15px;
-  }
-
-  .video-wrap {
-    margin-top: 36px;
-    width: 100%;
-    max-width: 780px;
-    position: relative;
-    border: 1px solid #d9b97822;
-    border-radius: 4px;
-    overflow: hidden;
-    box-shadow: 0 0 60px #d9b9780a, 0 0 120px #00aaff06;
-  }
-
-  .video-wrap::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--gold), transparent);
-    opacity: 0.5;
-    z-index: 2;
-  }
-
-  .video-ratio {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%;
-  }
-
-  .video-ratio iframe {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-    display: block;
-  }
-
-  .game-explainer {
-    width: 100%;
-    max-width: 700px;
-    margin-top: 48px;
-    text-align: left;
-  }
-
-  .game-explainer .section-title {
-    text-align: center;
-    color: #fff;
-  }
-
-  .game-explainer p {
-    font-family: var(--sans);
-    font-size: 15px;
-    line-height: 1.8;
-    color: var(--text);
-    margin-bottom: 16px;
-  }
-
-  .game-explainer p:last-child { margin-bottom: 0; }
-
-  #latest-content { max-width: 860px; margin: 0 auto; padding: 48px 24px; }
-
-  @media (max-width: 600px) {
-    .game-title { letter-spacing: 0.25em; }
-  }
-
-  @media (max-width: 380px) {
-    .game-title { font-size: 38px; letter-spacing: 0.15em; }
-  }
-
-  @keyframes shoot {
-    0%   { transform: translateX(0) translateY(0); opacity: 0; }
-    5%   { opacity: 1; }
-    80%  { opacity: 0.6; }
-    100% { transform: translateX(180px) translateY(60px); opacity: 0; }
-  }
-
-  /* ── COOKIE CONSENT BANNER (homepage-only feature) ── */
-  /* Cookie consent banner/modal styles now live in site.css (shared,
-     site-wide) since the banner itself moved to base.html. */
-</style>
-
 
   <!-- Attribution capture: first-touch referrer/landing page, before anything else runs -->
   <script>
@@ -354,104 +175,85 @@
     </div>
 
     
-<section id="hero">
-  <canvas id="starCanvas"></canvas>
-  <div class="hero-grad-top"></div>
-  <div class="hero-grad-bottom"></div>
+<article>
+  
+  <h1 class="page-title">Constantin Brancusi: The Man Who Taught Modernity How to Smooth Out Its Edges</h1>
+  <p class="page-dek">Long before Silicon Valley obsessed over &#39;seamless user experiences,&#39; one Romanian sculptor was already perfecting the art of the minimalist curve.</p>
 
-  <div class="hero-inner">
+  <div class="share-row" id="share-row-top"></div>
+  
+  <p class="short-link"><a href="/s/P9S5BU/">deepsage.com/s/P9S5BU</a></p>
+  
 
-    <!-- GAME TITLE & DESCRIPTION -->
-    <div class="game-info">
-      <h2 class="game-title">DeepSage: Learn Through Adventure</h2>
-    </div>
+  
+  <img class="hero-image" src="/article/constantin-brancusi-the-man-who-taught-modernity-how-to-smooth-out-its-edges/hero.png" alt="Constantin Brancusi: The Man Who Taught Modernity How to Smooth Out Its Edges">
+  
 
-    <!-- VIDEO -->
-    <div class="video-wrap">
-      <div class="video-ratio">
-        <iframe
-          src="https://www.youtube.com/embed/QNbl5ciAAJo?rel=0&modestbranding=1&color=black"
-          title="DeepSage - Official Trailer"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
-      </div>
-    </div>
+  <div class="article-body">
+    <h2>The original 'minimalist' aesthetic</h2>
+<p>In 1907, Constantin Brancusi decided that if you want to capture the essence of a bird, you shouldn't actually draw feathers. In fact, you shouldn't even bother with the beak. You just need a shape so sleek, so aggressively aerodynamic, that your brain fills in the rest. It's the artistic equivalent of a tech startup promising 'frictionless' payments while actually just making it harder to find the 'cancel subscription' button.</p>
+<p>Brancusi wasn't interested in the messy, sweaty reality of human anatomy. He wanted the soul of the thing. He wanted the geometry. He was looking for the 'essential form,' which is a fancy way of saying he wanted to strip away all the clutter that makes life-and sculpture-difficult to look at.</p>
+<p><img alt="" src="img_1.png" /></p>
+<h2>Reducing the world to a single curve</h2>
+<p>If you look at his work, it feels strangely familiar. It has that same polished, 'just-unboxed' sheen that we crave in our <a href="https://deepsage.com/article/the-museum-that-refuses-to-die-mostly/">modern consumer electronics</a>. There is a reason his pieces look like they belong in a high-end lobby or a very expensive minimalist apartment in Berlin. He understood that humans are suckers for smooth surfaces. We find them clean, efficient, and-most importantly-uncomplicated.</p>
+<video class="article-animation" src="anim_1.mp4" autoplay loop muted playsinline></video>
 
-    <!-- WHAT IS DEEPSAGE -->
-    <div class="game-explainer">
-      <h2 class="section-title">What Is DeepSage?</h2>
-      <p>DeepSage is an upcoming edutainment game built around a simple idea: real knowledge should feel like a superpower. Every battle in the game is fought with questions and answers instead of button-mashing. Face a rival, and you're both trading real questions across subjects like science, history, and logic. Answer well and you prevail; answer wrong and it costs you. Skill at the game <em>is</em> skill at learning.</p>
-      <p>DeepSage is set in a science-fiction world built to give those battles a story worth showing up for - the details are best discovered by playing.</p>
-      <p>It's a world worth exploring - and every fight in it is a chance to actually get smarter.</p>
-    </div>
+<p>His process involved an obsessive, almost violent reduction of material. He would take a hunk of marble or bronze and chip, sand, and polish away everything that wasn't 'the point.' It's a bit like how <a href="https://deepsage.com/article/the-193-000-matisse-heist-that-was-basically-a-library-hall-pass/">generative AI models</a> work: you start with a massive, chaotic dataset of everything ever written, and you try to distill it down into a single, coherent, and surprisingly smooth response. </p>
+<div class="key-info-block"><div class="key-info-label">The Smoothness Effect</div><p>Brancusi's work predates modern industrial design by decades, setting the blueprint for the 'minimalist' aesthetic we see in tech today.</p></div>
 
+<h2>The studio as a temple of precision</h2>
+<p>Two major institutions, the Neue Nationalgalerie and the Museum of Modern Art, are currently mounting massive displays of his oeuvre and his studio setup. This isn't just a 'look at some pretty rocks' exhibit. It's an autopsy of a creative genius. Seeing his studio setup is like seeing a developer's desk covered in three monitors, a mechanical keyboard, and enough empty espresso cups to power a small village. It shows the grit behind the gloss.</p>
+<p><img alt="" src="img_2.png" /></p>
+<div class="key-info-block"><div class="key-info-label">Major Retrospectives</div><p>The Neue Nationalgalerie and MoMA are simultaneously highlighting his studio and his complete body of work.</p></div>
+
+<p>Behind every 'effortless' curve is a mountain of discarded stone and a sculptor who likely spent more time polishing than breathing. It's easy to romanticize the 'minimalist lifestyle' on Instagram, but Brancusi's minimalism was a heavy, physical labor. It was an intentional, grueling struggle against the stubbornness of matter.</p>
+<h2>Why this still matters (even if you don't 'get' art)</h2>
+<p>You might think, 'I don't care about bronze birds; I have a mortgage.' But Brancusi's influence is everywhere. Every time you see a <a href="https://deepsage.com/article/italy-s-100-room-nuclear-bunker-is-finally-opening-to-the-public/">streamlined product design</a> that makes you feel like a sophisticated adult, you're seeing his ghost. He pioneered the idea that beauty isn't found in the extra details, but in the removal of them.</p>
+<p>In an era of 'information overload' where every app is trying to grab your attention with a thousand flashing notifications and useless features, Brancusi is a reminder that there is immense power in saying less. He teaches us that sometimes, the most profound way to communicate is to stop shouting and just show us the shape of the truth.</p>
+<p>So, next time you're staring at a piece of hardware that's so smooth it's almost intimidating, give a little nod to the man who started it all. He was the original architect of the 'clean' look, long before it became a corporate default.</p>
   </div>
-</section>
 
-<!-- Latest articles & quizzes, spliced in by deepsage-content/generator/build.py -->
-<section id="latest-content">
-  <!-- LATEST_CONTENT_START -->
+  <div class="share-row" id="share-row-bottom"></div>
 
-<div class="card-grid">
   
-  <a class="content-card" href="/article/constantin-brancusi-the-man-who-taught-modernity-how-to-smooth-out-its-edges/">
-    <img class="content-card-thumb" src="/article/constantin-brancusi-the-man-who-taught-modernity-how-to-smooth-out-its-edges/hero.png" alt="Constantin Brancusi: The Man Who Taught Modernity How to Smooth Out Its Edges">
-    <div class="content-card-body">
-      <span class="content-card-badge">Article</span>
-      <div class="content-card-title">Constantin Brancusi: The Man Who Taught Modernity How to Smooth Out Its Edges</div>
-      <div class="content-card-preview">Long before Silicon Valley obsessed over &#39;seamless user experiences,&#39; one Romanian sculptor was already perfecting the art of the minimalist curve.</div>
-    </div>
-  </a>
+  <div class="page-cta companion-cta">
+    <div class="page-cta-title">Test what you just learned</div>
+    <p class="page-cta-text">Take the companion quiz for this story and see how you score.</p>
+    <a class="page-cta-btn" href="/quiz/brancusi-the-original-smooth-operator/">Take the Quiz</a>
+  </div>
   
-  <a class="content-card" href="/quiz/brancusi-the-original-smooth-operator/">
-    <img class="content-card-thumb" src="/quiz/brancusi-the-original-smooth-operator/hero.png" alt="Brancusi: The Original Smooth Operator">
-    <div class="content-card-body">
-      <span class="content-card-badge">Quiz</span>
-      <div class="content-card-title">Brancusi: The Original Smooth Operator</div>
-      <div class="content-card-preview">10 questions - test your knowledge</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/article/the-global-comic-machine-why-translation-is-more-than-just-swapping-words/">
-    <img class="content-card-thumb" src="/article/the-global-comic-machine-why-translation-is-more-than-just-swapping-words/hero.png" alt="The Global Comic Machine: Why Translation is More Than Just Swapping Words">
-    <div class="content-card-body">
-      <span class="content-card-badge">Article</span>
-      <div class="content-card-title">The Global Comic Machine: Why Translation is More Than Just Swapping Words</div>
-      <div class="content-card-preview">I built a prototype for a linguistic teleportation device, but it turns out all I needed was a good stack of translated graphic novels.</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/article/mary-heilmann-the-painter-who-proved-art-doesn-t-need-to-be-depressing/">
-    <img class="content-card-thumb" src="/article/mary-heilmann-the-painter-who-proved-art-doesn-t-need-to-be-depressing/hero.png" alt="Mary Heilmann, the Painter Who Proved Art Doesn&#39;t Need to be Depressing">
-    <div class="content-card-body">
-      <span class="content-card-badge">Article</span>
-      <div class="content-card-title">Mary Heilmann, the Painter Who Proved Art Doesn&#39;t Need to be Depressing</div>
-      <div class="content-card-preview">The legendary abstract painter has passed away at 86, leaving behind a legacy of color, wit, and a refusal to take the &#39;serious&#39; art world too seriously.</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/quiz/colors-crafts-and-creativity-the-mary-heilmann-tribute/">
-    <img class="content-card-thumb" src="/quiz/colors-crafts-and-creativity-the-mary-heilmann-tribute/hero.png" alt="Colors, Crafts, and Creativity: The Mary Heilmann Tribute">
-    <div class="content-card-body">
-      <span class="content-card-badge">Quiz</span>
-      <div class="content-card-title">Colors, Crafts, and Creativity: The Mary Heilmann Tribute</div>
-      <div class="content-card-preview">10 questions - test your knowledge</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/article/the-physical-internet-why-we-stopped-sending-cats-through-pipes/">
-    <img class="content-card-thumb" src="/article/the-physical-internet-why-we-stopped-sending-cats-through-pipes/hero.png" alt="The Physical Internet: Why We Stopped Sending Cats Through Pipes">
-    <div class="content-card-body">
-      <span class="content-card-badge">Article</span>
-      <div class="content-card-title">The Physical Internet: Why We Stopped Sending Cats Through Pipes</div>
-      <div class="content-card-preview">Before we had packets of data, we had packets of everything-including live cats and champagne.</div>
-    </div>
-  </a>
-  
-</div><!-- LATEST_CONTENT_END -->
-</section>
 
+  <div class="page-cta">
+    <div class="page-cta-title">Never miss a story</div>
+    <p class="page-cta-text">Create a free DeepSage account to save articles, track quiz results, and get the daily briefing first.</p>
+    <button class="page-cta-btn" onclick="openAuthModal('signup')">Create Free Account</button>
+  </div>
+</article>
+
+<script>
+(function () {
+  var pageUrl = window.location.href;
+  var shareText = "Constantin Brancusi: The Man Who Taught Modernity How to Smooth Out Its Edges";
+
+  var twitterUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(shareText) + "&url=" + encodeURIComponent(pageUrl);
+  var facebookUrl = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(pageUrl) + "&quote=" + encodeURIComponent(shareText);
+  var linkedinUrl = "https://www.linkedin.com/sharing/share-offsite/?url=" + encodeURIComponent(pageUrl);
+
+  var html = ''
+    + '<a class="share-btn" target="_blank" rel="noopener" href="' + twitterUrl + '" aria-label="Share on X" title="Share on X">'
+    + '<svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.6 8.7L23.3 22H16.9l-5-6.5-5.7 6.5H2.9l8.1-9.3L2 2h6.6l4.5 5.9L18.9 2Zm-1.1 18h1.7L7.3 3.9H5.5L17.8 20Z"/></svg>'
+    + '</a>'
+    + '<a class="share-btn" target="_blank" rel="noopener" href="' + facebookUrl + '" aria-label="Share on Facebook" title="Share on Facebook">'
+    + '<svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg>'
+    + '</a>'
+    + '<a class="share-btn" target="_blank" rel="noopener" href="' + linkedinUrl + '" aria-label="Share on LinkedIn" title="Share on LinkedIn">'
+    + '<svg viewBox="0 0 24 24"><path d="M19 3A2 2 0 0 1 21 5v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14ZM8.3 18.5V10H5.7v8.5h2.6ZM7 8.8a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm11.5 9.7v-4.7c0-2.5-1.3-3.7-3.1-3.7-1.4 0-2 .8-2.4 1.3V10H10.4v8.5H13v-4.7c0-.5 0-1 .2-1.3.3-.6.8-1.3 1.8-1.3 1.3 0 1.8.9 1.8 2.3v5h2.7Z"/></svg>'
+    + '</a>';
+
+  document.getElementById("share-row-top").innerHTML = html;
+  document.getElementById("share-row-bottom").innerHTML = html;
+})();
+</script>
 
 
     <div class="page-footer">
@@ -791,83 +593,6 @@ document.addEventListener('click', function(e) {
 });
 </script>
 
-
-<script>
-/* ── Star field canvas ── */
-(function() {
-  const canvas = document.getElementById('starCanvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  let W, H, stars, shooters;
-
-  function randShooter() {
-    return {
-      x:   W * 0.1 + Math.random() * W * 0.8,
-      y:   -80,
-      vx:  (Math.random() - 0.5) * 1.0,
-      vy:  2.5 + Math.random() * 3.5,
-      len: 60 + Math.random() * 50,
-      op:  0,
-      col: ['#00ffcc','#ffffff','#00aaff'][Math.random() * 3 | 0],
-    };
-  }
-
-  function init() {
-    W = canvas.width  = canvas.offsetWidth;
-    H = canvas.height = canvas.offsetHeight;
-    stars = Array.from({ length: 280 }, () => ({
-      x:   Math.random() * W,
-      y:   Math.random() * H,
-      r:   Math.random() * 1.3 + 0.2,
-      op:  Math.random() * 0.55 + 0.2,
-      tw:  Math.random() * Math.PI * 2,
-      teal: Math.random() < 0.08,
-    }));
-    shooters = [randShooter(), randShooter(), randShooter()];
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-
-    stars.forEach(s => {
-      s.tw += 0.009;
-      const t = 0.5 + 0.5 * Math.sin(s.tw);
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = s.teal
-        ? `rgba(0,255,204,${(s.op * t * 0.7).toFixed(2)})`
-        : `rgba(255,255,255,${(s.op * t).toFixed(2)})`;
-      ctx.fill();
-    });
-
-    shooters.forEach((s, i) => {
-      s.x += s.vx; s.y += s.vy;
-      s.op = Math.min(1, s.op + 0.04);
-      if (s.y > H + 100) shooters[i] = randShooter();
-      const a  = Math.atan2(s.vy, s.vx);
-      const x0 = s.x - Math.cos(a) * s.len;
-      const y0 = s.y - Math.sin(a) * s.len;
-      const g  = ctx.createLinearGradient(x0, y0, s.x, s.y);
-      g.addColorStop(0, 'transparent');
-      g.addColorStop(1, s.col + 'bb');
-      ctx.beginPath();
-      ctx.moveTo(x0, y0);
-      ctx.lineTo(s.x, s.y);
-      ctx.strokeStyle = g;
-      ctx.lineWidth   = 1.5;
-      ctx.globalAlpha = s.op;
-      ctx.stroke();
-      ctx.globalAlpha = 1;
-    });
-
-    requestAnimationFrame(draw);
-  }
-
-  window.addEventListener('resize', init);
-  init();
-  draw();
-})();
-</script>
 
 
 </body>
