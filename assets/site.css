@@ -144,17 +144,17 @@ a:hover { opacity: 0.7; }
   .top-banner-text { font-size: 12px; }
 }
 
-/* The logo is a fixed-aspect wordmark image (580x120 source). Height drives the
+/* The logo is a fixed-aspect wordmark image (1628x351 source). Height drives the
    size and width:auto keeps the ratio; the intrinsic width/height attributes on
    the <img> reserve the box so the header doesn't shift as it decodes. */
 .page-logo {
   display: block;
-  height: 52px;
+  height: 72px;
   width: auto;
 }
 
 @media (max-width: 600px) {
-  .page-logo { height: 38px; }
+  .page-logo { height: 52px; }
 }
 
 .back-link {
