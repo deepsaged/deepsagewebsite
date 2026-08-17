@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DeepSage - A Signal From The Void</title>
-  <meta name="description" content="Something is falling. Something is waking. Wishlist DeepSage.">
+  <title>The Momentum Anchor: Why Spider-Man is the Engine of Your Team · DeepSage</title>
+  <meta name="description" content="He&#39;s not just swinging around; he&#39;s reconfiguring the entire battlefield.">
 
-  <meta property="og:title" content="DeepSage - A Signal From The Void">
-  <meta property="og:description" content="Something is falling. Something is waking. Wishlist DeepSage.">
-  <meta property="og:image" content="">
+  <meta property="og:title" content="The Momentum Anchor: Why Spider-Man is the Engine of Your Team">
+  <meta property="og:description" content="He&#39;s not just swinging around; he&#39;s reconfiguring the entire battlefield.">
+  <meta property="og:image" content="/article/the-momentum-anchor-why-spider-man-is-the-engine-of-your-team/hero.png">
   <meta property="og:type" content="article">
 
   <link rel="icon" type="image/png" href="/assets/favicon.png">
@@ -16,185 +16,6 @@
 
   <link rel="stylesheet" href="/assets/site.css">
   
-<style>
-  /* ── Homepage-only styles ──
-     Shared page shell (.page-container/.page-header/.page-footer/.page-content)
-     and shared typography now live in site.css / base.html - everything below
-     is unique to the hero/wishlist experience on this page only. */
-
-  #hero {
-    position: relative;
-    min-height: 100svh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    overflow: hidden;
-    background: #000;
-    margin: -48px -24px 0;
-    padding: 0 24px;
-  }
-
-  #starCanvas {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-  }
-
-  .hero-grad-top {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 50% 10%, #001828aa 0%, transparent 60%);
-    pointer-events: none;
-    z-index: 1;
-  }
-  .hero-grad-bottom {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 35%;
-    background: linear-gradient(to top, #000 0%, transparent 100%);
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  .hero-inner {
-    position: relative;
-    z-index: 10;
-    width: 100%;
-    max-width: 860px;
-    padding: 24px 0 60px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
-  }
-
-  .game-info {
-    width: 100%;
-    max-width: 780px;
-    margin-top: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    text-align: center;
-  }
-
-  .eyebrow {
-    font-family: var(--sans);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin: 0;
-  }
-
-  .game-title {
-    margin: 0;
-    font-size: clamp(42px, 8vw, 72px);
-    font-family: var(--serif);
-    font-weight: 300;
-    letter-spacing: 1px;
-    color: #ffffff;
-    line-height: 1.2;
-  }
-
-  .game-description,
-  .wishlist-call {
-    font-family: var(--sans);
-    font-size: 16px;
-    line-height: 1.7;
-    color: var(--text);
-    margin: 0;
-  }
-
-  .wishlist-call {
-    color: #d9b97888;
-    font-size: 15px;
-  }
-
-  .video-wrap {
-    margin-top: 36px;
-    width: 100%;
-    max-width: 780px;
-    position: relative;
-    border: 1px solid #d9b97822;
-    border-radius: 4px;
-    overflow: hidden;
-    box-shadow: 0 0 60px #d9b9780a, 0 0 120px #00aaff06;
-  }
-
-  .video-wrap::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--gold), transparent);
-    opacity: 0.5;
-    z-index: 2;
-  }
-
-  .video-ratio {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%;
-  }
-
-  .video-ratio iframe {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-    display: block;
-  }
-
-  .game-explainer {
-    width: 100%;
-    max-width: 700px;
-    margin-top: 48px;
-    text-align: left;
-  }
-
-  .game-explainer .section-title {
-    text-align: center;
-    color: #fff;
-  }
-
-  .game-explainer p {
-    font-family: var(--sans);
-    font-size: 15px;
-    line-height: 1.8;
-    color: var(--text);
-    margin-bottom: 16px;
-  }
-
-  .game-explainer p:last-child { margin-bottom: 0; }
-
-  #latest-content { max-width: 860px; margin: 0 auto; padding: 48px 24px; }
-
-  @media (max-width: 600px) {
-    .game-title { letter-spacing: 0.25em; }
-  }
-
-  @media (max-width: 380px) {
-    .game-title { font-size: 38px; letter-spacing: 0.15em; }
-  }
-
-  @keyframes shoot {
-    0%   { transform: translateX(0) translateY(0); opacity: 0; }
-    5%   { opacity: 1; }
-    80%  { opacity: 0.6; }
-    100% { transform: translateX(180px) translateY(60px); opacity: 0; }
-  }
-
-  /* ── COOKIE CONSENT BANNER (homepage-only feature) ── */
-  /* Cookie consent banner/modal styles now live in site.css (shared,
-     site-wide) since the banner itself moved to base.html. */
-</style>
-
 
   <!-- Attribution capture: first-touch referrer/landing page, before anything else runs -->
   <script>
@@ -354,104 +175,79 @@
     </div>
 
     
-<section id="hero">
-  <canvas id="starCanvas"></canvas>
-  <div class="hero-grad-top"></div>
-  <div class="hero-grad-bottom"></div>
+<article>
+  
+  <h1 class="page-title">The Momentum Anchor: Why Spider-Man is the Engine of Your Team</h1>
+  <p class="page-dek">He&#39;s not just swinging around; he&#39;s reconfiguring the entire battlefield.</p>
 
-  <div class="hero-inner">
+  <div class="share-row" id="share-row-top"></div>
+  
+  <p class="short-link"><a href="/s/j08G5B/">deepsage.com/s/j08G5B</a></p>
+  
 
-    <!-- GAME TITLE & DESCRIPTION -->
-    <div class="game-info">
-      <h2 class="game-title">DeepSage: Learn Through Adventure</h2>
-    </div>
+  
+  <img class="hero-image" src="/article/the-momentum-anchor-why-spider-man-is-the-engine-of-your-team/hero.png" alt="The Momentum Anchor: Why Spider-Man is the Engine of Your Team">
+  
 
-    <!-- VIDEO -->
-    <div class="video-wrap">
-      <div class="video-ratio">
-        <iframe
-          src="https://www.youtube.com/embed/QNbl5ciAAJo?rel=0&modestbranding=1&color=black"
-          title="DeepSage - Official Trailer"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
-      </div>
-    </div>
-
-    <!-- WHAT IS DEEPSAGE -->
-    <div class="game-explainer">
-      <h2 class="section-title">What Is DeepSage?</h2>
-      <p>DeepSage is an upcoming edutainment game built around a simple idea: real knowledge should feel like a superpower. Every battle in the game is fought with questions and answers instead of button-mashing. Face a rival, and you're both trading real questions across subjects like science, history, and logic. Answer well and you prevail; answer wrong and it costs you. Skill at the game <em>is</em> skill at learning.</p>
-      <p>DeepSage is set in a science-fiction world built to give those battles a story worth showing up for - the details are best discovered by playing.</p>
-      <p>It's a world worth exploring - and every fight in it is a chance to actually get smarter.</p>
-    </div>
-
+  <div class="article-body">
+    <h2>The Problem of Static Chaos</h2>
+<p>When I realized the current meta in <em>MARVEL Tōkon: Fighting Souls</em> was becoming a bit too much like a heavy-metal concert where everyone is just standing in one spot and screaming, I knew I had to intervene. The problem is simple: characters like Magik or Black Panther are incredibly powerful, but they tend to stay where you put them. They are the heavy machinery. If you want to win, you need someone to move the machinery around.</p>
+<p>I's been working on a concept I call the 'Momentum Anchor.' It's a way to look at Spider-Man not as a solo acrobat, but as a piece of precision engineering designed to manipulate stage positioning. I haven't shown the blueprints to the investors yet-they mostly just want to talk about 'engagement metrics'-but the math holds up. Spider-Man doesn't just fight; he dictates where the fight happens.</p>
+<h2>The Web Zip Utility</h2>
+<p>Spider-Man is currently sitting comfortably in S-Tier. Now, the official docs say he's 'easy to use,' which is a polite way of saying he won't immediately cause a system crash when you pick him. He has great mobility thanks to his Web Zip ability. </p>
+<p>If you use Web Zip (Up + Directional), you can change your trajectory mid-air. It’s a bit like a small, unguided drone that actually listens to your commands. You can also perform a Zip Kick by holding Up during the zip, or a Web Slam if you're grounded. It’s a lot of moving parts. I actually built a small hydraulic simulator to test the physics of a mid-air web-swing, but Halvorsen in safety review said it was 'a liability to the office floor.' So, we'll just stick to the game.</p>
+<h2>The Momentum Anchor Theory</h2>
+<p>Here is my actual proposal, which is not yet a confirmed feature of the game's manual: Spider-Man is the 'Momentum Anchor.' </p>
+<p>In a tag-based system, most players focus on how much damage a character does. But if you pair a high-mobility character like Spidey with a 'static' powerhouse-say, someone like Iron Man or Captain America-Spider-Man's job isn't to get the kill. His job is to use his Web Zip to physically drag the engagement toward your heavy hitters. </p>
+<p>Think of it like a tow truck. The tow truck isn't the star of the highway; it's just there to make sure the broken-down semi-truck gets to the right destination. By using Web Hang or Web Slam to pull opponents into the range of your teammates, you are essentially reconfiguring the arena's geometry. It’s a way to use high-speed movement to solve the problem of low-range teammates. </p>
+<h2>The Toolkit</h2>
+<p>If you want to try this, you'll need to master his command list. It's a bit dense, like a manual for a toaster that also predicts the weather. </p>
+<ul>
+<li><strong>Web Shot &amp; Web Bomb:</strong> Great for keeping distance or setting up a trap. Both work mid-air.</li>
+<li><strong>Spidey-Sense:</strong> Essential for staying alive when the heavy hitters are busy.</li>
+<li><strong>The Big Moves:</strong> His 'Super' moves like the Webbing attacks are great, but the real value is in the utility. </li>
+</ul>
+<p>If you can master the transition from a Web Zip into a repositioning maneuver, you're no longer just playing a fighting game; you're managing a battlefield.</p>
+<h2>Summary of the Strategy</h2>
+<p>Don't look at Spider-Man as your primary damage dealer. Look at him as the pivot point. Use his mobility to force the enemy into the 'kill zone' established by your heavier teammates. If you can manipulate the position of the opponent using his web-based kit, you've already won the tactical battle before the health bars even move. </p>
+<p>Just don't blame me if you end up losing a match because you were too busy practicing your mid-air trajectories. That's on you.</p>
   </div>
-</section>
 
-<!-- Latest articles & quizzes, spliced in by deepsage-content/generator/build.py -->
-<section id="latest-content">
-  <!-- LATEST_CONTENT_START -->
+  <div class="share-row" id="share-row-bottom"></div>
 
-<div class="card-grid">
   
-  <a class="content-card" href="/article/the-momentum-anchor-why-spider-man-is-the-engine-of-your-team/">
-    <img class="content-card-thumb" src="/article/the-momentum-anchor-why-spider-man-is-the-engine-of-your-team/hero.png" alt="The Momentum Anchor: Why Spider-Man is the Engine of Your Team">
-    <div class="content-card-body">
-      <span class="content-card-badge">Article</span>
-      <div class="content-card-title">The Momentum Anchor: Why Spider-Man is the Engine of Your Team</div>
-      <div class="content-card-preview">He&#39;s not just swinging around; he&#39;s reconfiguring the entire battlefield.</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/article/diablo-4-s-switch-2-debut-might-be-the-age-of-hatred-we-deserve/">
-    <img class="content-card-thumb" src="/article/diablo-4-s-switch-2-debut-might-be-the-age-of-hatred-we-deserve/hero.png" alt="Diablo 4&#39;s Switch 2 Debut Might Be the &#39;Age of Hatred&#39; We Deserve">
-    <div class="content-card-body">
-      <span class="content-card-badge">Article</span>
-      <div class="content-card-title">Diablo 4&#39;s Switch 2 Debut Might Be the &#39;Age of Hatred&#39; We Deserve</div>
-      <div class="content-card-preview">Forget the hardware specs for a second-it looks like the next Nintendo powerhouse is getting a massive, all-in-one dark fantasy bundle.</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/quiz/diablo-4-on-switch-2-the-dark-lord-arrives-finally/">
-    <img class="content-card-thumb" src="/quiz/diablo-4-on-switch-2-the-dark-lord-arrives-finally/hero.png" alt="Diablo 4 on Switch 2: The Dark Lord Arrives (Finally)">
-    <div class="content-card-body">
-      <span class="content-card-badge">Quiz</span>
-      <div class="content-card-title">Diablo 4 on Switch 2: The Dark Lord Arrives (Finally)</div>
-      <div class="content-card-preview">10 questions - test your knowledge</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/article/constantin-brancusi-the-man-who-taught-modernity-how-to-smooth-out-its-edges/">
-    <img class="content-card-thumb" src="/article/constantin-brancusi-the-man-who-taught-modernity-how-to-smooth-out-its-edges/hero.png" alt="Constantin Brancusi: The Man Who Taught Modernity How to Smooth Out Its Edges">
-    <div class="content-card-body">
-      <span class="content-card-badge">Article</span>
-      <div class="content-card-title">Constantin Brancusi: The Man Who Taught Modernity How to Smooth Out Its Edges</div>
-      <div class="content-card-preview">Long before Silicon Valley obsessed over &#39;seamless user experiences,&#39; one Romanian sculptor was already perfecting the art of the minimalist curve.</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/quiz/brancusi-the-original-smooth-operator/">
-    <img class="content-card-thumb" src="/quiz/brancusi-the-original-smooth-operator/hero.png" alt="Brancusi: The Original Smooth Operator">
-    <div class="content-card-body">
-      <span class="content-card-badge">Quiz</span>
-      <div class="content-card-title">Brancusi: The Original Smooth Operator</div>
-      <div class="content-card-preview">10 questions - test your knowledge</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/article/the-global-comic-machine-why-translation-is-more-than-just-swapping-words/">
-    <img class="content-card-thumb" src="/article/the-global-comic-machine-why-translation-is-more-than-just-swapping-words/hero.png" alt="The Global Comic Machine: Why Translation is More Than Just Swapping Words">
-    <div class="content-card-body">
-      <span class="content-card-badge">Article</span>
-      <div class="content-card-title">The Global Comic Machine: Why Translation is More Than Just Swapping Words</div>
-      <div class="content-card-preview">I built a prototype for a linguistic teleportation device, but it turns out all I needed was a good stack of translated graphic novels.</div>
-    </div>
-  </a>
-  
-</div><!-- LATEST_CONTENT_END -->
-</section>
 
+  <div class="page-cta">
+    <div class="page-cta-title">Never miss a story</div>
+    <p class="page-cta-text">Create a free DeepSage account to save articles, track quiz results, and get the daily briefing first.</p>
+    <button class="page-cta-btn" onclick="openAuthModal('signup')">Create Free Account</button>
+  </div>
+</article>
+
+<script>
+(function () {
+  var pageUrl = window.location.href;
+  var shareText = "The Momentum Anchor: Why Spider-Man is the Engine of Your Team";
+
+  var twitterUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(shareText) + "&url=" + encodeURIComponent(pageUrl);
+  var facebookUrl = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(pageUrl) + "&quote=" + encodeURIComponent(shareText);
+  var linkedinUrl = "https://www.linkedin.com/sharing/share-offsite/?url=" + encodeURIComponent(pageUrl);
+
+  var html = ''
+    + '<a class="share-btn" target="_blank" rel="noopener" href="' + twitterUrl + '" aria-label="Share on X" title="Share on X">'
+    + '<svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.6 8.7L23.3 22H16.9l-5-6.5-5.7 6.5H2.9l8.1-9.3L2 2h6.6l4.5 5.9L18.9 2Zm-1.1 18h1.7L7.3 3.9H5.5L17.8 20Z"/></svg>'
+    + '</a>'
+    + '<a class="share-btn" target="_blank" rel="noopener" href="' + facebookUrl + '" aria-label="Share on Facebook" title="Share on Facebook">'
+    + '<svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg>'
+    + '</a>'
+    + '<a class="share-btn" target="_blank" rel="noopener" href="' + linkedinUrl + '" aria-label="Share on LinkedIn" title="Share on LinkedIn">'
+    + '<svg viewBox="0 0 24 24"><path d="M19 3A2 2 0 0 1 21 5v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14ZM8.3 18.5V10H5.7v8.5h2.6ZM7 8.8a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm11.5 9.7v-4.7c0-2.5-1.3-3.7-3.1-3.7-1.4 0-2 .8-2.4 1.3V10H10.4v8.5H13v-4.7c0-.5 0-1 .2-1.3.3-.6.8-1.3 1.8-1.3 1.3 0 1.8.9 1.8 2.3v5h2.7Z"/></svg>'
+    + '</a>';
+
+  document.getElementById("share-row-top").innerHTML = html;
+  document.getElementById("share-row-bottom").innerHTML = html;
+})();
+</script>
 
 
     <div class="page-footer">
@@ -791,83 +587,6 @@ document.addEventListener('click', function(e) {
 });
 </script>
 
-
-<script>
-/* ── Star field canvas ── */
-(function() {
-  const canvas = document.getElementById('starCanvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  let W, H, stars, shooters;
-
-  function randShooter() {
-    return {
-      x:   W * 0.1 + Math.random() * W * 0.8,
-      y:   -80,
-      vx:  (Math.random() - 0.5) * 1.0,
-      vy:  2.5 + Math.random() * 3.5,
-      len: 60 + Math.random() * 50,
-      op:  0,
-      col: ['#00ffcc','#ffffff','#00aaff'][Math.random() * 3 | 0],
-    };
-  }
-
-  function init() {
-    W = canvas.width  = canvas.offsetWidth;
-    H = canvas.height = canvas.offsetHeight;
-    stars = Array.from({ length: 280 }, () => ({
-      x:   Math.random() * W,
-      y:   Math.random() * H,
-      r:   Math.random() * 1.3 + 0.2,
-      op:  Math.random() * 0.55 + 0.2,
-      tw:  Math.random() * Math.PI * 2,
-      teal: Math.random() < 0.08,
-    }));
-    shooters = [randShooter(), randShooter(), randShooter()];
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-
-    stars.forEach(s => {
-      s.tw += 0.009;
-      const t = 0.5 + 0.5 * Math.sin(s.tw);
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = s.teal
-        ? `rgba(0,255,204,${(s.op * t * 0.7).toFixed(2)})`
-        : `rgba(255,255,255,${(s.op * t).toFixed(2)})`;
-      ctx.fill();
-    });
-
-    shooters.forEach((s, i) => {
-      s.x += s.vx; s.y += s.vy;
-      s.op = Math.min(1, s.op + 0.04);
-      if (s.y > H + 100) shooters[i] = randShooter();
-      const a  = Math.atan2(s.vy, s.vx);
-      const x0 = s.x - Math.cos(a) * s.len;
-      const y0 = s.y - Math.sin(a) * s.len;
-      const g  = ctx.createLinearGradient(x0, y0, s.x, s.y);
-      g.addColorStop(0, 'transparent');
-      g.addColorStop(1, s.col + 'bb');
-      ctx.beginPath();
-      ctx.moveTo(x0, y0);
-      ctx.lineTo(s.x, s.y);
-      ctx.strokeStyle = g;
-      ctx.lineWidth   = 1.5;
-      ctx.globalAlpha = s.op;
-      ctx.stroke();
-      ctx.globalAlpha = 1;
-    });
-
-    requestAnimationFrame(draw);
-  }
-
-  window.addEventListener('resize', init);
-  init();
-  draw();
-})();
-</script>
 
 
 </body>
