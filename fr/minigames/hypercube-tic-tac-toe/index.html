@@ -1,0 +1,1079 @@
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tic-Tac-Toe en hypercube · DeepSage Minigames</title>
+  <meta name="description" content="Jouez au morpion dans un espace allant de 2 à 12 dimensions contre un adversaire doté d’une intelligence artificielle, dans ce mini-jeu gratuit disponible sur navigateur, créé par DeepSage.">
+
+  <meta property="og:title" content="Tic-Tac-Toe en hypercube · DeepSage Minigames">
+  <meta property="og:description" content="Le jeu du morpion est désormais disponible en deux, trois, voire douze dimensions. Affrontez un adversaire virtuel doté d’une intelligence artificielle.">
+  <meta property="og:image" content="">
+  <meta property="og:type" content="article">
+
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+
+  <link rel="stylesheet" href="/assets/site.css">
+  
+
+  <link rel="alternate" hreflang="en" href="https://deepsage.com/minigames/hypercube-tic-tac-toe/">
+  <link rel="alternate" hreflang="es" href="https://deepsage.com/es/minigames/hypercube-tic-tac-toe/">
+  <link rel="alternate" hreflang="pt" href="https://deepsage.com/pt/minigames/hypercube-tic-tac-toe/">
+  <link rel="alternate" hreflang="fr" href="https://deepsage.com/fr/minigames/hypercube-tic-tac-toe/">
+  <link rel="alternate" hreflang="de" href="https://deepsage.com/de/minigames/hypercube-tic-tac-toe/">
+  <link rel="alternate" hreflang="ru" href="https://deepsage.com/ru/minigames/hypercube-tic-tac-toe/">
+  <link rel="alternate" hreflang="ja" href="https://deepsage.com/ja/minigames/hypercube-tic-tac-toe/">
+  <link rel="alternate" hreflang="zh-Hans" href="https://deepsage.com/zh-Hans/minigames/hypercube-tic-tac-toe/">
+  <link rel="alternate" hreflang="ko" href="https://deepsage.com/ko/minigames/hypercube-tic-tac-toe/">
+  <link rel="alternate" hreflang="it" href="https://deepsage.com/it/minigames/hypercube-tic-tac-toe/">
+  <link rel="alternate" hreflang="hi" href="https://deepsage.com/hi/minigames/hypercube-tic-tac-toe/">
+
+  <link rel="alternate" hreflang="x-default" href="https://deepsage.com/minigames/hypercube-tic-tac-toe/">
+
+  
+<style>
+  .ht-wrap { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+  .ht-controls { background: #00110d; padding: 20px; border-radius: 8px; width: 100%; max-width: 700px; display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: center; border: 1px solid #00ffcc22; font-family: var(--sans); }
+  .ht-control-group { display: flex; flex-direction: column; gap: 8px; }
+  .ht-control-group label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); font-weight: 600; }
+  .ht-slider-row { display: flex; align-items: center; gap: 12px; }
+  .ht-controls input[type="range"] { accent-color: var(--teal); cursor: pointer; }
+  .ht-dim-value { font-size: 18px; font-weight: bold; color: var(--teal); min-width: 22px; }
+  .ht-controls select, .ht-controls button { background: #000; color: var(--text); border: 1px solid #00ffcc44; padding: 9px 14px; border-radius: 6px; font-family: var(--sans); font-size: 13px; cursor: pointer; }
+  .ht-controls select:hover, .ht-controls button:hover { border-color: var(--teal); }
+  .ht-btn-primary { background: var(--teal); color: #001410; font-weight: 700; border: none; }
+  .ht-status { font-family: var(--sans); font-size: 16px; font-weight: 600; padding: 10px 20px; border-radius: 8px; background: #00110d; border: 1px solid #00ffcc22; min-height: 44px; display: flex; align-items: center; justify-content: center; width: 100%; max-width: 700px; color: var(--text); }
+  .ht-nav { background: #00110d; padding: 14px; border-radius: 8px; width: 100%; max-width: 700px; display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; border: 1px solid #00ffcc22; }
+  .ht-slice-selector { display: flex; align-items: center; gap: 10px; background: #000; padding: 6px 12px; border-radius: 6px; border: 1px solid #00ffcc33; font-family: var(--sans); font-size: 12px; color: var(--muted); }
+  .ht-slice-options { display: flex; gap: 10px; }
+  .ht-slice-option { display: flex; align-items: center; gap: 4px; cursor: pointer; }
+  .ht-slice-option input[type="radio"] { accent-color: var(--teal); cursor: pointer; }
+  .ht-board-container { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; width: 100%; }
+  .ht-grid-wrapper { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .ht-grid-label { font-size: 11px; color: var(--muted); font-family: monospace; }
+  .ht-grid-3x3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; background: #00110d; padding: 6px; border-radius: 8px; border: 1px solid #00ffcc22; }
+  .ht-cell { width: 54px; height: 54px; background: #000; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; font-weight: bold; cursor: pointer; user-select: none; transition: background-color 0.15s, transform 0.1s; }
+  .ht-cell:hover:not(.occupied):not(.disabled) { background: #00ffcc1a; transform: scale(1.04); }
+  .ht-cell.x { color: #ff6677; }
+  .ht-cell.o { color: var(--teal); }
+  .ht-cell.winning { background: #00ffcc33; border: 2px solid var(--teal); }
+  .ht-info-box { font-family: var(--sans); font-size: 13px; color: var(--muted); text-align: center; max-width: 600px; line-height: 1.5; }
+</style>
+
+
+  <!-- Attribution capture: first-touch referrer/landing page, before anything else runs -->
+  <script>
+    (function captureAttribution() {
+      var FLAG = 'ds_attribution_captured';
+      if (localStorage.getItem(FLAG)) return;
+      var params = new URLSearchParams(location.search);
+      localStorage.setItem('ds_pending_ref', params.get('ref') || '');
+      localStorage.setItem('ds_pending_referrer', document.referrer || '');
+      localStorage.setItem('ds_pending_landing', location.pathname);
+      localStorage.setItem(FLAG, '1');
+    })();
+  </script>
+
+  <!-- Google Analytics (GA4) via gtag.js, using Consent Mode v2: loads with
+       storage denied by default, only switches to granted once the cookie
+       banner below records analytics consent. -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('consent', 'default', {
+      'analytics_storage': 'denied',
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+    });
+    gtag('js', new Date());
+    gtag('config', 'G-33MSQXQ8G9');
+
+    window.dsAnalyticsConsent = false;
+    window.dsTrack = function (name, params) {
+      if (!window.dsAnalyticsConsent) return;
+      gtag('event', name, params || {});
+    };
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-33MSQXQ8G9"></script>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
+    import {
+      getAuth,
+      GoogleAuthProvider,
+      createUserWithEmailAndPassword,
+      signInWithEmailAndPassword,
+      signOut,
+      onAuthStateChanged,
+      signInWithPopup,
+      getAdditionalUserInfo,
+    } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js";
+    import {
+      getFirestore,
+      doc,
+      setDoc,
+      getDoc,
+      serverTimestamp,
+    } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAjiW7UXat-UHZBFCBXhZdlPz64Zpwkjbo",
+      authDomain: "deepsage-aac5a.firebaseapp.com",
+      projectId: "deepsage-aac5a",
+      storageBucket: "deepsage-aac5a.firebasestorage.app",
+      messagingSenderId: "10532051582",
+      appId: "1:10532051582:web:029846f62f0edd01f3162f",
+      measurementId: "G-33MSQXQ8G9",
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const firestoreDb = getFirestore(app);
+    const gProvider = new GoogleAuthProvider();
+
+    // Writes a users/{uid} Firestore doc the first time an account is
+    // created (email/password signup, or first-ever Google sign-in).
+    // Attribution fields (referrer/landing/signup page, user agent) are only
+    // included if the visitor has granted analytics cookie consent.
+    async function recordUserSignup(user, isNewUser) {
+      if (!isNewUser) return;
+      try {
+        const data = {
+          email: user.email || null,
+          displayName: user.displayName || null,
+          createdAt: serverTimestamp(),
+        };
+        if (window.dsAnalyticsConsent) {
+          data.referralCode = localStorage.getItem('ds_pending_ref') || null;
+          data.referrerUrl = localStorage.getItem('ds_pending_referrer') || null;
+          data.landingPage = localStorage.getItem('ds_pending_landing') || null;
+          data.signupPage = window.location.pathname;
+          data.userAgent = navigator.userAgent;
+        }
+        await setDoc(doc(firestoreDb, "users", user.uid), data, { merge: true });
+        localStorage.removeItem('ds_pending_ref');
+        localStorage.removeItem('ds_pending_referrer');
+        localStorage.removeItem('ds_pending_landing');
+      } catch (err) {
+        // Non-fatal: Firebase Auth already succeeded and remains the source
+        // of truth for the account existing. A failure here is most likely
+        // a Firestore security rules issue on the `users` collection.
+        console.error("Failed to record user signup:", err);
+      }
+    }
+
+    // Reads the logged-in user's stored language preference, if any.
+    // Returns null on any failure (missing doc, security-rule denial, etc.)
+    // so callers can fall back to weaker signals rather than erroring.
+    async function getPreferredLang(uid) {
+      try {
+        const snap = await getDoc(doc(firestoreDb, "users", uid));
+        return snap.exists() ? (snap.data().preferredLang || null) : null;
+      } catch (err) {
+        console.error("Failed to read language preference:", err);
+        return null;
+      }
+    }
+
+    async function setPreferredLang(uid, lang) {
+      await setDoc(doc(firestoreDb, "users", uid), { preferredLang: lang }, { merge: true });
+    }
+
+    window._sf = {
+      auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut,
+      onAuthStateChanged, gProvider, signInWithPopup, getAdditionalUserInfo,
+      recordUserSignup, getPreferredLang, setPreferredLang,
+    };
+    window.dsRecordUserSignup = recordUserSignup;
+
+    onAuthStateChanged(auth, user => {
+      const signedOut = document.getElementById("header-auth-out");
+      const signedIn = document.getElementById("header-auth-in");
+      const nameEl = document.getElementById("header-auth-name");
+      const banner = document.getElementById("topBanner");
+      if (!signedOut || !signedIn) return;
+      if (user) {
+        signedOut.style.display = "none";
+        signedIn.style.display = "flex";
+        nameEl.textContent = user.displayName || user.email || window.dsUiStrings.explorer_fallback;
+        if (banner) banner.style.display = "none";
+      } else {
+        signedOut.style.display = "flex";
+        signedIn.style.display = "none";
+        if (banner) banner.style.display = "flex";
+      }
+      if (window.dsOnAuthReady) window.dsOnAuthReady(user);
+    });
+  </script>
+  <script>
+    window.dsLangUrls = {"de": "https://deepsage.com/de/minigames/hypercube-tic-tac-toe/", "en": "https://deepsage.com/minigames/hypercube-tic-tac-toe/", "es": "https://deepsage.com/es/minigames/hypercube-tic-tac-toe/", "fr": "https://deepsage.com/fr/minigames/hypercube-tic-tac-toe/", "hi": "https://deepsage.com/hi/minigames/hypercube-tic-tac-toe/", "it": "https://deepsage.com/it/minigames/hypercube-tic-tac-toe/", "ja": "https://deepsage.com/ja/minigames/hypercube-tic-tac-toe/", "ko": "https://deepsage.com/ko/minigames/hypercube-tic-tac-toe/", "pt": "https://deepsage.com/pt/minigames/hypercube-tic-tac-toe/", "ru": "https://deepsage.com/ru/minigames/hypercube-tic-tac-toe/", "zh-Hans": "https://deepsage.com/zh-Hans/minigames/hypercube-tic-tac-toe/"};
+    window.dsCurrentLang = "fr";
+  </script>
+  <script src="/assets/js/lang-preference.js"></script>
+  <script>
+    window.dsUiStrings = {"auth_err_email_in_use": "Cette adresse e-mail est d\u00e9j\u00e0 enregistr\u00e9e. Veuillez vous connecter.", "auth_err_invalid_credential": "Adresse e-mail ou mot de passe incorrect.", "auth_err_invalid_email": "Veuillez saisir une adresse courriel valide.", "auth_err_user_not_found": "Aucun compte n\u2019est associ\u00e9 \u00e0 cette adresse \u00e9lectronique.", "auth_err_weak_password": "Le mot de passe doit comporter au moins 6 caract\u00e8res.", "auth_err_wrong_password": "Mot de passe incorrect.", "connecting": "Connexion en cours\u2026", "could_not_connect": "Impossible de d\u00e9marrer la connexion.", "explorer_fallback": "Explorateur", "fill_all_fields": "Veuillez remplir tous les champs.", "firebase_not_ready": "Firebase n\u2019a pas encore \u00e9t\u00e9 initialis\u00e9.", "join_wishlist": "Ajouter \u00e0 la liste de souhaits", "tick_consent": "Veuillez cocher la case pour indiquer que vous consentez et poursuivre."};
+  </script>
+</head>
+<body>
+
+<section class="page-container">
+  <div class="page-grad-top"></div>
+  <div class="page-grad-bottom"></div>
+
+  <div class="page-content">
+    <div class="top-banner" id="topBanner">
+      <span class="top-banner-text">Nouveau jeu éducatif et divertissant : DeepSage.<a href="/fr/world/" class="top-banner-link">arrive</a>! Ajoutez cet article à votre liste de souhaits pour bénéficier d’un accès anticipé et recevoir les dernières mises à jour.</span>
+      <button class="top-banner-cta" onclick="openAuthModal()">Ajouter à la liste de souhaits</button>
+    </div>
+
+    <div class="page-header">
+      <a href="/fr/" class="page-logo-link" aria-label="DeepSage home"><img class="page-logo" src="/assets/logo.png" alt="DeepSage" width="1628" height="351"></a>
+
+      <div class="header-controls">
+        <div class="header-auth">
+          <div id="header-auth-out" class="header-auth-out">
+            <button class="signin-link" onclick="openAuthModal()">Mon compte</button>
+          </div>
+          <div id="header-auth-in" class="header-auth-in account-menu" style="display:none;">
+            <button class="signin-link account-btn" onclick="toggleAccountMenu()">Mon compte</button>
+            <div id="account-dropdown" class="account-dropdown">
+              <span id="header-auth-name" class="header-auth-name"></span>
+              <a class="account-dropdown-connect" href="/fr/settings/">Paramètres</a>
+              <button class="account-dropdown-signout" onclick="doSignOut()">Se déconnecter</button>
+            </div>
+          </div>
+        </div>
+
+        
+<div class="lang-switcher">
+  <button class="lang-switcher-btn" onclick="toggleLangMenu()" type="button">Français</button>
+  <div id="lang-dropdown" class="lang-dropdown">
+    
+    <a href="https://deepsage.com/minigames/hypercube-tic-tac-toe/" class="lang-option" data-lang="en" onclick="return dsSwitchLang(event, 'en', 'https://deepsage.com/minigames/hypercube-tic-tac-toe/')">English</a>
+    
+    <a href="https://deepsage.com/es/minigames/hypercube-tic-tac-toe/" class="lang-option" data-lang="es" onclick="return dsSwitchLang(event, 'es', 'https://deepsage.com/es/minigames/hypercube-tic-tac-toe/')">Español</a>
+    
+    <a href="https://deepsage.com/pt/minigames/hypercube-tic-tac-toe/" class="lang-option" data-lang="pt" onclick="return dsSwitchLang(event, 'pt', 'https://deepsage.com/pt/minigames/hypercube-tic-tac-toe/')">Português</a>
+    
+    <a href="https://deepsage.com/fr/minigames/hypercube-tic-tac-toe/" class="lang-option lang-option-active" data-lang="fr" onclick="return dsSwitchLang(event, 'fr', 'https://deepsage.com/fr/minigames/hypercube-tic-tac-toe/')">Français</a>
+    
+    <a href="https://deepsage.com/de/minigames/hypercube-tic-tac-toe/" class="lang-option" data-lang="de" onclick="return dsSwitchLang(event, 'de', 'https://deepsage.com/de/minigames/hypercube-tic-tac-toe/')">Deutsch</a>
+    
+    <a href="https://deepsage.com/ru/minigames/hypercube-tic-tac-toe/" class="lang-option" data-lang="ru" onclick="return dsSwitchLang(event, 'ru', 'https://deepsage.com/ru/minigames/hypercube-tic-tac-toe/')">Русский</a>
+    
+    <a href="https://deepsage.com/ja/minigames/hypercube-tic-tac-toe/" class="lang-option" data-lang="ja" onclick="return dsSwitchLang(event, 'ja', 'https://deepsage.com/ja/minigames/hypercube-tic-tac-toe/')">日本語</a>
+    
+    <a href="https://deepsage.com/zh-Hans/minigames/hypercube-tic-tac-toe/" class="lang-option" data-lang="zh-Hans" onclick="return dsSwitchLang(event, 'zh-Hans', 'https://deepsage.com/zh-Hans/minigames/hypercube-tic-tac-toe/')">简体中文</a>
+    
+    <a href="https://deepsage.com/ko/minigames/hypercube-tic-tac-toe/" class="lang-option" data-lang="ko" onclick="return dsSwitchLang(event, 'ko', 'https://deepsage.com/ko/minigames/hypercube-tic-tac-toe/')">한국어</a>
+    
+    <a href="https://deepsage.com/it/minigames/hypercube-tic-tac-toe/" class="lang-option" data-lang="it" onclick="return dsSwitchLang(event, 'it', 'https://deepsage.com/it/minigames/hypercube-tic-tac-toe/')">Italiano</a>
+    
+    <a href="https://deepsage.com/hi/minigames/hypercube-tic-tac-toe/" class="lang-option" data-lang="hi" onclick="return dsSwitchLang(event, 'hi', 'https://deepsage.com/hi/minigames/hypercube-tic-tac-toe/')">हिन्दी</a>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    
+<article class="ht-wrap">
+  <h1 class="page-title" style="text-align:center;">Tic-Tac-Toe en hypercube</h1>
+  <p class="page-dek" style="text-align:center;">Affrontez une intelligence artificielle sur une grille de 3<span style="vertical-align:super;">N</span>, où N varie de 2 à 12.</p>
+
+  <div class="ht-controls">
+    <div class="ht-control-group">
+      <label for="ht-dim-slider">Dimension (N)</label>
+      <div class="ht-slider-row">
+        <input type="range" id="ht-dim-slider" min="2" max="12" value="3">
+        <span id="ht-dim-value" class="ht-dim-value">3</span>
+      </div>
+    </div>
+    <div class="ht-control-group">
+      <label for="ht-ai-difficulty">Niveau de difficulté de l’IA.</label>
+      <select id="ht-ai-difficulty">
+        <option value="smart">Intelligent (heuristique)</option>
+        <option value="easy">Facile (aléatoire)</option>
+      </select>
+    </div>
+    <button id="ht-reset-btn" class="ht-btn-primary">Nouvelle partie</button>
+  </div>
+
+  <div id="ht-status-panel" class="ht-status">À ton tour (X).</div>
+  <div id="ht-nav-panel" class="ht-nav" style="display:none;"></div>
+  <div id="ht-game-board" class="ht-board-container"></div>
+
+  <p class="ht-info-box">Dans un espace à N dimensions, le plateau de jeu contient 3^N cases. Pour gagner, il faut aligner trois cases consécutives le long de n’importe quel vecteur orthogonal ou hyperdiagonal. Pour N ≥ 4, les commandes de navigation des tranches permettent d’afficher différentes coupes transversales de 3 × 3 du plateau de jeu complet.</p>
+
+  <p><a class="back-link" href="/fr/minigames/">&larr; Tous les mini-jeux</a></p>
+</article>
+
+
+    <div class="page-footer">
+      <div class="footer-links">
+        <a href="/fr/">Accueil</a>
+        <span class="footer-divider">·</span>
+        <a href="/fr/article/">Articles</a>
+        <span class="footer-divider">·</span>
+        <a href="/fr/quiz/">Quiz</a>
+        <span class="footer-divider">·</span>
+        <a href="/fr/skills/">Compétences</a>
+        <span class="footer-divider">·</span>
+        <a href="/fr/minigames/">Jeux</a>
+        <span class="footer-divider">·</span>
+        <a href="/privacy-policy/">Politique de confidentialité</a>
+        <span class="footer-divider">·</span>
+        <a href="/terms-of-service/">Conditions d’utilisation</a>
+      </div>
+      <p class="footer-copyright">DeepSage · © 2026</p>
+    </div>
+  </div>
+</section>
+
+<!-- AUTH MODAL -->
+<div id="auth-modal-overlay" class="auth-modal-overlay" style="display:none;" onclick="if(event.target===this) closeAuthModal()">
+  <div class="auth-modal">
+    <button class="auth-modal-close" onclick="closeAuthModal()">&times;</button>
+    <h2 class="auth-modal-title">Ajouter à la liste de souhaits</h2>
+
+    <label class="consent-wrap" id="auth-consent-row">
+      <input type="checkbox" id="auth-consent-check">
+      <span class="consent-text">Je consens à recevoir des mises à jour concernant les jeux de DeepSage et à rejoindre la liste de souhaits. Vous pouvez vous désinscrire à tout moment. Consultez notre<a href="/privacy-policy/" target="_blank" rel="noopener" class="consent-link">Politique de confidentialité</a>.</span>
+    </label>
+
+    <div class="auth-form-wrap">
+      <button class="google-btn" onclick="authGoogle()">
+        <svg class="google-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+          <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+          <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+          <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+        </svg>
+        Continuer avec Google
+      </button>
+
+      <div class="auth-divider"><span>ou</span></div>
+
+      <div class="auth-field">
+        <label for="auth-email">Courriel</label>
+        <input type="email" id="auth-email" placeholder="you@example.com" autocomplete="email">
+      </div>
+      <div class="auth-field">
+        <label for="auth-pass">Mot de passe</label>
+        <input type="password" id="auth-pass" placeholder="••••••••" autocomplete="current-password">
+      </div>
+
+      <p class="auth-msg" id="auth-msg"></p>
+      <button class="auth-submit" id="auth-submit-btn" onclick="authSubmit()">Ajouter à la liste de souhaits</button>
+    </div>
+  </div>
+</div>
+
+<!-- Cookie Consent Banner -->
+<div id="cookieBanner">
+  <div class="cookie-banner-container">
+    <div class="cookie-banner-text">
+      Nous utilisons des cookies pour améliorer votre expérience. Consultez notre<a href="/privacy-policy/" target="_blank">Politique de confidentialité</a>et<a href="/cookie-policy/" target="_blank">Politique en matière de cookies</a>pour plus d’informations.
+    </div>
+    <div class="cookie-banner-buttons">
+      <button id="cookieReject">Refuser les éléments non essentiels.</button>
+      <button id="cookieCustomize">Personnaliser</button>
+      <button id="cookieAccept">Accepter tout</button>
+    </div>
+  </div>
+</div>
+
+<!-- Cookie Preferences Modal -->
+<div id="cookieModal">
+  <div class="cookie-modal-content">
+    <h2>Préférences concernant les cookies</h2>
+
+    <div class="cookie-preference">
+      <input type="checkbox" id="cookieEssential" checked disabled>
+      <label for="cookieEssential">Essentiel</label>
+    </div>
+    <div class="cookie-preference-description">
+      Nécessaire au fonctionnement de base du site (toujours activé).
+    </div>
+
+    <div class="cookie-preference">
+      <input type="checkbox" id="cookieAnalytics">
+      <label for="cookieAnalytics">Analyse de données</label>
+    </div>
+    <div class="cookie-preference-description">
+      Nous aide à comprendre comment vous utilisez le site afin d’améliorer votre expérience.
+    </div>
+
+    <div class="cookie-preference">
+      <input type="checkbox" id="cookieMarketing">
+      <label for="cookieMarketing">Marketing</label>
+    </div>
+    <div class="cookie-preference-description">
+      Nous permet de vous présenter un contenu pertinent et de mesurer l’efficacité de nos campagnes.
+    </div>
+
+    <div class="cookie-modal-buttons">
+      <button id="cookieModalCancel">Annuler</button>
+      <button id="cookieModalSave">Enregistrer les choix.</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const authMode = "signup";
+
+function openAuthModal() {
+  setAuthMsg("");
+  document.getElementById("auth-modal-overlay").style.display = "flex";
+}
+
+function closeAuthModal() {
+  document.getElementById("auth-modal-overlay").style.display = "none";
+}
+
+function setAuthMsg(txt, color) {
+  const el = document.getElementById("auth-msg");
+  el.textContent = txt;
+  el.style.color = color || "#ff6688";
+}
+
+async function authSubmit() {
+  const sf = window._sf;
+  if (!sf) return setAuthMsg(window.dsUiStrings.firebase_not_ready);
+  const email = document.getElementById("auth-email").value.trim();
+  const pass = document.getElementById("auth-pass").value;
+  if (!email || !pass) return setAuthMsg(window.dsUiStrings.fill_all_fields);
+
+  if (authMode === "signup" && !document.getElementById("auth-consent-check").checked) {
+    return setAuthMsg(window.dsUiStrings.tick_consent);
+  }
+
+  const btn = document.getElementById("auth-submit-btn");
+  btn.textContent = "…";
+  btn.disabled = true;
+
+  try {
+    if (authMode === "signin") {
+      await sf.signInWithEmailAndPassword(sf.auth, email, pass);
+    } else {
+      const cred = await sf.createUserWithEmailAndPassword(sf.auth, email, pass);
+      await sf.recordUserSignup(cred.user, true);
+    }
+    setAuthMsg("");
+    closeAuthModal();
+  } catch (err) {
+    const msgs = {
+      "auth/user-not-found": window.dsUiStrings.auth_err_user_not_found,
+      "auth/wrong-password": window.dsUiStrings.auth_err_wrong_password,
+      "auth/invalid-credential": window.dsUiStrings.auth_err_invalid_credential,
+      "auth/email-already-in-use": window.dsUiStrings.auth_err_email_in_use,
+      "auth/weak-password": window.dsUiStrings.auth_err_weak_password,
+      "auth/invalid-email": window.dsUiStrings.auth_err_invalid_email,
+    };
+    setAuthMsg(msgs[err.code] || err.message);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = window.dsUiStrings.join_wishlist;
+  }
+}
+
+async function authGoogle() {
+  const sf = window._sf;
+  if (!sf) return setAuthMsg(window.dsUiStrings.firebase_not_ready);
+  if (authMode === "signup" && !document.getElementById("auth-consent-check").checked) {
+    return setAuthMsg(window.dsUiStrings.tick_consent);
+  }
+  try {
+    const result = await sf.signInWithPopup(sf.auth, sf.gProvider);
+    const info = sf.getAdditionalUserInfo(result);
+    await sf.recordUserSignup(result.user, !!(info && info.isNewUser));
+    closeAuthModal();
+  } catch (err) {
+    if (err.code !== "auth/popup-closed-by-user") setAuthMsg(err.message);
+  }
+}
+
+async function connectPlatform(providerName) {
+  const sf = window._sf;
+  const user = sf && sf.auth.currentUser;
+  if (!user) return;
+
+  const btn = document.getElementById(`connect-${providerName}-btn`);
+  const prevText = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = window.dsUiStrings.connecting;
+
+  try {
+    const idToken = await user.getIdToken();
+    const res = await fetch(`https://oauth.deepsage.com/auth/${providerName}/login`, {
+      headers: { Authorization: `Bearer ${idToken}` },
+    });
+    if (!res.ok) throw new Error(window.dsUiStrings.could_not_connect);
+    const { url } = await res.json();
+    window.location.href = url;
+  } catch (err) {
+    btn.disabled = false;
+    btn.textContent = prevText;
+  }
+}
+
+async function doSignOut() {
+  const sf = window._sf;
+  if (sf) await sf.signOut(sf.auth);
+  document.getElementById("account-dropdown").classList.remove("open");
+}
+
+function toggleAccountMenu() {
+  document.getElementById("account-dropdown").classList.toggle("open");
+}
+
+document.addEventListener("click", function(e) {
+  const menu = document.getElementById("header-auth-in");
+  const dropdown = document.getElementById("account-dropdown");
+  if (menu && dropdown && !menu.contains(e.target)) {
+    dropdown.classList.remove("open");
+  }
+});
+
+/* ── Cookie consent management (site-wide) ── */
+(function() {
+  const CONSENT_KEY = 'deepsage_cookie_consent';
+  const CONSENT_EXPIRY = 12 * 30 * 24 * 60 * 60 * 1000; // 12 months
+
+  function getStoredConsent() {
+    const stored = localStorage.getItem(CONSENT_KEY);
+    if (!stored) return null;
+    try {
+      const consent = JSON.parse(stored);
+      const now = Date.now();
+      if (now - consent.timestamp > CONSENT_EXPIRY) {
+        localStorage.removeItem(CONSENT_KEY);
+        return null;
+      }
+      return consent;
+    } catch (error) {
+      console.error("Invalid consent data:", error);
+      localStorage.removeItem(CONSENT_KEY);
+      return null;
+    }
+  }
+
+  function saveConsent(essential, analytics, marketing) {
+    localStorage.setItem(CONSENT_KEY, JSON.stringify({
+      essential: true, analytics, marketing, timestamp: Date.now(),
+    }));
+  }
+
+  function loadCookiesBasedOnConsent(consent) {
+    window.dsAnalyticsConsent = !!consent.analytics;
+    gtag('consent', 'update', {
+      'analytics_storage': consent.analytics ? 'granted' : 'denied',
+      'ad_storage': consent.marketing ? 'granted' : 'denied',
+      'ad_user_data': consent.marketing ? 'granted' : 'denied',
+      'ad_personalization': consent.marketing ? 'granted' : 'denied',
+    });
+  }
+
+  function initializeCookieBanner() {
+    const storedConsent = getStoredConsent();
+    const banner = document.getElementById('cookieBanner');
+    if (!banner) return;
+
+    if (!storedConsent) {
+      banner.classList.add('show');
+    } else {
+      banner.classList.remove('show');
+      loadCookiesBasedOnConsent(storedConsent);
+    }
+  }
+
+  document.getElementById('cookieAccept').addEventListener('click', function() {
+    saveConsent(true, true, true);
+    loadCookiesBasedOnConsent({ essential: true, analytics: true, marketing: true });
+    document.getElementById('cookieBanner').classList.remove('show');
+  });
+
+  document.getElementById('cookieReject').addEventListener('click', function() {
+    saveConsent(true, false, false);
+    loadCookiesBasedOnConsent({ essential: true, analytics: false, marketing: false });
+    document.getElementById('cookieBanner').classList.remove('show');
+  });
+
+  document.getElementById('cookieCustomize').addEventListener('click', function() {
+    const storedConsent = getStoredConsent();
+    if (storedConsent) {
+      document.getElementById('cookieAnalytics').checked = storedConsent.analytics;
+      document.getElementById('cookieMarketing').checked = storedConsent.marketing;
+    }
+    document.getElementById('cookieModal').classList.add('show');
+  });
+
+  document.getElementById('cookieModalCancel').addEventListener('click', function() {
+    document.getElementById('cookieModal').classList.remove('show');
+  });
+
+  document.getElementById('cookieModalSave').addEventListener('click', function() {
+    const analytics = document.getElementById('cookieAnalytics').checked;
+    const marketing = document.getElementById('cookieMarketing').checked;
+    saveConsent(true, analytics, marketing);
+    loadCookiesBasedOnConsent({ essential: true, analytics, marketing });
+    document.getElementById('cookieModal').classList.remove('show');
+    document.getElementById('cookieBanner').classList.remove('show');
+  });
+
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      const modal = document.getElementById('cookieModal');
+      if (modal.classList.contains('show')) {
+        document.getElementById('cookieModalCancel').click();
+      }
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', initializeCookieBanner);
+})();
+
+/* ── Share button click tracking (site-wide, event delegation) ── */
+document.addEventListener('click', function(e) {
+  const btn = e.target.closest('.share-btn');
+  if (!btn) return;
+  let method = 'twitter';
+  if (btn.href.indexOf('facebook.com') !== -1) method = 'facebook';
+  else if (btn.href.indexOf('linkedin.com') !== -1) method = 'linkedin';
+  const contentType = location.pathname.startsWith('/quiz/') ? 'quiz'
+    : location.pathname.startsWith('/article/') ? 'article' : 'other';
+  window.dsTrack('share', { method, content_type: contentType, item_id: location.pathname });
+});
+
+/* ── Language preference resolution (site-wide) ── */
+function toggleLangMenu() {
+  var dd = document.getElementById('lang-dropdown');
+  if (dd) dd.classList.toggle('open');
+}
+
+document.addEventListener('click', function (e) {
+  var dropdown = document.getElementById('lang-dropdown');
+  var switcher = document.querySelector('.lang-switcher');
+  if (dropdown && switcher && !switcher.contains(e.target)) dropdown.classList.remove('open');
+});
+
+function dsPersistLangOverride(lang) {
+  localStorage.setItem('deepsage_lang', lang);
+  var sf = window._sf;
+  var user = sf && sf.auth.currentUser;
+  if (user && sf.setPreferredLang) {
+    sf.setPreferredLang(user.uid, lang).catch(function (err) {
+      console.error('Failed to save language preference:', err);
+    });
+  }
+}
+window.dsPersistLangOverride = dsPersistLangOverride;
+
+function dsSwitchLang(event, lang, url) {
+  // NOTE: this duplicates the localStorage write from dsPersistLangOverride
+  // (kept above, unchanged) because dsSwitchLang needs to await the Firestore
+  // write before navigating, while dsPersistLangOverride is a fire-and-forget
+  // helper used by the settings page (Task 4, templates/settings.html's
+  // dsSettingsChangeLang), which navigates on its own right after calling it.
+  localStorage.setItem('deepsage_lang', lang);
+  var sf = window._sf;
+  var user = sf && sf.auth.currentUser;
+  if (user && sf.setPreferredLang) {
+    event.preventDefault();
+    sf.setPreferredLang(user.uid, lang)
+      .catch(function (err) { console.error('Failed to save language preference:', err); })
+      .finally(function () { window.location.href = url; });
+    return false;
+  }
+  return true;
+}
+window.dsSwitchLang = dsSwitchLang;
+
+var dsLangResolved = false;
+window.dsOnAuthReady = function (user) {
+  if (dsLangResolved) return;
+  dsLangResolved = true;
+  if (!window.DsLangPreference || !window.dsLangUrls || Object.keys(window.dsLangUrls).length === 0) return;
+
+  var storedOverride = localStorage.getItem('deepsage_lang');
+  var browserLang = navigator.language;
+
+  function apply(firestorePref) {
+    var result = window.DsLangPreference.resolveRedirect({
+      currentLang: window.dsCurrentLang,
+      langUrls: window.dsLangUrls,
+      storedOverride: storedOverride,
+      firestorePref: firestorePref || null,
+      browserLang: browserLang,
+    });
+    if (!result) return;
+    // Guard against redirecting to the page the visitor is already on (e.g.
+    // a casing mismatch between currentLang and a lang_urls key, or a
+    // trailing-slash inconsistency) -- without this, a data mismatch could
+    // send the visitor into a same-page redirect loop.
+    if (result.url === window.location.pathname || result.url === window.location.href) return;
+    if (result.persistOverride) localStorage.setItem('deepsage_lang', result.lang);
+    // Use replace(), not `.href =`, because this is an automatic redirect
+    // the visitor never asked for (either the Firestore-preference tier, or
+    // the browser-auto-detect tier, which by design never persists and so
+    // re-fires on every page load). `.href =` would push a new history
+    // entry each time, trapping Back-button presses by immediately
+    // re-redirecting forward again. Explicit user-initiated switches
+    // (dsSwitchLang, dsSettingsChangeLang) intentionally keep using
+    // `.href =` since those SHOULD be normal, back-button-able navigations.
+    window.location.replace(result.url);
+  }
+
+  var sf = window._sf;
+  if (user && sf && sf.getPreferredLang) {
+    sf.getPreferredLang(user.uid).then(apply).catch(function () { apply(null); });
+  } else {
+    apply(null);
+  }
+};
+
+// Fallback for when Firebase Auth never calls back at all (CDN blocked,
+// offline, script failed to load). This is a timer, not a DOMContentLoaded
+// listener, on purpose: this inline <script> runs near the bottom of
+// <body>, so DOMContentLoaded fires essentially immediately after it
+// registers -- long before Firebase's first onAuthStateChanged callback
+// (an unconditionally async, IndexedDB-backed read) has any real chance to
+// resolve. Since dsOnAuthReady is latched to only run once (dsLangResolved),
+// firing on DOMContentLoaded would deterministically win the race on every
+// normal page load and permanently blind language resolution to a logged-in
+// user's Firestore preferredLang -- the real Firebase callback would arrive
+// later and be silently ignored. 3000ms is generous: a working IndexedDB
+// read typically resolves in well under 100ms, so in the overwhelmingly
+// common case Firebase claims the latch long before this timer fires, and
+// this fallback only actually matters when Firebase never calls back at
+// all -- in which case treating the visitor as logged-out for
+// language-resolution purposes (falling through to localStorage override /
+// browser auto-detect, neither of which need Firebase) is the correct
+// degraded behavior. 3s is still well under what a user would notice as a
+// late background redirect.
+setTimeout(function () {
+  if (window.dsOnAuthReady) window.dsOnAuthReady(null);
+}, 3000);
+</script>
+
+
+<script>
+(function () {
+  function NDimTicTacToe(dim, difficulty) {
+    this.dim = dim || 3;
+    this.difficulty = difficulty || 'smart';
+    this.board = new Map();
+    this.sliceCoords = new Array(Math.max(0, this.dim - 3)).fill(0);
+    this.totalCells = Math.pow(3, this.dim);
+    this.gameOver = false;
+    this.winningLine = null;
+    this.directions = this.generateDirections();
+  }
+
+  // Winning-line count grows as (5^N - 3^N)/2 (~122M lines at N=12), so lines
+  // are never pre-enumerated. Instead we only ever compute the handful of
+  // lines that pass through a specific cell, on demand.
+  NDimTicTacToe.prototype.generateDirections = function () {
+    var N = this.dim;
+    var directions = [];
+    function genDirs(currentDir) {
+      if (currentDir.length === N) {
+        var firstNonZero = currentDir.find(function (v) { return v !== 0; });
+        if (firstNonZero === 1) directions.push(currentDir.slice());
+        return;
+      }
+      [0, 1, -1].forEach(function (v) {
+        currentDir.push(v);
+        genDirs(currentDir);
+        currentDir.pop();
+      });
+    }
+    genDirs([]);
+    return directions;
+  };
+
+  NDimTicTacToe.prototype.getCell = function (coordStr) { return this.board.get(coordStr) || null; };
+
+  // Returns every winning line (array of coordStr arrays) that passes through coord.
+  NDimTicTacToe.prototype.linesThroughCell = function (coord) {
+    var N = this.dim;
+    var lines = [];
+    this.directions.forEach(function (dir) {
+      var d0 = 0;
+      while (d0 < N && dir[d0] === 0) d0++;
+      if (d0 === N) return;
+      var k = dir[d0] === 1 ? coord[d0] : 2 - coord[d0];
+      if (k < 0 || k > 2) return;
+      var start = new Array(N);
+      var valid = true;
+      for (var d = 0; d < N; d++) {
+        start[d] = coord[d] - k * dir[d];
+        if (dir[d] === 1 && start[d] !== 0) { valid = false; break; }
+        if (dir[d] === -1 && start[d] !== 2) { valid = false; break; }
+        if (dir[d] === 0 && start[d] !== coord[d]) { valid = false; break; }
+      }
+      if (!valid) return;
+      var line = [];
+      for (var step = 0; step < 3; step++) {
+        var cell = start.map(function (val, d) { return val + step * dir[d]; });
+        line.push(cell.join(','));
+      }
+      lines.push(line);
+    });
+    return lines;
+  };
+
+  NDimTicTacToe.prototype.makeMove = function (coordStr, player) {
+    if (this.gameOver || this.board.has(coordStr)) return false;
+    this.board.set(coordStr, player);
+    var coord = coordStr.split(',').map(Number);
+    var win = this.checkWin(player, coord);
+    if (win) { this.gameOver = true; this.winningLine = win; }
+    else if (this.board.size === this.totalCells) this.gameOver = true;
+    return true;
+  };
+
+  // A win must include the cell just played, so only lines through it need checking.
+  NDimTicTacToe.prototype.checkWin = function (player, coord) {
+    var board = this.board;
+    var lines = this.linesThroughCell(coord);
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i];
+      if (line.every(function (c) { return board.get(c) === player; })) return line;
+    }
+    return null;
+  };
+
+  // Candidate lines are gathered only from cells already on the board (both
+  // colors), which bounds the search by (stones played * directions) instead
+  // of the full combinatorial line count.
+  NDimTicTacToe.prototype.candidateLines = function () {
+    var board = this.board;
+    var seen = new Set();
+    var lines = [];
+    board.forEach(function (_player, coordStr) {
+      var coord = coordStr.split(',').map(Number);
+      this.linesThroughCell(coord).forEach(function (line) {
+        var key = line.join('|');
+        if (seen.has(key)) return;
+        seen.add(key);
+        lines.push(line);
+      });
+    }, this);
+    return lines;
+  };
+
+  NDimTicTacToe.prototype.getAIMove = function () {
+    if (this.gameOver) return null;
+    var board = this.board;
+    var lines = this.candidateLines();
+
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i];
+      var oCount = line.filter(function (c) { return board.get(c) === 'O'; }).length;
+      var empty = line.filter(function (c) { return !board.has(c); });
+      if (oCount === 2 && empty.length === 1) return empty[0];
+    }
+
+    for (var j = 0; j < lines.length; j++) {
+      var line2 = lines[j];
+      var xCount = line2.filter(function (c) { return board.get(c) === 'X'; }).length;
+      var empty2 = line2.filter(function (c) { return !board.has(c); });
+      if (xCount === 2 && empty2.length === 1) return empty2[0];
+    }
+
+    if (this.difficulty === 'easy') return this.getRandomMove();
+
+    var cellScores = new Map();
+    lines.forEach(function (line) {
+      var xCount = line.filter(function (c) { return board.get(c) === 'X'; }).length;
+      var oCount = line.filter(function (c) { return board.get(c) === 'O'; }).length;
+      if (xCount === 0) {
+        var score = oCount === 1 ? 5 : 1;
+        line.forEach(function (coord) {
+          if (!board.has(coord)) cellScores.set(coord, (cellScores.get(coord) || 0) + score);
+        });
+      }
+    });
+
+    if (cellScores.size > 0) {
+      var bestScore = -1, bestCoords = [];
+      cellScores.forEach(function (score, coord) {
+        if (score > bestScore) { bestScore = score; bestCoords = [coord]; }
+        else if (score === bestScore) bestCoords.push(coord);
+      });
+      return bestCoords[Math.floor(Math.random() * bestCoords.length)];
+    }
+
+    return this.getRandomMove();
+  };
+
+  NDimTicTacToe.prototype.getRandomMove = function () {
+    var board = this.board;
+    var emptyCells = [];
+    var dim = this.dim;
+    function genAll(curr) {
+      if (curr.length === dim) {
+        var key = curr.join(',');
+        if (!board.has(key)) emptyCells.push(key);
+        return;
+      }
+      for (var i = 0; i < 3; i++) { curr.push(i); genAll(curr); curr.pop(); }
+    }
+    genAll([]);
+    return emptyCells.length > 0 ? emptyCells[Math.floor(Math.random() * emptyCells.length)] : null;
+  };
+
+  var game = null;
+  var dimSlider = document.getElementById('ht-dim-slider');
+  var dimValue = document.getElementById('ht-dim-value');
+  var aiDifficulty = document.getElementById('ht-ai-difficulty');
+  var resetBtn = document.getElementById('ht-reset-btn');
+  var statusPanel = document.getElementById('ht-status-panel');
+  var navPanel = document.getElementById('ht-nav-panel');
+  var gameBoard = document.getElementById('ht-game-board');
+
+  function initGame() {
+    var dim = parseInt(dimSlider.value, 10);
+    var diff = aiDifficulty.value;
+    game = new NDimTicTacToe(dim, diff);
+    renderNavigation();
+    renderBoard();
+    updateStatus('Your turn (X)');
+  }
+
+  function updateStatus(msg) {
+    if (game.winningLine) {
+      var winner = game.board.get(game.winningLine[0]);
+      statusPanel.textContent = winner === 'X' ? 'You win!' : 'Computer wins!';
+      statusPanel.style.color = winner === 'X' ? 'var(--teal)' : '#ff6677';
+    } else if (game.gameOver) {
+      statusPanel.textContent = "It's a draw!";
+      statusPanel.style.color = 'var(--muted)';
+    } else {
+      statusPanel.textContent = msg;
+      statusPanel.style.color = 'var(--text)';
+    }
+  }
+
+  function renderNavigation() {
+    navPanel.innerHTML = '';
+    if (game.dim <= 3) { navPanel.style.display = 'none'; return; }
+    navPanel.style.display = 'flex';
+    for (var d = 4; d <= game.dim; d++) {
+      (function (d) {
+        var navGroup = document.createElement('div');
+        navGroup.className = 'ht-slice-selector';
+        var label = document.createElement('span');
+        label.textContent = 'Dim ' + d + ' index:';
+        navGroup.appendChild(label);
+        var optionsWrap = document.createElement('div');
+        optionsWrap.className = 'ht-slice-options';
+        var groupName = 'ht-slice-dim-' + d;
+        var current = game.sliceCoords[d - 4] || 0;
+        for (var i = 0; i < 3; i++) {
+          var optLabel = document.createElement('label');
+          optLabel.className = 'ht-slice-option';
+          var radio = document.createElement('input');
+          radio.type = 'radio';
+          radio.name = groupName;
+          radio.value = i;
+          if (i === current) radio.checked = true;
+          radio.addEventListener('change', function (e) {
+            game.sliceCoords[d - 4] = parseInt(e.target.value, 10);
+            renderBoard();
+          });
+          var text = document.createElement('span');
+          text.textContent = i;
+          optLabel.appendChild(radio);
+          optLabel.appendChild(text);
+          optionsWrap.appendChild(optLabel);
+        }
+        navGroup.appendChild(optionsWrap);
+        navPanel.appendChild(navGroup);
+      })(d);
+    }
+  }
+
+  function renderBoard() {
+    gameBoard.innerHTML = '';
+    var numGrids = game.dim === 2 ? 1 : 3;
+
+    for (var z = 0; z < numGrids; z++) {
+      var gridWrapper = document.createElement('div');
+      gridWrapper.className = 'ht-grid-wrapper';
+
+      if (game.dim >= 3) {
+        var label = document.createElement('div');
+        label.className = 'ht-grid-label';
+        label.textContent = game.dim > 3
+          ? 'Slice [*, *, ' + z + ', ' + game.sliceCoords.join(', ') + ']'
+          : 'Layer Z = ' + z;
+        gridWrapper.appendChild(label);
+      }
+
+      var grid = document.createElement('div');
+      grid.className = 'ht-grid-3x3';
+
+      for (var y = 0; y < 3; y++) {
+        for (var x = 0; x < 3; x++) {
+          (function (x, y, z) {
+            var cell = document.createElement('div');
+            cell.className = 'ht-cell';
+
+            var coord = [x, y];
+            if (game.dim >= 3) coord.push(z);
+            if (game.dim >= 4) coord = coord.concat(game.sliceCoords);
+
+            var coordStr = coord.join(',');
+            var val = game.getCell(coordStr);
+
+            if (val) {
+              cell.textContent = val;
+              cell.classList.add(val.toLowerCase(), 'occupied');
+            }
+            if (game.winningLine && game.winningLine.indexOf(coordStr) !== -1) cell.classList.add('winning');
+            if (game.gameOver) cell.classList.add('disabled');
+
+            cell.addEventListener('click', function () { handleCellClick(coordStr); });
+            grid.appendChild(cell);
+          })(x, y, z);
+        }
+      }
+
+      gridWrapper.appendChild(grid);
+      gameBoard.appendChild(gridWrapper);
+    }
+  }
+
+  function handleCellClick(coordStr) {
+    if (game.gameOver || game.board.has(coordStr)) return;
+    game.makeMove(coordStr, 'X');
+    renderBoard();
+    if (game.gameOver) { updateStatus(); return; }
+
+    updateStatus('Computer is thinking...');
+    setTimeout(function () {
+      var aiMove = game.getAIMove();
+      if (aiMove) { game.makeMove(aiMove, 'O'); renderBoard(); }
+      updateStatus(game.gameOver ? null : 'Your turn (X)');
+    }, 150);
+  }
+
+  dimSlider.addEventListener('input', function (e) { dimValue.textContent = e.target.value; });
+  dimSlider.addEventListener('change', initGame);
+  aiDifficulty.addEventListener('change', initGame);
+  resetBtn.addEventListener('click', initGame);
+
+  initGame();
+})();
+</script>
+
+
+</body>
+</html>

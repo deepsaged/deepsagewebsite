@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +17,22 @@
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 
   <link rel="stylesheet" href="/assets/site.css">
+  
+
+  <link rel="alternate" hreflang="en" href="https://deepsage.com/skills/cybersecurity-management/">
+  <link rel="alternate" hreflang="es" href="https://deepsage.com/es/skills/cybersecurity-management/">
+  <link rel="alternate" hreflang="pt" href="https://deepsage.com/pt/skills/cybersecurity-management/">
+  <link rel="alternate" hreflang="fr" href="https://deepsage.com/fr/skills/cybersecurity-management/">
+  <link rel="alternate" hreflang="de" href="https://deepsage.com/de/skills/cybersecurity-management/">
+  <link rel="alternate" hreflang="ru" href="https://deepsage.com/ru/skills/cybersecurity-management/">
+  <link rel="alternate" hreflang="ja" href="https://deepsage.com/ja/skills/cybersecurity-management/">
+  <link rel="alternate" hreflang="zh-Hans" href="https://deepsage.com/zh-Hans/skills/cybersecurity-management/">
+  <link rel="alternate" hreflang="ko" href="https://deepsage.com/ko/skills/cybersecurity-management/">
+  <link rel="alternate" hreflang="it" href="https://deepsage.com/it/skills/cybersecurity-management/">
+  <link rel="alternate" hreflang="hi" href="https://deepsage.com/hi/skills/cybersecurity-management/">
+
+  <link rel="alternate" hreflang="x-default" href="https://deepsage.com/skills/cybersecurity-management/">
+
   
 <style>
   .landing-hero { text-align: center; padding: 8px 0 32px; }
@@ -106,6 +124,7 @@
       getFirestore,
       doc,
       setDoc,
+      getDoc,
       serverTimestamp,
     } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
 
@@ -155,10 +174,27 @@
       }
     }
 
+    // Reads the logged-in user's stored language preference, if any.
+    // Returns null on any failure (missing doc, security-rule denial, etc.)
+    // so callers can fall back to weaker signals rather than erroring.
+    async function getPreferredLang(uid) {
+      try {
+        const snap = await getDoc(doc(firestoreDb, "users", uid));
+        return snap.exists() ? (snap.data().preferredLang || null) : null;
+      } catch (err) {
+        console.error("Failed to read language preference:", err);
+        return null;
+      }
+    }
+
+    async function setPreferredLang(uid, lang) {
+      await setDoc(doc(firestoreDb, "users", uid), { preferredLang: lang }, { merge: true });
+    }
+
     window._sf = {
       auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut,
       onAuthStateChanged, gProvider, signInWithPopup, getAdditionalUserInfo,
-      recordUserSignup,
+      recordUserSignup, getPreferredLang, setPreferredLang,
     };
     window.dsRecordUserSignup = recordUserSignup;
 
@@ -171,14 +207,23 @@
       if (user) {
         signedOut.style.display = "none";
         signedIn.style.display = "flex";
-        nameEl.textContent = user.displayName || user.email || "Explorer";
+        nameEl.textContent = user.displayName || user.email || window.dsUiStrings.explorer_fallback;
         if (banner) banner.style.display = "none";
       } else {
         signedOut.style.display = "flex";
         signedIn.style.display = "none";
         if (banner) banner.style.display = "flex";
       }
+      if (window.dsOnAuthReady) window.dsOnAuthReady(user);
     });
+  </script>
+  <script>
+    window.dsLangUrls = {"de": "https://deepsage.com/de/skills/cybersecurity-management/", "en": "https://deepsage.com/skills/cybersecurity-management/", "es": "https://deepsage.com/es/skills/cybersecurity-management/", "fr": "https://deepsage.com/fr/skills/cybersecurity-management/", "hi": "https://deepsage.com/hi/skills/cybersecurity-management/", "it": "https://deepsage.com/it/skills/cybersecurity-management/", "ja": "https://deepsage.com/ja/skills/cybersecurity-management/", "ko": "https://deepsage.com/ko/skills/cybersecurity-management/", "pt": "https://deepsage.com/pt/skills/cybersecurity-management/", "ru": "https://deepsage.com/ru/skills/cybersecurity-management/", "zh-Hans": "https://deepsage.com/zh-Hans/skills/cybersecurity-management/"};
+    window.dsCurrentLang = "en";
+  </script>
+  <script src="/assets/js/lang-preference.js"></script>
+  <script>
+    window.dsUiStrings = {"auth_err_email_in_use": "Email already registered. Sign in instead.", "auth_err_invalid_credential": "Incorrect email or password.", "auth_err_invalid_email": "Please enter a valid email.", "auth_err_user_not_found": "No account with that email.", "auth_err_weak_password": "Password must be at least 6 characters.", "auth_err_wrong_password": "Incorrect password.", "connecting": "Connecting\u2026", "could_not_connect": "Could not start connection", "explorer_fallback": "Explorer", "fill_all_fields": "Please fill in all fields.", "firebase_not_ready": "Firebase not initialized yet.", "join_wishlist": "Join Wish List", "tick_consent": "Please tick the consent box to continue."};
   </script>
 </head>
 <body>
@@ -196,18 +241,51 @@
     <div class="page-header">
       <a href="/" class="page-logo-link" aria-label="DeepSage home"><img class="page-logo" src="/assets/logo.png" alt="DeepSage" width="1628" height="351"></a>
 
-      <div class="header-auth">
-        <div id="header-auth-out" class="header-auth-out">
-          <button class="signin-link" onclick="openAuthModal()">My Account</button>
-        </div>
-        <div id="header-auth-in" class="header-auth-in account-menu" style="display:none;">
-          <button class="signin-link account-btn" onclick="toggleAccountMenu()">My Account</button>
-          <div id="account-dropdown" class="account-dropdown">
-            <span id="header-auth-name" class="header-auth-name"></span>
-            <a class="account-dropdown-connect" href="/settings/">Settings</a>
-            <button class="account-dropdown-signout" onclick="doSignOut()">Sign out</button>
+      <div class="header-controls">
+        <div class="header-auth">
+          <div id="header-auth-out" class="header-auth-out">
+            <button class="signin-link" onclick="openAuthModal()">My Account</button>
+          </div>
+          <div id="header-auth-in" class="header-auth-in account-menu" style="display:none;">
+            <button class="signin-link account-btn" onclick="toggleAccountMenu()">My Account</button>
+            <div id="account-dropdown" class="account-dropdown">
+              <span id="header-auth-name" class="header-auth-name"></span>
+              <a class="account-dropdown-connect" href="/settings/">Settings</a>
+              <button class="account-dropdown-signout" onclick="doSignOut()">Sign out</button>
+            </div>
           </div>
         </div>
+
+        
+<div class="lang-switcher">
+  <button class="lang-switcher-btn" onclick="toggleLangMenu()" type="button">English</button>
+  <div id="lang-dropdown" class="lang-dropdown">
+    
+    <a href="https://deepsage.com/skills/cybersecurity-management/" class="lang-option lang-option-active" data-lang="en" onclick="return dsSwitchLang(event, 'en', 'https://deepsage.com/skills/cybersecurity-management/')">English</a>
+    
+    <a href="https://deepsage.com/es/skills/cybersecurity-management/" class="lang-option" data-lang="es" onclick="return dsSwitchLang(event, 'es', 'https://deepsage.com/es/skills/cybersecurity-management/')">Español</a>
+    
+    <a href="https://deepsage.com/pt/skills/cybersecurity-management/" class="lang-option" data-lang="pt" onclick="return dsSwitchLang(event, 'pt', 'https://deepsage.com/pt/skills/cybersecurity-management/')">Português</a>
+    
+    <a href="https://deepsage.com/fr/skills/cybersecurity-management/" class="lang-option" data-lang="fr" onclick="return dsSwitchLang(event, 'fr', 'https://deepsage.com/fr/skills/cybersecurity-management/')">Français</a>
+    
+    <a href="https://deepsage.com/de/skills/cybersecurity-management/" class="lang-option" data-lang="de" onclick="return dsSwitchLang(event, 'de', 'https://deepsage.com/de/skills/cybersecurity-management/')">Deutsch</a>
+    
+    <a href="https://deepsage.com/ru/skills/cybersecurity-management/" class="lang-option" data-lang="ru" onclick="return dsSwitchLang(event, 'ru', 'https://deepsage.com/ru/skills/cybersecurity-management/')">Русский</a>
+    
+    <a href="https://deepsage.com/ja/skills/cybersecurity-management/" class="lang-option" data-lang="ja" onclick="return dsSwitchLang(event, 'ja', 'https://deepsage.com/ja/skills/cybersecurity-management/')">日本語</a>
+    
+    <a href="https://deepsage.com/zh-Hans/skills/cybersecurity-management/" class="lang-option" data-lang="zh-Hans" onclick="return dsSwitchLang(event, 'zh-Hans', 'https://deepsage.com/zh-Hans/skills/cybersecurity-management/')">简体中文</a>
+    
+    <a href="https://deepsage.com/ko/skills/cybersecurity-management/" class="lang-option" data-lang="ko" onclick="return dsSwitchLang(event, 'ko', 'https://deepsage.com/ko/skills/cybersecurity-management/')">한국어</a>
+    
+    <a href="https://deepsage.com/it/skills/cybersecurity-management/" class="lang-option" data-lang="it" onclick="return dsSwitchLang(event, 'it', 'https://deepsage.com/it/skills/cybersecurity-management/')">Italiano</a>
+    
+    <a href="https://deepsage.com/hi/skills/cybersecurity-management/" class="lang-option" data-lang="hi" onclick="return dsSwitchLang(event, 'hi', 'https://deepsage.com/hi/skills/cybersecurity-management/')">हिन्दी</a>
+    
+  </div>
+</div>
+
       </div>
     </div>
 
@@ -221,7 +299,7 @@
 
   <div class="page-section">
     <h2 class="section-title">Why Cybersecurity Management Matters</h2>
-    <p>Cybersecurity Management is one of the skills shaping how people work, learn, and solve problems today. As the pace of change accelerates, understanding cybersecurity management isn't optional anymore - it's a foundation for staying capable and confident, whether you're a student, a professional, or simply curious about where the world is heading.</p>
+    <p>Cybersecurity Management is one of the skills shaping how people work, learn, and solve problems today. As the pace of change accelerates, understanding cybersecurity management isn&#39;t optional anymore - it&#39;s a foundation for staying capable and confident, whether you&#39;re a student, a professional, or simply curious about where the world is heading.</p>
   </div>
 
   <div class="page-section">
@@ -238,7 +316,7 @@
 
   <div class="page-section">
     <h2 class="section-title">Where DeepSage Fits In</h2>
-    <p>DeepSage is an upcoming edutainment game built to teach skills like cybersecurity management through adventure, story, and interactive challenges instead of slides and quizzes. It's designed for people who want to build real capability in areas like this one without sitting through another lecture.</p>
+    <p>DeepSage is an upcoming edutainment game built to teach skills like cybersecurity management through adventure, story, and interactive challenges instead of slides and quizzes. It&#39;s designed for people who want to build real capability in areas like this one without sitting through another lecture.</p>
   </div>
 
   <div class="landing-cta-row">
@@ -380,13 +458,13 @@ function setAuthMsg(txt, color) {
 
 async function authSubmit() {
   const sf = window._sf;
-  if (!sf) return setAuthMsg("Firebase not initialized yet.");
+  if (!sf) return setAuthMsg(window.dsUiStrings.firebase_not_ready);
   const email = document.getElementById("auth-email").value.trim();
   const pass = document.getElementById("auth-pass").value;
-  if (!email || !pass) return setAuthMsg("Please fill in all fields.");
+  if (!email || !pass) return setAuthMsg(window.dsUiStrings.fill_all_fields);
 
   if (authMode === "signup" && !document.getElementById("auth-consent-check").checked) {
-    return setAuthMsg("Please tick the consent box to continue.");
+    return setAuthMsg(window.dsUiStrings.tick_consent);
   }
 
   const btn = document.getElementById("auth-submit-btn");
@@ -404,25 +482,25 @@ async function authSubmit() {
     closeAuthModal();
   } catch (err) {
     const msgs = {
-      "auth/user-not-found": "No account with that email.",
-      "auth/wrong-password": "Incorrect password.",
-      "auth/invalid-credential": "Incorrect email or password.",
-      "auth/email-already-in-use": "Email already registered. Sign in instead.",
-      "auth/weak-password": "Password must be at least 6 characters.",
-      "auth/invalid-email": "Please enter a valid email.",
+      "auth/user-not-found": window.dsUiStrings.auth_err_user_not_found,
+      "auth/wrong-password": window.dsUiStrings.auth_err_wrong_password,
+      "auth/invalid-credential": window.dsUiStrings.auth_err_invalid_credential,
+      "auth/email-already-in-use": window.dsUiStrings.auth_err_email_in_use,
+      "auth/weak-password": window.dsUiStrings.auth_err_weak_password,
+      "auth/invalid-email": window.dsUiStrings.auth_err_invalid_email,
     };
     setAuthMsg(msgs[err.code] || err.message);
   } finally {
     btn.disabled = false;
-    btn.textContent = "Join Wish List";
+    btn.textContent = window.dsUiStrings.join_wishlist;
   }
 }
 
 async function authGoogle() {
   const sf = window._sf;
-  if (!sf) return setAuthMsg("Firebase not initialized yet.");
+  if (!sf) return setAuthMsg(window.dsUiStrings.firebase_not_ready);
   if (authMode === "signup" && !document.getElementById("auth-consent-check").checked) {
-    return setAuthMsg("Please tick the consent box to continue.");
+    return setAuthMsg(window.dsUiStrings.tick_consent);
   }
   try {
     const result = await sf.signInWithPopup(sf.auth, sf.gProvider);
@@ -442,14 +520,14 @@ async function connectPlatform(providerName) {
   const btn = document.getElementById(`connect-${providerName}-btn`);
   const prevText = btn.textContent;
   btn.disabled = true;
-  btn.textContent = "Connecting…";
+  btn.textContent = window.dsUiStrings.connecting;
 
   try {
     const idToken = await user.getIdToken();
     const res = await fetch(`https://oauth.deepsage.com/auth/${providerName}/login`, {
       headers: { Authorization: `Bearer ${idToken}` },
     });
-    if (!res.ok) throw new Error("Could not start connection");
+    if (!res.ok) throw new Error(window.dsUiStrings.could_not_connect);
     const { url } = await res.json();
     window.location.href = url;
   } catch (err) {
@@ -585,6 +663,116 @@ document.addEventListener('click', function(e) {
     : location.pathname.startsWith('/article/') ? 'article' : 'other';
   window.dsTrack('share', { method, content_type: contentType, item_id: location.pathname });
 });
+
+/* ── Language preference resolution (site-wide) ── */
+function toggleLangMenu() {
+  var dd = document.getElementById('lang-dropdown');
+  if (dd) dd.classList.toggle('open');
+}
+
+document.addEventListener('click', function (e) {
+  var dropdown = document.getElementById('lang-dropdown');
+  var switcher = document.querySelector('.lang-switcher');
+  if (dropdown && switcher && !switcher.contains(e.target)) dropdown.classList.remove('open');
+});
+
+function dsPersistLangOverride(lang) {
+  localStorage.setItem('deepsage_lang', lang);
+  var sf = window._sf;
+  var user = sf && sf.auth.currentUser;
+  if (user && sf.setPreferredLang) {
+    sf.setPreferredLang(user.uid, lang).catch(function (err) {
+      console.error('Failed to save language preference:', err);
+    });
+  }
+}
+window.dsPersistLangOverride = dsPersistLangOverride;
+
+function dsSwitchLang(event, lang, url) {
+  // NOTE: this duplicates the localStorage write from dsPersistLangOverride
+  // (kept above, unchanged) because dsSwitchLang needs to await the Firestore
+  // write before navigating, while dsPersistLangOverride is a fire-and-forget
+  // helper used by the settings page (Task 4, templates/settings.html's
+  // dsSettingsChangeLang), which navigates on its own right after calling it.
+  localStorage.setItem('deepsage_lang', lang);
+  var sf = window._sf;
+  var user = sf && sf.auth.currentUser;
+  if (user && sf.setPreferredLang) {
+    event.preventDefault();
+    sf.setPreferredLang(user.uid, lang)
+      .catch(function (err) { console.error('Failed to save language preference:', err); })
+      .finally(function () { window.location.href = url; });
+    return false;
+  }
+  return true;
+}
+window.dsSwitchLang = dsSwitchLang;
+
+var dsLangResolved = false;
+window.dsOnAuthReady = function (user) {
+  if (dsLangResolved) return;
+  dsLangResolved = true;
+  if (!window.DsLangPreference || !window.dsLangUrls || Object.keys(window.dsLangUrls).length === 0) return;
+
+  var storedOverride = localStorage.getItem('deepsage_lang');
+  var browserLang = navigator.language;
+
+  function apply(firestorePref) {
+    var result = window.DsLangPreference.resolveRedirect({
+      currentLang: window.dsCurrentLang,
+      langUrls: window.dsLangUrls,
+      storedOverride: storedOverride,
+      firestorePref: firestorePref || null,
+      browserLang: browserLang,
+    });
+    if (!result) return;
+    // Guard against redirecting to the page the visitor is already on (e.g.
+    // a casing mismatch between currentLang and a lang_urls key, or a
+    // trailing-slash inconsistency) -- without this, a data mismatch could
+    // send the visitor into a same-page redirect loop.
+    if (result.url === window.location.pathname || result.url === window.location.href) return;
+    if (result.persistOverride) localStorage.setItem('deepsage_lang', result.lang);
+    // Use replace(), not `.href =`, because this is an automatic redirect
+    // the visitor never asked for (either the Firestore-preference tier, or
+    // the browser-auto-detect tier, which by design never persists and so
+    // re-fires on every page load). `.href =` would push a new history
+    // entry each time, trapping Back-button presses by immediately
+    // re-redirecting forward again. Explicit user-initiated switches
+    // (dsSwitchLang, dsSettingsChangeLang) intentionally keep using
+    // `.href =` since those SHOULD be normal, back-button-able navigations.
+    window.location.replace(result.url);
+  }
+
+  var sf = window._sf;
+  if (user && sf && sf.getPreferredLang) {
+    sf.getPreferredLang(user.uid).then(apply).catch(function () { apply(null); });
+  } else {
+    apply(null);
+  }
+};
+
+// Fallback for when Firebase Auth never calls back at all (CDN blocked,
+// offline, script failed to load). This is a timer, not a DOMContentLoaded
+// listener, on purpose: this inline <script> runs near the bottom of
+// <body>, so DOMContentLoaded fires essentially immediately after it
+// registers -- long before Firebase's first onAuthStateChanged callback
+// (an unconditionally async, IndexedDB-backed read) has any real chance to
+// resolve. Since dsOnAuthReady is latched to only run once (dsLangResolved),
+// firing on DOMContentLoaded would deterministically win the race on every
+// normal page load and permanently blind language resolution to a logged-in
+// user's Firestore preferredLang -- the real Firebase callback would arrive
+// later and be silently ignored. 3000ms is generous: a working IndexedDB
+// read typically resolves in well under 100ms, so in the overwhelmingly
+// common case Firebase claims the latch long before this timer fires, and
+// this fallback only actually matters when Firebase never calls back at
+// all -- in which case treating the visitor as logged-out for
+// language-resolution purposes (falling through to localStorage override /
+// browser auto-detect, neither of which need Firebase) is the correct
+// degraded behavior. 3s is still well under what a user would notice as a
+// late background redirect.
+setTimeout(function () {
+  if (window.dsOnAuthReady) window.dsOnAuthReady(null);
+}, 3000);
 </script>
 
 

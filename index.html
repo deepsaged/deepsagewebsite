@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +17,22 @@
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 
   <link rel="stylesheet" href="/assets/site.css">
+  
+
+  <link rel="alternate" hreflang="en" href="https://deepsage.com/">
+  <link rel="alternate" hreflang="es" href="https://deepsage.com/es/">
+  <link rel="alternate" hreflang="pt" href="https://deepsage.com/pt/">
+  <link rel="alternate" hreflang="fr" href="https://deepsage.com/fr/">
+  <link rel="alternate" hreflang="de" href="https://deepsage.com/de/">
+  <link rel="alternate" hreflang="ru" href="https://deepsage.com/ru/">
+  <link rel="alternate" hreflang="ja" href="https://deepsage.com/ja/">
+  <link rel="alternate" hreflang="zh-Hans" href="https://deepsage.com/zh-Hans/">
+  <link rel="alternate" hreflang="ko" href="https://deepsage.com/ko/">
+  <link rel="alternate" hreflang="it" href="https://deepsage.com/it/">
+  <link rel="alternate" hreflang="hi" href="https://deepsage.com/hi/">
+
+  <link rel="alternate" hreflang="x-default" href="https://deepsage.com/">
+
   
 <style>
   /* ── Homepage-only styles ──
@@ -248,6 +266,7 @@
       getFirestore,
       doc,
       setDoc,
+      getDoc,
       serverTimestamp,
     } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
 
@@ -297,10 +316,27 @@
       }
     }
 
+    // Reads the logged-in user's stored language preference, if any.
+    // Returns null on any failure (missing doc, security-rule denial, etc.)
+    // so callers can fall back to weaker signals rather than erroring.
+    async function getPreferredLang(uid) {
+      try {
+        const snap = await getDoc(doc(firestoreDb, "users", uid));
+        return snap.exists() ? (snap.data().preferredLang || null) : null;
+      } catch (err) {
+        console.error("Failed to read language preference:", err);
+        return null;
+      }
+    }
+
+    async function setPreferredLang(uid, lang) {
+      await setDoc(doc(firestoreDb, "users", uid), { preferredLang: lang }, { merge: true });
+    }
+
     window._sf = {
       auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut,
       onAuthStateChanged, gProvider, signInWithPopup, getAdditionalUserInfo,
-      recordUserSignup,
+      recordUserSignup, getPreferredLang, setPreferredLang,
     };
     window.dsRecordUserSignup = recordUserSignup;
 
@@ -313,14 +349,23 @@
       if (user) {
         signedOut.style.display = "none";
         signedIn.style.display = "flex";
-        nameEl.textContent = user.displayName || user.email || "Explorer";
+        nameEl.textContent = user.displayName || user.email || window.dsUiStrings.explorer_fallback;
         if (banner) banner.style.display = "none";
       } else {
         signedOut.style.display = "flex";
         signedIn.style.display = "none";
         if (banner) banner.style.display = "flex";
       }
+      if (window.dsOnAuthReady) window.dsOnAuthReady(user);
     });
+  </script>
+  <script>
+    window.dsLangUrls = {"de": "https://deepsage.com/de/", "en": "https://deepsage.com/", "es": "https://deepsage.com/es/", "fr": "https://deepsage.com/fr/", "hi": "https://deepsage.com/hi/", "it": "https://deepsage.com/it/", "ja": "https://deepsage.com/ja/", "ko": "https://deepsage.com/ko/", "pt": "https://deepsage.com/pt/", "ru": "https://deepsage.com/ru/", "zh-Hans": "https://deepsage.com/zh-Hans/"};
+    window.dsCurrentLang = "en";
+  </script>
+  <script src="/assets/js/lang-preference.js"></script>
+  <script>
+    window.dsUiStrings = {"auth_err_email_in_use": "Email already registered. Sign in instead.", "auth_err_invalid_credential": "Incorrect email or password.", "auth_err_invalid_email": "Please enter a valid email.", "auth_err_user_not_found": "No account with that email.", "auth_err_weak_password": "Password must be at least 6 characters.", "auth_err_wrong_password": "Incorrect password.", "connecting": "Connecting\u2026", "could_not_connect": "Could not start connection", "explorer_fallback": "Explorer", "fill_all_fields": "Please fill in all fields.", "firebase_not_ready": "Firebase not initialized yet.", "join_wishlist": "Join Wish List", "tick_consent": "Please tick the consent box to continue."};
   </script>
 </head>
 <body>
@@ -338,18 +383,51 @@
     <div class="page-header">
       <a href="/" class="page-logo-link" aria-label="DeepSage home"><img class="page-logo" src="/assets/logo.png" alt="DeepSage" width="1628" height="351"></a>
 
-      <div class="header-auth">
-        <div id="header-auth-out" class="header-auth-out">
-          <button class="signin-link" onclick="openAuthModal()">My Account</button>
-        </div>
-        <div id="header-auth-in" class="header-auth-in account-menu" style="display:none;">
-          <button class="signin-link account-btn" onclick="toggleAccountMenu()">My Account</button>
-          <div id="account-dropdown" class="account-dropdown">
-            <span id="header-auth-name" class="header-auth-name"></span>
-            <a class="account-dropdown-connect" href="/settings/">Settings</a>
-            <button class="account-dropdown-signout" onclick="doSignOut()">Sign out</button>
+      <div class="header-controls">
+        <div class="header-auth">
+          <div id="header-auth-out" class="header-auth-out">
+            <button class="signin-link" onclick="openAuthModal()">My Account</button>
+          </div>
+          <div id="header-auth-in" class="header-auth-in account-menu" style="display:none;">
+            <button class="signin-link account-btn" onclick="toggleAccountMenu()">My Account</button>
+            <div id="account-dropdown" class="account-dropdown">
+              <span id="header-auth-name" class="header-auth-name"></span>
+              <a class="account-dropdown-connect" href="/settings/">Settings</a>
+              <button class="account-dropdown-signout" onclick="doSignOut()">Sign out</button>
+            </div>
           </div>
         </div>
+
+        
+<div class="lang-switcher">
+  <button class="lang-switcher-btn" onclick="toggleLangMenu()" type="button">English</button>
+  <div id="lang-dropdown" class="lang-dropdown">
+    
+    <a href="https://deepsage.com/" class="lang-option lang-option-active" data-lang="en" onclick="return dsSwitchLang(event, 'en', 'https://deepsage.com/')">English</a>
+    
+    <a href="https://deepsage.com/es/" class="lang-option" data-lang="es" onclick="return dsSwitchLang(event, 'es', 'https://deepsage.com/es/')">Español</a>
+    
+    <a href="https://deepsage.com/pt/" class="lang-option" data-lang="pt" onclick="return dsSwitchLang(event, 'pt', 'https://deepsage.com/pt/')">Português</a>
+    
+    <a href="https://deepsage.com/fr/" class="lang-option" data-lang="fr" onclick="return dsSwitchLang(event, 'fr', 'https://deepsage.com/fr/')">Français</a>
+    
+    <a href="https://deepsage.com/de/" class="lang-option" data-lang="de" onclick="return dsSwitchLang(event, 'de', 'https://deepsage.com/de/')">Deutsch</a>
+    
+    <a href="https://deepsage.com/ru/" class="lang-option" data-lang="ru" onclick="return dsSwitchLang(event, 'ru', 'https://deepsage.com/ru/')">Русский</a>
+    
+    <a href="https://deepsage.com/ja/" class="lang-option" data-lang="ja" onclick="return dsSwitchLang(event, 'ja', 'https://deepsage.com/ja/')">日本語</a>
+    
+    <a href="https://deepsage.com/zh-Hans/" class="lang-option" data-lang="zh-Hans" onclick="return dsSwitchLang(event, 'zh-Hans', 'https://deepsage.com/zh-Hans/')">简体中文</a>
+    
+    <a href="https://deepsage.com/ko/" class="lang-option" data-lang="ko" onclick="return dsSwitchLang(event, 'ko', 'https://deepsage.com/ko/')">한국어</a>
+    
+    <a href="https://deepsage.com/it/" class="lang-option" data-lang="it" onclick="return dsSwitchLang(event, 'it', 'https://deepsage.com/it/')">Italiano</a>
+    
+    <a href="https://deepsage.com/hi/" class="lang-option" data-lang="hi" onclick="return dsSwitchLang(event, 'hi', 'https://deepsage.com/hi/')">हिन्दी</a>
+    
+  </div>
+</div>
+
       </div>
     </div>
 
@@ -383,7 +461,7 @@
       <h2 class="section-title">What Is DeepSage?</h2>
       <p>DeepSage is an upcoming edutainment game built around a simple idea: real knowledge should feel like a superpower. Every battle in the game is fought with questions and answers instead of button-mashing. Face a rival, and you're both trading real questions across subjects like science, history, and logic. Answer well and you prevail; answer wrong and it costs you. Skill at the game <em>is</em> skill at learning.</p>
       <p>DeepSage is set in a science-fiction world built to give those battles a story worth showing up for - the details are best discovered by playing.</p>
-      <p>It's a world worth exploring - and every fight in it is a chance to actually get smarter.</p>
+      <p>It&#39;s a world worth exploring - and every fight in it is a chance to actually get smarter.</p>
     </div>
 
   </div>
@@ -395,57 +473,57 @@
 
 <div class="card-grid">
   
+  <a class="content-card" href="/article/the-golden-gate-bridge-is-a-giant-microscope-for-porpoise-romance/">
+    <img class="content-card-thumb" src="/article/the-golden-gate-bridge-is-a-giant-microscope-for-porpoise-romance/hero.png" alt="The Golden Gate Bridge is a giant microscope for porpoise romance">
+    <div class="content-card-body">
+      <span class="content-card-badge">Article</span>
+      <div class="content-card-title">The Golden Gate Bridge is a giant microscope for porpoise romance</div>
+      <div class="content-card-preview">By using a massive suspension bridge as a biological magnifying glass, scientists discovered that harbor porpoises have a very specific, very left-sided way of doing things.</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/article/the-ai-split-personality-problem/">
+    <img class="content-card-thumb" src="/article/the-ai-split-personality-problem/hero.png" alt="The AI Split-Personality Problem">
+    <div class="content-card-body">
+      <span class="content-card-badge">Article</span>
+      <div class="content-card-title">The AI Split-Personality Problem</div>
+      <div class="content-card-preview">We&#39;re building high-precision surgical scalpels that also happen to function as unregulated, cuddly teddy bears for children.</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/article/the-great-beatles-disruption-when-the-historian-becomes-the-fan/">
+    <img class="content-card-thumb" src="/article/the-great-beatles-disruption-when-the-historian-becomes-the-fan/hero.png" alt="The Great Beatles Disruption: When the Historian Becomes the Fan">
+    <div class="content-card-body">
+      <span class="content-card-badge">Article</span>
+      <div class="content-card-title">The Great Beatles Disruption: When the Historian Becomes the Fan</div>
+      <div class="content-card-preview">I built a specialized data-retrieval engine to analyze a moment where the line between scholarly record and obsessive fandom simply ceased to exist.</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/article/the-petrified-forest-conscience-files/">
+    <img class="content-card-thumb" src="/article/the-petrified-forest-conscience-files/hero.png" alt="The Petrified Forest Conscience Files">
+    <div class="content-card-body">
+      <span class="content-card-badge">Article</span>
+      <div class="content-card-title">The Petrified Forest Conscience Files</div>
+      <div class="content-card-preview">Why people are mailing rocks back to a National Park in a bizarre ritual of geological guilt.</div>
+    </div>
+  </a>
+  
+  <a class="content-card" href="/quiz/the-petrified-forest-post-office-souvenirs-and-regret/">
+    <img class="content-card-thumb" src="/quiz/the-petrified-forest-post-office-souvenirs-and-regret/hero.png" alt="The Petrified Forest Post Office: Souvenirs and Regret">
+    <div class="content-card-body">
+      <span class="content-card-badge">Quiz</span>
+      <div class="content-card-title">The Petrified Forest Post Office: Souvenirs and Regret</div>
+      <div class="content-card-preview">10 questions - test your knowledge</div>
+    </div>
+  </a>
+  
   <a class="content-card" href="/article/microsoft-s-secret-parameter-is-a-hacker-s-dream/">
     <img class="content-card-thumb" src="/article/microsoft-s-secret-parameter-is-a-hacker-s-dream/hero.png" alt="Microsoft&#39;s &#39;Secret&#39; Parameter is a Hacker&#39;s Dream">
     <div class="content-card-body">
       <span class="content-card-badge">Article</span>
       <div class="content-card-title">Microsoft&#39;s &#39;Secret&#39; Parameter is a Hacker&#39;s Dream</div>
       <div class="content-card-preview">A hidden piece of data in Microsoft Copilot just turned a simple click into a password-stealing goldmine.</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/quiz/copilot-s-little-secret-the-leak-that-let-hackers-in/">
-    <img class="content-card-thumb" src="/quiz/copilot-s-little-secret-the-leak-that-let-hackers-in/hero.png" alt="Copilot&#39;s Little Secret: The Leak that Let Hackers In">
-    <div class="content-card-body">
-      <span class="content-card-badge">Quiz</span>
-      <div class="content-card-title">Copilot&#39;s Little Secret: The Leak that Let Hackers In</div>
-      <div class="content-card-preview">10 questions - test your knowledge</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/article/the-momentum-anchor-why-spider-man-is-the-engine-of-your-team/">
-    <img class="content-card-thumb" src="/article/the-momentum-anchor-why-spider-man-is-the-engine-of-your-team/hero.png" alt="The Momentum Anchor: Why Spider-Man is the Engine of Your Team">
-    <div class="content-card-body">
-      <span class="content-card-badge">Article</span>
-      <div class="content-card-title">The Momentum Anchor: Why Spider-Man is the Engine of Your Team</div>
-      <div class="content-card-preview">He&#39;s not just swinging around; he&#39;s reconfiguring the entire battlefield.</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/article/diablo-4-s-switch-2-debut-might-be-the-age-of-hatred-we-deserve/">
-    <img class="content-card-thumb" src="/article/diablo-4-s-switch-2-debut-might-be-the-age-of-hatred-we-deserve/hero.png" alt="Diablo 4&#39;s Switch 2 Debut Might Be the &#39;Age of Hatred&#39; We Deserve">
-    <div class="content-card-body">
-      <span class="content-card-badge">Article</span>
-      <div class="content-card-title">Diablo 4&#39;s Switch 2 Debut Might Be the &#39;Age of Hatred&#39; We Deserve</div>
-      <div class="content-card-preview">Forget the hardware specs for a second-it looks like the next Nintendo powerhouse is getting a massive, all-in-one dark fantasy bundle.</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/quiz/diablo-4-on-switch-2-the-dark-lord-arrives-finally/">
-    <img class="content-card-thumb" src="/quiz/diablo-4-on-switch-2-the-dark-lord-arrives-finally/hero.png" alt="Diablo 4 on Switch 2: The Dark Lord Arrives (Finally)">
-    <div class="content-card-body">
-      <span class="content-card-badge">Quiz</span>
-      <div class="content-card-title">Diablo 4 on Switch 2: The Dark Lord Arrives (Finally)</div>
-      <div class="content-card-preview">10 questions - test your knowledge</div>
-    </div>
-  </a>
-  
-  <a class="content-card" href="/article/constantin-brancusi-the-man-who-taught-modernity-how-to-smooth-out-its-edges/">
-    <img class="content-card-thumb" src="/article/constantin-brancusi-the-man-who-taught-modernity-how-to-smooth-out-its-edges/hero.png" alt="Constantin Brancusi: The Man Who Taught Modernity How to Smooth Out Its Edges">
-    <div class="content-card-body">
-      <span class="content-card-badge">Article</span>
-      <div class="content-card-title">Constantin Brancusi: The Man Who Taught Modernity How to Smooth Out Its Edges</div>
-      <div class="content-card-preview">Long before Silicon Valley obsessed over &#39;seamless user experiences,&#39; one Romanian sculptor was already perfecting the art of the minimalist curve.</div>
     </div>
   </a>
   
@@ -584,13 +662,13 @@ function setAuthMsg(txt, color) {
 
 async function authSubmit() {
   const sf = window._sf;
-  if (!sf) return setAuthMsg("Firebase not initialized yet.");
+  if (!sf) return setAuthMsg(window.dsUiStrings.firebase_not_ready);
   const email = document.getElementById("auth-email").value.trim();
   const pass = document.getElementById("auth-pass").value;
-  if (!email || !pass) return setAuthMsg("Please fill in all fields.");
+  if (!email || !pass) return setAuthMsg(window.dsUiStrings.fill_all_fields);
 
   if (authMode === "signup" && !document.getElementById("auth-consent-check").checked) {
-    return setAuthMsg("Please tick the consent box to continue.");
+    return setAuthMsg(window.dsUiStrings.tick_consent);
   }
 
   const btn = document.getElementById("auth-submit-btn");
@@ -608,25 +686,25 @@ async function authSubmit() {
     closeAuthModal();
   } catch (err) {
     const msgs = {
-      "auth/user-not-found": "No account with that email.",
-      "auth/wrong-password": "Incorrect password.",
-      "auth/invalid-credential": "Incorrect email or password.",
-      "auth/email-already-in-use": "Email already registered. Sign in instead.",
-      "auth/weak-password": "Password must be at least 6 characters.",
-      "auth/invalid-email": "Please enter a valid email.",
+      "auth/user-not-found": window.dsUiStrings.auth_err_user_not_found,
+      "auth/wrong-password": window.dsUiStrings.auth_err_wrong_password,
+      "auth/invalid-credential": window.dsUiStrings.auth_err_invalid_credential,
+      "auth/email-already-in-use": window.dsUiStrings.auth_err_email_in_use,
+      "auth/weak-password": window.dsUiStrings.auth_err_weak_password,
+      "auth/invalid-email": window.dsUiStrings.auth_err_invalid_email,
     };
     setAuthMsg(msgs[err.code] || err.message);
   } finally {
     btn.disabled = false;
-    btn.textContent = "Join Wish List";
+    btn.textContent = window.dsUiStrings.join_wishlist;
   }
 }
 
 async function authGoogle() {
   const sf = window._sf;
-  if (!sf) return setAuthMsg("Firebase not initialized yet.");
+  if (!sf) return setAuthMsg(window.dsUiStrings.firebase_not_ready);
   if (authMode === "signup" && !document.getElementById("auth-consent-check").checked) {
-    return setAuthMsg("Please tick the consent box to continue.");
+    return setAuthMsg(window.dsUiStrings.tick_consent);
   }
   try {
     const result = await sf.signInWithPopup(sf.auth, sf.gProvider);
@@ -646,14 +724,14 @@ async function connectPlatform(providerName) {
   const btn = document.getElementById(`connect-${providerName}-btn`);
   const prevText = btn.textContent;
   btn.disabled = true;
-  btn.textContent = "Connecting…";
+  btn.textContent = window.dsUiStrings.connecting;
 
   try {
     const idToken = await user.getIdToken();
     const res = await fetch(`https://oauth.deepsage.com/auth/${providerName}/login`, {
       headers: { Authorization: `Bearer ${idToken}` },
     });
-    if (!res.ok) throw new Error("Could not start connection");
+    if (!res.ok) throw new Error(window.dsUiStrings.could_not_connect);
     const { url } = await res.json();
     window.location.href = url;
   } catch (err) {
@@ -789,6 +867,116 @@ document.addEventListener('click', function(e) {
     : location.pathname.startsWith('/article/') ? 'article' : 'other';
   window.dsTrack('share', { method, content_type: contentType, item_id: location.pathname });
 });
+
+/* ── Language preference resolution (site-wide) ── */
+function toggleLangMenu() {
+  var dd = document.getElementById('lang-dropdown');
+  if (dd) dd.classList.toggle('open');
+}
+
+document.addEventListener('click', function (e) {
+  var dropdown = document.getElementById('lang-dropdown');
+  var switcher = document.querySelector('.lang-switcher');
+  if (dropdown && switcher && !switcher.contains(e.target)) dropdown.classList.remove('open');
+});
+
+function dsPersistLangOverride(lang) {
+  localStorage.setItem('deepsage_lang', lang);
+  var sf = window._sf;
+  var user = sf && sf.auth.currentUser;
+  if (user && sf.setPreferredLang) {
+    sf.setPreferredLang(user.uid, lang).catch(function (err) {
+      console.error('Failed to save language preference:', err);
+    });
+  }
+}
+window.dsPersistLangOverride = dsPersistLangOverride;
+
+function dsSwitchLang(event, lang, url) {
+  // NOTE: this duplicates the localStorage write from dsPersistLangOverride
+  // (kept above, unchanged) because dsSwitchLang needs to await the Firestore
+  // write before navigating, while dsPersistLangOverride is a fire-and-forget
+  // helper used by the settings page (Task 4, templates/settings.html's
+  // dsSettingsChangeLang), which navigates on its own right after calling it.
+  localStorage.setItem('deepsage_lang', lang);
+  var sf = window._sf;
+  var user = sf && sf.auth.currentUser;
+  if (user && sf.setPreferredLang) {
+    event.preventDefault();
+    sf.setPreferredLang(user.uid, lang)
+      .catch(function (err) { console.error('Failed to save language preference:', err); })
+      .finally(function () { window.location.href = url; });
+    return false;
+  }
+  return true;
+}
+window.dsSwitchLang = dsSwitchLang;
+
+var dsLangResolved = false;
+window.dsOnAuthReady = function (user) {
+  if (dsLangResolved) return;
+  dsLangResolved = true;
+  if (!window.DsLangPreference || !window.dsLangUrls || Object.keys(window.dsLangUrls).length === 0) return;
+
+  var storedOverride = localStorage.getItem('deepsage_lang');
+  var browserLang = navigator.language;
+
+  function apply(firestorePref) {
+    var result = window.DsLangPreference.resolveRedirect({
+      currentLang: window.dsCurrentLang,
+      langUrls: window.dsLangUrls,
+      storedOverride: storedOverride,
+      firestorePref: firestorePref || null,
+      browserLang: browserLang,
+    });
+    if (!result) return;
+    // Guard against redirecting to the page the visitor is already on (e.g.
+    // a casing mismatch between currentLang and a lang_urls key, or a
+    // trailing-slash inconsistency) -- without this, a data mismatch could
+    // send the visitor into a same-page redirect loop.
+    if (result.url === window.location.pathname || result.url === window.location.href) return;
+    if (result.persistOverride) localStorage.setItem('deepsage_lang', result.lang);
+    // Use replace(), not `.href =`, because this is an automatic redirect
+    // the visitor never asked for (either the Firestore-preference tier, or
+    // the browser-auto-detect tier, which by design never persists and so
+    // re-fires on every page load). `.href =` would push a new history
+    // entry each time, trapping Back-button presses by immediately
+    // re-redirecting forward again. Explicit user-initiated switches
+    // (dsSwitchLang, dsSettingsChangeLang) intentionally keep using
+    // `.href =` since those SHOULD be normal, back-button-able navigations.
+    window.location.replace(result.url);
+  }
+
+  var sf = window._sf;
+  if (user && sf && sf.getPreferredLang) {
+    sf.getPreferredLang(user.uid).then(apply).catch(function () { apply(null); });
+  } else {
+    apply(null);
+  }
+};
+
+// Fallback for when Firebase Auth never calls back at all (CDN blocked,
+// offline, script failed to load). This is a timer, not a DOMContentLoaded
+// listener, on purpose: this inline <script> runs near the bottom of
+// <body>, so DOMContentLoaded fires essentially immediately after it
+// registers -- long before Firebase's first onAuthStateChanged callback
+// (an unconditionally async, IndexedDB-backed read) has any real chance to
+// resolve. Since dsOnAuthReady is latched to only run once (dsLangResolved),
+// firing on DOMContentLoaded would deterministically win the race on every
+// normal page load and permanently blind language resolution to a logged-in
+// user's Firestore preferredLang -- the real Firebase callback would arrive
+// later and be silently ignored. 3000ms is generous: a working IndexedDB
+// read typically resolves in well under 100ms, so in the overwhelmingly
+// common case Firebase claims the latch long before this timer fires, and
+// this fallback only actually matters when Firebase never calls back at
+// all -- in which case treating the visitor as logged-out for
+// language-resolution purposes (falling through to localStorage override /
+// browser auto-detect, neither of which need Firebase) is the correct
+// degraded behavior. 3s is still well under what a user would notice as a
+// late background redirect.
+setTimeout(function () {
+  if (window.dsOnAuthReady) window.dsOnAuthReady(null);
+}, 3000);
 </script>
 
 

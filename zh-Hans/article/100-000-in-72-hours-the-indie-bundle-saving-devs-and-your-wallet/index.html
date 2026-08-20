@@ -1,0 +1,792 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>72小时内筹集10万美元：独立游戏大礼包，拯救游戏开发者（同时也让您省钱）。 · DeepSage</title>
+  <meta name="description" content="游戏玩家们表现出的慷慨之情令人印象深刻，这证明了即使在游戏行业面临困境时，玩家群体仍然懂得如何通过购买来表达支持。">
+
+  <meta property="og:title" content="72小时内筹集10万美元：独立游戏大礼包，拯救游戏开发者（同时也让您省钱）。">
+  <meta property="og:description" content="游戏玩家们表现出的慷慨之情令人印象深刻，这证明了即使在游戏行业面临困境时，玩家群体仍然懂得如何通过购买来表达支持。">
+  <meta property="og:image" content="/zh-Hans/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/hero.png">
+  <meta property="og:type" content="article">
+
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+
+  <link rel="stylesheet" href="/assets/site.css">
+  
+
+  <link rel="alternate" hreflang="en" href="https://deepsage.com/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/">
+  <link rel="alternate" hreflang="es" href="https://deepsage.com/es/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/">
+  <link rel="alternate" hreflang="pt" href="https://deepsage.com/pt/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/">
+  <link rel="alternate" hreflang="fr" href="https://deepsage.com/fr/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/">
+  <link rel="alternate" hreflang="de" href="https://deepsage.com/de/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/">
+  <link rel="alternate" hreflang="ru" href="https://deepsage.com/ru/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/">
+  <link rel="alternate" hreflang="ja" href="https://deepsage.com/ja/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/">
+  <link rel="alternate" hreflang="zh-Hans" href="https://deepsage.com/zh-Hans/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/">
+  <link rel="alternate" hreflang="ko" href="https://deepsage.com/ko/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/">
+  <link rel="alternate" hreflang="it" href="https://deepsage.com/it/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/">
+  <link rel="alternate" hreflang="hi" href="https://deepsage.com/hi/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/">
+
+  <link rel="alternate" hreflang="x-default" href="https://deepsage.com/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/">
+
+  
+
+  <!-- Attribution capture: first-touch referrer/landing page, before anything else runs -->
+  <script>
+    (function captureAttribution() {
+      var FLAG = 'ds_attribution_captured';
+      if (localStorage.getItem(FLAG)) return;
+      var params = new URLSearchParams(location.search);
+      localStorage.setItem('ds_pending_ref', params.get('ref') || '');
+      localStorage.setItem('ds_pending_referrer', document.referrer || '');
+      localStorage.setItem('ds_pending_landing', location.pathname);
+      localStorage.setItem(FLAG, '1');
+    })();
+  </script>
+
+  <!-- Google Analytics (GA4) via gtag.js, using Consent Mode v2: loads with
+       storage denied by default, only switches to granted once the cookie
+       banner below records analytics consent. -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('consent', 'default', {
+      'analytics_storage': 'denied',
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+    });
+    gtag('js', new Date());
+    gtag('config', 'G-33MSQXQ8G9');
+
+    window.dsAnalyticsConsent = false;
+    window.dsTrack = function (name, params) {
+      if (!window.dsAnalyticsConsent) return;
+      gtag('event', name, params || {});
+    };
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-33MSQXQ8G9"></script>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
+    import {
+      getAuth,
+      GoogleAuthProvider,
+      createUserWithEmailAndPassword,
+      signInWithEmailAndPassword,
+      signOut,
+      onAuthStateChanged,
+      signInWithPopup,
+      getAdditionalUserInfo,
+    } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js";
+    import {
+      getFirestore,
+      doc,
+      setDoc,
+      getDoc,
+      serverTimestamp,
+    } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAjiW7UXat-UHZBFCBXhZdlPz64Zpwkjbo",
+      authDomain: "deepsage-aac5a.firebaseapp.com",
+      projectId: "deepsage-aac5a",
+      storageBucket: "deepsage-aac5a.firebasestorage.app",
+      messagingSenderId: "10532051582",
+      appId: "1:10532051582:web:029846f62f0edd01f3162f",
+      measurementId: "G-33MSQXQ8G9",
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const firestoreDb = getFirestore(app);
+    const gProvider = new GoogleAuthProvider();
+
+    // Writes a users/{uid} Firestore doc the first time an account is
+    // created (email/password signup, or first-ever Google sign-in).
+    // Attribution fields (referrer/landing/signup page, user agent) are only
+    // included if the visitor has granted analytics cookie consent.
+    async function recordUserSignup(user, isNewUser) {
+      if (!isNewUser) return;
+      try {
+        const data = {
+          email: user.email || null,
+          displayName: user.displayName || null,
+          createdAt: serverTimestamp(),
+        };
+        if (window.dsAnalyticsConsent) {
+          data.referralCode = localStorage.getItem('ds_pending_ref') || null;
+          data.referrerUrl = localStorage.getItem('ds_pending_referrer') || null;
+          data.landingPage = localStorage.getItem('ds_pending_landing') || null;
+          data.signupPage = window.location.pathname;
+          data.userAgent = navigator.userAgent;
+        }
+        await setDoc(doc(firestoreDb, "users", user.uid), data, { merge: true });
+        localStorage.removeItem('ds_pending_ref');
+        localStorage.removeItem('ds_pending_referrer');
+        localStorage.removeItem('ds_pending_landing');
+      } catch (err) {
+        // Non-fatal: Firebase Auth already succeeded and remains the source
+        // of truth for the account existing. A failure here is most likely
+        // a Firestore security rules issue on the `users` collection.
+        console.error("Failed to record user signup:", err);
+      }
+    }
+
+    // Reads the logged-in user's stored language preference, if any.
+    // Returns null on any failure (missing doc, security-rule denial, etc.)
+    // so callers can fall back to weaker signals rather than erroring.
+    async function getPreferredLang(uid) {
+      try {
+        const snap = await getDoc(doc(firestoreDb, "users", uid));
+        return snap.exists() ? (snap.data().preferredLang || null) : null;
+      } catch (err) {
+        console.error("Failed to read language preference:", err);
+        return null;
+      }
+    }
+
+    async function setPreferredLang(uid, lang) {
+      await setDoc(doc(firestoreDb, "users", uid), { preferredLang: lang }, { merge: true });
+    }
+
+    window._sf = {
+      auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut,
+      onAuthStateChanged, gProvider, signInWithPopup, getAdditionalUserInfo,
+      recordUserSignup, getPreferredLang, setPreferredLang,
+    };
+    window.dsRecordUserSignup = recordUserSignup;
+
+    onAuthStateChanged(auth, user => {
+      const signedOut = document.getElementById("header-auth-out");
+      const signedIn = document.getElementById("header-auth-in");
+      const nameEl = document.getElementById("header-auth-name");
+      const banner = document.getElementById("topBanner");
+      if (!signedOut || !signedIn) return;
+      if (user) {
+        signedOut.style.display = "none";
+        signedIn.style.display = "flex";
+        nameEl.textContent = user.displayName || user.email || window.dsUiStrings.explorer_fallback;
+        if (banner) banner.style.display = "none";
+      } else {
+        signedOut.style.display = "flex";
+        signedIn.style.display = "none";
+        if (banner) banner.style.display = "flex";
+      }
+      if (window.dsOnAuthReady) window.dsOnAuthReady(user);
+    });
+  </script>
+  <script>
+    window.dsLangUrls = {"de": "https://deepsage.com/de/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/", "en": "https://deepsage.com/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/", "es": "https://deepsage.com/es/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/", "fr": "https://deepsage.com/fr/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/", "hi": "https://deepsage.com/hi/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/", "it": "https://deepsage.com/it/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/", "ja": "https://deepsage.com/ja/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/", "ko": "https://deepsage.com/ko/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/", "pt": "https://deepsage.com/pt/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/", "ru": "https://deepsage.com/ru/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/", "zh-Hans": "https://deepsage.com/zh-Hans/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/"};
+    window.dsCurrentLang = "zh-Hans";
+  </script>
+  <script src="/assets/js/lang-preference.js"></script>
+  <script>
+    window.dsUiStrings = {"auth_err_email_in_use": "\u8be5\u90ae\u7bb1\u5df2\u6ce8\u518c\u3002\u8bf7\u767b\u5f55\u3002", "auth_err_invalid_credential": "\u90ae\u7bb1\u5730\u5740\u6216\u5bc6\u7801\u4e0d\u6b63\u786e\u3002", "auth_err_invalid_email": "\u8bf7\u8f93\u5165\u6709\u6548\u7684\u7535\u5b50\u90ae\u4ef6\u5730\u5740\u3002", "auth_err_user_not_found": "\u8be5\u90ae\u7bb1\u672a\u6ce8\u518c\u8d26\u6237\u3002", "auth_err_weak_password": "\u5bc6\u7801\u957f\u5ea6\u81f3\u5c11\u4e3a 6 \u4e2a\u5b57\u7b26\u3002", "auth_err_wrong_password": "\u5bc6\u7801\u9519\u8bef\u3002", "connecting": "\u6b63\u5728\u8fde\u63a5\u2026\u2026", "could_not_connect": "\u65e0\u6cd5\u5efa\u7acb\u8fde\u63a5\u3002", "explorer_fallback": "\u63a2\u9669\u5bb6\uff1b\u63a2\u7d22\u8005", "fill_all_fields": "\u8bf7\u586b\u5199\u6240\u6709\u5b57\u6bb5\u3002", "firebase_not_ready": "Firebase \u5c1a\u672a\u521d\u59cb\u5316\u3002", "join_wishlist": "\u52a0\u5165\u5fc3\u613f\u5355", "tick_consent": "\u8bf7\u52fe\u9009\u540c\u610f\u6846\u4ee5\u7ee7\u7eed\u3002"};
+  </script>
+</head>
+<body>
+
+<section class="page-container">
+  <div class="page-grad-top"></div>
+  <div class="page-grad-bottom"></div>
+
+  <div class="page-content">
+    <div class="top-banner" id="topBanner">
+      <span class="top-banner-text">全新寓教于乐游戏《深智》（DeepSage）<a href="/zh-Hans/world/" class="top-banner-link">即将到来。</a>！加入心愿单，即可提前体验并获取最新消息。</span>
+      <button class="top-banner-cta" onclick="openAuthModal()">加入心愿单</button>
+    </div>
+
+    <div class="page-header">
+      <a href="/zh-Hans/" class="page-logo-link" aria-label="DeepSage home"><img class="page-logo" src="/assets/logo.png" alt="DeepSage" width="1628" height="351"></a>
+
+      <div class="header-controls">
+        <div class="header-auth">
+          <div id="header-auth-out" class="header-auth-out">
+            <button class="signin-link" onclick="openAuthModal()">我的账户</button>
+          </div>
+          <div id="header-auth-in" class="header-auth-in account-menu" style="display:none;">
+            <button class="signin-link account-btn" onclick="toggleAccountMenu()">我的账户</button>
+            <div id="account-dropdown" class="account-dropdown">
+              <span id="header-auth-name" class="header-auth-name"></span>
+              <a class="account-dropdown-connect" href="/zh-Hans/settings/">设置</a>
+              <button class="account-dropdown-signout" onclick="doSignOut()">退出登录</button>
+            </div>
+          </div>
+        </div>
+
+        
+<div class="lang-switcher">
+  <button class="lang-switcher-btn" onclick="toggleLangMenu()" type="button">简体中文</button>
+  <div id="lang-dropdown" class="lang-dropdown">
+    
+    <a href="https://deepsage.com/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/" class="lang-option" data-lang="en" onclick="return dsSwitchLang(event, 'en', 'https://deepsage.com/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/')">English</a>
+    
+    <a href="https://deepsage.com/es/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/" class="lang-option" data-lang="es" onclick="return dsSwitchLang(event, 'es', 'https://deepsage.com/es/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/')">Español</a>
+    
+    <a href="https://deepsage.com/pt/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/" class="lang-option" data-lang="pt" onclick="return dsSwitchLang(event, 'pt', 'https://deepsage.com/pt/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/')">Português</a>
+    
+    <a href="https://deepsage.com/fr/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/" class="lang-option" data-lang="fr" onclick="return dsSwitchLang(event, 'fr', 'https://deepsage.com/fr/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/')">Français</a>
+    
+    <a href="https://deepsage.com/de/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/" class="lang-option" data-lang="de" onclick="return dsSwitchLang(event, 'de', 'https://deepsage.com/de/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/')">Deutsch</a>
+    
+    <a href="https://deepsage.com/ru/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/" class="lang-option" data-lang="ru" onclick="return dsSwitchLang(event, 'ru', 'https://deepsage.com/ru/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/')">Русский</a>
+    
+    <a href="https://deepsage.com/ja/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/" class="lang-option" data-lang="ja" onclick="return dsSwitchLang(event, 'ja', 'https://deepsage.com/ja/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/')">日本語</a>
+    
+    <a href="https://deepsage.com/zh-Hans/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/" class="lang-option lang-option-active" data-lang="zh-Hans" onclick="return dsSwitchLang(event, 'zh-Hans', 'https://deepsage.com/zh-Hans/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/')">简体中文</a>
+    
+    <a href="https://deepsage.com/ko/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/" class="lang-option" data-lang="ko" onclick="return dsSwitchLang(event, 'ko', 'https://deepsage.com/ko/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/')">한국어</a>
+    
+    <a href="https://deepsage.com/it/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/" class="lang-option" data-lang="it" onclick="return dsSwitchLang(event, 'it', 'https://deepsage.com/it/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/')">Italiano</a>
+    
+    <a href="https://deepsage.com/hi/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/" class="lang-option" data-lang="hi" onclick="return dsSwitchLang(event, 'hi', 'https://deepsage.com/hi/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/')">हिन्दी</a>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    
+<article>
+  
+  <h1 class="page-title">72小时内筹集10万美元：独立游戏大礼包，拯救游戏开发者（同时也让您省钱）。</h1>
+  <p class="page-dek">游戏玩家们表现出的慷慨之情令人印象深刻，这证明了即使在游戏行业面临困境时，玩家群体仍然懂得如何通过购买来表达支持。</p>
+
+  <div class="share-row" id="share-row-top"></div>
+  
+  <p class="short-link"><a href="/s/4wtgNr/">deepsage.com/s/4wtgNr</a></p>
+  
+
+  
+  <img class="hero-image" src="/zh-Hans/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/hero.png" alt="72小时内筹集10万美元：独立游戏大礼包，拯救游戏开发者（同时也让您省钱）。">
+  
+
+  <div class="article-body">
+    <h2>奇迹背后的数学</h2>
+<p>三天。仅此而已。当我们中的大多数人花费七十二小时来决定取消哪个流媒体服务，或者争论是否真的需要第三个空气炸锅时，一个由社区驱动的独立游戏合集已经筹集了超过 10 万美元。这不仅仅是某个亿万富翁为了税务减免而赞助的“买一送一”促销活动。这是一项旨在为那些最近被雇主告知“这不是你的错，而是经济问题”的开发者提供安全保障的基层行动。</p>
+<p><img alt="" src="img_1.png" /></p>
+<h2>“裁员抽奖”注定失败</h2>
+<p>如果你一直在关注新闻，你就会知道游戏行业最近经历了一些困难。而且，我说的是“困难”，指的是一波又一波的大规模裁员，这让“前所未有的时期”这个说法听起来像是一个蹩脚的笑话。那些将多年时间投入到精美像素艺术和流畅游戏机制中的开发者，突然发现自己像一个学生一样，焦急地在 LinkedIn 上搜索工作机会。</p>
+<p>这个合集不仅仅是为了收集数字奖杯，丰富你的 Steam 游戏库。它是一次有针对性的行动，旨在对抗当前行业的不稳定。通过购买这些游戏，玩家实际上是将资金直接注入到一个基金中，该基金旨在支持那些在最近行业重组中受到影响的人。这是一个罕见的机会，<a href="https://deepsage.com/article/from-halo-to-guild-wars-3-the-composer-bringing-big-cinema-to-tyria/">游戏社区</a> 共同决定，“祝福和祈祷”不是一种有效的补偿方式。</p>
+<div class="key-info-block"><div class="key-info-label">快速筹款</div><p>该独立游戏合集在短短三天内筹集了超过 10 万美元，以支持被裁员的开发者。</p></div>
+
+<h2>奇迹背后的数学原理（无需头痛）</h2>
+<p>以下是让你的钱包感到欣慰的部分：它的性价比太高了。我们说的是一个游戏合集，如果单独购买，总价将超过 1000 美元。只需支付一顿丰盛的晚餐和一杯鸡尾酒的费用，你就能获得一个庞大的内容库。</p>
+<video class="article-animation" src="anim_1.mp4" autoplay loop muted playsinline></video>
+
+<p>这基本上是一种以通常的经济代价来获得<a href="https://deepsage.com/article/the-gabecube-is-officially-open-source/">大规模数字游戏库增长</a>的方式。把它想象成一个高级自助餐，厨师目前失业，每次你拿一个盘子，实际上就是在帮助支付他们的租金。</p>
+<ul>
+<li><strong>单独购买价值：</strong> 1000 美元以上</li>
+<li><strong>合集价格：</strong> 远远低于这个价格（而且物超所值）。</li>
+<li><strong>陷阱：</strong> 没有陷阱，除了你可能会在你的游戏库里放着 50 款自 2021 年以来你都没有玩过的游戏。</li>
+</ul>
+<p><img alt="" src="img_2.png" /></p>
+<h2>为什么这不仅仅是一次“善举”</h2>
+<p>在<a href="https://deepsage.com/article/luno-s-20-trim-when-the-crypto-party-gets-a-reality-check/">大规模企业重组</a>的时代，我们常常觉得个人行动只是在对虚空呐喊。但这个合集证明，去中心化、社区主导的融资可以比企业人力资源部门更快地行动。当一家工作室决定进行裁员时，他们会以冷酷、精打细算的电子表格效率来行动。这个社区则以混乱、无组织但极其有效的方式做出了回应。</p>
+<p>这有点奇怪，不是吗？行业目前正处于“适者生存”的状态，但玩家却采取行动，以确保“最强健”的人在他们寻找下一步行动时不会饿死。这不完全是一场革命，但它绝对是一种非常响亮、非常昂贵的方式来表达“我们看到你们了”。</p>
+<h2>总结</h2>
+<p>归根结底，这个合集提醒我们，虽然科技和游戏行业可能会经历剧烈的波动和突然的崩溃，但人类因素--玩家和创作者--更难被抛弃。</p>
+<p>所以，真正的问题是：你是否会参与下一个 10 万美元的里程碑，或者你是否仍然忙于决定是否负担得起第三个空气炸锅？</p>
+  </div>
+
+  <div class="share-row" id="share-row-bottom"></div>
+
+  
+  <div class="page-cta companion-cta">
+    <div class="page-cta-title">检验一下你刚才学到的知识。</div>
+    <p class="page-cta-text">完成与这篇故事相关的互动测试，看看你的得分如何。</p>
+    <a class="page-cta-btn" href="/quiz/the-indie-bundle-saving-devs-and-your-wallet/">参加问答测试。</a>
+  </div>
+  
+
+  <div class="page-cta">
+    <div class="page-cta-title">千万不要错过任何精彩故事。</div>
+    <p class="page-cta-text">注册一个免费的 DeepSage 账户，以便保存文章、跟踪测试结果，并第一时间获取每日简报。</p>
+    <button class="page-cta-btn" onclick="openAuthModal('signup')">免费注册账户</button>
+  </div>
+</article>
+
+<script>
+(function () {
+  var pageUrl = window.location.href;
+  var shareText = "72\u5c0f\u65f6\u5185\u7b79\u96c610\u4e07\u7f8e\u5143\uff1a\u72ec\u7acb\u6e38\u620f\u5927\u793c\u5305\uff0c\u62ef\u6551\u6e38\u620f\u5f00\u53d1\u8005\uff08\u540c\u65f6\u4e5f\u8ba9\u60a8\u7701\u94b1\uff09\u3002";
+  var shareLabels = {"facebook": "\u5206\u4eab\u5230 Facebook", "linkedin": "\u5728\u9886\u82f1\u4e0a\u5206\u4eab", "x": "\u5206\u4eab\u5230 X \u5e73\u53f0\u3002"};
+
+  var twitterUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(shareText) + "&url=" + encodeURIComponent(pageUrl);
+  var facebookUrl = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(pageUrl) + "&quote=" + encodeURIComponent(shareText);
+  var linkedinUrl = "https://www.linkedin.com/sharing/share-offsite/?url=" + encodeURIComponent(pageUrl);
+
+  var html = ''
+    + '<a class="share-btn" target="_blank" rel="noopener" href="' + twitterUrl + '" aria-label="' + shareLabels.x + '" title="' + shareLabels.x + '">'
+    + '<svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.6 8.7L23.3 22H16.9l-5-6.5-5.7 6.5H2.9l8.1-9.3L2 2h6.6l4.5 5.9L18.9 2Zm-1.1 18h1.7L7.3 3.9H5.5L17.8 20Z"/></svg>'
+    + '</a>'
+    + '<a class="share-btn" target="_blank" rel="noopener" href="' + facebookUrl + '" aria-label="' + shareLabels.facebook + '" title="' + shareLabels.facebook + '">'
+    + '<svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg>'
+    + '</a>'
+    + '<a class="share-btn" target="_blank" rel="noopener" href="' + linkedinUrl + '" aria-label="' + shareLabels.linkedin + '" title="' + shareLabels.linkedin + '">'
+    + '<svg viewBox="0 0 24 24"><path d="M19 3A2 2 0 0 1 21 5v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14ZM8.3 18.5V10H5.7v8.5h2.6ZM7 8.8a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm11.5 9.7v-4.7c0-2.5-1.3-3.7-3.1-3.7-1.4 0-2 .8-2.4 1.3V10H10.4v8.5H13v-4.7c0-.5 0-1 .2-1.3.3-.6.8-1.3 1.8-1.3 1.3 0 1.8.9 1.8 2.3v5h2.7Z"/></svg>'
+    + '</a>';
+
+  document.getElementById("share-row-top").innerHTML = html;
+  document.getElementById("share-row-bottom").innerHTML = html;
+})();
+</script>
+
+
+    <div class="page-footer">
+      <div class="footer-links">
+        <a href="/zh-Hans/">首页</a>
+        <span class="footer-divider">·</span>
+        <a href="/zh-Hans/article/">文章</a>
+        <span class="footer-divider">·</span>
+        <a href="/zh-Hans/quiz/">测验</a>
+        <span class="footer-divider">·</span>
+        <a href="/zh-Hans/skills/">技能</a>
+        <span class="footer-divider">·</span>
+        <a href="/zh-Hans/minigames/">游戏</a>
+        <span class="footer-divider">·</span>
+        <a href="/privacy-policy/">隐私政策</a>
+        <span class="footer-divider">·</span>
+        <a href="/terms-of-service/">服务条款</a>
+      </div>
+      <p class="footer-copyright">深智（DeepSage）·版权所有，2026年</p>
+    </div>
+  </div>
+</section>
+
+<!-- AUTH MODAL -->
+<div id="auth-modal-overlay" class="auth-modal-overlay" style="display:none;" onclick="if(event.target===this) closeAuthModal()">
+  <div class="auth-modal">
+    <button class="auth-modal-close" onclick="closeAuthModal()">&times;</button>
+    <h2 class="auth-modal-title">加入心愿单</h2>
+
+    <label class="consent-wrap" id="auth-consent-row">
+      <input type="checkbox" id="auth-consent-check">
+      <span class="consent-text">我同意接收 DeepSage 提供的游戏更新，并加入心愿单。您可以随时取消订阅。请参阅我们的<a href="/privacy-policy/" target="_blank" rel="noopener" class="consent-link">隐私政策</a>.</span>
+    </label>
+
+    <div class="auth-form-wrap">
+      <button class="google-btn" onclick="authGoogle()">
+        <svg class="google-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+          <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+          <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+          <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+        </svg>
+        继续使用 Google 账号登录。
+      </button>
+
+      <div class="auth-divider"><span>或者</span></div>
+
+      <div class="auth-field">
+        <label for="auth-email">电子邮件</label>
+        <input type="email" id="auth-email" placeholder="you@example.com" autocomplete="email">
+      </div>
+      <div class="auth-field">
+        <label for="auth-pass">密码</label>
+        <input type="password" id="auth-pass" placeholder="••••••••" autocomplete="current-password">
+      </div>
+
+      <p class="auth-msg" id="auth-msg"></p>
+      <button class="auth-submit" id="auth-submit-btn" onclick="authSubmit()">加入心愿单</button>
+    </div>
+  </div>
+</div>
+
+<!-- Cookie Consent Banner -->
+<div id="cookieBanner">
+  <div class="cookie-banner-container">
+    <div class="cookie-banner-text">
+      我们使用 Cookie 来改善您的使用体验。请参阅我们的。<a href="/privacy-policy/" target="_blank">隐私政策</a>以及<a href="/cookie-policy/" target="_blank">Cookie 使用政策</a>详情请参见。
+    </div>
+    <div class="cookie-banner-buttons">
+      <button id="cookieReject">拒绝非必需品。</button>
+      <button id="cookieCustomize">自定义；个性化定制</button>
+      <button id="cookieAccept">全部接受</button>
+    </div>
+  </div>
+</div>
+
+<!-- Cookie Preferences Modal -->
+<div id="cookieModal">
+  <div class="cookie-modal-content">
+    <h2>Cookie 首选项</h2>
+
+    <div class="cookie-preference">
+      <input type="checkbox" id="cookieEssential" checked disabled>
+      <label for="cookieEssential">重要的；必不可少的</label>
+    </div>
+    <div class="cookie-preference-description">
+      基本网站功能所必需（始终启用）
+    </div>
+
+    <div class="cookie-preference">
+      <input type="checkbox" id="cookieAnalytics">
+      <label for="cookieAnalytics">数据分析</label>
+    </div>
+    <div class="cookie-preference-description">
+      通过分析您对网站的使用情况，我们可以更好地了解您的需求，从而改进网站，提升您的使用体验。
+    </div>
+
+    <div class="cookie-preference">
+      <input type="checkbox" id="cookieMarketing">
+      <label for="cookieMarketing">市场营销</label>
+    </div>
+    <div class="cookie-preference-description">
+      这使我们能够向您展示相关内容，并评估营销活动的效果。
+    </div>
+
+    <div class="cookie-modal-buttons">
+      <button id="cookieModalCancel">取消</button>
+      <button id="cookieModalSave">保存选项</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const authMode = "signup";
+
+function openAuthModal() {
+  setAuthMsg("");
+  document.getElementById("auth-modal-overlay").style.display = "flex";
+}
+
+function closeAuthModal() {
+  document.getElementById("auth-modal-overlay").style.display = "none";
+}
+
+function setAuthMsg(txt, color) {
+  const el = document.getElementById("auth-msg");
+  el.textContent = txt;
+  el.style.color = color || "#ff6688";
+}
+
+async function authSubmit() {
+  const sf = window._sf;
+  if (!sf) return setAuthMsg(window.dsUiStrings.firebase_not_ready);
+  const email = document.getElementById("auth-email").value.trim();
+  const pass = document.getElementById("auth-pass").value;
+  if (!email || !pass) return setAuthMsg(window.dsUiStrings.fill_all_fields);
+
+  if (authMode === "signup" && !document.getElementById("auth-consent-check").checked) {
+    return setAuthMsg(window.dsUiStrings.tick_consent);
+  }
+
+  const btn = document.getElementById("auth-submit-btn");
+  btn.textContent = "…";
+  btn.disabled = true;
+
+  try {
+    if (authMode === "signin") {
+      await sf.signInWithEmailAndPassword(sf.auth, email, pass);
+    } else {
+      const cred = await sf.createUserWithEmailAndPassword(sf.auth, email, pass);
+      await sf.recordUserSignup(cred.user, true);
+    }
+    setAuthMsg("");
+    closeAuthModal();
+  } catch (err) {
+    const msgs = {
+      "auth/user-not-found": window.dsUiStrings.auth_err_user_not_found,
+      "auth/wrong-password": window.dsUiStrings.auth_err_wrong_password,
+      "auth/invalid-credential": window.dsUiStrings.auth_err_invalid_credential,
+      "auth/email-already-in-use": window.dsUiStrings.auth_err_email_in_use,
+      "auth/weak-password": window.dsUiStrings.auth_err_weak_password,
+      "auth/invalid-email": window.dsUiStrings.auth_err_invalid_email,
+    };
+    setAuthMsg(msgs[err.code] || err.message);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = window.dsUiStrings.join_wishlist;
+  }
+}
+
+async function authGoogle() {
+  const sf = window._sf;
+  if (!sf) return setAuthMsg(window.dsUiStrings.firebase_not_ready);
+  if (authMode === "signup" && !document.getElementById("auth-consent-check").checked) {
+    return setAuthMsg(window.dsUiStrings.tick_consent);
+  }
+  try {
+    const result = await sf.signInWithPopup(sf.auth, sf.gProvider);
+    const info = sf.getAdditionalUserInfo(result);
+    await sf.recordUserSignup(result.user, !!(info && info.isNewUser));
+    closeAuthModal();
+  } catch (err) {
+    if (err.code !== "auth/popup-closed-by-user") setAuthMsg(err.message);
+  }
+}
+
+async function connectPlatform(providerName) {
+  const sf = window._sf;
+  const user = sf && sf.auth.currentUser;
+  if (!user) return;
+
+  const btn = document.getElementById(`connect-${providerName}-btn`);
+  const prevText = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = window.dsUiStrings.connecting;
+
+  try {
+    const idToken = await user.getIdToken();
+    const res = await fetch(`https://oauth.deepsage.com/auth/${providerName}/login`, {
+      headers: { Authorization: `Bearer ${idToken}` },
+    });
+    if (!res.ok) throw new Error(window.dsUiStrings.could_not_connect);
+    const { url } = await res.json();
+    window.location.href = url;
+  } catch (err) {
+    btn.disabled = false;
+    btn.textContent = prevText;
+  }
+}
+
+async function doSignOut() {
+  const sf = window._sf;
+  if (sf) await sf.signOut(sf.auth);
+  document.getElementById("account-dropdown").classList.remove("open");
+}
+
+function toggleAccountMenu() {
+  document.getElementById("account-dropdown").classList.toggle("open");
+}
+
+document.addEventListener("click", function(e) {
+  const menu = document.getElementById("header-auth-in");
+  const dropdown = document.getElementById("account-dropdown");
+  if (menu && dropdown && !menu.contains(e.target)) {
+    dropdown.classList.remove("open");
+  }
+});
+
+/* ── Cookie consent management (site-wide) ── */
+(function() {
+  const CONSENT_KEY = 'deepsage_cookie_consent';
+  const CONSENT_EXPIRY = 12 * 30 * 24 * 60 * 60 * 1000; // 12 months
+
+  function getStoredConsent() {
+    const stored = localStorage.getItem(CONSENT_KEY);
+    if (!stored) return null;
+    try {
+      const consent = JSON.parse(stored);
+      const now = Date.now();
+      if (now - consent.timestamp > CONSENT_EXPIRY) {
+        localStorage.removeItem(CONSENT_KEY);
+        return null;
+      }
+      return consent;
+    } catch (error) {
+      console.error("Invalid consent data:", error);
+      localStorage.removeItem(CONSENT_KEY);
+      return null;
+    }
+  }
+
+  function saveConsent(essential, analytics, marketing) {
+    localStorage.setItem(CONSENT_KEY, JSON.stringify({
+      essential: true, analytics, marketing, timestamp: Date.now(),
+    }));
+  }
+
+  function loadCookiesBasedOnConsent(consent) {
+    window.dsAnalyticsConsent = !!consent.analytics;
+    gtag('consent', 'update', {
+      'analytics_storage': consent.analytics ? 'granted' : 'denied',
+      'ad_storage': consent.marketing ? 'granted' : 'denied',
+      'ad_user_data': consent.marketing ? 'granted' : 'denied',
+      'ad_personalization': consent.marketing ? 'granted' : 'denied',
+    });
+  }
+
+  function initializeCookieBanner() {
+    const storedConsent = getStoredConsent();
+    const banner = document.getElementById('cookieBanner');
+    if (!banner) return;
+
+    if (!storedConsent) {
+      banner.classList.add('show');
+    } else {
+      banner.classList.remove('show');
+      loadCookiesBasedOnConsent(storedConsent);
+    }
+  }
+
+  document.getElementById('cookieAccept').addEventListener('click', function() {
+    saveConsent(true, true, true);
+    loadCookiesBasedOnConsent({ essential: true, analytics: true, marketing: true });
+    document.getElementById('cookieBanner').classList.remove('show');
+  });
+
+  document.getElementById('cookieReject').addEventListener('click', function() {
+    saveConsent(true, false, false);
+    loadCookiesBasedOnConsent({ essential: true, analytics: false, marketing: false });
+    document.getElementById('cookieBanner').classList.remove('show');
+  });
+
+  document.getElementById('cookieCustomize').addEventListener('click', function() {
+    const storedConsent = getStoredConsent();
+    if (storedConsent) {
+      document.getElementById('cookieAnalytics').checked = storedConsent.analytics;
+      document.getElementById('cookieMarketing').checked = storedConsent.marketing;
+    }
+    document.getElementById('cookieModal').classList.add('show');
+  });
+
+  document.getElementById('cookieModalCancel').addEventListener('click', function() {
+    document.getElementById('cookieModal').classList.remove('show');
+  });
+
+  document.getElementById('cookieModalSave').addEventListener('click', function() {
+    const analytics = document.getElementById('cookieAnalytics').checked;
+    const marketing = document.getElementById('cookieMarketing').checked;
+    saveConsent(true, analytics, marketing);
+    loadCookiesBasedOnConsent({ essential: true, analytics, marketing });
+    document.getElementById('cookieModal').classList.remove('show');
+    document.getElementById('cookieBanner').classList.remove('show');
+  });
+
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      const modal = document.getElementById('cookieModal');
+      if (modal.classList.contains('show')) {
+        document.getElementById('cookieModalCancel').click();
+      }
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', initializeCookieBanner);
+})();
+
+/* ── Share button click tracking (site-wide, event delegation) ── */
+document.addEventListener('click', function(e) {
+  const btn = e.target.closest('.share-btn');
+  if (!btn) return;
+  let method = 'twitter';
+  if (btn.href.indexOf('facebook.com') !== -1) method = 'facebook';
+  else if (btn.href.indexOf('linkedin.com') !== -1) method = 'linkedin';
+  const contentType = location.pathname.startsWith('/quiz/') ? 'quiz'
+    : location.pathname.startsWith('/article/') ? 'article' : 'other';
+  window.dsTrack('share', { method, content_type: contentType, item_id: location.pathname });
+});
+
+/* ── Language preference resolution (site-wide) ── */
+function toggleLangMenu() {
+  var dd = document.getElementById('lang-dropdown');
+  if (dd) dd.classList.toggle('open');
+}
+
+document.addEventListener('click', function (e) {
+  var dropdown = document.getElementById('lang-dropdown');
+  var switcher = document.querySelector('.lang-switcher');
+  if (dropdown && switcher && !switcher.contains(e.target)) dropdown.classList.remove('open');
+});
+
+function dsPersistLangOverride(lang) {
+  localStorage.setItem('deepsage_lang', lang);
+  var sf = window._sf;
+  var user = sf && sf.auth.currentUser;
+  if (user && sf.setPreferredLang) {
+    sf.setPreferredLang(user.uid, lang).catch(function (err) {
+      console.error('Failed to save language preference:', err);
+    });
+  }
+}
+window.dsPersistLangOverride = dsPersistLangOverride;
+
+function dsSwitchLang(event, lang, url) {
+  // NOTE: this duplicates the localStorage write from dsPersistLangOverride
+  // (kept above, unchanged) because dsSwitchLang needs to await the Firestore
+  // write before navigating, while dsPersistLangOverride is a fire-and-forget
+  // helper used by the settings page (Task 4, templates/settings.html's
+  // dsSettingsChangeLang), which navigates on its own right after calling it.
+  localStorage.setItem('deepsage_lang', lang);
+  var sf = window._sf;
+  var user = sf && sf.auth.currentUser;
+  if (user && sf.setPreferredLang) {
+    event.preventDefault();
+    sf.setPreferredLang(user.uid, lang)
+      .catch(function (err) { console.error('Failed to save language preference:', err); })
+      .finally(function () { window.location.href = url; });
+    return false;
+  }
+  return true;
+}
+window.dsSwitchLang = dsSwitchLang;
+
+var dsLangResolved = false;
+window.dsOnAuthReady = function (user) {
+  if (dsLangResolved) return;
+  dsLangResolved = true;
+  if (!window.DsLangPreference || !window.dsLangUrls || Object.keys(window.dsLangUrls).length === 0) return;
+
+  var storedOverride = localStorage.getItem('deepsage_lang');
+  var browserLang = navigator.language;
+
+  function apply(firestorePref) {
+    var result = window.DsLangPreference.resolveRedirect({
+      currentLang: window.dsCurrentLang,
+      langUrls: window.dsLangUrls,
+      storedOverride: storedOverride,
+      firestorePref: firestorePref || null,
+      browserLang: browserLang,
+    });
+    if (!result) return;
+    // Guard against redirecting to the page the visitor is already on (e.g.
+    // a casing mismatch between currentLang and a lang_urls key, or a
+    // trailing-slash inconsistency) -- without this, a data mismatch could
+    // send the visitor into a same-page redirect loop.
+    if (result.url === window.location.pathname || result.url === window.location.href) return;
+    if (result.persistOverride) localStorage.setItem('deepsage_lang', result.lang);
+    // Use replace(), not `.href =`, because this is an automatic redirect
+    // the visitor never asked for (either the Firestore-preference tier, or
+    // the browser-auto-detect tier, which by design never persists and so
+    // re-fires on every page load). `.href =` would push a new history
+    // entry each time, trapping Back-button presses by immediately
+    // re-redirecting forward again. Explicit user-initiated switches
+    // (dsSwitchLang, dsSettingsChangeLang) intentionally keep using
+    // `.href =` since those SHOULD be normal, back-button-able navigations.
+    window.location.replace(result.url);
+  }
+
+  var sf = window._sf;
+  if (user && sf && sf.getPreferredLang) {
+    sf.getPreferredLang(user.uid).then(apply).catch(function () { apply(null); });
+  } else {
+    apply(null);
+  }
+};
+
+// Fallback for when Firebase Auth never calls back at all (CDN blocked,
+// offline, script failed to load). This is a timer, not a DOMContentLoaded
+// listener, on purpose: this inline <script> runs near the bottom of
+// <body>, so DOMContentLoaded fires essentially immediately after it
+// registers -- long before Firebase's first onAuthStateChanged callback
+// (an unconditionally async, IndexedDB-backed read) has any real chance to
+// resolve. Since dsOnAuthReady is latched to only run once (dsLangResolved),
+// firing on DOMContentLoaded would deterministically win the race on every
+// normal page load and permanently blind language resolution to a logged-in
+// user's Firestore preferredLang -- the real Firebase callback would arrive
+// later and be silently ignored. 3000ms is generous: a working IndexedDB
+// read typically resolves in well under 100ms, so in the overwhelmingly
+// common case Firebase claims the latch long before this timer fires, and
+// this fallback only actually matters when Firebase never calls back at
+// all -- in which case treating the visitor as logged-out for
+// language-resolution purposes (falling through to localStorage override /
+// browser auto-detect, neither of which need Firebase) is the correct
+// degraded behavior. 3s is still well under what a user would notice as a
+// late background redirect.
+setTimeout(function () {
+  if (window.dsOnAuthReady) window.dsOnAuthReady(null);
+}, 3000);
+</script>
+
+
+
+</body>
+</html>

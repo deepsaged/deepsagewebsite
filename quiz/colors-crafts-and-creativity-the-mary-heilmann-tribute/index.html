@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +17,12 @@
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 
   <link rel="stylesheet" href="/assets/site.css">
+  
+
+  <link rel="alternate" hreflang="en" href="https://deepsage.com/quiz/colors-crafts-and-creativity-the-mary-heilmann-tribute/">
+
+  <link rel="alternate" hreflang="x-default" href="https://deepsage.com/quiz/colors-crafts-and-creativity-the-mary-heilmann-tribute/">
+
   
 
   <!-- Attribution capture: first-touch referrer/landing page, before anything else runs -->
@@ -69,6 +77,7 @@
       getFirestore,
       doc,
       setDoc,
+      getDoc,
       serverTimestamp,
     } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
 
@@ -118,10 +127,27 @@
       }
     }
 
+    // Reads the logged-in user's stored language preference, if any.
+    // Returns null on any failure (missing doc, security-rule denial, etc.)
+    // so callers can fall back to weaker signals rather than erroring.
+    async function getPreferredLang(uid) {
+      try {
+        const snap = await getDoc(doc(firestoreDb, "users", uid));
+        return snap.exists() ? (snap.data().preferredLang || null) : null;
+      } catch (err) {
+        console.error("Failed to read language preference:", err);
+        return null;
+      }
+    }
+
+    async function setPreferredLang(uid, lang) {
+      await setDoc(doc(firestoreDb, "users", uid), { preferredLang: lang }, { merge: true });
+    }
+
     window._sf = {
       auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut,
       onAuthStateChanged, gProvider, signInWithPopup, getAdditionalUserInfo,
-      recordUserSignup,
+      recordUserSignup, getPreferredLang, setPreferredLang,
     };
     window.dsRecordUserSignup = recordUserSignup;
 
@@ -134,14 +160,23 @@
       if (user) {
         signedOut.style.display = "none";
         signedIn.style.display = "flex";
-        nameEl.textContent = user.displayName || user.email || "Explorer";
+        nameEl.textContent = user.displayName || user.email || window.dsUiStrings.explorer_fallback;
         if (banner) banner.style.display = "none";
       } else {
         signedOut.style.display = "flex";
         signedIn.style.display = "none";
         if (banner) banner.style.display = "flex";
       }
+      if (window.dsOnAuthReady) window.dsOnAuthReady(user);
     });
+  </script>
+  <script>
+    window.dsLangUrls = {"en": "https://deepsage.com/quiz/colors-crafts-and-creativity-the-mary-heilmann-tribute/"};
+    window.dsCurrentLang = "en";
+  </script>
+  <script src="/assets/js/lang-preference.js"></script>
+  <script>
+    window.dsUiStrings = {"auth_err_email_in_use": "Email already registered. Sign in instead.", "auth_err_invalid_credential": "Incorrect email or password.", "auth_err_invalid_email": "Please enter a valid email.", "auth_err_user_not_found": "No account with that email.", "auth_err_weak_password": "Password must be at least 6 characters.", "auth_err_wrong_password": "Incorrect password.", "connecting": "Connecting\u2026", "could_not_connect": "Could not start connection", "explorer_fallback": "Explorer", "fill_all_fields": "Please fill in all fields.", "firebase_not_ready": "Firebase not initialized yet.", "join_wishlist": "Join Wish List", "tick_consent": "Please tick the consent box to continue."};
   </script>
 </head>
 <body>
@@ -159,18 +194,31 @@
     <div class="page-header">
       <a href="/" class="page-logo-link" aria-label="DeepSage home"><img class="page-logo" src="/assets/logo.png" alt="DeepSage" width="1628" height="351"></a>
 
-      <div class="header-auth">
-        <div id="header-auth-out" class="header-auth-out">
-          <button class="signin-link" onclick="openAuthModal()">My Account</button>
-        </div>
-        <div id="header-auth-in" class="header-auth-in account-menu" style="display:none;">
-          <button class="signin-link account-btn" onclick="toggleAccountMenu()">My Account</button>
-          <div id="account-dropdown" class="account-dropdown">
-            <span id="header-auth-name" class="header-auth-name"></span>
-            <a class="account-dropdown-connect" href="/settings/">Settings</a>
-            <button class="account-dropdown-signout" onclick="doSignOut()">Sign out</button>
+      <div class="header-controls">
+        <div class="header-auth">
+          <div id="header-auth-out" class="header-auth-out">
+            <button class="signin-link" onclick="openAuthModal()">My Account</button>
+          </div>
+          <div id="header-auth-in" class="header-auth-in account-menu" style="display:none;">
+            <button class="signin-link account-btn" onclick="toggleAccountMenu()">My Account</button>
+            <div id="account-dropdown" class="account-dropdown">
+              <span id="header-auth-name" class="header-auth-name"></span>
+              <a class="account-dropdown-connect" href="/settings/">Settings</a>
+              <button class="account-dropdown-signout" onclick="doSignOut()">Sign out</button>
+            </div>
           </div>
         </div>
+
+        
+<div class="lang-switcher">
+  <button class="lang-switcher-btn" onclick="toggleLangMenu()" type="button">English</button>
+  <div id="lang-dropdown" class="lang-dropdown">
+    
+    <a href="https://deepsage.com/quiz/colors-crafts-and-creativity-the-mary-heilmann-tribute/" class="lang-option lang-option-active" data-lang="en" onclick="return dsSwitchLang(event, 'en', 'https://deepsage.com/quiz/colors-crafts-and-creativity-the-mary-heilmann-tribute/')">English</a>
+    
+  </div>
+</div>
+
       </div>
     </div>
 
@@ -207,6 +255,7 @@
 
 <script id="quiz-data" type="application/json">[{"correct_index": 1, "explanation": "Heilmann was a titan of abstraction, using color and shape to evoke feeling without needing a literal roadmap.", "idk_index": 2, "options": ["Hyper-realistic portraits of tech CEOs", "Abstract painting", "I\u0027ve lost my connection to the art world", "Surrealist depictions of broken GPUs", "Pop Art"], "question": "Mary Heilmann, who recently passed away at age 86, was primarily known for which artistic style?"}, {"correct_index": 1, "explanation": "She loved bringing the warmth of domestic craft and textiles into the often cold, sterile world of gallery abstraction.", "idk_index": 4, "options": ["Finger painting with leftover latte foam", "Textiles and craft elements", "A really expensive collection of NFTs", "Digital pixels", "My brain is currently a blank canvas"], "question": "Beyond high art, which \u0027low-brow\u0027 medium did Heilmann famously integrate into her work to bridge the gap between craft and fine art?"}, {"correct_index": 0, "explanation": "She had a knack for blending high-concept art history with the accessible, vibrant vibes of pop culture.", "idk_index": 1, "options": ["Pop culture references", "A 404 error in my memory banks", "Strictly monochrome grayscale", "An obsession with 19th-century realism", "Sarcastic emojis"], "question": "Which of these elements was a hallmark of Heilmann\u0027s unique visual language?"}, {"correct_index": 2, "explanation": "Her mastery lay in using color and simple geometric forms to guide the eye through a composition.", "idk_index": 4, "options": ["The sound of a dial-up modem", "Heavy, aggressive charcoal lines", "Vibrant color and simplified shapes", "A deep-seated fear of the color blue", "I\u0027m just here for the snacks"], "question": "In the context of Heilmann\u0027s work, what did she often use to create a sense of rhythm and space?"}, {"correct_index": 1, "explanation": "She possessed a rare ability to make profound, complex abstraction feel accessible and witty rather than intimidating.", "idk_index": 3, "options": ["Aggressively confusing", "Wit and ease", "A complete lack of any discernible pattern", "I forgot how to read English", "Stuffy and academic"], "question": "Heilmann\u0027s work is often described as having what kind of quality, despite its complexity?"}, {"correct_index": 2, "explanation": "She didn\u0027t ignore the past; she used established art history as a foundation to build her contemporary, playful language.", "idk_index": 3, "options": ["Prehistoric cave paintings of unicorns", "The Renaissance", "Art history at large", "My mental capacity is currently at 1%", "The Baroque period exclusively"], "question": "Which era of art history did Heilmann\u0027s work frequently reference or dialogue with?"}, {"correct_index": 2, "explanation": "Her work focused on the essence of form and color, far removed from the literalism of modern photography or digital screens.", "idk_index": 4, "options": ["A sense of playfulness", "A sense of playfulness", "A detailed, photographic rendering of a smartphone", "A feeling of spatial depth", "I\u0027ve reached my data limit for art knowledge"], "question": "If you were looking at a classic Heilmann piece, what would you most likely NOT find?"}, {"correct_index": 2, "explanation": "While minimalists often sought austerity, Heilmann brought a sense of life, color, and varied texture to her abstractions.", "idk_index": 4, "options": ["She used much more aggressive, jagged edges", "She used much more aggressive, jagged edges", "She embraced a more lyrical, expressive, and varied approach", "She only painted in total darkness", "I am blissfully unaware of this distinction"], "question": "How did Heilmann\u0027s approach to painting differ from the \u0027hardcore\u0027 minimalism of some of her contemporaries?"}, {"correct_index": 0, "explanation": "Heilmann lived a long, incredibly productive life, leaving behind a massive legacy in the art world.", "idk_index": 4, "options": ["86", "A much younger, more energetic version of myself", "105", "72", "Please don\u0027t ask me for numbers"], "question": "What was the approximate age of Mary Heilmann at the time of her passing?"}, {"correct_index": 0, "explanation": "Her legacy is defined by an ability to bridge the gap between the intellectual rigor of abstraction and the joy of visual pleasure.", "idk_index": 3, "options": ["Making the complex feel accessible through wit and color", "Creating the most expensive, unreadable art possible", "The complete erasure of all artistic meaning", "I\u0027m just scrolling until the next quiz", "A heavy reliance on dark, brooding themes"], "question": "Which of these best summarizes the \u0027spirit\u0027 of Heilmann\u0027s contribution to art?"}]</script>
 <script>
+  window.dsQuizStrings = {"next_question": "Next question", "progress_mid": " of ", "progress_prefix": "Question ", "results_percent_suffix": " correct", "see_results": "See results", "share_facebook_label": "Share on Facebook", "share_level_prefix": "\" and reached ", "share_level_suffix": " level!", "share_linkedin_label": "Share on LinkedIn", "share_percent_prefix": " (", "share_percent_suffix": "%) on the DeepSage quiz \"", "share_score_prefix": "I scored ", "share_test_prefix": "Test your knowledge: ", "share_x_label": "Share on X", "status_level1_label": "Just Getting Started", "status_level1_message": "Every expert starts somewhere \u2014 dive into more DeepSage quizzes to sharpen up.", "status_level2_label": "Curious Beginner", "status_level2_message": "You\u0027re picking up the basics. Keep exploring DeepSage to level up.", "status_level3_label": "Rising Learner", "status_level3_message": "Solid grasp of the fundamentals \u2014 you\u0027re closing in on expert territory.", "status_level4_label": "Sharp Thinker", "status_level4_message": "Impressive! You clearly follow this space closely.", "status_level5_label": "Certified Expert", "status_level5_message": "Excellent work \u2014 you really know your stuff.", "status_level6_label": "DeepSage Master", "status_level6_message": "Near-perfect score. You could\u0027ve written this quiz yourself.", "tiktok_checking": "Checking TikTok connection\u2026", "tiktok_connecting": "Connecting TikTok\u2026", "tiktok_could_not_post": "Could not post to TikTok.", "tiktok_could_not_post_prefix": "Could not post to TikTok: ", "tiktok_posted": "Posted to TikTok!", "tiktok_posting": "Posting to TikTok\u2026", "tiktok_resumed_posted": "Posted your quiz result to TikTok!", "tiktok_resuming": "Posting your quiz result to TikTok\u2026", "tiktok_share_button": "Share result on TikTok", "tiktok_signin_first": "Sign in first to share to TikTok.", "try_again": "Try again"};
 (function () {
   var QUESTIONS = JSON.parse(document.getElementById("quiz-data").textContent);
   var TITLE = document.getElementById("quiz-root").dataset.title;
@@ -214,14 +263,15 @@
   var root = document.getElementById("quiz-root");
   var OAUTH_WORKER_URL = "https://oauth.deepsage.com";
   var LETTERS = ["A", "B", "C", "D", "E", "F"];
+  var S = window.dsQuizStrings;
 
   var STATUS_LEVELS = [
-    { min: 0,  label: "Just Getting Started", message: "Every expert starts somewhere - dive into more DeepSage quizzes to sharpen up." },
-    { min: 20, label: "Curious Beginner",     message: "You're picking up the basics. Keep exploring DeepSage to level up." },
-    { min: 40, label: "Rising Learner",       message: "Solid grasp of the fundamentals - you're closing in on expert territory." },
-    { min: 60, label: "Sharp Thinker",        message: "Impressive! You clearly follow this space closely." },
-    { min: 80, label: "Certified Expert",     message: "Excellent work - you really know your stuff." },
-    { min: 95, label: "DeepSage Master",      message: "Near-perfect score. You could've written this quiz yourself." }
+    { min: 0,  label: S.status_level1_label, message: S.status_level1_message },
+    { min: 20, label: S.status_level2_label, message: S.status_level2_message },
+    { min: 40, label: S.status_level3_label, message: S.status_level3_message },
+    { min: 60, label: S.status_level4_label, message: S.status_level4_message },
+    { min: 80, label: S.status_level5_label, message: S.status_level5_message },
+    { min: 95, label: S.status_level6_label, message: S.status_level6_message }
   ];
 
   function statusFor(percent) {
@@ -238,19 +288,19 @@
     var facebookUrl = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(pageUrl) + "&quote=" + encodeURIComponent(shareText);
     var linkedinUrl = "https://www.linkedin.com/sharing/share-offsite/?url=" + encodeURIComponent(pageUrl);
     return ''
-      + '<a class="share-btn" target="_blank" rel="noopener" href="' + twitterUrl + '" aria-label="Share on X" title="Share on X">'
+      + '<a class="share-btn" target="_blank" rel="noopener" href="' + twitterUrl + '" aria-label="' + S.share_x_label + '" title="' + S.share_x_label + '">'
       + '<svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.6 8.7L23.3 22H16.9l-5-6.5-5.7 6.5H2.9l8.1-9.3L2 2h6.6l4.5 5.9L18.9 2Zm-1.1 18h1.7L7.3 3.9H5.5L17.8 20Z"/></svg>'
       + '</a>'
-      + '<a class="share-btn" target="_blank" rel="noopener" href="' + facebookUrl + '" aria-label="Share on Facebook" title="Share on Facebook">'
+      + '<a class="share-btn" target="_blank" rel="noopener" href="' + facebookUrl + '" aria-label="' + S.share_facebook_label + '" title="' + S.share_facebook_label + '">'
       + '<svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg>'
       + '</a>'
-      + '<a class="share-btn" target="_blank" rel="noopener" href="' + linkedinUrl + '" aria-label="Share on LinkedIn" title="Share on LinkedIn">'
+      + '<a class="share-btn" target="_blank" rel="noopener" href="' + linkedinUrl + '" aria-label="' + S.share_linkedin_label + '" title="' + S.share_linkedin_label + '">'
       + '<svg viewBox="0 0 24 24"><path d="M19 3A2 2 0 0 1 21 5v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14ZM8.3 18.5V10H5.7v8.5h2.6ZM7 8.8a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm11.5 9.7v-4.7c0-2.5-1.3-3.7-3.1-3.7-1.4 0-2 .8-2.4 1.3V10H10.4v8.5H13v-4.7c0-.5 0-1 .2-1.3.3-.6.8-1.3 1.8-1.3 1.3 0 1.8.9 1.8 2.3v5h2.7Z"/></svg>'
       + '</a>';
   }
 
   var topShareRow = document.getElementById("share-row-top");
-  if (topShareRow) topShareRow.innerHTML = shareButtonsHtml("Test your knowledge: " + TITLE);
+  if (topShareRow) topShareRow.innerHTML = shareButtonsHtml(S.share_test_prefix + TITLE);
 
   var state = { index: 0, points: 0, answered: false };
 
@@ -267,7 +317,7 @@
     var pct = Math.round((state.index / QUESTIONS.length) * 100);
     var html = ''
       + '<div class="quiz-progress-track"><div class="quiz-progress-fill" style="width:' + pct + '%"></div></div>'
-      + '<div class="quiz-progress-label">Question ' + (state.index + 1) + ' of ' + QUESTIONS.length + '</div>'
+      + '<div class="quiz-progress-label">' + S.progress_prefix + (state.index + 1) + S.progress_mid + QUESTIONS.length + '</div>'
       + '<p class="quiz-question">' + escapeHtml(q.question) + '</p>'
       + '<ul class="quiz-options" id="quiz-options-list">'
       + q.options.map(function (opt, i) {
@@ -314,7 +364,7 @@
     var nextSlot = document.getElementById("quiz-next-slot");
     var nextBtn = document.createElement("button");
     nextBtn.className = "quiz-next-btn";
-    nextBtn.textContent = isLast ? "See results" : "Next question";
+    nextBtn.textContent = isLast ? S.see_results : S.next_question;
     nextBtn.addEventListener("click", function () { state.index++; render(); });
     nextSlot.appendChild(nextBtn);
   }
@@ -326,8 +376,8 @@
   function renderResults() {
     var percent = Math.round((state.points / QUESTIONS.length) * 100);
     var status = statusFor(percent);
-    var shareText = "I scored " + formatScore(state.points) + "/" + QUESTIONS.length
-      + " (" + percent + "%) on the DeepSage quiz \"" + TITLE + "\" and reached " + status.label + " level!";
+    var shareText = S.share_score_prefix + formatScore(state.points) + "/" + QUESTIONS.length
+      + S.share_percent_prefix + percent + S.share_percent_suffix + TITLE + S.share_level_prefix + status.label + S.share_level_suffix;
 
     window.dsTrack('quiz_complete', {
       quiz_title: TITLE,
@@ -340,14 +390,14 @@
       + '<div class="quiz-results">'
       + '<div class="quiz-progress-track"><div class="quiz-progress-fill" style="width:100%"></div></div>'
       + '<div class="quiz-results-score">' + formatScore(state.points) + '/' + QUESTIONS.length + '</div>'
-      + '<div class="quiz-results-percent">' + percent + '% correct</div>'
+      + '<div class="quiz-results-percent">' + percent + '%' + S.results_percent_suffix + '</div>'
       + '<div class="quiz-results-status">' + status.label + '</div>'
       + '<p class="quiz-results-message">' + status.message + '</p>'
       + '<div class="share-row">' + shareButtonsHtml(shareText) + '</div>'
       + (SHARE_VIDEO_URL
-          ? '<button class="quiz-tiktok-btn" id="quiz-tiktok-btn">Share result on TikTok</button><p id="quiz-tiktok-msg" class="quiz-tiktok-msg"></p>'
+          ? '<button class="quiz-tiktok-btn" id="quiz-tiktok-btn">' + S.tiktok_share_button + '</button><p id="quiz-tiktok-msg" class="quiz-tiktok-msg"></p>'
           : '')
-      + '<button class="quiz-retry-btn" id="quiz-retry-btn">Try again</button>'
+      + '<button class="quiz-retry-btn" id="quiz-retry-btn">' + S.try_again + '</button>'
       + '</div>';
 
     document.getElementById("quiz-retry-btn").addEventListener("click", function () {
@@ -376,14 +426,14 @@
     var sf = window._sf;
     var user = sf && sf.auth.currentUser;
     if (!user) {
-      tiktokMsg("Sign in first to share to TikTok.", true);
+      tiktokMsg(S.tiktok_signin_first, true);
       openAuthModal();
       return;
     }
 
     var btn = document.getElementById("quiz-tiktok-btn");
     btn.disabled = true;
-    tiktokMsg("Checking TikTok connection…");
+    tiktokMsg(S.tiktok_checking);
 
     user.getIdToken().then(function (idToken) {
       return fetch(OAUTH_WORKER_URL + "/api/connected-accounts", {
@@ -395,7 +445,7 @@
             video_url: window.location.origin + SHARE_VIDEO_URL,
             caption: shareText,
           }));
-          tiktokMsg("Connecting TikTok…");
+          tiktokMsg(S.tiktok_connecting);
           return fetch(OAUTH_WORKER_URL + "/auth/tiktok/login", {
             headers: { Authorization: "Bearer " + idToken },
           }).then(function (res) { return res.json(); }).then(function (authData) {
@@ -403,7 +453,7 @@
           });
         }
 
-        tiktokMsg("Posting to TikTok…");
+        tiktokMsg(S.tiktok_posting);
         return fetch(OAUTH_WORKER_URL + "/publish/tiktok", {
           method: "POST",
           headers: { Authorization: "Bearer " + idToken, "Content-Type": "application/json" },
@@ -415,15 +465,15 @@
           .then(function (result) {
             btn.disabled = false;
             if (result.ok && result.data.ok) {
-              tiktokMsg("Posted to TikTok!");
+              tiktokMsg(S.tiktok_posted);
             } else {
-              tiktokMsg("Could not post to TikTok.", true);
+              tiktokMsg(S.tiktok_could_not_post, true);
             }
           });
       });
     }).catch(function (err) {
       btn.disabled = false;
-      tiktokMsg("Could not post to TikTok: " + err.message, true);
+      tiktokMsg(S.tiktok_could_not_post_prefix + err.message, true);
     });
   }
 
@@ -444,7 +494,7 @@
       if (topShareRow) {
         var note = document.createElement("p");
         note.className = "quiz-tiktok-msg";
-        note.textContent = "Posting your quiz result to TikTok…";
+        note.textContent = S.tiktok_resuming;
         topShareRow.parentNode.insertBefore(note, topShareRow.nextSibling);
 
         user.getIdToken().then(function (idToken) {
@@ -454,10 +504,10 @@
             body: JSON.stringify(payload),
           }).then(function (res) { return res.json().then(function (data) { return { ok: res.ok, data: data }; }); });
         }).then(function (result) {
-          note.textContent = (result.ok && result.data.ok) ? "Posted your quiz result to TikTok!" : "Could not post to TikTok.";
+          note.textContent = (result.ok && result.data.ok) ? S.tiktok_resumed_posted : S.tiktok_could_not_post;
           note.style.color = (result.ok && result.data.ok) ? "" : "#e5534b";
         }).catch(function (err) {
-          note.textContent = "Could not post to TikTok: " + err.message;
+          note.textContent = S.tiktok_could_not_post_prefix + err.message;
           note.style.color = "#e5534b";
         });
       }
@@ -605,13 +655,13 @@ function setAuthMsg(txt, color) {
 
 async function authSubmit() {
   const sf = window._sf;
-  if (!sf) return setAuthMsg("Firebase not initialized yet.");
+  if (!sf) return setAuthMsg(window.dsUiStrings.firebase_not_ready);
   const email = document.getElementById("auth-email").value.trim();
   const pass = document.getElementById("auth-pass").value;
-  if (!email || !pass) return setAuthMsg("Please fill in all fields.");
+  if (!email || !pass) return setAuthMsg(window.dsUiStrings.fill_all_fields);
 
   if (authMode === "signup" && !document.getElementById("auth-consent-check").checked) {
-    return setAuthMsg("Please tick the consent box to continue.");
+    return setAuthMsg(window.dsUiStrings.tick_consent);
   }
 
   const btn = document.getElementById("auth-submit-btn");
@@ -629,25 +679,25 @@ async function authSubmit() {
     closeAuthModal();
   } catch (err) {
     const msgs = {
-      "auth/user-not-found": "No account with that email.",
-      "auth/wrong-password": "Incorrect password.",
-      "auth/invalid-credential": "Incorrect email or password.",
-      "auth/email-already-in-use": "Email already registered. Sign in instead.",
-      "auth/weak-password": "Password must be at least 6 characters.",
-      "auth/invalid-email": "Please enter a valid email.",
+      "auth/user-not-found": window.dsUiStrings.auth_err_user_not_found,
+      "auth/wrong-password": window.dsUiStrings.auth_err_wrong_password,
+      "auth/invalid-credential": window.dsUiStrings.auth_err_invalid_credential,
+      "auth/email-already-in-use": window.dsUiStrings.auth_err_email_in_use,
+      "auth/weak-password": window.dsUiStrings.auth_err_weak_password,
+      "auth/invalid-email": window.dsUiStrings.auth_err_invalid_email,
     };
     setAuthMsg(msgs[err.code] || err.message);
   } finally {
     btn.disabled = false;
-    btn.textContent = "Join Wish List";
+    btn.textContent = window.dsUiStrings.join_wishlist;
   }
 }
 
 async function authGoogle() {
   const sf = window._sf;
-  if (!sf) return setAuthMsg("Firebase not initialized yet.");
+  if (!sf) return setAuthMsg(window.dsUiStrings.firebase_not_ready);
   if (authMode === "signup" && !document.getElementById("auth-consent-check").checked) {
-    return setAuthMsg("Please tick the consent box to continue.");
+    return setAuthMsg(window.dsUiStrings.tick_consent);
   }
   try {
     const result = await sf.signInWithPopup(sf.auth, sf.gProvider);
@@ -667,14 +717,14 @@ async function connectPlatform(providerName) {
   const btn = document.getElementById(`connect-${providerName}-btn`);
   const prevText = btn.textContent;
   btn.disabled = true;
-  btn.textContent = "Connecting…";
+  btn.textContent = window.dsUiStrings.connecting;
 
   try {
     const idToken = await user.getIdToken();
     const res = await fetch(`https://oauth.deepsage.com/auth/${providerName}/login`, {
       headers: { Authorization: `Bearer ${idToken}` },
     });
-    if (!res.ok) throw new Error("Could not start connection");
+    if (!res.ok) throw new Error(window.dsUiStrings.could_not_connect);
     const { url } = await res.json();
     window.location.href = url;
   } catch (err) {
@@ -810,6 +860,116 @@ document.addEventListener('click', function(e) {
     : location.pathname.startsWith('/article/') ? 'article' : 'other';
   window.dsTrack('share', { method, content_type: contentType, item_id: location.pathname });
 });
+
+/* ── Language preference resolution (site-wide) ── */
+function toggleLangMenu() {
+  var dd = document.getElementById('lang-dropdown');
+  if (dd) dd.classList.toggle('open');
+}
+
+document.addEventListener('click', function (e) {
+  var dropdown = document.getElementById('lang-dropdown');
+  var switcher = document.querySelector('.lang-switcher');
+  if (dropdown && switcher && !switcher.contains(e.target)) dropdown.classList.remove('open');
+});
+
+function dsPersistLangOverride(lang) {
+  localStorage.setItem('deepsage_lang', lang);
+  var sf = window._sf;
+  var user = sf && sf.auth.currentUser;
+  if (user && sf.setPreferredLang) {
+    sf.setPreferredLang(user.uid, lang).catch(function (err) {
+      console.error('Failed to save language preference:', err);
+    });
+  }
+}
+window.dsPersistLangOverride = dsPersistLangOverride;
+
+function dsSwitchLang(event, lang, url) {
+  // NOTE: this duplicates the localStorage write from dsPersistLangOverride
+  // (kept above, unchanged) because dsSwitchLang needs to await the Firestore
+  // write before navigating, while dsPersistLangOverride is a fire-and-forget
+  // helper used by the settings page (Task 4, templates/settings.html's
+  // dsSettingsChangeLang), which navigates on its own right after calling it.
+  localStorage.setItem('deepsage_lang', lang);
+  var sf = window._sf;
+  var user = sf && sf.auth.currentUser;
+  if (user && sf.setPreferredLang) {
+    event.preventDefault();
+    sf.setPreferredLang(user.uid, lang)
+      .catch(function (err) { console.error('Failed to save language preference:', err); })
+      .finally(function () { window.location.href = url; });
+    return false;
+  }
+  return true;
+}
+window.dsSwitchLang = dsSwitchLang;
+
+var dsLangResolved = false;
+window.dsOnAuthReady = function (user) {
+  if (dsLangResolved) return;
+  dsLangResolved = true;
+  if (!window.DsLangPreference || !window.dsLangUrls || Object.keys(window.dsLangUrls).length === 0) return;
+
+  var storedOverride = localStorage.getItem('deepsage_lang');
+  var browserLang = navigator.language;
+
+  function apply(firestorePref) {
+    var result = window.DsLangPreference.resolveRedirect({
+      currentLang: window.dsCurrentLang,
+      langUrls: window.dsLangUrls,
+      storedOverride: storedOverride,
+      firestorePref: firestorePref || null,
+      browserLang: browserLang,
+    });
+    if (!result) return;
+    // Guard against redirecting to the page the visitor is already on (e.g.
+    // a casing mismatch between currentLang and a lang_urls key, or a
+    // trailing-slash inconsistency) -- without this, a data mismatch could
+    // send the visitor into a same-page redirect loop.
+    if (result.url === window.location.pathname || result.url === window.location.href) return;
+    if (result.persistOverride) localStorage.setItem('deepsage_lang', result.lang);
+    // Use replace(), not `.href =`, because this is an automatic redirect
+    // the visitor never asked for (either the Firestore-preference tier, or
+    // the browser-auto-detect tier, which by design never persists and so
+    // re-fires on every page load). `.href =` would push a new history
+    // entry each time, trapping Back-button presses by immediately
+    // re-redirecting forward again. Explicit user-initiated switches
+    // (dsSwitchLang, dsSettingsChangeLang) intentionally keep using
+    // `.href =` since those SHOULD be normal, back-button-able navigations.
+    window.location.replace(result.url);
+  }
+
+  var sf = window._sf;
+  if (user && sf && sf.getPreferredLang) {
+    sf.getPreferredLang(user.uid).then(apply).catch(function () { apply(null); });
+  } else {
+    apply(null);
+  }
+};
+
+// Fallback for when Firebase Auth never calls back at all (CDN blocked,
+// offline, script failed to load). This is a timer, not a DOMContentLoaded
+// listener, on purpose: this inline <script> runs near the bottom of
+// <body>, so DOMContentLoaded fires essentially immediately after it
+// registers -- long before Firebase's first onAuthStateChanged callback
+// (an unconditionally async, IndexedDB-backed read) has any real chance to
+// resolve. Since dsOnAuthReady is latched to only run once (dsLangResolved),
+// firing on DOMContentLoaded would deterministically win the race on every
+// normal page load and permanently blind language resolution to a logged-in
+// user's Firestore preferredLang -- the real Firebase callback would arrive
+// later and be silently ignored. 3000ms is generous: a working IndexedDB
+// read typically resolves in well under 100ms, so in the overwhelmingly
+// common case Firebase claims the latch long before this timer fires, and
+// this fallback only actually matters when Firebase never calls back at
+// all -- in which case treating the visitor as logged-out for
+// language-resolution purposes (falling through to localStorage override /
+// browser auto-detect, neither of which need Firebase) is the correct
+// degraded behavior. 3s is still well under what a user would notice as a
+// late background redirect.
+setTimeout(function () {
+  if (window.dsOnAuthReady) window.dsOnAuthReady(null);
+}, 3000);
 </script>
 
 

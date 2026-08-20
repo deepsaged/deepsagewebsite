@@ -178,6 +178,17 @@ a:hover { opacity: 0.7; }
 .page-logo-link { text-decoration: none; }
 .page-logo-link:hover { opacity: 0.8; }
 
+/* ── HEADER CONTROLS ──
+   Shared flex row wrapping .header-auth and the language switcher, so
+   .page-header keeps exactly two direct children (logo, header-controls)
+   and its `justify-content: space-between` continues to pin controls to
+   the right regardless of whether the switcher renders. */
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 /* ── HEADER AUTH ── */
 .header-auth-out, .header-auth-in {
   display: flex;
@@ -248,6 +259,60 @@ a:hover { opacity: 0.7; }
 
 .account-dropdown-signout:hover,
 .account-dropdown-connect:hover:not(:disabled) { background: #d9b97815; border-color: var(--gold); }
+
+/* ── LANGUAGE SWITCHER ── */
+.lang-switcher { position: relative; }
+
+.lang-switcher-btn {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: 1px solid #d9b97844;
+  background: transparent;
+  color: var(--gold);
+  padding: 7px 16px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.lang-switcher-btn:hover { background: #d9b97815; border-color: var(--gold); }
+
+.lang-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 160px;
+  max-height: 320px;
+  overflow-y: auto;
+  flex-direction: column;
+  gap: 6px;
+  background: #000d18ee;
+  border: 1px solid #d9b97833;
+  border-radius: 4px;
+  padding: 14px;
+  backdrop-filter: blur(8px);
+  z-index: 20;
+}
+
+.lang-dropdown.open { display: flex; }
+
+.lang-option {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--text, #fff);
+  text-decoration: none;
+  padding: 4px 6px;
+  border-radius: 2px;
+  transition: background 0.2s;
+}
+
+.lang-option:hover { background: #d9b97815; }
+
+.lang-option-active { color: var(--gold); font-weight: 700; }
 
 /* ── AUTH MODAL ── */
 .auth-modal-overlay {

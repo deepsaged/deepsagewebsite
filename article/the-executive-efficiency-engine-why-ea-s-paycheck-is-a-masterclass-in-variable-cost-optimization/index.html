@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +17,12 @@
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 
   <link rel="stylesheet" href="/assets/site.css">
+  
+
+  <link rel="alternate" hreflang="en" href="https://deepsage.com/article/the-executive-efficiency-engine-why-ea-s-paycheck-is-a-masterclass-in-variable-cost-optimization/">
+
+  <link rel="alternate" hreflang="x-default" href="https://deepsage.com/article/the-executive-efficiency-engine-why-ea-s-paycheck-is-a-masterclass-in-variable-cost-optimization/">
+
   
 
   <!-- Attribution capture: first-touch referrer/landing page, before anything else runs -->
@@ -69,6 +77,7 @@
       getFirestore,
       doc,
       setDoc,
+      getDoc,
       serverTimestamp,
     } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
 
@@ -118,10 +127,27 @@
       }
     }
 
+    // Reads the logged-in user's stored language preference, if any.
+    // Returns null on any failure (missing doc, security-rule denial, etc.)
+    // so callers can fall back to weaker signals rather than erroring.
+    async function getPreferredLang(uid) {
+      try {
+        const snap = await getDoc(doc(firestoreDb, "users", uid));
+        return snap.exists() ? (snap.data().preferredLang || null) : null;
+      } catch (err) {
+        console.error("Failed to read language preference:", err);
+        return null;
+      }
+    }
+
+    async function setPreferredLang(uid, lang) {
+      await setDoc(doc(firestoreDb, "users", uid), { preferredLang: lang }, { merge: true });
+    }
+
     window._sf = {
       auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut,
       onAuthStateChanged, gProvider, signInWithPopup, getAdditionalUserInfo,
-      recordUserSignup,
+      recordUserSignup, getPreferredLang, setPreferredLang,
     };
     window.dsRecordUserSignup = recordUserSignup;
 
@@ -134,14 +160,23 @@
       if (user) {
         signedOut.style.display = "none";
         signedIn.style.display = "flex";
-        nameEl.textContent = user.displayName || user.email || "Explorer";
+        nameEl.textContent = user.displayName || user.email || window.dsUiStrings.explorer_fallback;
         if (banner) banner.style.display = "none";
       } else {
         signedOut.style.display = "flex";
         signedIn.style.display = "none";
         if (banner) banner.style.display = "flex";
       }
+      if (window.dsOnAuthReady) window.dsOnAuthReady(user);
     });
+  </script>
+  <script>
+    window.dsLangUrls = {"en": "https://deepsage.com/article/the-executive-efficiency-engine-why-ea-s-paycheck-is-a-masterclass-in-variable-cost-optimization/"};
+    window.dsCurrentLang = "en";
+  </script>
+  <script src="/assets/js/lang-preference.js"></script>
+  <script>
+    window.dsUiStrings = {"auth_err_email_in_use": "Email already registered. Sign in instead.", "auth_err_invalid_credential": "Incorrect email or password.", "auth_err_invalid_email": "Please enter a valid email.", "auth_err_user_not_found": "No account with that email.", "auth_err_weak_password": "Password must be at least 6 characters.", "auth_err_wrong_password": "Incorrect password.", "connecting": "Connecting\u2026", "could_not_connect": "Could not start connection", "explorer_fallback": "Explorer", "fill_all_fields": "Please fill in all fields.", "firebase_not_ready": "Firebase not initialized yet.", "join_wishlist": "Join Wish List", "tick_consent": "Please tick the consent box to continue."};
   </script>
 </head>
 <body>
@@ -159,18 +194,31 @@
     <div class="page-header">
       <a href="/" class="page-logo-link" aria-label="DeepSage home"><img class="page-logo" src="/assets/logo.png" alt="DeepSage" width="1628" height="351"></a>
 
-      <div class="header-auth">
-        <div id="header-auth-out" class="header-auth-out">
-          <button class="signin-link" onclick="openAuthModal()">My Account</button>
-        </div>
-        <div id="header-auth-in" class="header-auth-in account-menu" style="display:none;">
-          <button class="signin-link account-btn" onclick="toggleAccountMenu()">My Account</button>
-          <div id="account-dropdown" class="account-dropdown">
-            <span id="header-auth-name" class="header-auth-name"></span>
-            <a class="account-dropdown-connect" href="/settings/">Settings</a>
-            <button class="account-dropdown-signout" onclick="doSignOut()">Sign out</button>
+      <div class="header-controls">
+        <div class="header-auth">
+          <div id="header-auth-out" class="header-auth-out">
+            <button class="signin-link" onclick="openAuthModal()">My Account</button>
+          </div>
+          <div id="header-auth-in" class="header-auth-in account-menu" style="display:none;">
+            <button class="signin-link account-btn" onclick="toggleAccountMenu()">My Account</button>
+            <div id="account-dropdown" class="account-dropdown">
+              <span id="header-auth-name" class="header-auth-name"></span>
+              <a class="account-dropdown-connect" href="/settings/">Settings</a>
+              <button class="account-dropdown-signout" onclick="doSignOut()">Sign out</button>
+            </div>
           </div>
         </div>
+
+        
+<div class="lang-switcher">
+  <button class="lang-switcher-btn" onclick="toggleLangMenu()" type="button">English</button>
+  <div id="lang-dropdown" class="lang-dropdown">
+    
+    <a href="https://deepsage.com/article/the-executive-efficiency-engine-why-ea-s-paycheck-is-a-masterclass-in-variable-cost-optimization/" class="lang-option lang-option-active" data-lang="en" onclick="return dsSwitchLang(event, 'en', 'https://deepsage.com/article/the-executive-efficiency-engine-why-ea-s-paycheck-is-a-masterclass-in-variable-cost-optimization/')">English</a>
+    
+  </div>
+</div>
+
       </div>
     </div>
 
@@ -231,19 +279,20 @@
 (function () {
   var pageUrl = window.location.href;
   var shareText = "The Executive Efficiency Engine: Why EA\u0027s Paycheck is a Masterclass in Variable Cost Optimization";
+  var shareLabels = {"facebook": "Share on Facebook", "linkedin": "Share on LinkedIn", "x": "Share on X"};
 
   var twitterUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(shareText) + "&url=" + encodeURIComponent(pageUrl);
   var facebookUrl = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(pageUrl) + "&quote=" + encodeURIComponent(shareText);
   var linkedinUrl = "https://www.linkedin.com/sharing/share-offsite/?url=" + encodeURIComponent(pageUrl);
 
   var html = ''
-    + '<a class="share-btn" target="_blank" rel="noopener" href="' + twitterUrl + '" aria-label="Share on X" title="Share on X">'
+    + '<a class="share-btn" target="_blank" rel="noopener" href="' + twitterUrl + '" aria-label="' + shareLabels.x + '" title="' + shareLabels.x + '">'
     + '<svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.6 8.7L23.3 22H16.9l-5-6.5-5.7 6.5H2.9l8.1-9.3L2 2h6.6l4.5 5.9L18.9 2Zm-1.1 18h1.7L7.3 3.9H5.5L17.8 20Z"/></svg>'
     + '</a>'
-    + '<a class="share-btn" target="_blank" rel="noopener" href="' + facebookUrl + '" aria-label="Share on Facebook" title="Share on Facebook">'
+    + '<a class="share-btn" target="_blank" rel="noopener" href="' + facebookUrl + '" aria-label="' + shareLabels.facebook + '" title="' + shareLabels.facebook + '">'
     + '<svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg>'
     + '</a>'
-    + '<a class="share-btn" target="_blank" rel="noopener" href="' + linkedinUrl + '" aria-label="Share on LinkedIn" title="Share on LinkedIn">'
+    + '<a class="share-btn" target="_blank" rel="noopener" href="' + linkedinUrl + '" aria-label="' + shareLabels.linkedin + '" title="' + shareLabels.linkedin + '">'
     + '<svg viewBox="0 0 24 24"><path d="M19 3A2 2 0 0 1 21 5v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14ZM8.3 18.5V10H5.7v8.5h2.6ZM7 8.8a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm11.5 9.7v-4.7c0-2.5-1.3-3.7-3.1-3.7-1.4 0-2 .8-2.4 1.3V10H10.4v8.5H13v-4.7c0-.5 0-1 .2-1.3.3-.6.8-1.3 1.8-1.3 1.3 0 1.8.9 1.8 2.3v5h2.7Z"/></svg>'
     + '</a>';
 
@@ -383,13 +432,13 @@ function setAuthMsg(txt, color) {
 
 async function authSubmit() {
   const sf = window._sf;
-  if (!sf) return setAuthMsg("Firebase not initialized yet.");
+  if (!sf) return setAuthMsg(window.dsUiStrings.firebase_not_ready);
   const email = document.getElementById("auth-email").value.trim();
   const pass = document.getElementById("auth-pass").value;
-  if (!email || !pass) return setAuthMsg("Please fill in all fields.");
+  if (!email || !pass) return setAuthMsg(window.dsUiStrings.fill_all_fields);
 
   if (authMode === "signup" && !document.getElementById("auth-consent-check").checked) {
-    return setAuthMsg("Please tick the consent box to continue.");
+    return setAuthMsg(window.dsUiStrings.tick_consent);
   }
 
   const btn = document.getElementById("auth-submit-btn");
@@ -407,25 +456,25 @@ async function authSubmit() {
     closeAuthModal();
   } catch (err) {
     const msgs = {
-      "auth/user-not-found": "No account with that email.",
-      "auth/wrong-password": "Incorrect password.",
-      "auth/invalid-credential": "Incorrect email or password.",
-      "auth/email-already-in-use": "Email already registered. Sign in instead.",
-      "auth/weak-password": "Password must be at least 6 characters.",
-      "auth/invalid-email": "Please enter a valid email.",
+      "auth/user-not-found": window.dsUiStrings.auth_err_user_not_found,
+      "auth/wrong-password": window.dsUiStrings.auth_err_wrong_password,
+      "auth/invalid-credential": window.dsUiStrings.auth_err_invalid_credential,
+      "auth/email-already-in-use": window.dsUiStrings.auth_err_email_in_use,
+      "auth/weak-password": window.dsUiStrings.auth_err_weak_password,
+      "auth/invalid-email": window.dsUiStrings.auth_err_invalid_email,
     };
     setAuthMsg(msgs[err.code] || err.message);
   } finally {
     btn.disabled = false;
-    btn.textContent = "Join Wish List";
+    btn.textContent = window.dsUiStrings.join_wishlist;
   }
 }
 
 async function authGoogle() {
   const sf = window._sf;
-  if (!sf) return setAuthMsg("Firebase not initialized yet.");
+  if (!sf) return setAuthMsg(window.dsUiStrings.firebase_not_ready);
   if (authMode === "signup" && !document.getElementById("auth-consent-check").checked) {
-    return setAuthMsg("Please tick the consent box to continue.");
+    return setAuthMsg(window.dsUiStrings.tick_consent);
   }
   try {
     const result = await sf.signInWithPopup(sf.auth, sf.gProvider);
@@ -445,14 +494,14 @@ async function connectPlatform(providerName) {
   const btn = document.getElementById(`connect-${providerName}-btn`);
   const prevText = btn.textContent;
   btn.disabled = true;
-  btn.textContent = "Connecting…";
+  btn.textContent = window.dsUiStrings.connecting;
 
   try {
     const idToken = await user.getIdToken();
     const res = await fetch(`https://oauth.deepsage.com/auth/${providerName}/login`, {
       headers: { Authorization: `Bearer ${idToken}` },
     });
-    if (!res.ok) throw new Error("Could not start connection");
+    if (!res.ok) throw new Error(window.dsUiStrings.could_not_connect);
     const { url } = await res.json();
     window.location.href = url;
   } catch (err) {
@@ -588,6 +637,116 @@ document.addEventListener('click', function(e) {
     : location.pathname.startsWith('/article/') ? 'article' : 'other';
   window.dsTrack('share', { method, content_type: contentType, item_id: location.pathname });
 });
+
+/* ── Language preference resolution (site-wide) ── */
+function toggleLangMenu() {
+  var dd = document.getElementById('lang-dropdown');
+  if (dd) dd.classList.toggle('open');
+}
+
+document.addEventListener('click', function (e) {
+  var dropdown = document.getElementById('lang-dropdown');
+  var switcher = document.querySelector('.lang-switcher');
+  if (dropdown && switcher && !switcher.contains(e.target)) dropdown.classList.remove('open');
+});
+
+function dsPersistLangOverride(lang) {
+  localStorage.setItem('deepsage_lang', lang);
+  var sf = window._sf;
+  var user = sf && sf.auth.currentUser;
+  if (user && sf.setPreferredLang) {
+    sf.setPreferredLang(user.uid, lang).catch(function (err) {
+      console.error('Failed to save language preference:', err);
+    });
+  }
+}
+window.dsPersistLangOverride = dsPersistLangOverride;
+
+function dsSwitchLang(event, lang, url) {
+  // NOTE: this duplicates the localStorage write from dsPersistLangOverride
+  // (kept above, unchanged) because dsSwitchLang needs to await the Firestore
+  // write before navigating, while dsPersistLangOverride is a fire-and-forget
+  // helper used by the settings page (Task 4, templates/settings.html's
+  // dsSettingsChangeLang), which navigates on its own right after calling it.
+  localStorage.setItem('deepsage_lang', lang);
+  var sf = window._sf;
+  var user = sf && sf.auth.currentUser;
+  if (user && sf.setPreferredLang) {
+    event.preventDefault();
+    sf.setPreferredLang(user.uid, lang)
+      .catch(function (err) { console.error('Failed to save language preference:', err); })
+      .finally(function () { window.location.href = url; });
+    return false;
+  }
+  return true;
+}
+window.dsSwitchLang = dsSwitchLang;
+
+var dsLangResolved = false;
+window.dsOnAuthReady = function (user) {
+  if (dsLangResolved) return;
+  dsLangResolved = true;
+  if (!window.DsLangPreference || !window.dsLangUrls || Object.keys(window.dsLangUrls).length === 0) return;
+
+  var storedOverride = localStorage.getItem('deepsage_lang');
+  var browserLang = navigator.language;
+
+  function apply(firestorePref) {
+    var result = window.DsLangPreference.resolveRedirect({
+      currentLang: window.dsCurrentLang,
+      langUrls: window.dsLangUrls,
+      storedOverride: storedOverride,
+      firestorePref: firestorePref || null,
+      browserLang: browserLang,
+    });
+    if (!result) return;
+    // Guard against redirecting to the page the visitor is already on (e.g.
+    // a casing mismatch between currentLang and a lang_urls key, or a
+    // trailing-slash inconsistency) -- without this, a data mismatch could
+    // send the visitor into a same-page redirect loop.
+    if (result.url === window.location.pathname || result.url === window.location.href) return;
+    if (result.persistOverride) localStorage.setItem('deepsage_lang', result.lang);
+    // Use replace(), not `.href =`, because this is an automatic redirect
+    // the visitor never asked for (either the Firestore-preference tier, or
+    // the browser-auto-detect tier, which by design never persists and so
+    // re-fires on every page load). `.href =` would push a new history
+    // entry each time, trapping Back-button presses by immediately
+    // re-redirecting forward again. Explicit user-initiated switches
+    // (dsSwitchLang, dsSettingsChangeLang) intentionally keep using
+    // `.href =` since those SHOULD be normal, back-button-able navigations.
+    window.location.replace(result.url);
+  }
+
+  var sf = window._sf;
+  if (user && sf && sf.getPreferredLang) {
+    sf.getPreferredLang(user.uid).then(apply).catch(function () { apply(null); });
+  } else {
+    apply(null);
+  }
+};
+
+// Fallback for when Firebase Auth never calls back at all (CDN blocked,
+// offline, script failed to load). This is a timer, not a DOMContentLoaded
+// listener, on purpose: this inline <script> runs near the bottom of
+// <body>, so DOMContentLoaded fires essentially immediately after it
+// registers -- long before Firebase's first onAuthStateChanged callback
+// (an unconditionally async, IndexedDB-backed read) has any real chance to
+// resolve. Since dsOnAuthReady is latched to only run once (dsLangResolved),
+// firing on DOMContentLoaded would deterministically win the race on every
+// normal page load and permanently blind language resolution to a logged-in
+// user's Firestore preferredLang -- the real Firebase callback would arrive
+// later and be silently ignored. 3000ms is generous: a working IndexedDB
+// read typically resolves in well under 100ms, so in the overwhelmingly
+// common case Firebase claims the latch long before this timer fires, and
+// this fallback only actually matters when Firebase never calls back at
+// all -- in which case treating the visitor as logged-out for
+// language-resolution purposes (falling through to localStorage override /
+// browser auto-detect, neither of which need Firebase) is the correct
+// degraded behavior. 3s is still well under what a user would notice as a
+// late background redirect.
+setTimeout(function () {
+  if (window.dsOnAuthReady) window.dsOnAuthReady(null);
+}, 3000);
 </script>
 
 

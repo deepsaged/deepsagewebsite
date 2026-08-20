@@ -1,0 +1,800 @@
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>100 000 dólares en 72 horas: el paquete de juegos independientes que ayuda a los desarrolladores (y a tu bolsillo). · DeepSage</title>
+  <meta name="description" content="Una oleada impresionante de generosidad por parte de los jugadores está demostrando que, incluso cuando la industria atraviesa una crisis, la comunidad sigue sabiendo cómo mostrar su apoyo a través de sus compras.">
+
+  <meta property="og:title" content="100 000 dólares en 72 horas: el paquete de juegos independientes que ayuda a los desarrolladores (y a tu bolsillo).">
+  <meta property="og:description" content="Una oleada impresionante de generosidad por parte de los jugadores está demostrando que, incluso cuando la industria atraviesa una crisis, la comunidad sigue sabiendo cómo mostrar su apoyo a través de sus compras.">
+  <meta property="og:image" content="/es/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/hero.png">
+  <meta property="og:type" content="article">
+
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+
+  <link rel="stylesheet" href="/assets/site.css">
+  
+
+  <link rel="alternate" hreflang="en" href="https://deepsage.com/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/">
+  <link rel="alternate" hreflang="es" href="https://deepsage.com/es/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/">
+  <link rel="alternate" hreflang="pt" href="https://deepsage.com/pt/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/">
+  <link rel="alternate" hreflang="fr" href="https://deepsage.com/fr/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/">
+  <link rel="alternate" hreflang="de" href="https://deepsage.com/de/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/">
+  <link rel="alternate" hreflang="ru" href="https://deepsage.com/ru/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/">
+  <link rel="alternate" hreflang="ja" href="https://deepsage.com/ja/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/">
+  <link rel="alternate" hreflang="zh-Hans" href="https://deepsage.com/zh-Hans/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/">
+  <link rel="alternate" hreflang="ko" href="https://deepsage.com/ko/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/">
+  <link rel="alternate" hreflang="it" href="https://deepsage.com/it/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/">
+  <link rel="alternate" hreflang="hi" href="https://deepsage.com/hi/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/">
+
+  <link rel="alternate" hreflang="x-default" href="https://deepsage.com/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/">
+
+  
+
+  <!-- Attribution capture: first-touch referrer/landing page, before anything else runs -->
+  <script>
+    (function captureAttribution() {
+      var FLAG = 'ds_attribution_captured';
+      if (localStorage.getItem(FLAG)) return;
+      var params = new URLSearchParams(location.search);
+      localStorage.setItem('ds_pending_ref', params.get('ref') || '');
+      localStorage.setItem('ds_pending_referrer', document.referrer || '');
+      localStorage.setItem('ds_pending_landing', location.pathname);
+      localStorage.setItem(FLAG, '1');
+    })();
+  </script>
+
+  <!-- Google Analytics (GA4) via gtag.js, using Consent Mode v2: loads with
+       storage denied by default, only switches to granted once the cookie
+       banner below records analytics consent. -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('consent', 'default', {
+      'analytics_storage': 'denied',
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+    });
+    gtag('js', new Date());
+    gtag('config', 'G-33MSQXQ8G9');
+
+    window.dsAnalyticsConsent = false;
+    window.dsTrack = function (name, params) {
+      if (!window.dsAnalyticsConsent) return;
+      gtag('event', name, params || {});
+    };
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-33MSQXQ8G9"></script>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
+    import {
+      getAuth,
+      GoogleAuthProvider,
+      createUserWithEmailAndPassword,
+      signInWithEmailAndPassword,
+      signOut,
+      onAuthStateChanged,
+      signInWithPopup,
+      getAdditionalUserInfo,
+    } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js";
+    import {
+      getFirestore,
+      doc,
+      setDoc,
+      getDoc,
+      serverTimestamp,
+    } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAjiW7UXat-UHZBFCBXhZdlPz64Zpwkjbo",
+      authDomain: "deepsage-aac5a.firebaseapp.com",
+      projectId: "deepsage-aac5a",
+      storageBucket: "deepsage-aac5a.firebasestorage.app",
+      messagingSenderId: "10532051582",
+      appId: "1:10532051582:web:029846f62f0edd01f3162f",
+      measurementId: "G-33MSQXQ8G9",
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const firestoreDb = getFirestore(app);
+    const gProvider = new GoogleAuthProvider();
+
+    // Writes a users/{uid} Firestore doc the first time an account is
+    // created (email/password signup, or first-ever Google sign-in).
+    // Attribution fields (referrer/landing/signup page, user agent) are only
+    // included if the visitor has granted analytics cookie consent.
+    async function recordUserSignup(user, isNewUser) {
+      if (!isNewUser) return;
+      try {
+        const data = {
+          email: user.email || null,
+          displayName: user.displayName || null,
+          createdAt: serverTimestamp(),
+        };
+        if (window.dsAnalyticsConsent) {
+          data.referralCode = localStorage.getItem('ds_pending_ref') || null;
+          data.referrerUrl = localStorage.getItem('ds_pending_referrer') || null;
+          data.landingPage = localStorage.getItem('ds_pending_landing') || null;
+          data.signupPage = window.location.pathname;
+          data.userAgent = navigator.userAgent;
+        }
+        await setDoc(doc(firestoreDb, "users", user.uid), data, { merge: true });
+        localStorage.removeItem('ds_pending_ref');
+        localStorage.removeItem('ds_pending_referrer');
+        localStorage.removeItem('ds_pending_landing');
+      } catch (err) {
+        // Non-fatal: Firebase Auth already succeeded and remains the source
+        // of truth for the account existing. A failure here is most likely
+        // a Firestore security rules issue on the `users` collection.
+        console.error("Failed to record user signup:", err);
+      }
+    }
+
+    // Reads the logged-in user's stored language preference, if any.
+    // Returns null on any failure (missing doc, security-rule denial, etc.)
+    // so callers can fall back to weaker signals rather than erroring.
+    async function getPreferredLang(uid) {
+      try {
+        const snap = await getDoc(doc(firestoreDb, "users", uid));
+        return snap.exists() ? (snap.data().preferredLang || null) : null;
+      } catch (err) {
+        console.error("Failed to read language preference:", err);
+        return null;
+      }
+    }
+
+    async function setPreferredLang(uid, lang) {
+      await setDoc(doc(firestoreDb, "users", uid), { preferredLang: lang }, { merge: true });
+    }
+
+    window._sf = {
+      auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut,
+      onAuthStateChanged, gProvider, signInWithPopup, getAdditionalUserInfo,
+      recordUserSignup, getPreferredLang, setPreferredLang,
+    };
+    window.dsRecordUserSignup = recordUserSignup;
+
+    onAuthStateChanged(auth, user => {
+      const signedOut = document.getElementById("header-auth-out");
+      const signedIn = document.getElementById("header-auth-in");
+      const nameEl = document.getElementById("header-auth-name");
+      const banner = document.getElementById("topBanner");
+      if (!signedOut || !signedIn) return;
+      if (user) {
+        signedOut.style.display = "none";
+        signedIn.style.display = "flex";
+        nameEl.textContent = user.displayName || user.email || window.dsUiStrings.explorer_fallback;
+        if (banner) banner.style.display = "none";
+      } else {
+        signedOut.style.display = "flex";
+        signedIn.style.display = "none";
+        if (banner) banner.style.display = "flex";
+      }
+      if (window.dsOnAuthReady) window.dsOnAuthReady(user);
+    });
+  </script>
+  <script>
+    window.dsLangUrls = {"de": "https://deepsage.com/de/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/", "en": "https://deepsage.com/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/", "es": "https://deepsage.com/es/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/", "fr": "https://deepsage.com/fr/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/", "hi": "https://deepsage.com/hi/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/", "it": "https://deepsage.com/it/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/", "ja": "https://deepsage.com/ja/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/", "ko": "https://deepsage.com/ko/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/", "pt": "https://deepsage.com/pt/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/", "ru": "https://deepsage.com/ru/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/", "zh-Hans": "https://deepsage.com/zh-Hans/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/"};
+    window.dsCurrentLang = "es";
+  </script>
+  <script src="/assets/js/lang-preference.js"></script>
+  <script>
+    window.dsUiStrings = {"auth_err_email_in_use": "Esta direcci\u00f3n de correo electr\u00f3nico ya est\u00e1 registrada. Inicie sesi\u00f3n en su lugar.", "auth_err_invalid_credential": "Direcci\u00f3n de correo electr\u00f3nico o contrase\u00f1a incorrecta.", "auth_err_invalid_email": "Por favor, introduzca una direcci\u00f3n de correo electr\u00f3nico v\u00e1lida.", "auth_err_user_not_found": "No existe ninguna cuenta asociada a esa direcci\u00f3n de correo electr\u00f3nico.", "auth_err_weak_password": "La contrase\u00f1a debe tener al menos 6 caracteres.", "auth_err_wrong_password": "Contrase\u00f1a incorrecta.", "connecting": "Conectando\u2026", "could_not_connect": "No se pudo establecer la conexi\u00f3n.", "explorer_fallback": "Explorador.", "fill_all_fields": "Por favor, complete todos los campos.", "firebase_not_ready": "Firebase a\u00fan no se ha inicializado.", "join_wishlist": "A\u00f1adir a la lista de deseos", "tick_consent": "Por favor, marque la casilla para indicar que da su consentimiento y continuar."};
+  </script>
+</head>
+<body>
+
+<section class="page-container">
+  <div class="page-grad-top"></div>
+  <div class="page-grad-bottom"></div>
+
+  <div class="page-content">
+    <div class="top-banner" id="topBanner">
+      <span class="top-banner-text">Nuevo juego educativo y entretenido: DeepSage.<a href="/es/world/" class="top-banner-link">se acerca</a>¡Únete a la lista de deseos para recibir acceso anticipado y las últimas novedades!</span>
+      <button class="top-banner-cta" onclick="openAuthModal()">Añadir a la lista de deseos</button>
+    </div>
+
+    <div class="page-header">
+      <a href="/es/" class="page-logo-link" aria-label="DeepSage home"><img class="page-logo" src="/assets/logo.png" alt="DeepSage" width="1628" height="351"></a>
+
+      <div class="header-controls">
+        <div class="header-auth">
+          <div id="header-auth-out" class="header-auth-out">
+            <button class="signin-link" onclick="openAuthModal()">Mi cuenta</button>
+          </div>
+          <div id="header-auth-in" class="header-auth-in account-menu" style="display:none;">
+            <button class="signin-link account-btn" onclick="toggleAccountMenu()">Mi cuenta</button>
+            <div id="account-dropdown" class="account-dropdown">
+              <span id="header-auth-name" class="header-auth-name"></span>
+              <a class="account-dropdown-connect" href="/es/settings/">Configuración</a>
+              <button class="account-dropdown-signout" onclick="doSignOut()">Cerrar sesión</button>
+            </div>
+          </div>
+        </div>
+
+        
+<div class="lang-switcher">
+  <button class="lang-switcher-btn" onclick="toggleLangMenu()" type="button">Español</button>
+  <div id="lang-dropdown" class="lang-dropdown">
+    
+    <a href="https://deepsage.com/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/" class="lang-option" data-lang="en" onclick="return dsSwitchLang(event, 'en', 'https://deepsage.com/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/')">English</a>
+    
+    <a href="https://deepsage.com/es/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/" class="lang-option lang-option-active" data-lang="es" onclick="return dsSwitchLang(event, 'es', 'https://deepsage.com/es/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/')">Español</a>
+    
+    <a href="https://deepsage.com/pt/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/" class="lang-option" data-lang="pt" onclick="return dsSwitchLang(event, 'pt', 'https://deepsage.com/pt/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/')">Português</a>
+    
+    <a href="https://deepsage.com/fr/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/" class="lang-option" data-lang="fr" onclick="return dsSwitchLang(event, 'fr', 'https://deepsage.com/fr/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/')">Français</a>
+    
+    <a href="https://deepsage.com/de/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/" class="lang-option" data-lang="de" onclick="return dsSwitchLang(event, 'de', 'https://deepsage.com/de/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/')">Deutsch</a>
+    
+    <a href="https://deepsage.com/ru/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/" class="lang-option" data-lang="ru" onclick="return dsSwitchLang(event, 'ru', 'https://deepsage.com/ru/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/')">Русский</a>
+    
+    <a href="https://deepsage.com/ja/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/" class="lang-option" data-lang="ja" onclick="return dsSwitchLang(event, 'ja', 'https://deepsage.com/ja/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/')">日本語</a>
+    
+    <a href="https://deepsage.com/zh-Hans/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/" class="lang-option" data-lang="zh-Hans" onclick="return dsSwitchLang(event, 'zh-Hans', 'https://deepsage.com/zh-Hans/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/')">简体中文</a>
+    
+    <a href="https://deepsage.com/ko/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/" class="lang-option" data-lang="ko" onclick="return dsSwitchLang(event, 'ko', 'https://deepsage.com/ko/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/')">한국어</a>
+    
+    <a href="https://deepsage.com/it/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/" class="lang-option" data-lang="it" onclick="return dsSwitchLang(event, 'it', 'https://deepsage.com/it/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/')">Italiano</a>
+    
+    <a href="https://deepsage.com/hi/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/" class="lang-option" data-lang="hi" onclick="return dsSwitchLang(event, 'hi', 'https://deepsage.com/hi/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/')">हिन्दी</a>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    
+<article>
+  
+  <h1 class="page-title">100 000 dólares en 72 horas: el paquete de juegos independientes que ayuda a los desarrolladores (y a tu bolsillo).</h1>
+  <p class="page-dek">Una oleada impresionante de generosidad por parte de los jugadores está demostrando que, incluso cuando la industria atraviesa una crisis, la comunidad sigue sabiendo cómo mostrar su apoyo a través de sus compras.</p>
+
+  <div class="share-row" id="share-row-top"></div>
+  
+  <p class="short-link"><a href="/s/4wtgNr/">deepsage.com/s/4wtgNr</a></p>
+  
+
+  
+  <img class="hero-image" src="/es/article/100-000-in-72-hours-the-indie-bundle-saving-devs-and-your-wallet/hero.png" alt="100 000 dólares en 72 horas: el paquete de juegos independientes que ayuda a los desarrolladores (y a tu bolsillo).">
+  
+
+  <div class="article-body">
+    <h2>La matemática de un milagro</h2>
+<p>Tres días. Eso fue todo lo que se necesitó. Mientras que la mayoría de nosotros pasamos setenta y dos horas decidiendo qué servicio de transmisión cancelar o debatiendo si realmente necesitamos una tercera freidora de aire, un paquete de juegos independientes impulsado por la comunidad acaba de recaudar más de 100.000 dólares. Esto no es simplemente una promoción de "compre uno y llévese otro" patrocinada por una corporación para obtener beneficios fiscales. Es un esfuerzo de base diseñado para proporcionar una red de seguridad a los desarrolladores a los que recientemente se les comunicó, por parte de sus empleadores, el típico discurso de "no es por ti, es por la economía".</p>
+<p><img alt="" src="img_1.png" /></p>
+<h2>La "lotería de despidos" es un juego perdido</h2>
+<p>Si has estado siguiendo las noticias, sabrás que la industria de los videojuegos ha estado pasando por un momento difícil. Y con "momento difícil", me refiero a un ciclo implacable de despidos masivos que hacen que el cliché de los "tiempos sin precedentes" suene a un chiste malo. Los desarrolladores que han dedicado años de sus vidas a crear gráficos impecables y mecánicas de juego complejas, de repente se encuentran navegando por LinkedIn con la misma energía frenética que un estudiante que comprueba si ha perdido alguna tarea.</p>
+<p>Este paquete no se trata solo de coleccionar trofeos digitales para tu biblioteca de Steam. Es un ataque dirigido contra la inestabilidad actual de la industria. Al comprar estos juegos, los jugadores están canalizando dinero directamente a un fondo destinado a apoyar a los que quedaron en la estela de la reciente crisis de la industria. Es un momento poco común en el que la comunidad de jugadores ha decidido colectivamente que "los buenos deseos y las oraciones" no son una forma válida de compensación.</p>
+<div class="key-info-block"><div class="key-info-label">Rápida recaudación de fondos</div<p>El paquete de juegos independientes recaudó más de 100.000 dólares en solo tres días para apoyar a los desarrolladores despedidos.</p></div>
+
+## Cómo funciona realmente la matemática (sin dolores de cabeza)
+
+Aquí está la parte que hará que tu billetera se llene de alegría: la propuesta de valor es absurda. Estamos hablando de una colección de juegos que, si se compraran individualmente, te costarían más de 1.000 dólares. Por el precio de una cena decente y un cóctel, obtienes una enorme biblioteca de contenido.
+
+<video class="article-animation" src="anim_1.mp4" autoplay loop muted playsinline></video>
+
+Es esencialmente una forma de lograr un crecimiento masivo de tu biblioteca digital sin el desastre financiero habitual. Piénsalo como un buffet de alta gama donde el chef está temporalmente desempleado, y cada vez que tomas un plato, en realidad estás ayudando a pagar su alquiler.
+
+*   **Valor individual:** 1.000 dólares o más
+*   **Precio del paquete:** Una fracción de eso (y vale cada centavo).
+*   **El truco:** No hay ningún truco, aparte del hecho de que probablemente tendrás 50 juegos que no has jugado desde 2021 en tu biblioteca.
+
+![](img_2.png)
+
+## Por qué esto es más que un simple "buen acto"
+
+En la era de las masivas reestructuraciones corporativas, a menudo sentimos que las acciones individuales son simplemente gritos en el vacío. Pero este paquete demuestra que las finanzas descentralizadas e impulsadas por la comunidad pueden avanzar más rápido que el departamento de recursos humanos de una corporación. Cuando un estudio decide reducir su tamaño, lo hace con la eficiencia fría y calculada de una hoja de cálculo. Esta comunidad respondió con el poder caótico, desorganizado e increíblemente eficaz de una multitud.
+
+Es un poco una paradoja extraña, ¿no es así? La industria se encuentra actualmente en un estado de "supervivencia del más apto", pero los jugadores están interviniendo para garantizar que los "más aptos" no se queden sin recursos mientras planean su próximo movimiento. No es exactamente una revolución, pero es sin duda una forma muy ruidosa y muy costosa de decir: "Estamos aquí".
+
+## Conclusión
+
+Al final, este paquete es un recordatorio de que, si bien los sectores tecnológico y de los videojuegos pueden ser propensos a cambios bruscos y colapsos repentinos, el elemento humano (los jugadores y los creadores) es mucho más difícil de liquidar.
+
+Así que, la verdadera pregunta es: ¿participarás en el próximo hito de los 100.000 dólares o sigues demasiado ocupado intentando decidir si puedes permitirte esa tercera freidora de aire?
+  </div>
+
+  <div class="share-row" id="share-row-bottom"></div>
+
+  
+  <div class="page-cta companion-cta">
+    <div class="page-cta-title">Pon a prueba lo que acabas de aprender.</div>
+    <p class="page-cta-text">Responde al cuestionario complementario de esta historia y comprueba tus resultados.</p>
+    <a class="page-cta-btn" href="/quiz/the-indie-bundle-saving-devs-and-your-wallet/">Responde al cuestionario.</a>
+  </div>
+  
+
+  <div class="page-cta">
+    <div class="page-cta-title">No se pierda ninguna historia.</div>
+    <p class="page-cta-text">Cree una cuenta gratuita de DeepSage para guardar artículos, hacer un seguimiento de los resultados de los cuestionarios y recibir el resumen diario antes que nadie.</p>
+    <button class="page-cta-btn" onclick="openAuthModal('signup')">Crea una cuenta gratuita.</button>
+  </div>
+</article>
+
+<script>
+(function () {
+  var pageUrl = window.location.href;
+  var shareText = "100 000 d\u00f3lares en 72 horas: el paquete de juegos independientes que ayuda a los desarrolladores (y a tu bolsillo).";
+  var shareLabels = {"facebook": "Compartir en Facebook.", "linkedin": "Compartir en LinkedIn", "x": "Compartir en X"};
+
+  var twitterUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(shareText) + "&url=" + encodeURIComponent(pageUrl);
+  var facebookUrl = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(pageUrl) + "&quote=" + encodeURIComponent(shareText);
+  var linkedinUrl = "https://www.linkedin.com/sharing/share-offsite/?url=" + encodeURIComponent(pageUrl);
+
+  var html = ''
+    + '<a class="share-btn" target="_blank" rel="noopener" href="' + twitterUrl + '" aria-label="' + shareLabels.x + '" title="' + shareLabels.x + '">'
+    + '<svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.6 8.7L23.3 22H16.9l-5-6.5-5.7 6.5H2.9l8.1-9.3L2 2h6.6l4.5 5.9L18.9 2Zm-1.1 18h1.7L7.3 3.9H5.5L17.8 20Z"/></svg>'
+    + '</a>'
+    + '<a class="share-btn" target="_blank" rel="noopener" href="' + facebookUrl + '" aria-label="' + shareLabels.facebook + '" title="' + shareLabels.facebook + '">'
+    + '<svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg>'
+    + '</a>'
+    + '<a class="share-btn" target="_blank" rel="noopener" href="' + linkedinUrl + '" aria-label="' + shareLabels.linkedin + '" title="' + shareLabels.linkedin + '">'
+    + '<svg viewBox="0 0 24 24"><path d="M19 3A2 2 0 0 1 21 5v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14ZM8.3 18.5V10H5.7v8.5h2.6ZM7 8.8a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm11.5 9.7v-4.7c0-2.5-1.3-3.7-3.1-3.7-1.4 0-2 .8-2.4 1.3V10H10.4v8.5H13v-4.7c0-.5 0-1 .2-1.3.3-.6.8-1.3 1.8-1.3 1.3 0 1.8.9 1.8 2.3v5h2.7Z"/></svg>'
+    + '</a>';
+
+  document.getElementById("share-row-top").innerHTML = html;
+  document.getElementById("share-row-bottom").innerHTML = html;
+})();
+</script>
+
+
+    <div class="page-footer">
+      <div class="footer-links">
+        <a href="/es/">Inicio</a>
+        <span class="footer-divider">·</span>
+        <a href="/es/article/">Artículos</a>
+        <span class="footer-divider">·</span>
+        <a href="/es/quiz/">Cuestionarios.</a>
+        <span class="footer-divider">·</span>
+        <a href="/es/skills/">Habilidades</a>
+        <span class="footer-divider">·</span>
+        <a href="/es/minigames/">Juegos</a>
+        <span class="footer-divider">·</span>
+        <a href="/privacy-policy/">Política de privacidad</a>
+        <span class="footer-divider">·</span>
+        <a href="/terms-of-service/">Términos de servicio</a>
+      </div>
+      <p class="footer-copyright">DeepSage · © 2026</p>
+    </div>
+  </div>
+</section>
+
+<!-- AUTH MODAL -->
+<div id="auth-modal-overlay" class="auth-modal-overlay" style="display:none;" onclick="if(event.target===this) closeAuthModal()">
+  <div class="auth-modal">
+    <button class="auth-modal-close" onclick="closeAuthModal()">&times;</button>
+    <h2 class="auth-modal-title">Añadir a la lista de deseos</h2>
+
+    <label class="consent-wrap" id="auth-consent-row">
+      <input type="checkbox" id="auth-consent-check">
+      <span class="consent-text">Acepto recibir actualizaciones sobre el juego de DeepSage y unirme a la lista de deseos. Puede darse de baja en cualquier momento. Consulte nuestra<a href="/privacy-policy/" target="_blank" rel="noopener" class="consent-link">Política de privacidad</a>.</span>
+    </label>
+
+    <div class="auth-form-wrap">
+      <button class="google-btn" onclick="authGoogle()">
+        <svg class="google-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+          <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+          <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+          <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+        </svg>
+        Continuar con Google
+      </button>
+
+      <div class="auth-divider"><span>o</span></div>
+
+      <div class="auth-field">
+        <label for="auth-email">Correo electrónico</label>
+        <input type="email" id="auth-email" placeholder="you@example.com" autocomplete="email">
+      </div>
+      <div class="auth-field">
+        <label for="auth-pass">Contraseña</label>
+        <input type="password" id="auth-pass" placeholder="••••••••" autocomplete="current-password">
+      </div>
+
+      <p class="auth-msg" id="auth-msg"></p>
+      <button class="auth-submit" id="auth-submit-btn" onclick="authSubmit()">Añadir a la lista de deseos</button>
+    </div>
+  </div>
+</div>
+
+<!-- Cookie Consent Banner -->
+<div id="cookieBanner">
+  <div class="cookie-banner-container">
+    <div class="cookie-banner-text">
+      Utilizamos cookies para mejorar su experiencia. Consulte nuestra<a href="/privacy-policy/" target="_blank">Política de privacidad</a>y<a href="/cookie-policy/" target="_blank">Política de cookies</a>para más información.
+    </div>
+    <div class="cookie-banner-buttons">
+      <button id="cookieReject">Rechazar elementos no esenciales.</button>
+      <button id="cookieCustomize">Personalizar</button>
+      <button id="cookieAccept">Aceptar todo</button>
+    </div>
+  </div>
+</div>
+
+<!-- Cookie Preferences Modal -->
+<div id="cookieModal">
+  <div class="cookie-modal-content">
+    <h2>Preferencias de las cookies</h2>
+
+    <div class="cookie-preference">
+      <input type="checkbox" id="cookieEssential" checked disabled>
+      <label for="cookieEssential">Esencial.</label>
+    </div>
+    <div class="cookie-preference-description">
+      Necesario para el funcionamiento básico del sitio (siempre habilitado)
+    </div>
+
+    <div class="cookie-preference">
+      <input type="checkbox" id="cookieAnalytics">
+      <label for="cookieAnalytics">Análisis de datos.</label>
+    </div>
+    <div class="cookie-preference-description">
+      Nos ayuda a comprender cómo utiliza el sitio para mejorar su experiencia.
+    </div>
+
+    <div class="cookie-preference">
+      <input type="checkbox" id="cookieMarketing">
+      <label for="cookieMarketing">Marketing</label>
+    </div>
+    <div class="cookie-preference-description">
+      Nos permite mostrarle contenido relevante y evaluar la eficacia de las campañas.
+    </div>
+
+    <div class="cookie-modal-buttons">
+      <button id="cookieModalCancel">Cancelar</button>
+      <button id="cookieModalSave">Guardar opciones</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const authMode = "signup";
+
+function openAuthModal() {
+  setAuthMsg("");
+  document.getElementById("auth-modal-overlay").style.display = "flex";
+}
+
+function closeAuthModal() {
+  document.getElementById("auth-modal-overlay").style.display = "none";
+}
+
+function setAuthMsg(txt, color) {
+  const el = document.getElementById("auth-msg");
+  el.textContent = txt;
+  el.style.color = color || "#ff6688";
+}
+
+async function authSubmit() {
+  const sf = window._sf;
+  if (!sf) return setAuthMsg(window.dsUiStrings.firebase_not_ready);
+  const email = document.getElementById("auth-email").value.trim();
+  const pass = document.getElementById("auth-pass").value;
+  if (!email || !pass) return setAuthMsg(window.dsUiStrings.fill_all_fields);
+
+  if (authMode === "signup" && !document.getElementById("auth-consent-check").checked) {
+    return setAuthMsg(window.dsUiStrings.tick_consent);
+  }
+
+  const btn = document.getElementById("auth-submit-btn");
+  btn.textContent = "…";
+  btn.disabled = true;
+
+  try {
+    if (authMode === "signin") {
+      await sf.signInWithEmailAndPassword(sf.auth, email, pass);
+    } else {
+      const cred = await sf.createUserWithEmailAndPassword(sf.auth, email, pass);
+      await sf.recordUserSignup(cred.user, true);
+    }
+    setAuthMsg("");
+    closeAuthModal();
+  } catch (err) {
+    const msgs = {
+      "auth/user-not-found": window.dsUiStrings.auth_err_user_not_found,
+      "auth/wrong-password": window.dsUiStrings.auth_err_wrong_password,
+      "auth/invalid-credential": window.dsUiStrings.auth_err_invalid_credential,
+      "auth/email-already-in-use": window.dsUiStrings.auth_err_email_in_use,
+      "auth/weak-password": window.dsUiStrings.auth_err_weak_password,
+      "auth/invalid-email": window.dsUiStrings.auth_err_invalid_email,
+    };
+    setAuthMsg(msgs[err.code] || err.message);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = window.dsUiStrings.join_wishlist;
+  }
+}
+
+async function authGoogle() {
+  const sf = window._sf;
+  if (!sf) return setAuthMsg(window.dsUiStrings.firebase_not_ready);
+  if (authMode === "signup" && !document.getElementById("auth-consent-check").checked) {
+    return setAuthMsg(window.dsUiStrings.tick_consent);
+  }
+  try {
+    const result = await sf.signInWithPopup(sf.auth, sf.gProvider);
+    const info = sf.getAdditionalUserInfo(result);
+    await sf.recordUserSignup(result.user, !!(info && info.isNewUser));
+    closeAuthModal();
+  } catch (err) {
+    if (err.code !== "auth/popup-closed-by-user") setAuthMsg(err.message);
+  }
+}
+
+async function connectPlatform(providerName) {
+  const sf = window._sf;
+  const user = sf && sf.auth.currentUser;
+  if (!user) return;
+
+  const btn = document.getElementById(`connect-${providerName}-btn`);
+  const prevText = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = window.dsUiStrings.connecting;
+
+  try {
+    const idToken = await user.getIdToken();
+    const res = await fetch(`https://oauth.deepsage.com/auth/${providerName}/login`, {
+      headers: { Authorization: `Bearer ${idToken}` },
+    });
+    if (!res.ok) throw new Error(window.dsUiStrings.could_not_connect);
+    const { url } = await res.json();
+    window.location.href = url;
+  } catch (err) {
+    btn.disabled = false;
+    btn.textContent = prevText;
+  }
+}
+
+async function doSignOut() {
+  const sf = window._sf;
+  if (sf) await sf.signOut(sf.auth);
+  document.getElementById("account-dropdown").classList.remove("open");
+}
+
+function toggleAccountMenu() {
+  document.getElementById("account-dropdown").classList.toggle("open");
+}
+
+document.addEventListener("click", function(e) {
+  const menu = document.getElementById("header-auth-in");
+  const dropdown = document.getElementById("account-dropdown");
+  if (menu && dropdown && !menu.contains(e.target)) {
+    dropdown.classList.remove("open");
+  }
+});
+
+/* ── Cookie consent management (site-wide) ── */
+(function() {
+  const CONSENT_KEY = 'deepsage_cookie_consent';
+  const CONSENT_EXPIRY = 12 * 30 * 24 * 60 * 60 * 1000; // 12 months
+
+  function getStoredConsent() {
+    const stored = localStorage.getItem(CONSENT_KEY);
+    if (!stored) return null;
+    try {
+      const consent = JSON.parse(stored);
+      const now = Date.now();
+      if (now - consent.timestamp > CONSENT_EXPIRY) {
+        localStorage.removeItem(CONSENT_KEY);
+        return null;
+      }
+      return consent;
+    } catch (error) {
+      console.error("Invalid consent data:", error);
+      localStorage.removeItem(CONSENT_KEY);
+      return null;
+    }
+  }
+
+  function saveConsent(essential, analytics, marketing) {
+    localStorage.setItem(CONSENT_KEY, JSON.stringify({
+      essential: true, analytics, marketing, timestamp: Date.now(),
+    }));
+  }
+
+  function loadCookiesBasedOnConsent(consent) {
+    window.dsAnalyticsConsent = !!consent.analytics;
+    gtag('consent', 'update', {
+      'analytics_storage': consent.analytics ? 'granted' : 'denied',
+      'ad_storage': consent.marketing ? 'granted' : 'denied',
+      'ad_user_data': consent.marketing ? 'granted' : 'denied',
+      'ad_personalization': consent.marketing ? 'granted' : 'denied',
+    });
+  }
+
+  function initializeCookieBanner() {
+    const storedConsent = getStoredConsent();
+    const banner = document.getElementById('cookieBanner');
+    if (!banner) return;
+
+    if (!storedConsent) {
+      banner.classList.add('show');
+    } else {
+      banner.classList.remove('show');
+      loadCookiesBasedOnConsent(storedConsent);
+    }
+  }
+
+  document.getElementById('cookieAccept').addEventListener('click', function() {
+    saveConsent(true, true, true);
+    loadCookiesBasedOnConsent({ essential: true, analytics: true, marketing: true });
+    document.getElementById('cookieBanner').classList.remove('show');
+  });
+
+  document.getElementById('cookieReject').addEventListener('click', function() {
+    saveConsent(true, false, false);
+    loadCookiesBasedOnConsent({ essential: true, analytics: false, marketing: false });
+    document.getElementById('cookieBanner').classList.remove('show');
+  });
+
+  document.getElementById('cookieCustomize').addEventListener('click', function() {
+    const storedConsent = getStoredConsent();
+    if (storedConsent) {
+      document.getElementById('cookieAnalytics').checked = storedConsent.analytics;
+      document.getElementById('cookieMarketing').checked = storedConsent.marketing;
+    }
+    document.getElementById('cookieModal').classList.add('show');
+  });
+
+  document.getElementById('cookieModalCancel').addEventListener('click', function() {
+    document.getElementById('cookieModal').classList.remove('show');
+  });
+
+  document.getElementById('cookieModalSave').addEventListener('click', function() {
+    const analytics = document.getElementById('cookieAnalytics').checked;
+    const marketing = document.getElementById('cookieMarketing').checked;
+    saveConsent(true, analytics, marketing);
+    loadCookiesBasedOnConsent({ essential: true, analytics, marketing });
+    document.getElementById('cookieModal').classList.remove('show');
+    document.getElementById('cookieBanner').classList.remove('show');
+  });
+
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      const modal = document.getElementById('cookieModal');
+      if (modal.classList.contains('show')) {
+        document.getElementById('cookieModalCancel').click();
+      }
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', initializeCookieBanner);
+})();
+
+/* ── Share button click tracking (site-wide, event delegation) ── */
+document.addEventListener('click', function(e) {
+  const btn = e.target.closest('.share-btn');
+  if (!btn) return;
+  let method = 'twitter';
+  if (btn.href.indexOf('facebook.com') !== -1) method = 'facebook';
+  else if (btn.href.indexOf('linkedin.com') !== -1) method = 'linkedin';
+  const contentType = location.pathname.startsWith('/quiz/') ? 'quiz'
+    : location.pathname.startsWith('/article/') ? 'article' : 'other';
+  window.dsTrack('share', { method, content_type: contentType, item_id: location.pathname });
+});
+
+/* ── Language preference resolution (site-wide) ── */
+function toggleLangMenu() {
+  var dd = document.getElementById('lang-dropdown');
+  if (dd) dd.classList.toggle('open');
+}
+
+document.addEventListener('click', function (e) {
+  var dropdown = document.getElementById('lang-dropdown');
+  var switcher = document.querySelector('.lang-switcher');
+  if (dropdown && switcher && !switcher.contains(e.target)) dropdown.classList.remove('open');
+});
+
+function dsPersistLangOverride(lang) {
+  localStorage.setItem('deepsage_lang', lang);
+  var sf = window._sf;
+  var user = sf && sf.auth.currentUser;
+  if (user && sf.setPreferredLang) {
+    sf.setPreferredLang(user.uid, lang).catch(function (err) {
+      console.error('Failed to save language preference:', err);
+    });
+  }
+}
+window.dsPersistLangOverride = dsPersistLangOverride;
+
+function dsSwitchLang(event, lang, url) {
+  // NOTE: this duplicates the localStorage write from dsPersistLangOverride
+  // (kept above, unchanged) because dsSwitchLang needs to await the Firestore
+  // write before navigating, while dsPersistLangOverride is a fire-and-forget
+  // helper used by the settings page (Task 4, templates/settings.html's
+  // dsSettingsChangeLang), which navigates on its own right after calling it.
+  localStorage.setItem('deepsage_lang', lang);
+  var sf = window._sf;
+  var user = sf && sf.auth.currentUser;
+  if (user && sf.setPreferredLang) {
+    event.preventDefault();
+    sf.setPreferredLang(user.uid, lang)
+      .catch(function (err) { console.error('Failed to save language preference:', err); })
+      .finally(function () { window.location.href = url; });
+    return false;
+  }
+  return true;
+}
+window.dsSwitchLang = dsSwitchLang;
+
+var dsLangResolved = false;
+window.dsOnAuthReady = function (user) {
+  if (dsLangResolved) return;
+  dsLangResolved = true;
+  if (!window.DsLangPreference || !window.dsLangUrls || Object.keys(window.dsLangUrls).length === 0) return;
+
+  var storedOverride = localStorage.getItem('deepsage_lang');
+  var browserLang = navigator.language;
+
+  function apply(firestorePref) {
+    var result = window.DsLangPreference.resolveRedirect({
+      currentLang: window.dsCurrentLang,
+      langUrls: window.dsLangUrls,
+      storedOverride: storedOverride,
+      firestorePref: firestorePref || null,
+      browserLang: browserLang,
+    });
+    if (!result) return;
+    // Guard against redirecting to the page the visitor is already on (e.g.
+    // a casing mismatch between currentLang and a lang_urls key, or a
+    // trailing-slash inconsistency) -- without this, a data mismatch could
+    // send the visitor into a same-page redirect loop.
+    if (result.url === window.location.pathname || result.url === window.location.href) return;
+    if (result.persistOverride) localStorage.setItem('deepsage_lang', result.lang);
+    // Use replace(), not `.href =`, because this is an automatic redirect
+    // the visitor never asked for (either the Firestore-preference tier, or
+    // the browser-auto-detect tier, which by design never persists and so
+    // re-fires on every page load). `.href =` would push a new history
+    // entry each time, trapping Back-button presses by immediately
+    // re-redirecting forward again. Explicit user-initiated switches
+    // (dsSwitchLang, dsSettingsChangeLang) intentionally keep using
+    // `.href =` since those SHOULD be normal, back-button-able navigations.
+    window.location.replace(result.url);
+  }
+
+  var sf = window._sf;
+  if (user && sf && sf.getPreferredLang) {
+    sf.getPreferredLang(user.uid).then(apply).catch(function () { apply(null); });
+  } else {
+    apply(null);
+  }
+};
+
+// Fallback for when Firebase Auth never calls back at all (CDN blocked,
+// offline, script failed to load). This is a timer, not a DOMContentLoaded
+// listener, on purpose: this inline <script> runs near the bottom of
+// <body>, so DOMContentLoaded fires essentially immediately after it
+// registers -- long before Firebase's first onAuthStateChanged callback
+// (an unconditionally async, IndexedDB-backed read) has any real chance to
+// resolve. Since dsOnAuthReady is latched to only run once (dsLangResolved),
+// firing on DOMContentLoaded would deterministically win the race on every
+// normal page load and permanently blind language resolution to a logged-in
+// user's Firestore preferredLang -- the real Firebase callback would arrive
+// later and be silently ignored. 3000ms is generous: a working IndexedDB
+// read typically resolves in well under 100ms, so in the overwhelmingly
+// common case Firebase claims the latch long before this timer fires, and
+// this fallback only actually matters when Firebase never calls back at
+// all -- in which case treating the visitor as logged-out for
+// language-resolution purposes (falling through to localStorage override /
+// browser auto-detect, neither of which need Firebase) is the correct
+// degraded behavior. 3s is still well under what a user would notice as a
+// late background redirect.
+setTimeout(function () {
+  if (window.dsOnAuthReady) window.dsOnAuthReady(null);
+}, 3000);
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,781 @@
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Software Architecture- Pourquoi c’est important | DeepSage</title>
+  <meta name="description" content="Découvrez pourquoi.Software Architecturedécouvrez les sujets abordés et comment l’apprentissage en ligne ludique peut vous aider à acquérir ces connaissances plus rapidement. Inscrivez-vous à la liste d’attente de DeepSage pour bénéficier d’un accès anticipé.">
+
+  <meta property="og:title" content="Software Architecture- Pourquoi c’est important | DeepSage">
+  <meta property="og:description" content="Découvrez pourquoi.Software Architecturedécouvrez les sujets abordés et comment l’apprentissage en ligne ludique peut vous aider à acquérir ces connaissances plus rapidement. Inscrivez-vous à la liste d’attente de DeepSage pour bénéficier d’un accès anticipé.">
+  <meta property="og:image" content="">
+  <meta property="og:type" content="article">
+
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+
+  <link rel="stylesheet" href="/assets/site.css">
+  
+
+  <link rel="alternate" hreflang="en" href="https://deepsage.com/skills/software-architecture/">
+  <link rel="alternate" hreflang="es" href="https://deepsage.com/es/skills/software-architecture/">
+  <link rel="alternate" hreflang="pt" href="https://deepsage.com/pt/skills/software-architecture/">
+  <link rel="alternate" hreflang="fr" href="https://deepsage.com/fr/skills/software-architecture/">
+  <link rel="alternate" hreflang="de" href="https://deepsage.com/de/skills/software-architecture/">
+  <link rel="alternate" hreflang="ru" href="https://deepsage.com/ru/skills/software-architecture/">
+  <link rel="alternate" hreflang="ja" href="https://deepsage.com/ja/skills/software-architecture/">
+  <link rel="alternate" hreflang="zh-Hans" href="https://deepsage.com/zh-Hans/skills/software-architecture/">
+  <link rel="alternate" hreflang="ko" href="https://deepsage.com/ko/skills/software-architecture/">
+  <link rel="alternate" hreflang="it" href="https://deepsage.com/it/skills/software-architecture/">
+  <link rel="alternate" hreflang="hi" href="https://deepsage.com/hi/skills/software-architecture/">
+
+  <link rel="alternate" hreflang="x-default" href="https://deepsage.com/skills/software-architecture/">
+
+  
+<style>
+  .landing-hero { text-align: center; padding: 8px 0 32px; }
+  .landing-eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .landing-cta-row { text-align: center; padding: 32px 0 8px; }
+  .landing-cta-btn {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border: 1px solid var(--gold);
+    background: #d9b97815;
+    color: var(--gold);
+    padding: 14px 32px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .landing-cta-btn:hover { background: #d9b9782a; }
+  .landing-cta-note {
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 14px;
+  }
+  .benefit-list { padding-left: 20px; }
+  .benefit-list li { margin-bottom: 10px; }
+</style>
+
+
+  <!-- Attribution capture: first-touch referrer/landing page, before anything else runs -->
+  <script>
+    (function captureAttribution() {
+      var FLAG = 'ds_attribution_captured';
+      if (localStorage.getItem(FLAG)) return;
+      var params = new URLSearchParams(location.search);
+      localStorage.setItem('ds_pending_ref', params.get('ref') || '');
+      localStorage.setItem('ds_pending_referrer', document.referrer || '');
+      localStorage.setItem('ds_pending_landing', location.pathname);
+      localStorage.setItem(FLAG, '1');
+    })();
+  </script>
+
+  <!-- Google Analytics (GA4) via gtag.js, using Consent Mode v2: loads with
+       storage denied by default, only switches to granted once the cookie
+       banner below records analytics consent. -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('consent', 'default', {
+      'analytics_storage': 'denied',
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+    });
+    gtag('js', new Date());
+    gtag('config', 'G-33MSQXQ8G9');
+
+    window.dsAnalyticsConsent = false;
+    window.dsTrack = function (name, params) {
+      if (!window.dsAnalyticsConsent) return;
+      gtag('event', name, params || {});
+    };
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-33MSQXQ8G9"></script>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
+    import {
+      getAuth,
+      GoogleAuthProvider,
+      createUserWithEmailAndPassword,
+      signInWithEmailAndPassword,
+      signOut,
+      onAuthStateChanged,
+      signInWithPopup,
+      getAdditionalUserInfo,
+    } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js";
+    import {
+      getFirestore,
+      doc,
+      setDoc,
+      getDoc,
+      serverTimestamp,
+    } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAjiW7UXat-UHZBFCBXhZdlPz64Zpwkjbo",
+      authDomain: "deepsage-aac5a.firebaseapp.com",
+      projectId: "deepsage-aac5a",
+      storageBucket: "deepsage-aac5a.firebasestorage.app",
+      messagingSenderId: "10532051582",
+      appId: "1:10532051582:web:029846f62f0edd01f3162f",
+      measurementId: "G-33MSQXQ8G9",
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const firestoreDb = getFirestore(app);
+    const gProvider = new GoogleAuthProvider();
+
+    // Writes a users/{uid} Firestore doc the first time an account is
+    // created (email/password signup, or first-ever Google sign-in).
+    // Attribution fields (referrer/landing/signup page, user agent) are only
+    // included if the visitor has granted analytics cookie consent.
+    async function recordUserSignup(user, isNewUser) {
+      if (!isNewUser) return;
+      try {
+        const data = {
+          email: user.email || null,
+          displayName: user.displayName || null,
+          createdAt: serverTimestamp(),
+        };
+        if (window.dsAnalyticsConsent) {
+          data.referralCode = localStorage.getItem('ds_pending_ref') || null;
+          data.referrerUrl = localStorage.getItem('ds_pending_referrer') || null;
+          data.landingPage = localStorage.getItem('ds_pending_landing') || null;
+          data.signupPage = window.location.pathname;
+          data.userAgent = navigator.userAgent;
+        }
+        await setDoc(doc(firestoreDb, "users", user.uid), data, { merge: true });
+        localStorage.removeItem('ds_pending_ref');
+        localStorage.removeItem('ds_pending_referrer');
+        localStorage.removeItem('ds_pending_landing');
+      } catch (err) {
+        // Non-fatal: Firebase Auth already succeeded and remains the source
+        // of truth for the account existing. A failure here is most likely
+        // a Firestore security rules issue on the `users` collection.
+        console.error("Failed to record user signup:", err);
+      }
+    }
+
+    // Reads the logged-in user's stored language preference, if any.
+    // Returns null on any failure (missing doc, security-rule denial, etc.)
+    // so callers can fall back to weaker signals rather than erroring.
+    async function getPreferredLang(uid) {
+      try {
+        const snap = await getDoc(doc(firestoreDb, "users", uid));
+        return snap.exists() ? (snap.data().preferredLang || null) : null;
+      } catch (err) {
+        console.error("Failed to read language preference:", err);
+        return null;
+      }
+    }
+
+    async function setPreferredLang(uid, lang) {
+      await setDoc(doc(firestoreDb, "users", uid), { preferredLang: lang }, { merge: true });
+    }
+
+    window._sf = {
+      auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut,
+      onAuthStateChanged, gProvider, signInWithPopup, getAdditionalUserInfo,
+      recordUserSignup, getPreferredLang, setPreferredLang,
+    };
+    window.dsRecordUserSignup = recordUserSignup;
+
+    onAuthStateChanged(auth, user => {
+      const signedOut = document.getElementById("header-auth-out");
+      const signedIn = document.getElementById("header-auth-in");
+      const nameEl = document.getElementById("header-auth-name");
+      const banner = document.getElementById("topBanner");
+      if (!signedOut || !signedIn) return;
+      if (user) {
+        signedOut.style.display = "none";
+        signedIn.style.display = "flex";
+        nameEl.textContent = user.displayName || user.email || window.dsUiStrings.explorer_fallback;
+        if (banner) banner.style.display = "none";
+      } else {
+        signedOut.style.display = "flex";
+        signedIn.style.display = "none";
+        if (banner) banner.style.display = "flex";
+      }
+      if (window.dsOnAuthReady) window.dsOnAuthReady(user);
+    });
+  </script>
+  <script>
+    window.dsLangUrls = {"de": "https://deepsage.com/de/skills/software-architecture/", "en": "https://deepsage.com/skills/software-architecture/", "es": "https://deepsage.com/es/skills/software-architecture/", "fr": "https://deepsage.com/fr/skills/software-architecture/", "hi": "https://deepsage.com/hi/skills/software-architecture/", "it": "https://deepsage.com/it/skills/software-architecture/", "ja": "https://deepsage.com/ja/skills/software-architecture/", "ko": "https://deepsage.com/ko/skills/software-architecture/", "pt": "https://deepsage.com/pt/skills/software-architecture/", "ru": "https://deepsage.com/ru/skills/software-architecture/", "zh-Hans": "https://deepsage.com/zh-Hans/skills/software-architecture/"};
+    window.dsCurrentLang = "fr";
+  </script>
+  <script src="/assets/js/lang-preference.js"></script>
+  <script>
+    window.dsUiStrings = {"auth_err_email_in_use": "Cette adresse e-mail est d\u00e9j\u00e0 enregistr\u00e9e. Veuillez vous connecter.", "auth_err_invalid_credential": "Adresse e-mail ou mot de passe incorrect.", "auth_err_invalid_email": "Veuillez saisir une adresse courriel valide.", "auth_err_user_not_found": "Aucun compte n\u2019est associ\u00e9 \u00e0 cette adresse \u00e9lectronique.", "auth_err_weak_password": "Le mot de passe doit comporter au moins 6 caract\u00e8res.", "auth_err_wrong_password": "Mot de passe incorrect.", "connecting": "Connexion en cours\u2026", "could_not_connect": "Impossible de d\u00e9marrer la connexion.", "explorer_fallback": "Explorateur", "fill_all_fields": "Veuillez remplir tous les champs.", "firebase_not_ready": "Firebase n\u2019a pas encore \u00e9t\u00e9 initialis\u00e9.", "join_wishlist": "Ajouter \u00e0 la liste de souhaits", "tick_consent": "Veuillez cocher la case pour indiquer que vous consentez et poursuivre."};
+  </script>
+</head>
+<body>
+
+<section class="page-container">
+  <div class="page-grad-top"></div>
+  <div class="page-grad-bottom"></div>
+
+  <div class="page-content">
+    <div class="top-banner" id="topBanner">
+      <span class="top-banner-text">Nouveau jeu éducatif et divertissant : DeepSage.<a href="/fr/world/" class="top-banner-link">arrive</a>! Ajoutez cet article à votre liste de souhaits pour bénéficier d’un accès anticipé et recevoir les dernières mises à jour.</span>
+      <button class="top-banner-cta" onclick="openAuthModal()">Ajouter à la liste de souhaits</button>
+    </div>
+
+    <div class="page-header">
+      <a href="/fr/" class="page-logo-link" aria-label="DeepSage home"><img class="page-logo" src="/assets/logo.png" alt="DeepSage" width="1628" height="351"></a>
+
+      <div class="header-controls">
+        <div class="header-auth">
+          <div id="header-auth-out" class="header-auth-out">
+            <button class="signin-link" onclick="openAuthModal()">Mon compte</button>
+          </div>
+          <div id="header-auth-in" class="header-auth-in account-menu" style="display:none;">
+            <button class="signin-link account-btn" onclick="toggleAccountMenu()">Mon compte</button>
+            <div id="account-dropdown" class="account-dropdown">
+              <span id="header-auth-name" class="header-auth-name"></span>
+              <a class="account-dropdown-connect" href="/fr/settings/">Paramètres</a>
+              <button class="account-dropdown-signout" onclick="doSignOut()">Se déconnecter</button>
+            </div>
+          </div>
+        </div>
+
+        
+<div class="lang-switcher">
+  <button class="lang-switcher-btn" onclick="toggleLangMenu()" type="button">Français</button>
+  <div id="lang-dropdown" class="lang-dropdown">
+    
+    <a href="https://deepsage.com/skills/software-architecture/" class="lang-option" data-lang="en" onclick="return dsSwitchLang(event, 'en', 'https://deepsage.com/skills/software-architecture/')">English</a>
+    
+    <a href="https://deepsage.com/es/skills/software-architecture/" class="lang-option" data-lang="es" onclick="return dsSwitchLang(event, 'es', 'https://deepsage.com/es/skills/software-architecture/')">Español</a>
+    
+    <a href="https://deepsage.com/pt/skills/software-architecture/" class="lang-option" data-lang="pt" onclick="return dsSwitchLang(event, 'pt', 'https://deepsage.com/pt/skills/software-architecture/')">Português</a>
+    
+    <a href="https://deepsage.com/fr/skills/software-architecture/" class="lang-option lang-option-active" data-lang="fr" onclick="return dsSwitchLang(event, 'fr', 'https://deepsage.com/fr/skills/software-architecture/')">Français</a>
+    
+    <a href="https://deepsage.com/de/skills/software-architecture/" class="lang-option" data-lang="de" onclick="return dsSwitchLang(event, 'de', 'https://deepsage.com/de/skills/software-architecture/')">Deutsch</a>
+    
+    <a href="https://deepsage.com/ru/skills/software-architecture/" class="lang-option" data-lang="ru" onclick="return dsSwitchLang(event, 'ru', 'https://deepsage.com/ru/skills/software-architecture/')">Русский</a>
+    
+    <a href="https://deepsage.com/ja/skills/software-architecture/" class="lang-option" data-lang="ja" onclick="return dsSwitchLang(event, 'ja', 'https://deepsage.com/ja/skills/software-architecture/')">日本語</a>
+    
+    <a href="https://deepsage.com/zh-Hans/skills/software-architecture/" class="lang-option" data-lang="zh-Hans" onclick="return dsSwitchLang(event, 'zh-Hans', 'https://deepsage.com/zh-Hans/skills/software-architecture/')">简体中文</a>
+    
+    <a href="https://deepsage.com/ko/skills/software-architecture/" class="lang-option" data-lang="ko" onclick="return dsSwitchLang(event, 'ko', 'https://deepsage.com/ko/skills/software-architecture/')">한국어</a>
+    
+    <a href="https://deepsage.com/it/skills/software-architecture/" class="lang-option" data-lang="it" onclick="return dsSwitchLang(event, 'it', 'https://deepsage.com/it/skills/software-architecture/')">Italiano</a>
+    
+    <a href="https://deepsage.com/hi/skills/software-architecture/" class="lang-option" data-lang="hi" onclick="return dsSwitchLang(event, 'hi', 'https://deepsage.com/hi/skills/software-architecture/')">हिन्दी</a>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    
+<article>
+  <div class="landing-hero">
+    <div class="landing-eyebrow">Mettez vos compétences en valeur.</div>
+    <h1 class="page-title">Software Architecture</h1>
+    <p class="last-updated">Pourquoi c’est important et comment l’apprendre en jouant.</p>
+  </div>
+
+  <div class="page-section">
+    <h2 class="section-title">Pourquoi ?Software ArchitectureCela compte.</h2>
+    <p>Software Architectureest l’une des compétences qui façonnent la manière dont les gens travaillent, apprennent et résolvent les problèmes aujourd’hui. Alors que le rythme du changement s’accélère, il est essentiel de comprendresoftware architectureCe n’est plus une option, mais plutôt une base essentielle pour rester compétent et confiant, que vous soyez étudiant, professionnel ou simplement curieux de connaître les orientations futures du monde.</p>
+  </div>
+
+  <div class="page-section">
+    <h2 class="section-title">Les avantages de l’apprentissage en ligne par le biais de contenus ludiques et éducatifs.</h2>
+    <p>Les cours traditionnels et les manuels épais peuvent rendre l’acquisition de compétences telles que… difficile.software architectureelles semblent abstraites et difficiles à assimiler. L’apprentissage en ligne, sous forme de divertissement éducatif, c’est-à-dire d’expériences interactives et ludiques, permet de combler ce fossé :</p>
+    <ul class="benefit-list">
+      <li><strong>Apprenez en pratiquant.</strong> Grâce à des scénarios et des exercices interactifs, les concepts abstraits se transforment en exercices pratiques que vous mémorisez réellement.</li>
+      <li><strong{}>Restez motivé.</strong{}> Les mécanismes du jeu, tels que la progression, les retours d’information et le récit, vous incitent à persévérer et à ne pas abandonner un cours à mi-parcours.</li>
+      <li><strong>Apprenez à votre rythme.</strong> Grâce à des contenus courts et facilement accessibles, vous pouvez apprendre quand vous le souhaitez, ce qui est bien plus pratique qu’un cours en présentiel avec un horaire fixe.</li>
+      <li><strong>Développez une véritable intuition.</strong> En prenant des décisions et en en subissant les conséquences, on acquiert un instinct que les simples cours théoriques ne peuvent pas enseigner.</li>
+      <li><strong>Faites en sorte que l’information soit retenue durablement.</strong> La répétition espacée et le renforcement ludique améliorent la mémorisation à long terme par rapport à une simple lecture passive.</li>
+    </ul>
+  </div>
+
+  <div class="page-section">
+    <h2 class="section-title">Quelle est la place de DeepSage ?</h2>
+    <p>DeepSage est un jeu éducatif et divertissant en développement, conçu pour enseigner des compétences telles que :software architectureL’apprentissage se fait par le biais d’aventures, de récits et de défis interactifs, plutôt que par des présentations et des questionnaires. Il est conçu pour les personnes qui souhaitent acquérir de véritables compétences dans des domaines comme celui-ci, sans avoir à écouter une nouvelle série de conférences.</p>
+  </div>
+
+  <div class="landing-cta-row">
+    <button class="landing-cta-btn" onclick="openAuthModal('signup')">Ajouter à la liste de souhaits</button>
+    <p class="landing-cta-note">Soyez le premier à être informé du lancement de DeepSage. Pas de spams, vous pouvez vous désinscrire à tout moment.</p>
+  </div>
+
+  <hr>
+</article>
+
+
+    <div class="page-footer">
+      <div class="footer-links">
+        <a href="/fr/">Accueil</a>
+        <span class="footer-divider">·</span>
+        <a href="/fr/article/">Articles</a>
+        <span class="footer-divider">·</span>
+        <a href="/fr/quiz/">Quiz</a>
+        <span class="footer-divider">·</span>
+        <a href="/fr/skills/">Compétences</a>
+        <span class="footer-divider">·</span>
+        <a href="/fr/minigames/">Jeux</a>
+        <span class="footer-divider">·</span>
+        <a href="/privacy-policy/">Politique de confidentialité</a>
+        <span class="footer-divider">·</span>
+        <a href="/terms-of-service/">Conditions d’utilisation</a>
+      </div>
+      <p class="footer-copyright">DeepSage · © 2026</p>
+    </div>
+  </div>
+</section>
+
+<!-- AUTH MODAL -->
+<div id="auth-modal-overlay" class="auth-modal-overlay" style="display:none;" onclick="if(event.target===this) closeAuthModal()">
+  <div class="auth-modal">
+    <button class="auth-modal-close" onclick="closeAuthModal()">&times;</button>
+    <h2 class="auth-modal-title">Ajouter à la liste de souhaits</h2>
+
+    <label class="consent-wrap" id="auth-consent-row">
+      <input type="checkbox" id="auth-consent-check">
+      <span class="consent-text">Je consens à recevoir des mises à jour concernant les jeux de DeepSage et à rejoindre la liste de souhaits. Vous pouvez vous désinscrire à tout moment. Consultez notre<a href="/privacy-policy/" target="_blank" rel="noopener" class="consent-link">Politique de confidentialité</a>.</span>
+    </label>
+
+    <div class="auth-form-wrap">
+      <button class="google-btn" onclick="authGoogle()">
+        <svg class="google-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+          <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+          <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+          <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+        </svg>
+        Continuer avec Google
+      </button>
+
+      <div class="auth-divider"><span>ou</span></div>
+
+      <div class="auth-field">
+        <label for="auth-email">Courriel</label>
+        <input type="email" id="auth-email" placeholder="you@example.com" autocomplete="email">
+      </div>
+      <div class="auth-field">
+        <label for="auth-pass">Mot de passe</label>
+        <input type="password" id="auth-pass" placeholder="••••••••" autocomplete="current-password">
+      </div>
+
+      <p class="auth-msg" id="auth-msg"></p>
+      <button class="auth-submit" id="auth-submit-btn" onclick="authSubmit()">Ajouter à la liste de souhaits</button>
+    </div>
+  </div>
+</div>
+
+<!-- Cookie Consent Banner -->
+<div id="cookieBanner">
+  <div class="cookie-banner-container">
+    <div class="cookie-banner-text">
+      Nous utilisons des cookies pour améliorer votre expérience. Consultez notre<a href="/privacy-policy/" target="_blank">Politique de confidentialité</a>et<a href="/cookie-policy/" target="_blank">Politique en matière de cookies</a>pour plus d’informations.
+    </div>
+    <div class="cookie-banner-buttons">
+      <button id="cookieReject">Refuser les éléments non essentiels.</button>
+      <button id="cookieCustomize">Personnaliser</button>
+      <button id="cookieAccept">Accepter tout</button>
+    </div>
+  </div>
+</div>
+
+<!-- Cookie Preferences Modal -->
+<div id="cookieModal">
+  <div class="cookie-modal-content">
+    <h2>Préférences concernant les cookies</h2>
+
+    <div class="cookie-preference">
+      <input type="checkbox" id="cookieEssential" checked disabled>
+      <label for="cookieEssential">Essentiel</label>
+    </div>
+    <div class="cookie-preference-description">
+      Nécessaire au fonctionnement de base du site (toujours activé).
+    </div>
+
+    <div class="cookie-preference">
+      <input type="checkbox" id="cookieAnalytics">
+      <label for="cookieAnalytics">Analyse de données</label>
+    </div>
+    <div class="cookie-preference-description">
+      Nous aide à comprendre comment vous utilisez le site afin d’améliorer votre expérience.
+    </div>
+
+    <div class="cookie-preference">
+      <input type="checkbox" id="cookieMarketing">
+      <label for="cookieMarketing">Marketing</label>
+    </div>
+    <div class="cookie-preference-description">
+      Nous permet de vous présenter un contenu pertinent et de mesurer l’efficacité de nos campagnes.
+    </div>
+
+    <div class="cookie-modal-buttons">
+      <button id="cookieModalCancel">Annuler</button>
+      <button id="cookieModalSave">Enregistrer les choix.</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const authMode = "signup";
+
+function openAuthModal() {
+  setAuthMsg("");
+  document.getElementById("auth-modal-overlay").style.display = "flex";
+}
+
+function closeAuthModal() {
+  document.getElementById("auth-modal-overlay").style.display = "none";
+}
+
+function setAuthMsg(txt, color) {
+  const el = document.getElementById("auth-msg");
+  el.textContent = txt;
+  el.style.color = color || "#ff6688";
+}
+
+async function authSubmit() {
+  const sf = window._sf;
+  if (!sf) return setAuthMsg(window.dsUiStrings.firebase_not_ready);
+  const email = document.getElementById("auth-email").value.trim();
+  const pass = document.getElementById("auth-pass").value;
+  if (!email || !pass) return setAuthMsg(window.dsUiStrings.fill_all_fields);
+
+  if (authMode === "signup" && !document.getElementById("auth-consent-check").checked) {
+    return setAuthMsg(window.dsUiStrings.tick_consent);
+  }
+
+  const btn = document.getElementById("auth-submit-btn");
+  btn.textContent = "…";
+  btn.disabled = true;
+
+  try {
+    if (authMode === "signin") {
+      await sf.signInWithEmailAndPassword(sf.auth, email, pass);
+    } else {
+      const cred = await sf.createUserWithEmailAndPassword(sf.auth, email, pass);
+      await sf.recordUserSignup(cred.user, true);
+    }
+    setAuthMsg("");
+    closeAuthModal();
+  } catch (err) {
+    const msgs = {
+      "auth/user-not-found": window.dsUiStrings.auth_err_user_not_found,
+      "auth/wrong-password": window.dsUiStrings.auth_err_wrong_password,
+      "auth/invalid-credential": window.dsUiStrings.auth_err_invalid_credential,
+      "auth/email-already-in-use": window.dsUiStrings.auth_err_email_in_use,
+      "auth/weak-password": window.dsUiStrings.auth_err_weak_password,
+      "auth/invalid-email": window.dsUiStrings.auth_err_invalid_email,
+    };
+    setAuthMsg(msgs[err.code] || err.message);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = window.dsUiStrings.join_wishlist;
+  }
+}
+
+async function authGoogle() {
+  const sf = window._sf;
+  if (!sf) return setAuthMsg(window.dsUiStrings.firebase_not_ready);
+  if (authMode === "signup" && !document.getElementById("auth-consent-check").checked) {
+    return setAuthMsg(window.dsUiStrings.tick_consent);
+  }
+  try {
+    const result = await sf.signInWithPopup(sf.auth, sf.gProvider);
+    const info = sf.getAdditionalUserInfo(result);
+    await sf.recordUserSignup(result.user, !!(info && info.isNewUser));
+    closeAuthModal();
+  } catch (err) {
+    if (err.code !== "auth/popup-closed-by-user") setAuthMsg(err.message);
+  }
+}
+
+async function connectPlatform(providerName) {
+  const sf = window._sf;
+  const user = sf && sf.auth.currentUser;
+  if (!user) return;
+
+  const btn = document.getElementById(`connect-${providerName}-btn`);
+  const prevText = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = window.dsUiStrings.connecting;
+
+  try {
+    const idToken = await user.getIdToken();
+    const res = await fetch(`https://oauth.deepsage.com/auth/${providerName}/login`, {
+      headers: { Authorization: `Bearer ${idToken}` },
+    });
+    if (!res.ok) throw new Error(window.dsUiStrings.could_not_connect);
+    const { url } = await res.json();
+    window.location.href = url;
+  } catch (err) {
+    btn.disabled = false;
+    btn.textContent = prevText;
+  }
+}
+
+async function doSignOut() {
+  const sf = window._sf;
+  if (sf) await sf.signOut(sf.auth);
+  document.getElementById("account-dropdown").classList.remove("open");
+}
+
+function toggleAccountMenu() {
+  document.getElementById("account-dropdown").classList.toggle("open");
+}
+
+document.addEventListener("click", function(e) {
+  const menu = document.getElementById("header-auth-in");
+  const dropdown = document.getElementById("account-dropdown");
+  if (menu && dropdown && !menu.contains(e.target)) {
+    dropdown.classList.remove("open");
+  }
+});
+
+/* ── Cookie consent management (site-wide) ── */
+(function() {
+  const CONSENT_KEY = 'deepsage_cookie_consent';
+  const CONSENT_EXPIRY = 12 * 30 * 24 * 60 * 60 * 1000; // 12 months
+
+  function getStoredConsent() {
+    const stored = localStorage.getItem(CONSENT_KEY);
+    if (!stored) return null;
+    try {
+      const consent = JSON.parse(stored);
+      const now = Date.now();
+      if (now - consent.timestamp > CONSENT_EXPIRY) {
+        localStorage.removeItem(CONSENT_KEY);
+        return null;
+      }
+      return consent;
+    } catch (error) {
+      console.error("Invalid consent data:", error);
+      localStorage.removeItem(CONSENT_KEY);
+      return null;
+    }
+  }
+
+  function saveConsent(essential, analytics, marketing) {
+    localStorage.setItem(CONSENT_KEY, JSON.stringify({
+      essential: true, analytics, marketing, timestamp: Date.now(),
+    }));
+  }
+
+  function loadCookiesBasedOnConsent(consent) {
+    window.dsAnalyticsConsent = !!consent.analytics;
+    gtag('consent', 'update', {
+      'analytics_storage': consent.analytics ? 'granted' : 'denied',
+      'ad_storage': consent.marketing ? 'granted' : 'denied',
+      'ad_user_data': consent.marketing ? 'granted' : 'denied',
+      'ad_personalization': consent.marketing ? 'granted' : 'denied',
+    });
+  }
+
+  function initializeCookieBanner() {
+    const storedConsent = getStoredConsent();
+    const banner = document.getElementById('cookieBanner');
+    if (!banner) return;
+
+    if (!storedConsent) {
+      banner.classList.add('show');
+    } else {
+      banner.classList.remove('show');
+      loadCookiesBasedOnConsent(storedConsent);
+    }
+  }
+
+  document.getElementById('cookieAccept').addEventListener('click', function() {
+    saveConsent(true, true, true);
+    loadCookiesBasedOnConsent({ essential: true, analytics: true, marketing: true });
+    document.getElementById('cookieBanner').classList.remove('show');
+  });
+
+  document.getElementById('cookieReject').addEventListener('click', function() {
+    saveConsent(true, false, false);
+    loadCookiesBasedOnConsent({ essential: true, analytics: false, marketing: false });
+    document.getElementById('cookieBanner').classList.remove('show');
+  });
+
+  document.getElementById('cookieCustomize').addEventListener('click', function() {
+    const storedConsent = getStoredConsent();
+    if (storedConsent) {
+      document.getElementById('cookieAnalytics').checked = storedConsent.analytics;
+      document.getElementById('cookieMarketing').checked = storedConsent.marketing;
+    }
+    document.getElementById('cookieModal').classList.add('show');
+  });
+
+  document.getElementById('cookieModalCancel').addEventListener('click', function() {
+    document.getElementById('cookieModal').classList.remove('show');
+  });
+
+  document.getElementById('cookieModalSave').addEventListener('click', function() {
+    const analytics = document.getElementById('cookieAnalytics').checked;
+    const marketing = document.getElementById('cookieMarketing').checked;
+    saveConsent(true, analytics, marketing);
+    loadCookiesBasedOnConsent({ essential: true, analytics, marketing });
+    document.getElementById('cookieModal').classList.remove('show');
+    document.getElementById('cookieBanner').classList.remove('show');
+  });
+
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      const modal = document.getElementById('cookieModal');
+      if (modal.classList.contains('show')) {
+        document.getElementById('cookieModalCancel').click();
+      }
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', initializeCookieBanner);
+})();
+
+/* ── Share button click tracking (site-wide, event delegation) ── */
+document.addEventListener('click', function(e) {
+  const btn = e.target.closest('.share-btn');
+  if (!btn) return;
+  let method = 'twitter';
+  if (btn.href.indexOf('facebook.com') !== -1) method = 'facebook';
+  else if (btn.href.indexOf('linkedin.com') !== -1) method = 'linkedin';
+  const contentType = location.pathname.startsWith('/quiz/') ? 'quiz'
+    : location.pathname.startsWith('/article/') ? 'article' : 'other';
+  window.dsTrack('share', { method, content_type: contentType, item_id: location.pathname });
+});
+
+/* ── Language preference resolution (site-wide) ── */
+function toggleLangMenu() {
+  var dd = document.getElementById('lang-dropdown');
+  if (dd) dd.classList.toggle('open');
+}
+
+document.addEventListener('click', function (e) {
+  var dropdown = document.getElementById('lang-dropdown');
+  var switcher = document.querySelector('.lang-switcher');
+  if (dropdown && switcher && !switcher.contains(e.target)) dropdown.classList.remove('open');
+});
+
+function dsPersistLangOverride(lang) {
+  localStorage.setItem('deepsage_lang', lang);
+  var sf = window._sf;
+  var user = sf && sf.auth.currentUser;
+  if (user && sf.setPreferredLang) {
+    sf.setPreferredLang(user.uid, lang).catch(function (err) {
+      console.error('Failed to save language preference:', err);
+    });
+  }
+}
+window.dsPersistLangOverride = dsPersistLangOverride;
+
+function dsSwitchLang(event, lang, url) {
+  // NOTE: this duplicates the localStorage write from dsPersistLangOverride
+  // (kept above, unchanged) because dsSwitchLang needs to await the Firestore
+  // write before navigating, while dsPersistLangOverride is a fire-and-forget
+  // helper used by the settings page (Task 4, templates/settings.html's
+  // dsSettingsChangeLang), which navigates on its own right after calling it.
+  localStorage.setItem('deepsage_lang', lang);
+  var sf = window._sf;
+  var user = sf && sf.auth.currentUser;
+  if (user && sf.setPreferredLang) {
+    event.preventDefault();
+    sf.setPreferredLang(user.uid, lang)
+      .catch(function (err) { console.error('Failed to save language preference:', err); })
+      .finally(function () { window.location.href = url; });
+    return false;
+  }
+  return true;
+}
+window.dsSwitchLang = dsSwitchLang;
+
+var dsLangResolved = false;
+window.dsOnAuthReady = function (user) {
+  if (dsLangResolved) return;
+  dsLangResolved = true;
+  if (!window.DsLangPreference || !window.dsLangUrls || Object.keys(window.dsLangUrls).length === 0) return;
+
+  var storedOverride = localStorage.getItem('deepsage_lang');
+  var browserLang = navigator.language;
+
+  function apply(firestorePref) {
+    var result = window.DsLangPreference.resolveRedirect({
+      currentLang: window.dsCurrentLang,
+      langUrls: window.dsLangUrls,
+      storedOverride: storedOverride,
+      firestorePref: firestorePref || null,
+      browserLang: browserLang,
+    });
+    if (!result) return;
+    // Guard against redirecting to the page the visitor is already on (e.g.
+    // a casing mismatch between currentLang and a lang_urls key, or a
+    // trailing-slash inconsistency) -- without this, a data mismatch could
+    // send the visitor into a same-page redirect loop.
+    if (result.url === window.location.pathname || result.url === window.location.href) return;
+    if (result.persistOverride) localStorage.setItem('deepsage_lang', result.lang);
+    // Use replace(), not `.href =`, because this is an automatic redirect
+    // the visitor never asked for (either the Firestore-preference tier, or
+    // the browser-auto-detect tier, which by design never persists and so
+    // re-fires on every page load). `.href =` would push a new history
+    // entry each time, trapping Back-button presses by immediately
+    // re-redirecting forward again. Explicit user-initiated switches
+    // (dsSwitchLang, dsSettingsChangeLang) intentionally keep using
+    // `.href =` since those SHOULD be normal, back-button-able navigations.
+    window.location.replace(result.url);
+  }
+
+  var sf = window._sf;
+  if (user && sf && sf.getPreferredLang) {
+    sf.getPreferredLang(user.uid).then(apply).catch(function () { apply(null); });
+  } else {
+    apply(null);
+  }
+};
+
+// Fallback for when Firebase Auth never calls back at all (CDN blocked,
+// offline, script failed to load). This is a timer, not a DOMContentLoaded
+// listener, on purpose: this inline <script> runs near the bottom of
+// <body>, so DOMContentLoaded fires essentially immediately after it
+// registers -- long before Firebase's first onAuthStateChanged callback
+// (an unconditionally async, IndexedDB-backed read) has any real chance to
+// resolve. Since dsOnAuthReady is latched to only run once (dsLangResolved),
+// firing on DOMContentLoaded would deterministically win the race on every
+// normal page load and permanently blind language resolution to a logged-in
+// user's Firestore preferredLang -- the real Firebase callback would arrive
+// later and be silently ignored. 3000ms is generous: a working IndexedDB
+// read typically resolves in well under 100ms, so in the overwhelmingly
+// common case Firebase claims the latch long before this timer fires, and
+// this fallback only actually matters when Firebase never calls back at
+// all -- in which case treating the visitor as logged-out for
+// language-resolution purposes (falling through to localStorage override /
+// browser auto-detect, neither of which need Firebase) is the correct
+// degraded behavior. 3s is still well under what a user would notice as a
+// late background redirect.
+setTimeout(function () {
+  if (window.dsOnAuthReady) window.dsOnAuthReady(null);
+}, 3000);
+</script>
+
+
+
+</body>
+</html>
