@@ -670,9 +670,21 @@ function dsSwitchLang(event, lang, url) {
   var user = sf && sf.auth.currentUser;
   if (user && sf.setPreferredLang) {
     event.preventDefault();
+    // Firestore writes can hang indefinitely (e.g. retrying with backoff
+    // against a misconfigured/unreachable database) instead of ever
+    // resolving or rejecting, which would leave the user stuck on the page
+    // forever. Race against a timeout so navigation always happens even if
+    // the preference write never settles.
+    var navigated = false;
+    function navigate() {
+      if (navigated) return;
+      navigated = true;
+      window.location.href = url;
+    }
     sf.setPreferredLang(user.uid, lang)
       .catch(function (err) { console.error('Failed to save language preference:', err); })
-      .finally(function () { window.location.href = url; });
+      .finally(navigate);
+    setTimeout(navigate, 1500);
     return false;
   }
   return true;
