@@ -1,0 +1,1020 @@
+
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jogos Vorazes: O Preço Cognitivo da Cultura da Dieta · DeepSage Quiz</title>
+  <meta name="description" content="Test your knowledge: Jogos Vorazes: O Preço Cognitivo da Cultura da Dieta">
+
+  <meta property="og:title" content="Jogos Vorazes: O Preço Cognitivo da Cultura da Dieta">
+  <meta property="og:description" content="Test your knowledge: Jogos Vorazes: O Preço Cognitivo da Cultura da Dieta">
+  <meta property="og:image" content="/pt/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/hero.png">
+  <meta property="og:type" content="article">
+
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+
+  <link rel="stylesheet" href="/assets/site.css">
+  
+
+  <link rel="alternate" hreflang="en" href="https://deepsage.com/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/">
+  <link rel="alternate" hreflang="es" href="https://deepsage.com/es/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/">
+  <link rel="alternate" hreflang="pt" href="https://deepsage.com/pt/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/">
+  <link rel="alternate" hreflang="fr" href="https://deepsage.com/fr/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/">
+  <link rel="alternate" hreflang="de" href="https://deepsage.com/de/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/">
+  <link rel="alternate" hreflang="ru" href="https://deepsage.com/ru/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/">
+  <link rel="alternate" hreflang="ja" href="https://deepsage.com/ja/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/">
+  <link rel="alternate" hreflang="zh-Hans" href="https://deepsage.com/zh-Hans/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/">
+  <link rel="alternate" hreflang="ko" href="https://deepsage.com/ko/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/">
+  <link rel="alternate" hreflang="it" href="https://deepsage.com/it/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/">
+  <link rel="alternate" hreflang="hi" href="https://deepsage.com/hi/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/">
+
+  <link rel="alternate" hreflang="x-default" href="https://deepsage.com/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/">
+
+  
+
+  <!-- Attribution capture: first-touch referrer/landing page, before anything else runs -->
+  <script>
+    (function captureAttribution() {
+      var FLAG = 'ds_attribution_captured';
+      if (localStorage.getItem(FLAG)) return;
+      var params = new URLSearchParams(location.search);
+      localStorage.setItem('ds_pending_ref', params.get('ref') || '');
+      localStorage.setItem('ds_pending_referrer', document.referrer || '');
+      localStorage.setItem('ds_pending_landing', location.pathname);
+      localStorage.setItem(FLAG, '1');
+    })();
+  </script>
+
+  <!-- Google Analytics (GA4) via gtag.js, using Consent Mode v2: loads with
+       storage denied by default, only switches to granted once the cookie
+       banner below records analytics consent. -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('consent', 'default', {
+      'analytics_storage': 'denied',
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+    });
+    gtag('js', new Date());
+    gtag('config', 'G-33MSQXQ8G9');
+
+    window.dsAnalyticsConsent = false;
+    window.dsTrack = function (name, params) {
+      if (!window.dsAnalyticsConsent) return;
+      gtag('event', name, params || {});
+    };
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-33MSQXQ8G9"></script>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
+    import {
+      getAuth,
+      GoogleAuthProvider,
+      createUserWithEmailAndPassword,
+      signInWithEmailAndPassword,
+      signOut,
+      onAuthStateChanged,
+      signInWithPopup,
+      getAdditionalUserInfo,
+    } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js";
+    import {
+      getFirestore,
+      doc,
+      setDoc,
+      getDoc,
+      serverTimestamp,
+    } from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAjiW7UXat-UHZBFCBXhZdlPz64Zpwkjbo",
+      authDomain: "deepsage-aac5a.firebaseapp.com",
+      projectId: "deepsage-aac5a",
+      storageBucket: "deepsage-aac5a.firebasestorage.app",
+      messagingSenderId: "10532051582",
+      appId: "1:10532051582:web:029846f62f0edd01f3162f",
+      measurementId: "G-33MSQXQ8G9",
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const firestoreDb = getFirestore(app);
+    const gProvider = new GoogleAuthProvider();
+
+    // Writes a users/{uid} Firestore doc the first time an account is
+    // created (email/password signup, or first-ever Google sign-in).
+    // Attribution fields (referrer/landing/signup page, user agent) are only
+    // included if the visitor has granted analytics cookie consent.
+    async function recordUserSignup(user, isNewUser) {
+      if (!isNewUser) return;
+      try {
+        const data = {
+          email: user.email || null,
+          displayName: user.displayName || null,
+          createdAt: serverTimestamp(),
+        };
+        if (window.dsAnalyticsConsent) {
+          data.referralCode = localStorage.getItem('ds_pending_ref') || null;
+          data.referrerUrl = localStorage.getItem('ds_pending_referrer') || null;
+          data.landingPage = localStorage.getItem('ds_pending_landing') || null;
+          data.signupPage = window.location.pathname;
+          data.userAgent = navigator.userAgent;
+        }
+        await setDoc(doc(firestoreDb, "users", user.uid), data, { merge: true });
+        localStorage.removeItem('ds_pending_ref');
+        localStorage.removeItem('ds_pending_referrer');
+        localStorage.removeItem('ds_pending_landing');
+      } catch (err) {
+        // Non-fatal: Firebase Auth already succeeded and remains the source
+        // of truth for the account existing. A failure here is most likely
+        // a Firestore security rules issue on the `users` collection.
+        console.error("Failed to record user signup:", err);
+      }
+    }
+
+    // Reads the logged-in user's stored language preference, if any.
+    // Returns null on any failure (missing doc, security-rule denial, etc.)
+    // so callers can fall back to weaker signals rather than erroring.
+    async function getPreferredLang(uid) {
+      try {
+        const snap = await getDoc(doc(firestoreDb, "users", uid));
+        return snap.exists() ? (snap.data().preferredLang || null) : null;
+      } catch (err) {
+        console.error("Failed to read language preference:", err);
+        return null;
+      }
+    }
+
+    async function setPreferredLang(uid, lang) {
+      await setDoc(doc(firestoreDb, "users", uid), { preferredLang: lang }, { merge: true });
+    }
+
+    window._sf = {
+      auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut,
+      onAuthStateChanged, gProvider, signInWithPopup, getAdditionalUserInfo,
+      recordUserSignup, getPreferredLang, setPreferredLang,
+    };
+    window.dsRecordUserSignup = recordUserSignup;
+
+    onAuthStateChanged(auth, user => {
+      const signedOut = document.getElementById("header-auth-out");
+      const signedIn = document.getElementById("header-auth-in");
+      const nameEl = document.getElementById("header-auth-name");
+      const banner = document.getElementById("topBanner");
+      if (!signedOut || !signedIn) return;
+      if (user) {
+        signedOut.style.display = "none";
+        signedIn.style.display = "flex";
+        nameEl.textContent = user.displayName || user.email || window.dsUiStrings.explorer_fallback;
+        if (banner) banner.style.display = "none";
+      } else {
+        signedOut.style.display = "flex";
+        signedIn.style.display = "none";
+        if (banner) banner.style.display = "flex";
+      }
+      if (window.dsOnAuthReady) window.dsOnAuthReady(user);
+    });
+  </script>
+  <script>
+    window.dsLangUrls = {"de": "https://deepsage.com/de/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/", "en": "https://deepsage.com/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/", "es": "https://deepsage.com/es/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/", "fr": "https://deepsage.com/fr/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/", "hi": "https://deepsage.com/hi/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/", "it": "https://deepsage.com/it/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/", "ja": "https://deepsage.com/ja/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/", "ko": "https://deepsage.com/ko/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/", "pt": "https://deepsage.com/pt/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/", "ru": "https://deepsage.com/ru/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/", "zh-Hans": "https://deepsage.com/zh-Hans/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/"};
+    window.dsCurrentLang = "pt";
+  </script>
+  <script src="/assets/js/lang-preference.js"></script>
+  <script>
+    window.dsUiStrings = {"auth_err_email_in_use": "Este endere\u00e7o de e-mail j\u00e1 est\u00e1 registado. Inicie sess\u00e3o em vez disso.", "auth_err_invalid_credential": "Endere\u00e7o de e-mail ou palavra-passe incorretos.", "auth_err_invalid_email": "Por favor, insira um endere\u00e7o de e-mail v\u00e1lido.", "auth_err_user_not_found": "N\u00e3o existe nenhuma conta associada a esse endere\u00e7o de e-mail.", "auth_err_weak_password": "A senha deve ter pelo menos 6 caracteres.", "auth_err_wrong_password": "Senha incorreta.", "connecting": "A conectar\u2026", "could_not_connect": "N\u00e3o foi poss\u00edvel iniciar a conex\u00e3o.", "explorer_fallback": "Explorador(a)", "fill_all_fields": "Por favor, preencha todos os campos.", "firebase_not_ready": "O Firebase ainda n\u00e3o foi inicializado.", "join_wishlist": "Adicionar \u00e0 Lista de Desejos", "tick_consent": "Por favor, marque a caixa de consentimento para continuar."};
+  </script>
+</head>
+<body>
+
+<section class="page-container">
+  <div class="page-grad-top"></div>
+  <div class="page-grad-bottom"></div>
+
+  <div class="page-content">
+    <div class="top-banner" id="topBanner">
+      <span class="top-banner-text">Novo jogo educativo e divertido: DeepSage.<a href="/pt/world/" class="top-banner-link">está chegando/a caminho</a>! Adicione este item à sua lista de desejos para ter acesso antecipado e receber as últimas novidades.</span>
+      <button class="top-banner-cta" onclick="openAuthModal()">Adicionar à Lista de Desejos</button>
+    </div>
+
+    <div class="page-header">
+      <a href="/pt/" class="page-logo-link" aria-label="DeepSage home"><img class="page-logo" src="/assets/logo.png" alt="DeepSage" width="1628" height="351"></a>
+
+      <div class="header-controls">
+        <div class="header-auth">
+          <div id="header-auth-out" class="header-auth-out">
+            <button class="signin-link" onclick="openAuthModal()">Minha Conta</button>
+          </div>
+          <div id="header-auth-in" class="header-auth-in account-menu" style="display:none;">
+            <button class="signin-link account-btn" onclick="toggleAccountMenu()">Minha Conta</button>
+            <div id="account-dropdown" class="account-dropdown">
+              <span id="header-auth-name" class="header-auth-name"></span>
+              <a class="account-dropdown-connect" href="/pt/settings/">Configurações</a>
+              <button class="account-dropdown-signout" onclick="doSignOut()">Desconectar-se/Sair da conta</button>
+            </div>
+          </div>
+        </div>
+
+        
+<div class="lang-switcher">
+  <button class="lang-switcher-btn" onclick="toggleLangMenu()" type="button">Português</button>
+  <div id="lang-dropdown" class="lang-dropdown">
+    
+    <a href="https://deepsage.com/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/" class="lang-option" data-lang="en" onclick="return dsSwitchLang(event, 'en', 'https://deepsage.com/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/')">English</a>
+    
+    <a href="https://deepsage.com/es/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/" class="lang-option" data-lang="es" onclick="return dsSwitchLang(event, 'es', 'https://deepsage.com/es/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/')">Español</a>
+    
+    <a href="https://deepsage.com/pt/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/" class="lang-option lang-option-active" data-lang="pt" onclick="return dsSwitchLang(event, 'pt', 'https://deepsage.com/pt/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/')">Português</a>
+    
+    <a href="https://deepsage.com/fr/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/" class="lang-option" data-lang="fr" onclick="return dsSwitchLang(event, 'fr', 'https://deepsage.com/fr/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/')">Français</a>
+    
+    <a href="https://deepsage.com/de/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/" class="lang-option" data-lang="de" onclick="return dsSwitchLang(event, 'de', 'https://deepsage.com/de/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/')">Deutsch</a>
+    
+    <a href="https://deepsage.com/ru/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/" class="lang-option" data-lang="ru" onclick="return dsSwitchLang(event, 'ru', 'https://deepsage.com/ru/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/')">Русский</a>
+    
+    <a href="https://deepsage.com/ja/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/" class="lang-option" data-lang="ja" onclick="return dsSwitchLang(event, 'ja', 'https://deepsage.com/ja/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/')">日本語</a>
+    
+    <a href="https://deepsage.com/zh-Hans/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/" class="lang-option" data-lang="zh-Hans" onclick="return dsSwitchLang(event, 'zh-Hans', 'https://deepsage.com/zh-Hans/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/')">简体中文</a>
+    
+    <a href="https://deepsage.com/ko/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/" class="lang-option" data-lang="ko" onclick="return dsSwitchLang(event, 'ko', 'https://deepsage.com/ko/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/')">한국어</a>
+    
+    <a href="https://deepsage.com/it/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/" class="lang-option" data-lang="it" onclick="return dsSwitchLang(event, 'it', 'https://deepsage.com/it/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/')">Italiano</a>
+    
+    <a href="https://deepsage.com/hi/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/" class="lang-option" data-lang="hi" onclick="return dsSwitchLang(event, 'hi', 'https://deepsage.com/hi/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/')">हिन्दी</a>
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    
+<article>
+  
+  <h1 class="page-title">Jogos Vorazes: O Preço Cognitivo da Cultura da Dieta</h1>
+
+  <div class="share-row" id="share-row-top"></div>
+  
+  <p class="short-link"><a href="/s/wZrazC/">deepsage.com/s/wZrazC</a></p>
+  
+
+  
+  <img class="hero-image" src="/pt/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/hero.png" alt="Jogos Vorazes: O Preço Cognitivo da Cultura da Dieta">
+  
+
+  <div id="quiz-root" data-title="Jogos Vorazes: O Preço Cognitivo da Cultura da Dieta" data-share-video="/pt/quiz/the-hunger-games-the-cognitive-cost-of-diet-culture/share.mp4"></div>
+
+  
+  <div class="page-cta companion-cta">
+    <div class="page-cta-title">Quer saber todos os detalhes?</div>
+    <p class="page-cta-text">Leia o artigo em que este questionário se baseia.</p>
+    <a class="page-cta-btn" href="/pt/article/the-cognitive-cost-of-the-diet-mindset/">Leia o artigo.</a>
+  </div>
+  
+
+  <div class="page-cta">
+    <div class="page-cta-title">Não perca nenhum teste.</div>
+    <p class="page-cta-text">Crie uma conta gratuita no DeepSage para acompanhar os seus resultados nos questionários, descobrir a sua classificação e ter acesso prioritário a novos questionários.</p>
+    <button class="page-cta-btn" onclick="openAuthModal('signup')">Crie uma conta gratuita.</button>
+  </div>
+</article>
+
+<script id="quiz-data" type="application/json">[{"correct_index": 2, "explanation": "A preocupa\u00e7\u00e3o constante com a contagem de calorias e a sensa\u00e7\u00e3o de fome cria uma \u00absobrecarga cognitiva\u00bb que esgota a energia mental necess\u00e1ria para o pensamento propriamente dito.", "idk_index": 4, "options": ["Maior concentra\u00e7\u00e3o e produtividade.", "Um talento s\u00fabito e inexplic\u00e1vel para tricotar.", "Deteriora\u00e7\u00e3o cognitiva e redu\u00e7\u00e3o da capacidade de processamento mental", "A capacidade de comunicar com esquilos.", "O meu c\u00e9rebro entrou em modo de economia de energia."], "question": "De acordo com o artigo, qual \u00e9 a principal consequ\u00eancia \u00aboculta\u00bb da restri\u00e7\u00e3o alimentar prolongada em mulheres?"}, {"correct_index": 0, "explanation": "\u00abRu\u00eddo alimentar\u00bb refere-se aos pensamentos intrusivos e incessantes sobre comida, que resultam de h\u00e1bitos alimentares restritivos.", "idk_index": 3, "options": ["Ru\u00eddo relacionado com alimentos", "Consci\u00eancia alimentar/Alimenta\u00e7\u00e3o consciente", "O Grande Vazio Cal\u00f3rico", "Estou t\u00e3o absorto(a) que nem sequer reparo na minha pr\u00f3pria fome.", "O para\u00edso da nutri\u00e7\u00e3o."], "question": "Qual \u00e9 o termo frequentemente utilizado para descrever o estado mental de estar constantemente obcecado com comida e calorias?"}, {"correct_index": 1, "explanation": "A internaliza\u00e7\u00e3o de padr\u00f5es alimentares restritivos come\u00e7a muito antes do que a maioria das pessoas imagina, estando frequentemente enraizada nas normas da inf\u00e2ncia e na preocupa\u00e7\u00e3o excessiva com a imagem corporal.", "idk_index": 4, "options": ["A vida adulta, durante a primeira avalia\u00e7\u00e3o de desempenho na empresa.", "Inf\u00e2ncia", "Apenas depois de se obter um doutoramento.", "Quando o primeiro influenciador digital que promove a dieta cetog\u00e9nica aparece no seu feed.", "Deixei escapar um detalhe importante sobre a minha pr\u00f3pria educa\u00e7\u00e3o."], "question": "De acordo com o texto, a partir de que idade \u00e9 que o treino para a restri\u00e7\u00e3o do apetite costuma come\u00e7ar?"}, {"correct_index": 1, "explanation": "Quando o c\u00e9rebro est\u00e1 em estado de priva\u00e7\u00e3o, ele prioriza a sobreviv\u00eancia em detrimento de fun\u00e7\u00f5es cognitivas de n\u00edvel superior, como o planeamento complexo e o controlo dos impulsos.", "idk_index": 3, "options": ["A capacidade de perceber a cor azul.", "Fun\u00e7\u00f5es executivas e tomada de decis\u00f5es", "A velocidade com que a torrada \u00e9 expelida da torradeira.", "Perdi todo o acesso \u00e0 minha mem\u00f3ria de longo prazo.", "Regula\u00e7\u00e3o metab\u00f3lica"], "question": "Qual processo biol\u00f3gico \u00e9 significativamente afetado quando o organismo se encontra num estado de d\u00e9fice cal\u00f3rico cr\u00f3nico?"}, {"correct_index": 1, "explanation": "A \u00abn\u00e9voa\u00bb representa o d\u00e9fice cognitivo e a falta de clareza mental que resultam de uma subnutri\u00e7\u00e3o constante.", "idk_index": 4, "options": ["Um padr\u00e3o clim\u00e1tico real que afeta os campi de empresas de tecnologia.", "A confus\u00e3o mental causada pela falta de nutrientes.", "Uma nova marca de leite de aveia org\u00e2nico com pre\u00e7os excessivos.", "A falta de clareza nos resultados trimestrais divulgados no Vale do Sil\u00edcio.", "No momento, estou completamente perdido e confuso."], "question": "No contexto do ensaio, o que a met\u00e1fora \u00aba n\u00e9voa da fome\u00bb representa?"}, {"correct_index": 1, "explanation": "Quando uma grande parte da popula\u00e7\u00e3o est\u00e1 excessivamente preocupada com a alimenta\u00e7\u00e3o, o que afeta as suas capacidades cognitivas, a sociedade perde a capacidade coletiva de que precisa para progredir.", "idk_index": 4, "options": ["Uma queda acentuada na produ\u00e7\u00e3o mundial de p\u00e3o de fermenta\u00e7\u00e3o natural.", "A perda do potencial cognitivo e da capacidade de a\u00e7\u00e3o do ser humano.", "Um aumento inesperado na popularidade de aplica\u00e7\u00f5es para controlar a ingest\u00e3o de calorias.", "A inevit\u00e1vel ascens\u00e3o da revolta dos rob\u00f4s.", "Prefiro n\u00e3o abordar as implica\u00e7\u00f5es sociol\u00f3gicas neste momento."], "question": "Para al\u00e9m do indiv\u00edduo, qual \u00e9 o impacto mais amplo, a n\u00edvel social, dos padr\u00f5es generalizados de restri\u00e7\u00e3o alimentar que s\u00e3o mencionados ou sugeridos?"}, {"correct_index": 3, "explanation": "A cultura alimentar baseia-se fortemente no uso de dados num\u00e9ricos \u2014 como o peso ou as calorias \u2014 como um indicador do valor ou da disciplina de uma pessoa.", "idk_index": 4, "options": ["Excesso de foco nas propor\u00e7\u00f5es de macronutrientes.", "O surgimento repentino de p\u00edlulas m\u00e1gicas para perda de peso.", "Corridas matinais obrigat\u00f3rias sob uma chuva gelada.", "Expressar o valor pessoal atrav\u00e9s de n\u00fameros numa escala.", "As minhas capacidades cognitivas j\u00e1 n\u00e3o est\u00e3o presentes."], "question": "Qual destes \u00e9 um \u00abmecanismo\u00bb comum usado na cultura alimentar para impor a restri\u00e7\u00e3o do apetite?"}, {"correct_index": 1, "explanation": "A ironia reside no facto de esperarmos que a \u00abfor\u00e7a de vontade\u00bb supere a fome, mesmo sabendo que a pr\u00f3pria fome est\u00e1 a prejudicar ativamente a capacidade do c\u00e9rebro de exercer essa for\u00e7a de vontade.", "idk_index": 4, "options": ["Quanto mais o utilizas, mais se desenvolve, tal como um m\u00fasculo.", "Est\u00e1 a ser utilizado para combater um impulso biol\u00f3gico que est\u00e1 a prejudicar o funcionamento do c\u00e9rebro.", "Na verdade, \u00e9 apenas um termo de marketing usado para produtos suplementares de alto custo.", "S\u00f3 funciona se voc\u00ea estiver a comer apenas couve.", "Estou com tanta fome que n\u00e3o consigo perceber a ironia."], "question": "Qual \u00e9 a principal ironia em rela\u00e7\u00e3o \u00e0 \u00abfor\u00e7a de vontade\u00bb no contexto da fome cr\u00f3nica?"}, {"correct_index": 0, "explanation": "Sarah Berg Read \u00e9 a autora que explora a rela\u00e7\u00e3o entre nutri\u00e7\u00e3o, g\u00e9nero e cogni\u00e7\u00e3o neste trabalho.", "idk_index": 4, "options": ["Sarah Berg Read", "Uma lagarta muito faminta e muito zangada.", "O diretor-geral de uma importante empresa iniciante no setor de emagrecimento.", "Um autor fantasma an\u00f3nimo, criado por intelig\u00eancia artificial.", "Por favor, n\u00e3o me digam mais nomes, estou com dor de cabe\u00e7a."], "question": "Quem \u00e9 o autor do artigo \u00abA n\u00e9voa da fome\u00bb publicado na Aeon?"}, {"correct_index": 2, "explanation": "O \u00abpoliciamento alimentar\u00bb consiste em internalizar a vigil\u00e2ncia sobre o que se come, encarando a alimenta\u00e7\u00e3o como uma batalha moral ou disciplinar.", "idk_index": 4, "options": ["Guerra nutricional", "A Cruzada contra as Calorias", "Controlo alimentar/Vigil\u00e2ncia alimentar.", "A Grande Guerra dos Carboidratos de 2024", "Atingi o limite da minha capacidade de investiga\u00e7\u00e3o intelectual."], "question": "Qual conceito descreve o h\u00e1bito psicol\u00f3gico de encarar a comida como um inimigo a ser derrotado?"}]</script>
+<script>
+  window.dsQuizStrings = {"next_question": "Pr\u00f3xima pergunta.", "progress_mid": "de", "progress_prefix": "Pergunta", "results_percent_suffix": "correto", "see_results": "Ver resultados", "share_facebook_label": "Partilhar no Facebook", "share_level_prefix": "e alcan\u00e7ou", "share_level_suffix": "Parab\u00e9ns!", "share_linkedin_label": "Partilhe no LinkedIn.", "share_percent_prefix": "(", "share_percent_suffix": "%) no question\u00e1rio da DeepSage.", "share_score_prefix": "Eu marquei.", "share_test_prefix": "Teste os seus conhecimentos:", "share_x_label": "Partilhe no X.", "status_level1_label": "Apenas come\u00e7ando.", "status_level1_message": "Todo especialista come\u00e7a em algum lugar \u2014 fa\u00e7a mais testes do DeepSage para aprimorar seus conhecimentos.", "status_level2_label": "Iniciante Curioso", "status_level2_message": "Voc\u00ea j\u00e1 est\u00e1 aprendendo o b\u00e1sico. Continue explorando o DeepSage para aprimorar seus conhecimentos.", "status_level3_label": "Aluno em ascens\u00e3o / Aluno com grande potencial.", "status_level3_message": "Dom\u00ednio s\u00f3lido dos princ\u00edpios b\u00e1sicos \u2014 est\u00e1 cada vez mais perto de atingir o n\u00edvel de um especialista.", "status_level4_label": "Pensador Perspicaz", "status_level4_message": "Impressionante! \u00c9 evidente que voc\u00ea acompanha este espa\u00e7o com aten\u00e7\u00e3o.", "status_level5_label": "Especialista Certificado", "status_level5_message": "Excelente trabalho \u2014 v\u00ea-se que voc\u00ea domina o assunto.", "status_level6_label": "Mestre da DeepSage", "status_level6_message": "Quase perfeito. Parece que voc\u00ea poderia ter elaborado este question\u00e1rio sozinho.", "tiktok_checking": "A verificar a conex\u00e3o com o TikTok\u2026", "tiktok_connecting": "A conectar ao TikTok\u2026", "tiktok_could_not_post": "N\u00e3o foi poss\u00edvel publicar no TikTok.", "tiktok_could_not_post_prefix": "N\u00e3o foi poss\u00edvel publicar no TikTok:", "tiktok_posted": "Publicado no TikTok!", "tiktok_posting": "A publicar no TikTok\u2026", "tiktok_resumed_posted": "Partilhou o resultado do seu quiz no TikTok!", "tiktok_resuming": "A publicar o resultado do seu quiz no TikTok\u2026", "tiktok_share_button": "Partilhe o resultado no TikTok.", "tiktok_signin_first": "Fa\u00e7a primeiro o login para poder partilhar no TikTok.", "try_again": "Tente novamente."};
+(function () {
+  var QUESTIONS = JSON.parse(document.getElementById("quiz-data").textContent);
+  var TITLE = document.getElementById("quiz-root").dataset.title;
+  var SHARE_VIDEO_URL = document.getElementById("quiz-root").dataset.shareVideo;
+  var root = document.getElementById("quiz-root");
+  var OAUTH_WORKER_URL = "https://oauth.deepsage.com";
+  var LETTERS = ["A", "B", "C", "D", "E", "F"];
+  var S = window.dsQuizStrings;
+
+  var STATUS_LEVELS = [
+    { min: 0,  label: S.status_level1_label, message: S.status_level1_message },
+    { min: 20, label: S.status_level2_label, message: S.status_level2_message },
+    { min: 40, label: S.status_level3_label, message: S.status_level3_message },
+    { min: 60, label: S.status_level4_label, message: S.status_level4_message },
+    { min: 80, label: S.status_level5_label, message: S.status_level5_message },
+    { min: 95, label: S.status_level6_label, message: S.status_level6_message }
+  ];
+
+  function statusFor(percent) {
+    var level = STATUS_LEVELS[0];
+    for (var i = 0; i < STATUS_LEVELS.length; i++) {
+      if (percent >= STATUS_LEVELS[i].min) level = STATUS_LEVELS[i];
+    }
+    return level;
+  }
+
+  function shareButtonsHtml(shareText) {
+    var pageUrl = window.location.href;
+    var twitterUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(shareText) + "&url=" + encodeURIComponent(pageUrl);
+    var facebookUrl = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(pageUrl) + "&quote=" + encodeURIComponent(shareText);
+    var linkedinUrl = "https://www.linkedin.com/sharing/share-offsite/?url=" + encodeURIComponent(pageUrl);
+    return ''
+      + '<a class="share-btn" target="_blank" rel="noopener" href="' + twitterUrl + '" aria-label="' + S.share_x_label + '" title="' + S.share_x_label + '">'
+      + '<svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.6 8.7L23.3 22H16.9l-5-6.5-5.7 6.5H2.9l8.1-9.3L2 2h6.6l4.5 5.9L18.9 2Zm-1.1 18h1.7L7.3 3.9H5.5L17.8 20Z"/></svg>'
+      + '</a>'
+      + '<a class="share-btn" target="_blank" rel="noopener" href="' + facebookUrl + '" aria-label="' + S.share_facebook_label + '" title="' + S.share_facebook_label + '">'
+      + '<svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg>'
+      + '</a>'
+      + '<a class="share-btn" target="_blank" rel="noopener" href="' + linkedinUrl + '" aria-label="' + S.share_linkedin_label + '" title="' + S.share_linkedin_label + '">'
+      + '<svg viewBox="0 0 24 24"><path d="M19 3A2 2 0 0 1 21 5v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14ZM8.3 18.5V10H5.7v8.5h2.6ZM7 8.8a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm11.5 9.7v-4.7c0-2.5-1.3-3.7-3.1-3.7-1.4 0-2 .8-2.4 1.3V10H10.4v8.5H13v-4.7c0-.5 0-1 .2-1.3.3-.6.8-1.3 1.8-1.3 1.3 0 1.8.9 1.8 2.3v5h2.7Z"/></svg>'
+      + '</a>';
+  }
+
+  var topShareRow = document.getElementById("share-row-top");
+  if (topShareRow) topShareRow.innerHTML = shareButtonsHtml(S.share_test_prefix + TITLE);
+
+  var state = { index: 0, points: 0, answered: false };
+
+  window.dsTrack('quiz_start', { quiz_title: TITLE, question_count: QUESTIONS.length });
+
+  function render() {
+    if (state.index >= QUESTIONS.length) {
+      renderResults();
+      return;
+    }
+    var q = QUESTIONS[state.index];
+    state.answered = false;
+
+    var pct = Math.round((state.index / QUESTIONS.length) * 100);
+    var html = ''
+      + '<div class="quiz-progress-track"><div class="quiz-progress-fill" style="width:' + pct + '%"></div></div>'
+      + '<div class="quiz-progress-label">' + S.progress_prefix + (state.index + 1) + S.progress_mid + QUESTIONS.length + '</div>'
+      + '<p class="quiz-question">' + escapeHtml(q.question) + '</p>'
+      + '<ul class="quiz-options" id="quiz-options-list">'
+      + q.options.map(function (opt, i) {
+          return '<li><button class="quiz-option" data-index="' + i + '">' + LETTERS[i] + '. ' + escapeHtml(opt) + '</button></li>';
+        }).join('')
+      + '</ul>'
+      + '<div id="quiz-explanation-slot"></div>'
+      + '<div id="quiz-next-slot"></div>';
+    root.innerHTML = html;
+
+    var buttons = root.querySelectorAll(".quiz-option");
+    buttons.forEach(function (btn) {
+      btn.addEventListener("click", function () { onAnswer(parseInt(btn.dataset.index, 10)); });
+    });
+  }
+
+  function onAnswer(chosenIndex) {
+    if (state.answered) return;
+    state.answered = true;
+    var q = QUESTIONS[state.index];
+    var correct = chosenIndex === q.correct_index;
+    if (correct) state.points += 1;
+    else if (chosenIndex === q.idk_index) state.points += 0.5;
+
+    window.dsTrack('quiz_answer', {
+      quiz_title: TITLE,
+      question_index: state.index,
+      correct: correct,
+    });
+
+    var buttons = root.querySelectorAll(".quiz-option");
+    buttons.forEach(function (btn) {
+      var i = parseInt(btn.dataset.index, 10);
+      btn.disabled = true;
+      if (i === q.correct_index) btn.classList.add("is-correct");
+      else if (i === q.idk_index && i === chosenIndex) btn.classList.add("is-idk");
+      else if (i === chosenIndex) btn.classList.add("is-wrong");
+    });
+
+    document.getElementById("quiz-explanation-slot").innerHTML =
+      '<p class="quiz-explanation">' + escapeHtml(q.explanation) + '</p>';
+
+    var isLast = state.index === QUESTIONS.length - 1;
+    var nextSlot = document.getElementById("quiz-next-slot");
+    var nextBtn = document.createElement("button");
+    nextBtn.className = "quiz-next-btn";
+    nextBtn.textContent = isLast ? S.see_results : S.next_question;
+    nextBtn.addEventListener("click", function () { state.index++; render(); });
+    nextSlot.appendChild(nextBtn);
+  }
+
+  function formatScore(n) {
+    return n % 1 === 0 ? String(n) : n.toFixed(1);
+  }
+
+  function renderResults() {
+    var percent = Math.round((state.points / QUESTIONS.length) * 100);
+    var status = statusFor(percent);
+    var shareText = S.share_score_prefix + formatScore(state.points) + "/" + QUESTIONS.length
+      + S.share_percent_prefix + percent + S.share_percent_suffix + TITLE + S.share_level_prefix + status.label + S.share_level_suffix;
+
+    window.dsTrack('quiz_complete', {
+      quiz_title: TITLE,
+      score: state.points,
+      percent: percent,
+      status: status.label,
+    });
+
+    root.innerHTML = ''
+      + '<div class="quiz-results">'
+      + '<div class="quiz-progress-track"><div class="quiz-progress-fill" style="width:100%"></div></div>'
+      + '<div class="quiz-results-score">' + formatScore(state.points) + '/' + QUESTIONS.length + '</div>'
+      + '<div class="quiz-results-percent">' + percent + '%' + S.results_percent_suffix + '</div>'
+      + '<div class="quiz-results-status">' + status.label + '</div>'
+      + '<p class="quiz-results-message">' + status.message + '</p>'
+      + '<div class="share-row">' + shareButtonsHtml(shareText) + '</div>'
+      + (SHARE_VIDEO_URL
+          ? '<button class="quiz-tiktok-btn" id="quiz-tiktok-btn">' + S.tiktok_share_button + '</button><p id="quiz-tiktok-msg" class="quiz-tiktok-msg"></p>'
+          : '')
+      + '<button class="quiz-retry-btn" id="quiz-retry-btn">' + S.try_again + '</button>'
+      + '</div>';
+
+    document.getElementById("quiz-retry-btn").addEventListener("click", function () {
+      state.index = 0; state.points = 0; render();
+    });
+
+    var tiktokBtn = document.getElementById("quiz-tiktok-btn");
+    if (tiktokBtn) {
+      tiktokBtn.addEventListener("click", function () { shareResultToTikTok(shareText); });
+    }
+  }
+
+  function tiktokMsg(text, isError) {
+    var el = document.getElementById("quiz-tiktok-msg");
+    if (!el) return;
+    el.textContent = text;
+    el.style.color = isError ? "#e5534b" : "";
+  }
+
+  // Signed-in + TikTok-connected users post SHARE_VIDEO_URL (the quiz's
+  // baked share.mp4, generated at build time) with their real score/percent
+  // as the caption. If TikTok isn't connected yet, this stashes the pending
+  // share in sessionStorage and sends the user through the connect flow,
+  // resuming automatically once they land back here via ?oauth=success.
+  function shareResultToTikTok(shareText) {
+    var sf = window._sf;
+    var user = sf && sf.auth.currentUser;
+    if (!user) {
+      tiktokMsg(S.tiktok_signin_first, true);
+      openAuthModal();
+      return;
+    }
+
+    var btn = document.getElementById("quiz-tiktok-btn");
+    btn.disabled = true;
+    tiktokMsg(S.tiktok_checking);
+
+    user.getIdToken().then(function (idToken) {
+      return fetch(OAUTH_WORKER_URL + "/api/connected-accounts", {
+        headers: { Authorization: "Bearer " + idToken },
+      }).then(function (res) { return res.json(); }).then(function (data) {
+        var connected = (data.connected || []).some(function (r) { return r.provider === "tiktok"; });
+        if (!connected) {
+          sessionStorage.setItem("ds_pending_tiktok_share", JSON.stringify({
+            video_url: window.location.origin + SHARE_VIDEO_URL,
+            caption: shareText,
+          }));
+          tiktokMsg(S.tiktok_connecting);
+          return fetch(OAUTH_WORKER_URL + "/auth/tiktok/login", {
+            headers: { Authorization: "Bearer " + idToken },
+          }).then(function (res) { return res.json(); }).then(function (authData) {
+            window.location.href = authData.url;
+          });
+        }
+
+        tiktokMsg(S.tiktok_posting);
+        return fetch(OAUTH_WORKER_URL + "/publish/tiktok", {
+          method: "POST",
+          headers: { Authorization: "Bearer " + idToken, "Content-Type": "application/json" },
+          body: JSON.stringify({
+            video_url: window.location.origin + SHARE_VIDEO_URL,
+            caption: shareText,
+          }),
+        }).then(function (res) { return res.json().then(function (data) { return { ok: res.ok, data: data }; }); })
+          .then(function (result) {
+            btn.disabled = false;
+            if (result.ok && result.data.ok) {
+              tiktokMsg(S.tiktok_posted);
+            } else {
+              tiktokMsg(S.tiktok_could_not_post, true);
+            }
+          });
+      });
+    }).catch(function (err) {
+      btn.disabled = false;
+      tiktokMsg(S.tiktok_could_not_post_prefix + err.message, true);
+    });
+  }
+
+  // Resume a share that was interrupted by the TikTok connect redirect.
+  (function resumePendingTikTokShare() {
+    var params = new URLSearchParams(window.location.search);
+    if (params.get("oauth") !== "success" || params.get("provider") !== "tiktok") return;
+    var pending = sessionStorage.getItem("ds_pending_tiktok_share");
+    if (!pending) return;
+    sessionStorage.removeItem("ds_pending_tiktok_share");
+    var payload = JSON.parse(pending);
+
+    var sf = window._sf;
+    if (!sf) return;
+    sf.onAuthStateChanged(sf.auth, function (user) {
+      if (!user) return;
+      var topShareRow = document.getElementById("share-row-top");
+      if (topShareRow) {
+        var note = document.createElement("p");
+        note.className = "quiz-tiktok-msg";
+        note.textContent = S.tiktok_resuming;
+        topShareRow.parentNode.insertBefore(note, topShareRow.nextSibling);
+
+        user.getIdToken().then(function (idToken) {
+          return fetch(OAUTH_WORKER_URL + "/publish/tiktok", {
+            method: "POST",
+            headers: { Authorization: "Bearer " + idToken, "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          }).then(function (res) { return res.json().then(function (data) { return { ok: res.ok, data: data }; }); });
+        }).then(function (result) {
+          note.textContent = (result.ok && result.data.ok) ? S.tiktok_resumed_posted : S.tiktok_could_not_post;
+          note.style.color = (result.ok && result.data.ok) ? "" : "#e5534b";
+        }).catch(function (err) {
+          note.textContent = S.tiktok_could_not_post_prefix + err.message;
+          note.style.color = "#e5534b";
+        });
+      }
+    });
+  })();
+
+  function escapeHtml(str) {
+    var div = document.createElement("div");
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  render();
+})();
+</script>
+
+
+    <div class="page-footer">
+      <div class="footer-links">
+        <a href="/pt/">Início</a>
+        <span class="footer-divider">·</span>
+        <a href="/pt/article/">Artigos</a>
+        <span class="footer-divider">·</span>
+        <a href="/pt/quiz/">Testes de conhecimento / Questionários</a>
+        <span class="footer-divider">·</span>
+        <a href="/pt/skills/">Habilidades</a>
+        <span class="footer-divider">·</span>
+        <a href="/pt/minigames/">Jogos</a>
+        <span class="footer-divider">·</span>
+        <a href="/privacy-policy/">Política de Privacidade</a>
+        <span class="footer-divider">·</span>
+        <a href="/terms-of-service/">Termos de Serviço</a>
+      </div>
+      <p class="footer-copyright">DeepSage · © 2026</p>
+    </div>
+  </div>
+</section>
+
+<!-- AUTH MODAL -->
+<div id="auth-modal-overlay" class="auth-modal-overlay" style="display:none;" onclick="if(event.target===this) closeAuthModal()">
+  <div class="auth-modal">
+    <button class="auth-modal-close" onclick="closeAuthModal()">&times;</button>
+    <h2 class="auth-modal-title">Adicionar à Lista de Desejos</h2>
+
+    <label class="consent-wrap" id="auth-consent-row">
+      <input type="checkbox" id="auth-consent-check">
+      <span class="consent-text">Aceito receber atualizações sobre o jogo da DeepSage e desejo adicionar o jogo à minha lista de desejos. Pode cancelar a subscrição a qualquer momento. Consulte os nossos<a href="/privacy-policy/" target="_blank" rel="noopener" class="consent-link">Política de Privacidade</a>.</span>
+    </label>
+
+    <div class="auth-form-wrap">
+      <button class="google-btn" onclick="authGoogle()">
+        <svg class="google-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+          <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+          <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+          <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+        </svg>
+        Continuar com o Google
+      </button>
+
+      <div class="auth-divider"><span>ou</span></div>
+
+      <div class="auth-field">
+        <label for="auth-email">E-mail</label>
+        <input type="email" id="auth-email" placeholder="you@example.com" autocomplete="email">
+      </div>
+      <div class="auth-field">
+        <label for="auth-pass">Senha</label>
+        <input type="password" id="auth-pass" placeholder="••••••••" autocomplete="current-password">
+      </div>
+
+      <p class="auth-msg" id="auth-msg"></p>
+      <button class="auth-submit" id="auth-submit-btn" onclick="authSubmit()">Adicionar à Lista de Desejos</button>
+    </div>
+  </div>
+</div>
+
+<!-- Cookie Consent Banner -->
+<div id="cookieBanner">
+  <div class="cookie-banner-container">
+    <div class="cookie-banner-text">
+      Utilizamos cookies para melhorar a sua experiência. Consulte a nossa<a href="/privacy-policy/" target="_blank">Política de Privacidade</a>e<a href="/cookie-policy/" target="_blank">Política de Cookies</a>para mais informações.
+    </div>
+    <div class="cookie-banner-buttons">
+      <button id="cookieReject">Rejeitar itens não essenciais.</button>
+      <button id="cookieCustomize">Personalizar</button>
+      <button id="cookieAccept">Aceitar tudo</button>
+    </div>
+  </div>
+</div>
+
+<!-- Cookie Preferences Modal -->
+<div id="cookieModal">
+  <div class="cookie-modal-content">
+    <h2>Preferências de cookies</h2>
+
+    <div class="cookie-preference">
+      <input type="checkbox" id="cookieEssential" checked disabled>
+      <label for="cookieEssential">Essencial</label>
+    </div>
+    <div class="cookie-preference-description">
+      Necessário para o funcionamento básico do site (sempre ativado)
+    </div>
+
+    <div class="cookie-preference">
+      <input type="checkbox" id="cookieAnalytics">
+      <label for="cookieAnalytics">Análise de dados</label>
+    </div>
+    <div class="cookie-preference-description">
+      Ajuda-nos a perceber como utiliza o site, para que possamos melhorar a sua experiência.
+    </div>
+
+    <div class="cookie-preference">
+      <input type="checkbox" id="cookieMarketing">
+      <label for="cookieMarketing">Marketing</label>
+    </div>
+    <div class="cookie-preference-description">
+      Permite-nos apresentar conteúdo relevante e avaliar a eficácia das campanhas.
+    </div>
+
+    <div class="cookie-modal-buttons">
+      <button id="cookieModalCancel">Cancelar</button>
+      <button id="cookieModalSave">Guardar opções</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const authMode = "signup";
+
+function openAuthModal() {
+  setAuthMsg("");
+  document.getElementById("auth-modal-overlay").style.display = "flex";
+}
+
+function closeAuthModal() {
+  document.getElementById("auth-modal-overlay").style.display = "none";
+}
+
+function setAuthMsg(txt, color) {
+  const el = document.getElementById("auth-msg");
+  el.textContent = txt;
+  el.style.color = color || "#ff6688";
+}
+
+async function authSubmit() {
+  const sf = window._sf;
+  if (!sf) return setAuthMsg(window.dsUiStrings.firebase_not_ready);
+  const email = document.getElementById("auth-email").value.trim();
+  const pass = document.getElementById("auth-pass").value;
+  if (!email || !pass) return setAuthMsg(window.dsUiStrings.fill_all_fields);
+
+  if (authMode === "signup" && !document.getElementById("auth-consent-check").checked) {
+    return setAuthMsg(window.dsUiStrings.tick_consent);
+  }
+
+  const btn = document.getElementById("auth-submit-btn");
+  btn.textContent = "…";
+  btn.disabled = true;
+
+  try {
+    if (authMode === "signin") {
+      await sf.signInWithEmailAndPassword(sf.auth, email, pass);
+    } else {
+      const cred = await sf.createUserWithEmailAndPassword(sf.auth, email, pass);
+      await sf.recordUserSignup(cred.user, true);
+    }
+    setAuthMsg("");
+    closeAuthModal();
+  } catch (err) {
+    const msgs = {
+      "auth/user-not-found": window.dsUiStrings.auth_err_user_not_found,
+      "auth/wrong-password": window.dsUiStrings.auth_err_wrong_password,
+      "auth/invalid-credential": window.dsUiStrings.auth_err_invalid_credential,
+      "auth/email-already-in-use": window.dsUiStrings.auth_err_email_in_use,
+      "auth/weak-password": window.dsUiStrings.auth_err_weak_password,
+      "auth/invalid-email": window.dsUiStrings.auth_err_invalid_email,
+    };
+    setAuthMsg(msgs[err.code] || err.message);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = window.dsUiStrings.join_wishlist;
+  }
+}
+
+async function authGoogle() {
+  const sf = window._sf;
+  if (!sf) return setAuthMsg(window.dsUiStrings.firebase_not_ready);
+  if (authMode === "signup" && !document.getElementById("auth-consent-check").checked) {
+    return setAuthMsg(window.dsUiStrings.tick_consent);
+  }
+  try {
+    const result = await sf.signInWithPopup(sf.auth, sf.gProvider);
+    const info = sf.getAdditionalUserInfo(result);
+    await sf.recordUserSignup(result.user, !!(info && info.isNewUser));
+    closeAuthModal();
+  } catch (err) {
+    if (err.code !== "auth/popup-closed-by-user") setAuthMsg(err.message);
+  }
+}
+
+async function connectPlatform(providerName) {
+  const sf = window._sf;
+  const user = sf && sf.auth.currentUser;
+  if (!user) return;
+
+  const btn = document.getElementById(`connect-${providerName}-btn`);
+  const prevText = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = window.dsUiStrings.connecting;
+
+  try {
+    const idToken = await user.getIdToken();
+    const res = await fetch(`https://oauth.deepsage.com/auth/${providerName}/login`, {
+      headers: { Authorization: `Bearer ${idToken}` },
+    });
+    if (!res.ok) throw new Error(window.dsUiStrings.could_not_connect);
+    const { url } = await res.json();
+    window.location.href = url;
+  } catch (err) {
+    btn.disabled = false;
+    btn.textContent = prevText;
+  }
+}
+
+async function doSignOut() {
+  const sf = window._sf;
+  if (sf) await sf.signOut(sf.auth);
+  document.getElementById("account-dropdown").classList.remove("open");
+}
+
+function toggleAccountMenu() {
+  document.getElementById("account-dropdown").classList.toggle("open");
+}
+
+document.addEventListener("click", function(e) {
+  const menu = document.getElementById("header-auth-in");
+  const dropdown = document.getElementById("account-dropdown");
+  if (menu && dropdown && !menu.contains(e.target)) {
+    dropdown.classList.remove("open");
+  }
+});
+
+/* ── Cookie consent management (site-wide) ── */
+(function() {
+  const CONSENT_KEY = 'deepsage_cookie_consent';
+  const CONSENT_EXPIRY = 12 * 30 * 24 * 60 * 60 * 1000; // 12 months
+
+  function getStoredConsent() {
+    const stored = localStorage.getItem(CONSENT_KEY);
+    if (!stored) return null;
+    try {
+      const consent = JSON.parse(stored);
+      const now = Date.now();
+      if (now - consent.timestamp > CONSENT_EXPIRY) {
+        localStorage.removeItem(CONSENT_KEY);
+        return null;
+      }
+      return consent;
+    } catch (error) {
+      console.error("Invalid consent data:", error);
+      localStorage.removeItem(CONSENT_KEY);
+      return null;
+    }
+  }
+
+  function saveConsent(essential, analytics, marketing) {
+    localStorage.setItem(CONSENT_KEY, JSON.stringify({
+      essential: true, analytics, marketing, timestamp: Date.now(),
+    }));
+  }
+
+  function loadCookiesBasedOnConsent(consent) {
+    window.dsAnalyticsConsent = !!consent.analytics;
+    gtag('consent', 'update', {
+      'analytics_storage': consent.analytics ? 'granted' : 'denied',
+      'ad_storage': consent.marketing ? 'granted' : 'denied',
+      'ad_user_data': consent.marketing ? 'granted' : 'denied',
+      'ad_personalization': consent.marketing ? 'granted' : 'denied',
+    });
+  }
+
+  function initializeCookieBanner() {
+    const storedConsent = getStoredConsent();
+    const banner = document.getElementById('cookieBanner');
+    if (!banner) return;
+
+    if (!storedConsent) {
+      banner.classList.add('show');
+    } else {
+      banner.classList.remove('show');
+      loadCookiesBasedOnConsent(storedConsent);
+    }
+  }
+
+  document.getElementById('cookieAccept').addEventListener('click', function() {
+    saveConsent(true, true, true);
+    loadCookiesBasedOnConsent({ essential: true, analytics: true, marketing: true });
+    document.getElementById('cookieBanner').classList.remove('show');
+  });
+
+  document.getElementById('cookieReject').addEventListener('click', function() {
+    saveConsent(true, false, false);
+    loadCookiesBasedOnConsent({ essential: true, analytics: false, marketing: false });
+    document.getElementById('cookieBanner').classList.remove('show');
+  });
+
+  document.getElementById('cookieCustomize').addEventListener('click', function() {
+    const storedConsent = getStoredConsent();
+    if (storedConsent) {
+      document.getElementById('cookieAnalytics').checked = storedConsent.analytics;
+      document.getElementById('cookieMarketing').checked = storedConsent.marketing;
+    }
+    document.getElementById('cookieModal').classList.add('show');
+  });
+
+  document.getElementById('cookieModalCancel').addEventListener('click', function() {
+    document.getElementById('cookieModal').classList.remove('show');
+  });
+
+  document.getElementById('cookieModalSave').addEventListener('click', function() {
+    const analytics = document.getElementById('cookieAnalytics').checked;
+    const marketing = document.getElementById('cookieMarketing').checked;
+    saveConsent(true, analytics, marketing);
+    loadCookiesBasedOnConsent({ essential: true, analytics, marketing });
+    document.getElementById('cookieModal').classList.remove('show');
+    document.getElementById('cookieBanner').classList.remove('show');
+  });
+
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      const modal = document.getElementById('cookieModal');
+      if (modal.classList.contains('show')) {
+        document.getElementById('cookieModalCancel').click();
+      }
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', initializeCookieBanner);
+})();
+
+/* ── Share button click tracking (site-wide, event delegation) ── */
+document.addEventListener('click', function(e) {
+  const btn = e.target.closest('.share-btn');
+  if (!btn) return;
+  let method = 'twitter';
+  if (btn.href.indexOf('facebook.com') !== -1) method = 'facebook';
+  else if (btn.href.indexOf('linkedin.com') !== -1) method = 'linkedin';
+  const contentType = location.pathname.startsWith('/quiz/') ? 'quiz'
+    : location.pathname.startsWith('/article/') ? 'article' : 'other';
+  window.dsTrack('share', { method, content_type: contentType, item_id: location.pathname });
+});
+
+/* ── Language preference resolution (site-wide) ── */
+function toggleLangMenu() {
+  var dd = document.getElementById('lang-dropdown');
+  if (dd) dd.classList.toggle('open');
+}
+
+document.addEventListener('click', function (e) {
+  var dropdown = document.getElementById('lang-dropdown');
+  var switcher = document.querySelector('.lang-switcher');
+  if (dropdown && switcher && !switcher.contains(e.target)) dropdown.classList.remove('open');
+});
+
+function dsPersistLangOverride(lang) {
+  localStorage.setItem('deepsage_lang', lang);
+  var sf = window._sf;
+  var user = sf && sf.auth.currentUser;
+  if (user && sf.setPreferredLang) {
+    sf.setPreferredLang(user.uid, lang).catch(function (err) {
+      console.error('Failed to save language preference:', err);
+    });
+  }
+}
+window.dsPersistLangOverride = dsPersistLangOverride;
+
+function dsSwitchLang(event, lang, url) {
+  // NOTE: this duplicates the localStorage write from dsPersistLangOverride
+  // (kept above, unchanged) because dsSwitchLang needs to await the Firestore
+  // write before navigating, while dsPersistLangOverride is a fire-and-forget
+  // helper used by the settings page (Task 4, templates/settings.html's
+  // dsSettingsChangeLang), which navigates on its own right after calling it.
+  localStorage.setItem('deepsage_lang', lang);
+  var sf = window._sf;
+  var user = sf && sf.auth.currentUser;
+  if (user && sf.setPreferredLang) {
+    event.preventDefault();
+    // Firestore writes can hang indefinitely (e.g. retrying with backoff
+    // against a misconfigured/unreachable database) instead of ever
+    // resolving or rejecting, which would leave the user stuck on the page
+    // forever. Race against a timeout so navigation always happens even if
+    // the preference write never settles.
+    var navigated = false;
+    function navigate() {
+      if (navigated) return;
+      navigated = true;
+      window.location.href = url;
+    }
+    sf.setPreferredLang(user.uid, lang)
+      .catch(function (err) { console.error('Failed to save language preference:', err); })
+      .finally(navigate);
+    setTimeout(navigate, 1500);
+    return false;
+  }
+  return true;
+}
+window.dsSwitchLang = dsSwitchLang;
+
+var dsLangResolved = false;
+window.dsOnAuthReady = function (user) {
+  if (dsLangResolved) return;
+  dsLangResolved = true;
+  if (!window.DsLangPreference || !window.dsLangUrls || Object.keys(window.dsLangUrls).length === 0) return;
+
+  var storedOverride = localStorage.getItem('deepsage_lang');
+  var browserLang = navigator.language;
+
+  function apply(firestorePref) {
+    var result = window.DsLangPreference.resolveRedirect({
+      currentLang: window.dsCurrentLang,
+      langUrls: window.dsLangUrls,
+      storedOverride: storedOverride,
+      firestorePref: firestorePref || null,
+      browserLang: browserLang,
+    });
+    if (!result) return;
+    // Guard against redirecting to the page the visitor is already on (e.g.
+    // a casing mismatch between currentLang and a lang_urls key, or a
+    // trailing-slash inconsistency) -- without this, a data mismatch could
+    // send the visitor into a same-page redirect loop.
+    if (result.url === window.location.pathname || result.url === window.location.href) return;
+    if (result.persistOverride) localStorage.setItem('deepsage_lang', result.lang);
+    // Use replace(), not `.href =`, because this is an automatic redirect
+    // the visitor never asked for (either the Firestore-preference tier, or
+    // the browser-auto-detect tier, which by design never persists and so
+    // re-fires on every page load). `.href =` would push a new history
+    // entry each time, trapping Back-button presses by immediately
+    // re-redirecting forward again. Explicit user-initiated switches
+    // (dsSwitchLang, dsSettingsChangeLang) intentionally keep using
+    // `.href =` since those SHOULD be normal, back-button-able navigations.
+    window.location.replace(result.url);
+  }
+
+  var sf = window._sf;
+  if (user && sf && sf.getPreferredLang) {
+    sf.getPreferredLang(user.uid).then(apply).catch(function () { apply(null); });
+  } else {
+    apply(null);
+  }
+};
+
+// Fallback for when Firebase Auth never calls back at all (CDN blocked,
+// offline, script failed to load). This is a timer, not a DOMContentLoaded
+// listener, on purpose: this inline <script> runs near the bottom of
+// <body>, so DOMContentLoaded fires essentially immediately after it
+// registers -- long before Firebase's first onAuthStateChanged callback
+// (an unconditionally async, IndexedDB-backed read) has any real chance to
+// resolve. Since dsOnAuthReady is latched to only run once (dsLangResolved),
+// firing on DOMContentLoaded would deterministically win the race on every
+// normal page load and permanently blind language resolution to a logged-in
+// user's Firestore preferredLang -- the real Firebase callback would arrive
+// later and be silently ignored. 3000ms is generous: a working IndexedDB
+// read typically resolves in well under 100ms, so in the overwhelmingly
+// common case Firebase claims the latch long before this timer fires, and
+// this fallback only actually matters when Firebase never calls back at
+// all -- in which case treating the visitor as logged-out for
+// language-resolution purposes (falling through to localStorage override /
+// browser auto-detect, neither of which need Firebase) is the correct
+// degraded behavior. 3s is still well under what a user would notice as a
+// late background redirect.
+setTimeout(function () {
+  if (window.dsOnAuthReady) window.dsOnAuthReady(null);
+}, 3000);
+</script>
+
+
+
+</body>
+</html>
