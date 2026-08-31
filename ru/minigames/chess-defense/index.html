@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Защита в шахматах · DeepSage Minigames</title>
+<meta name="description" content="Защищайте свою заднюю линию от нескончаемых волн вражеских шахматных фигур в игре «Шахматная оборона» - бесплатной браузерной мини-игре от DeepSage.">
+<meta property="og:title" content="Защита в шахматах · DeepSage Minigames">
+<meta property="og:description" content="Защищайте свою заднюю линию от непрекращающихся атак вражеских шахматных фигур.">
+<meta property="og:image" content="">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Защита в шахматах · DeepSage Minigames">
+<meta name="twitter:description" content="Защищайте свою заднюю линию от непрекращающихся атак вражеских шахматных фигур.">
+<link rel="canonical" href="https://deepsage.com/ru/minigames/chess-defense/">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="alternate" hreflang="en" href="https://deepsage.com/minigames/chess-defense/">
+<link rel="alternate" hreflang="es" href="https://deepsage.com/es/minigames/chess-defense/">
+<link rel="alternate" hreflang="pt" href="https://deepsage.com/pt/minigames/chess-defense/">
+<link rel="alternate" hreflang="fr" href="https://deepsage.com/fr/minigames/chess-defense/">
+<link rel="alternate" hreflang="de" href="https://deepsage.com/de/minigames/chess-defense/">
+<link rel="alternate" hreflang="ru" href="https://deepsage.com/ru/minigames/chess-defense/">
+<link rel="alternate" hreflang="ja" href="https://deepsage.com/ja/minigames/chess-defense/">
+<link rel="alternate" hreflang="zh-Hans" href="https://deepsage.com/zh-Hans/minigames/chess-defense/">
+<link rel="alternate" hreflang="ko" href="https://deepsage.com/ko/minigames/chess-defense/">
+<link rel="alternate" hreflang="it" href="https://deepsage.com/it/minigames/chess-defense/">
+<link rel="alternate" hreflang="hi" href="https://deepsage.com/hi/minigames/chess-defense/">
+<link rel="alternate" hreflang="x-default" href="https://deepsage.com/minigames/chess-defense/"><style>
+  .cd-wrap { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+  .cd-hud { display: flex; justify-content: space-between; align-items: center; gap: 12px; width: min(94vw, 640px); padding: 10px 16px; background: #00110d; border: 1px solid #00ffcc33; border-radius: 8px 8px 0 0; font-family: var(--sans); font-size: 14px; }
+  .cd-hud span { color: var(--teal); font-weight: 700; }
+  .cd-hud-btn { font-family: var(--sans); font-size: 12px; font-weight: 700; letter-spacing: 0.5px; color: #001410; background: var(--teal); border: none; border-radius: 4px; padding: 8px 14px; cursor: pointer; }
+  .cd-board-wrap { position: relative; width: min(94vw, 640px); height: min(94vw, 640px); }
+  .cd-board { display: grid; grid-template-columns: repeat(8, 1fr); grid-template-rows: repeat(8, 1fr); width: 100%; height: 100%; border: 4px solid #003b30; border-radius: 0 0 8px 8px; overflow: hidden; }
+  .cd-cell { display: flex; align-items: center; justify-content: center; font-size: min(9vw, 34px); cursor: pointer; user-select: none; position: relative; }
+  .cd-cell.light { background: #123b34; }
+  .cd-cell.dark { background: #06110e; }
+  .cd-cell.selected { background: #00ffcc44 !important; }
+  .cd-cell.valid-move::after { content: ''; width: 28%; height: 28%; background: #00ffcc55; border-radius: 50%; position: absolute; }
+  .cd-cell.valid-capture { background: #ff445544 !important; }
+  .cd-piece { pointer-events: none; line-height: 1; }
+  .cd-piece.player { color: #eafff9; text-shadow: 0 0 4px #00ffcc, 0 0 10px #00ffcc88; }
+  .cd-piece.enemy { color: #ff5566; text-shadow: 0 0 4px #000; }
+
+  .cd-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; opacity: 0; z-index: 5; }
+  .cd-overlay.show { animation: cdOverlayFade 0.95s ease forwards; }
+  .cd-wave-banner { font-family: var(--serif); font-size: clamp(20px, 5vw, 34px); letter-spacing: 2px; color: #fff; text-shadow: 0 0 16px var(--teal), 0 0 32px var(--teal); transform: scale(0.6); opacity: 0; }
+  .cd-overlay.show .cd-wave-banner { animation: cdBannerPop 0.95s ease forwards; }
+  .cd-particle { position: absolute; top: 50%; left: 50%; width: 6px; height: 6px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 6px var(--teal); opacity: 0; }
+  .cd-overlay.show .cd-particle { animation: cdParticleBurst 0.9s ease-out forwards; }
+
+  @keyframes cdOverlayFade { 0% { opacity: 0; } 15% { opacity: 1; } 80% { opacity: 1; } 100% { opacity: 0; } }
+  @keyframes cdBannerPop { 0% { transform: scale(0.6); opacity: 0; } 25% { transform: scale(1.05); opacity: 1; } 40% { transform: scale(1); opacity: 1; } 85% { opacity: 1; } 100% { opacity: 0; } }
+  @keyframes cdParticleBurst { 0% { transform: translate(-50%, -50%) translate(0, 0); opacity: 1; } 100% { transform: translate(-50%, -50%) translate(var(--px), var(--py)); opacity: 0; } }
+</style><script src="/assets/js/generated/5de5d8cf294a6f98.js"></script><script src="/assets/js/generated/df485a5d9f112879.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-33MSQXQ8G9"></script><script type="module" src="/assets/js/generated/feda96c8cbf0b374.js"></script><script>
+    window.dsLangUrls = {"de": "https://deepsage.com/de/minigames/chess-defense/", "en": "https://deepsage.com/minigames/chess-defense/", "es": "https://deepsage.com/es/minigames/chess-defense/", "fr": "https://deepsage.com/fr/minigames/chess-defense/", "hi": "https://deepsage.com/hi/minigames/chess-defense/", "it": "https://deepsage.com/it/minigames/chess-defense/", "ja": "https://deepsage.com/ja/minigames/chess-defense/", "ko": "https://deepsage.com/ko/minigames/chess-defense/", "pt": "https://deepsage.com/pt/minigames/chess-defense/", "ru": "https://deepsage.com/ru/minigames/chess-defense/", "zh-Hans": "https://deepsage.com/zh-Hans/minigames/chess-defense/"};
+    window.dsCurrentLang = "ru";
+  </script><script src="/assets/js/lang-preference.js"></script><script src="/assets/js/generated/fa56ff5e069106ef.js"></script></head>
+<body>
+<section class="page-container">
+<div class="page-grad-top"></div>
+<div class="page-grad-bottom"></div>
+<div class="page-content">
+<div class="top-banner" id="topBanner">
+<span class="top-banner-text">Новая познавательно-развлекательная игра DeepSage.<a href="/ru/world/" class="top-banner-link">приближается</a>Подпишитесь на получение уведомлений, чтобы первыми узнавать о новинках и получать доступ к обновлениям.</span>
+<button class="top-banner-cta" onclick="openAuthModal()">Добавить в список желаний</button>
+</div>
+<div class="page-header">
+<a href="/ru/" class="page-logo-link" aria-label="DeepSage home"><img class="page-logo" src="/assets/logo.webp" alt="DeepSage" width="1628" height="351"></a>
+<div class="header-controls">
+<div class="header-social">
+<a class="header-social-link" href="https://www.youtube.com/@DeepSageMain" target="_blank" rel="noopener me" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5l6.3 3.5-6.3 3.5Z"/></svg></a>
+<a class="header-social-link" href="https://www.instagram.com/deepsagemain/" target="_blank" rel="noopener me" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 2 .3 2.4.5.6.2 1 .5 1.5 1 .4.4.7.8 1 1.5.2.4.4 1.2.5 2.4.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 2-.5 2.4-.2.6-.5 1-1 1.5-.4.4-.8.7-1.5 1-.4.2-1.2.4-2.4.5-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-2-.3-2.4-.5-.6-.2-1-.5-1.5-1-.4-.4-.7-.8-1-1.5-.2-.4-.4-1.2-.5-2.4-.1-1.3-.1-1.7-.1-4.9s0-3.6.1-4.9c.1-1.2.3-2 .5-2.4.2-.6.5-1 1-1.5.4-.4.8-.7 1.5-1 .4-.2 1.2-.4 2.4-.5C8.4 2.2 8.8 2.2 12 2.2Zm0 1.8c-3.1 0-3.5 0-4.7.1-1 0-1.6.2-1.9.4-.5.2-.8.4-1.2.7-.3.4-.5.7-.7 1.2-.1.3-.3.9-.4 1.9-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c0 1 .2 1.6.4 1.9.2.5.4.8.7 1.2.4.3.7.5 1.2.7.3.1.9.3 1.9.4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1 0 1.6-.2 1.9-.4.5-.2.8-.4 1.2-.7.3-.4.5-.7.7-1.2.1-.3.3-.9.4-1.9.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c0-1-.2-1.6-.4-1.9-.2-.5-.4-.8-.7-1.2-.4-.3-.7-.5-1.2-.7-.3-.1-.9-.3-1.9-.4-1.2-.1-1.6-.1-4.7-.1Zm0 3.1a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8Zm0 1.8a3.1 3.1 0 1 0 0 6.2 3.1 3.1 0 0 0 0-6.2Zm5.1-2.9a1.1 1.1 0 1 1 0 2.3 1.1 1.1 0 0 1 0-2.3Z"/></svg></a>
+<a class="header-social-link" href="https://www.threads.com/@deepsagemain" target="_blank" rel="noopener me" aria-label="Threads" title="Threads"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12.2 24c-3.4 0-6-1-7.9-2.9C2.4 19.1 1.4 16.2 1.4 12.3v-.6c0-3.9 1-6.7 3-8.7C6.3 1 8.9 0 12.2 0h.1c2.6 0 4.8.7 6.5 2 1.5 1.2 2.6 2.9 3.2 5l-2.5.7c-.5-1.6-1.3-2.9-2.4-3.7-1.2-1-2.7-1.4-4.8-1.4h-.1c-2.5 0-4.5.8-5.9 2.3-1.3 1.5-2 3.7-2 6.5v.6c0 2.8.7 5 2 6.5 1.4 1.5 3.4 2.3 5.9 2.3 2.1 0 3.7-.5 4.8-1.4a4 4 0 0 0 1.5-2.9c0-1-.3-1.8-1-2.5a5 5 0 0 0-.8-.6c-.2 1.4-.7 2.5-1.5 3.4-1 1.1-2.4 1.7-4.1 1.7-1.3 0-2.5-.4-3.3-1.1a3.7 3.7 0 0 1-1.3-2.9c0-1.2.5-2.3 1.4-3 1-.8 2.3-1.2 4-1.2.9 0 1.7.1 2.5.3 0-.9-.3-1.6-.8-2-.5-.5-1.3-.8-2.3-.8-1.3 0-2.4.4-3.4 1.3l-1.7-1.8c1.4-1.3 3.1-2 5.1-2 1.7 0 3.1.5 4.1 1.5 1 .9 1.5 2.2 1.6 3.9.9.4 1.6.8 2.2 1.4 1 1 1.6 2.3 1.6 3.9 0 1.7-.7 3.2-2.1 4.4-1.5 1.4-3.6 2.1-6.2 2.1Zm-.6-9.4c-1 0-1.8.2-2.3.6-.4.3-.6.7-.6 1.2 0 .5.2.9.6 1.2.4.3 1 .5 1.6.5 1 0 1.8-.3 2.4-1 .5-.5.7-1.3.8-2.3-.7-.2-1.6-.2-2.5-.2Z"/></svg></a>
+<a class="header-social-link" href="https://x.com/deepsagemain" target="_blank" rel="noopener me" aria-label="X" title="X"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M18.2 2h3.3l-7.2 8.3L23 22h-6.6l-5.2-6.8L5.3 22H2l7.7-8.8L2 2h6.8l4.7 6.2L18.2 2Zm-1.2 18h1.8L7.1 4h-2l12 16Z"/></svg></a>
+</div>
+<div class="header-auth">
+<div id="header-auth-out" class="header-auth-out">
+<button class="signin-link" onclick="openAuthModal()">Мой аккаунт</button>
+</div>
+<div id="header-auth-in" class="header-auth-in account-menu" style="display:none;">
+<button class="signin-link account-btn" onclick="toggleAccountMenu()">Мой аккаунт</button>
+<div id="account-dropdown" class="account-dropdown">
+<span id="header-auth-name" class="header-auth-name"></span>
+<a class="account-dropdown-connect" href="/ru/settings/">Настройки</a>
+<button class="account-dropdown-signout" onclick="doSignOut()">Выйти из системы</button>
+</div>
+</div>
+</div>
+<div class="lang-switcher">
+<button class="lang-switcher-btn" onclick="toggleLangMenu()" type="button">Русский</button>
+<div id="lang-dropdown" class="lang-dropdown">
+<a href="https://deepsage.com/minigames/chess-defense/" class="lang-option" data-lang="en" onclick="return dsSwitchLang(event, 'en', 'https://deepsage.com/minigames/chess-defense/')">English</a>
+<a href="https://deepsage.com/es/minigames/chess-defense/" class="lang-option" data-lang="es" onclick="return dsSwitchLang(event, 'es', 'https://deepsage.com/es/minigames/chess-defense/')">Español</a>
+<a href="https://deepsage.com/pt/minigames/chess-defense/" class="lang-option" data-lang="pt" onclick="return dsSwitchLang(event, 'pt', 'https://deepsage.com/pt/minigames/chess-defense/')">Português</a>
+<a href="https://deepsage.com/fr/minigames/chess-defense/" class="lang-option" data-lang="fr" onclick="return dsSwitchLang(event, 'fr', 'https://deepsage.com/fr/minigames/chess-defense/')">Français</a>
+<a href="https://deepsage.com/de/minigames/chess-defense/" class="lang-option" data-lang="de" onclick="return dsSwitchLang(event, 'de', 'https://deepsage.com/de/minigames/chess-defense/')">Deutsch</a>
+<a href="https://deepsage.com/ru/minigames/chess-defense/" class="lang-option lang-option-active" data-lang="ru" onclick="return dsSwitchLang(event, 'ru', 'https://deepsage.com/ru/minigames/chess-defense/')">Русский</a>
+<a href="https://deepsage.com/ja/minigames/chess-defense/" class="lang-option" data-lang="ja" onclick="return dsSwitchLang(event, 'ja', 'https://deepsage.com/ja/minigames/chess-defense/')">日本語</a>
+<a href="https://deepsage.com/zh-Hans/minigames/chess-defense/" class="lang-option" data-lang="zh-Hans" onclick="return dsSwitchLang(event, 'zh-Hans', 'https://deepsage.com/zh-Hans/minigames/chess-defense/')">简体中文</a>
+<a href="https://deepsage.com/ko/minigames/chess-defense/" class="lang-option" data-lang="ko" onclick="return dsSwitchLang(event, 'ko', 'https://deepsage.com/ko/minigames/chess-defense/')">한국어</a>
+<a href="https://deepsage.com/it/minigames/chess-defense/" class="lang-option" data-lang="it" onclick="return dsSwitchLang(event, 'it', 'https://deepsage.com/it/minigames/chess-defense/')">Italiano</a>
+<a href="https://deepsage.com/hi/minigames/chess-defense/" class="lang-option" data-lang="hi" onclick="return dsSwitchLang(event, 'hi', 'https://deepsage.com/hi/minigames/chess-defense/')">हिन्दी</a>
+</div>
+</div>
+</div>
+</div>
+<article>
+<h1 class="page-title">Защита в шахматах</h1>
+<p class="page-dek">Держите под контролем свою заднюю линию. Каждая вражеская фигура должна перемещаться так, как это предусмотрено правилами игры на настоящей доске, - планируйте свои действия соответственно.</p>
+<div class="cd-wrap">
+<div class="cd-hud">
+<div>Волна: <span id="cd-wave-val">1</span></div>
+<div>Результат: <span id="cd-score-val">0</span></div>
+<div>Враги: <span id="cd-enemies-val">0</span></div>
+<button id="cd-step-btn" class="cd-hud-btn">Пропустить ход.</button>
+</div>
+<div class="cd-board-wrap">
+<div id="cd-board" class="cd-board"></div>
+<div id="cd-wave-overlay" class="cd-overlay">
+<div class="cd-wave-banner" id="cd-wave-banner-text">ВОЛНА УШЛА.</div>
+</div>
+</div>
+</div>
+<p style="margin-top:24px;"><a class="back-link" href="/ru/minigames/">&larr; Все мини-игры</a></p>
+</article>
+<div class="page-footer">
+<div class="footer-links">
+<a href="/ru/">Главная</a>
+<span class="footer-divider">·</span>
+<a href="/ru/article/">Статьи</a>
+<span class="footer-divider">·</span>
+<a href="/ru/quiz/">Викторины</a>
+<span class="footer-divider">·</span>
+<a href="/ru/skills/">Навыки</a>
+<span class="footer-divider">·</span>
+<a href="/tags/">Метки</a>
+<span class="footer-divider">·</span>
+<a href="/ru/minigames/">Игры</a>
+<span class="footer-divider">·</span>
+<a href="/privacy-policy/">Политика конфиденциальности</a>
+<span class="footer-divider">·</span>
+<a href="/terms-of-service/">Условия использования</a>
+</div>
+<p class="footer-copyright">DeepSage · © 2026</p>
+</div>
+</div>
+</section>
+<div id="auth-modal-overlay" class="auth-modal-overlay" style="display:none;" onclick="if(event.target===this) closeAuthModal()">
+<div class="auth-modal">
+<button class="auth-modal-close" onclick="closeAuthModal()">&times;</button>
+<h2 class="auth-modal-title">Добавить в список желаний</h2>
+<label class="consent-wrap" id="auth-consent-row">
+<input type="checkbox" id="auth-consent-check">
+<span class="consent-text">Я согласен получать уведомления об обновлениях игр от DeepSage и добавить их в список желаемого. Вы можете отписаться в любое время. Ознакомьтесь с нашей<a href="/privacy-policy/" target="_blank" rel="noopener" class="consent-link">Политика конфиденциальности</a>.</span>
+</label>
+<div class="auth-form-wrap">
+<button class="google-btn" onclick="authGoogle()">
+<svg class="google-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+</svg>
+Продолжить с помощью Google
+</button>
+<div class="auth-divider"><span>или</span></div>
+<div class="auth-field">
+<label for="auth-email">Электронная почта</label>
+<input type="email" id="auth-email" placeholder="you@example.com" autocomplete="email">
+</div>
+<div class="auth-field">
+<label for="auth-pass">Пароль</label>
+<input type="password" id="auth-pass" placeholder="••••••••" autocomplete="current-password">
+</div>
+<p class="auth-msg" id="auth-msg"></p>
+<button class="auth-submit" id="auth-submit-btn" onclick="authSubmit()">Добавить в список желаний</button>
+</div>
+</div>
+</div>
+<div id="cookieBanner">
+<div class="cookie-banner-container">
+<div class="cookie-banner-text">
+Мы используем файлы cookie для улучшения качества обслуживания. Ознакомьтесь с нашей<a href="/privacy-policy/" target="_blank">Политика конфиденциальности</a>и<a href="/cookie-policy/" target="_blank">Политика использования файлов cookie</a>для получения подробной информации.
+</div>
+<div class="cookie-banner-buttons">
+<button id="cookieReject">Отклонить необязательные запросы.</button>
+<button id="cookieCustomize">Настройте под себя.</button>
+<button id="cookieAccept">Принять все</button>
+</div>
+</div>
+</div>
+<div id="cookieModal">
+<div class="cookie-modal-content">
+<h2>Настройки использования файлов cookie</h2>
+<div class="cookie-preference">
+<input type="checkbox" id="cookieEssential" checked disabled>
+<label for="cookieEssential">Необходимый; важный; существенный</label>
+</div>
+<div class="cookie-preference-description">
+Необходим для обеспечения основных функций сайта (всегда включен).
+</div>
+<div class="cookie-preference">
+<input type="checkbox" id="cookieAnalytics">
+<label for="cookieAnalytics">Аналитика</label>
+</div>
+<div class="cookie-preference-description">
+Помогает нам понять, как вы используете сайт, чтобы улучшить ваш пользовательский опыт.
+</div>
+<div class="cookie-preference">
+<input type="checkbox" id="cookieMarketing">
+<label for="cookieMarketing">Маркетинг</label>
+</div>
+<div class="cookie-preference-description">
+Позволяет нам показывать вам релевантный контент и оценивать эффективность рекламных кампаний.
+</div>
+<div class="cookie-modal-buttons">
+<button id="cookieModalCancel">Отменить</button>
+<button id="cookieModalSave">Сохранить выбранные параметры.</button>
+</div>
+</div>
+</div><script src="/assets/js/generated/cb90a55d6f4c4816.js"></script><script src="/assets/js/generated/9c88b54a7b87c5bd.js"></script></body>
+</html>

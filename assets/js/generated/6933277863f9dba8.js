@@ -1,0 +1,3 @@
+
+    window.dsUiStrings = {"auth_err_email_in_use": "Email already registered. Sign in instead.", "auth_err_invalid_credential": "Incorrect email or password.", "auth_err_invalid_email": "Please enter a valid email.", "auth_err_user_not_found": "No account with that email.", "auth_err_weak_password": "Password must be at least 6 characters.", "auth_err_wrong_password": "Incorrect password.", "connecting": "Connecting\u2026", "could_not_connect": "Could not start connection", "explorer_fallback": "Explorer", "fill_all_fields": "Please fill in all fields.", "firebase_not_ready": "Firebase not initialized yet.", "join_wishlist": "Join Wish List", "tick_consent": "Please tick the consent box to continue."};
+  
