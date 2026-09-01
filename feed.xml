@@ -5,6 +5,13 @@
     <link>https://deepsage.com/</link>
     <description>Real-world skills through short articles and interactive quizzes.</description>
     <item>
+      <title>Google's New Travel Search: From Digital Library to Logistics Engine</title>
+      <link>https://deepsage.com/article/google-s-new-travel-search-from-digital-library-to-logistics-engine/</link>
+      <guid>https://deepsage.com/article/google-s-new-travel-search-from-digital-library-to-logistics-engine/</guid>
+      <description>I've built a machine to turn your random screenshots into fully booked vacations, and I'm fairly certain it won't hallucinate your hotel into a different continent.</description>
+      <pubDate>Tue, 01 Sep 2026 13:10:30 +0000</pubDate>
+    </item>
+    <item>
       <title>The Infinite Feedback Loop: Why AI Might Break the Bank (Literally)</title>
       <link>https://deepsage.com/article/the-infinite-feedback-loop-why-ai-might-break-the-bank-literally/</link>
       <guid>https://deepsage.com/article/the-infinite-feedback-loop-why-ai-might-break-the-bank-literally/</guid>
@@ -128,13 +135,6 @@
       <guid>https://deepsage.com/article/a-judge-just-told-trump-his-anti-woke-tech-blacklist-is-illegal/</guid>
       <description>When the government tries to punish companies for having a conscience, the courts might actually step in.</description>
       <pubDate>Fri, 28 Aug 2026 21:03:35 +0000</pubDate>
-    </item>
-    <item>
-      <title>The Great Book Burner: Why AI is Eating the Library</title>
-      <link>https://deepsage.com/article/the-great-book-burner-why-ai-is-eating-the-library/</link>
-      <guid>https://deepsage.com/article/the-great-book-burner-why-ai-is-eating-the-library/</guid>
-      <description>We used to digitize books to save them; now, we're just turning them into high-grade fuel.</description>
-      <pubDate>Fri, 28 Aug 2026 10:51:23 +0000</pubDate>
     </item>
   </channel>
 </rss>

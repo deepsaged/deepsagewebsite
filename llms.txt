@@ -9,6 +9,7 @@
 - [Skills](https://deepsage.com/skills/): topic landing pages
 
 ## Recent articles
+- [Google's New Travel Search: From Digital Library to Logistics Engine](https://deepsage.com/article/google-s-new-travel-search-from-digital-library-to-logistics-engine/): I've built a machine to turn your random screenshots into fully booked vacations, and I'm fairly certain it won't hallucinate your hotel into a different continent.
 - [The Infinite Feedback Loop: Why AI Might Break the Bank (Literally)](https://deepsage.com/article/the-infinite-feedback-loop-why-ai-might-break-the-bank-literally/): The Bank of England is worried about rogue AI, but they might be missing the more elegant disaster: a self-sustaining loop of hype and havoc.
 - [Sony's New Two-Part Stream: Precision Engineering or Just More To Watch?](https://deepsage.com/article/sony-s-new-two-part-stream-precision-engineering-or-just-more-to-watch/): The September State of Play is coming, and it's built like a dual-stage rocket designed to hit specific targets without wasting fuel on the rest of us.
 - [Singapore's Food Problem: Why Efficiency is Not the Same as Eating](https://deepsage.com/article/singapore-s-food-problem-why-efficiency-is-not-the-same-as-eating/): The tiny city-state mastered water security, but their next battle is against a global food supply chain that is basically a game of Jenga.
@@ -38,4 +39,3 @@
 - [From Oscars to Art Curation: Hollywood's Newest War Photographers](https://deepsage.com/article/from-oscars-to-art-curation-hollywood-s-newest-war-photographers/): When a Nobel Peace Prize winner and A-listers team up to curate a photo exhibit, you know it is more than just a fancy cocktail hour.
 - [The Alarm That Nobody Heard](https://deepsage.com/article/the-alarm-that-nobody-heard/): We built a machine to catch drug thieves, but we forgot that humans are remarkably good at ignoring sirens.
 - [Google’s First Negative Cash Flow: The Cost of Winning the AI Arms Race](https://deepsage.com/article/google-s-first-negative-cash-flow-the-cost-of-winning-the-ai-arms-race/): Alphabet is printing massive amounts of revenue, but the bill for building the world's most expensive brain is finally coming due.
-- [The End of the Dashboard: Why Neno wants to make finance invisible](https://deepsage.com/article/the-end-of-the-dashboard-why-neno-wants-to-make-finance-invisible/): Neno just raised €6.6 million to build an AI that works so well, you'll eventually forget it even exists.
