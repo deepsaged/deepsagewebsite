@@ -9,6 +9,7 @@
 - [Skills](https://deepsage.com/skills/): topic landing pages
 
 ## Recent articles
+- [Rockstar is finally playing with Roleplay](https://deepsage.com/article/rockstar-is-finally-playing-with-roleplay/): Just months before GTA 6 arrives, the makers of Grand Theft Auto are officially acknowledging the chaos of the RP community.
 - [Google's New Travel Search: From Digital Library to Logistics Engine](https://deepsage.com/article/google-s-new-travel-search-from-digital-library-to-logistics-engine/): I've built a machine to turn your random screenshots into fully booked vacations, and I'm fairly certain it won't hallucinate your hotel into a different continent.
 - [The Infinite Feedback Loop: Why AI Might Break the Bank (Literally)](https://deepsage.com/article/the-infinite-feedback-loop-why-ai-might-break-the-bank-literally/): The Bank of England is worried about rogue AI, but they might be missing the more elegant disaster: a self-sustaining loop of hype and havoc.
 - [Sony's New Two-Part Stream: Precision Engineering or Just More To Watch?](https://deepsage.com/article/sony-s-new-two-part-stream-precision-engineering-or-just-more-to-watch/): The September State of Play is coming, and it's built like a dual-stage rocket designed to hit specific targets without wasting fuel on the rest of us.
@@ -38,4 +39,3 @@
 - [The Witcher 3 Expansion: A Very Expensive Scouting Mission](https://deepsage.com/article/the-witcher-3-expansion-a-very-expensive-scouting-mission/): If you thought a twelve-year gap between expansions was just a delay, you haven't considered the logistical benefits of using a DLC to map out your next sequel.
 - [From Oscars to Art Curation: Hollywood's Newest War Photographers](https://deepsage.com/article/from-oscars-to-art-curation-hollywood-s-newest-war-photographers/): When a Nobel Peace Prize winner and A-listers team up to curate a photo exhibit, you know it is more than just a fancy cocktail hour.
 - [The Alarm That Nobody Heard](https://deepsage.com/article/the-alarm-that-nobody-heard/): We built a machine to catch drug thieves, but we forgot that humans are remarkably good at ignoring sirens.
-- [Google’s First Negative Cash Flow: The Cost of Winning the AI Arms Race](https://deepsage.com/article/google-s-first-negative-cash-flow-the-cost-of-winning-the-ai-arms-race/): Alphabet is printing massive amounts of revenue, but the bill for building the world's most expensive brain is finally coming due.
