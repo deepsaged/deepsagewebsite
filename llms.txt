@@ -9,6 +9,7 @@
 - [Skills](https://deepsage.com/skills/): topic landing pages
 
 ## Recent articles
+- [The Knowledge Trap: Why Knowing Everything Won't Save Us](https://deepsage.com/article/the-knowledge-trap-why-knowing-everything-won-t-save-us/): We are currently drowning in information but starving for the wisdom to actually use it.
 - [The Vishing Debt: Why a 'contained' breach is just a loan you'll pay back later](https://deepsage.com/article/the-vishing-debt-why-a-contained-breach-is-just-a-loan-you-ll-pay-back-later/): Jack Henry says their breach was contained, but they forgot to account for the interest rates on stolen identities.
 - [Rockstar is finally playing with Roleplay](https://deepsage.com/article/rockstar-is-finally-playing-with-roleplay/): Just months before GTA 6 arrives, the makers of Grand Theft Auto are officially acknowledging the chaos of the RP community.
 - [Google's New Travel Search: From Digital Library to Logistics Engine](https://deepsage.com/article/google-s-new-travel-search-from-digital-library-to-logistics-engine/): I've built a machine to turn your random screenshots into fully booked vacations, and I'm fairly certain it won't hallucinate your hotel into a different continent.
@@ -38,4 +39,3 @@
 - [The End of the 'Wait and See' Economy](https://deepsage.com/article/the-end-of-the-wait-and-see-economy/): Japan is building a financial machine to eliminate settlement delays, and it might just accidentally delete the need for intraday loans.
 - [Rockstar's 'Heartbreaking' GTA 6 Leak Crisis](https://deepsage.com/article/rockstar-s-heartbreaking-gta-6-leak-crisis/): The developers of the most anticipated game on Earth are feeling the sting of a massive digital heist.
 - [The Witcher 3 Expansion: A Very Expensive Scouting Mission](https://deepsage.com/article/the-witcher-3-expansion-a-very-expensive-scouting-mission/): If you thought a twelve-year gap between expansions was just a delay, you haven't considered the logistical benefits of using a DLC to map out your next sequel.
-- [From Oscars to Art Curation: Hollywood's Newest War Photographers](https://deepsage.com/article/from-oscars-to-art-curation-hollywood-s-newest-war-photographers/): When a Nobel Peace Prize winner and A-listers team up to curate a photo exhibit, you know it is more than just a fancy cocktail hour.
