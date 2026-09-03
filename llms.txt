@@ -9,6 +9,7 @@
 - [Skills](https://deepsage.com/skills/): topic landing pages
 
 ## Recent articles
+- [Tether just dropped $3 million on Colombia's Plenti](https://deepsage.com/article/tether-just-dropped-3-million-on-colombia-s-plenti/): The makers of the world's biggest stablecoin are betting big on Colombian fintech, and it's not just about moving money around.
 - [The Knowledge Trap: Why Knowing Everything Won't Save Us](https://deepsage.com/article/the-knowledge-trap-why-knowing-everything-won-t-save-us/): We are currently drowning in information but starving for the wisdom to actually use it.
 - [The Vishing Debt: Why a 'contained' breach is just a loan you'll pay back later](https://deepsage.com/article/the-vishing-debt-why-a-contained-breach-is-just-a-loan-you-ll-pay-back-later/): Jack Henry says their breach was contained, but they forgot to account for the interest rates on stolen identities.
 - [Rockstar is finally playing with Roleplay](https://deepsage.com/article/rockstar-is-finally-playing-with-roleplay/): Just months before GTA 6 arrives, the makers of Grand Theft Auto are officially acknowledging the chaos of the RP community.
@@ -38,4 +39,3 @@
 - [The xAI Lawsuit: Training Grok on the Internet's Darkest Corners](https://deepsage.com/article/the-xai-lawsuit-training-grok-on-the-internet-s-darkest-corners/): A new legal battle alleges Elon Musk's xAI used illegal and abhorrent content to train its latest model.
 - [The End of the 'Wait and See' Economy](https://deepsage.com/article/the-end-of-the-wait-and-see-economy/): Japan is building a financial machine to eliminate settlement delays, and it might just accidentally delete the need for intraday loans.
 - [Rockstar's 'Heartbreaking' GTA 6 Leak Crisis](https://deepsage.com/article/rockstar-s-heartbreaking-gta-6-leak-crisis/): The developers of the most anticipated game on Earth are feeling the sting of a massive digital heist.
-- [The Witcher 3 Expansion: A Very Expensive Scouting Mission](https://deepsage.com/article/the-witcher-3-expansion-a-very-expensive-scouting-mission/): If you thought a twelve-year gap between expansions was just a delay, you haven't considered the logistical benefits of using a DLC to map out your next sequel.
