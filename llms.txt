@@ -9,6 +9,7 @@
 - [Skills](https://deepsage.com/skills/): topic landing pages
 
 ## Recent articles
+- [Five chickens and a dream: The fight against 'AI slop' in gaming](https://deepsage.com/article/five-chickens-and-a-dream-the-fight-against-ai-slop-in-gaming/): After a trailer went viral for all the wrong reasons, Amplitude Studios is proving that humans (and poultry) are still behind the keyboard.
 - [The 'Hard Choice' Trap: Why Logic Fails When Life Gets Real](https://deepsage.com/article/the-hard-choice-trap-why-logic-fails-when-life-gets-real/): If you're paralyzed by a decision where both options look equally good (or equally terrible), you aren't bad at math—you're just facing a structural philosophical crisis.
 - [Tether just dropped $3 million on Colombia's Plenti](https://deepsage.com/article/tether-just-dropped-3-million-on-colombia-s-plenti/): The makers of the world's biggest stablecoin are betting big on Colombian fintech, and it's not just about moving money around.
 - [The Knowledge Trap: Why Knowing Everything Won't Save Us](https://deepsage.com/article/the-knowledge-trap-why-knowing-everything-won-t-save-us/): We are currently drowning in information but starving for the wisdom to actually use it.
@@ -38,4 +39,3 @@
 - [Why Your 'Natural Talent' is Probably a Lie](https://deepsage.com/article/why-your-natural-talent-is-probably-a-lie/): Forget everything you thought you knew about being a prodigy; it turns out greatness is less about DNA and more about the room you're standing in.
 - [The Tennis Court is Becoming a Giant Heat Sink](https://deepsage.com/article/the-tennis-court-is-becoming-a-giant-heat-sink/): Forget the players for a second; the real problem is that the ground beneath them is actively trying to cook them.
 - [The xAI Lawsuit: Training Grok on the Internet's Darkest Corners](https://deepsage.com/article/the-xai-lawsuit-training-grok-on-the-internet-s-darkest-corners/): A new legal battle alleges Elon Musk's xAI used illegal and abhorrent content to train its latest model.
-- [The End of the 'Wait and See' Economy](https://deepsage.com/article/the-end-of-the-wait-and-see-economy/): Japan is building a financial machine to eliminate settlement delays, and it might just accidentally delete the need for intraday loans.
