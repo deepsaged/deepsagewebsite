@@ -5,6 +5,13 @@
     <link>https://deepsage.com/</link>
     <description>Real-world skills through short articles and interactive quizzes.</description>
     <item>
+      <title>The $100 Billion Elephant in the Art Gallery</title>
+      <link>https://deepsage.com/article/the-100-billion-elephant-in-the-art-gallery/</link>
+      <guid>https://deepsage.com/article/the-100-billion-elephant-in-the-art-gallery/</guid>
+      <description>While the tech world obsesses over silicon, a massive cultural shift is happening in the canvas and clay markets.</description>
+      <pubDate>Sun, 06 Sep 2026 21:03:11 +0000</pubDate>
+    </item>
+    <item>
       <title>The 250-Foot Arch vs. The Vietnam Vets</title>
       <link>https://deepsage.com/article/the-250-foot-arch-vs-the-vietnam-vets/</link>
       <guid>https://deepsage.com/article/the-250-foot-arch-vs-the-vietnam-vets/</guid>
@@ -128,13 +135,6 @@
       <link>https://deepsage.com/article/12-moments-from-google-i-o-2026-that-change-your-workflow/</link>
       <guid>https://deepsage.com/article/12-moments-from-google-i-o-2026-that-change-your-workflow/</guid>
       <description>Forget the hype cycles; here is the actual substance from Google's biggest night of the year.</description>
-    </item>
-    <item>
-      <title>The Reputation-First Security Model: Why Gamescom is Losing its Hardware</title>
-      <link>https://deepsage.com/article/the-reputation-first-security-model-why-gamescom-is-losing-its-hardware/</link>
-      <guid>https://deepsage.com/article/the-reputation-first-security-model-why-gamescom-is-losing-its-hardware/</guid>
-      <description>When the cost of a bad headline is higher than the cost of a stolen laptop, you haven't failed at security; you've perfected a new kind of business model.</description>
-      <pubDate>Mon, 31 Aug 2026 02:09:27 +0000</pubDate>
     </item>
   </channel>
 </rss>
