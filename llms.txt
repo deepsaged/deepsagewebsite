@@ -9,6 +9,7 @@
 - [Skills](https://deepsage.com/skills/): topic landing pages
 
 ## Recent articles
+- [St Paul's Cathedral and Fabric: A Match Made in... Heaven?](https://deepsage.com/article/st-paul-s-cathedral-and-fabric-a-match-made-in-heaven/): When one of London's most sacred landmarks decides to vibe with a legendary nightclub, the resulting culture clash is more chaotic than a bass drop at 4 AM.
 - [The $100 Billion Elephant in the Art Gallery](https://deepsage.com/article/the-100-billion-elephant-in-the-art-gallery/): While the tech world obsesses over silicon, a massive cultural shift is happening in the canvas and clay markets.
 - [The 250-Foot Arch vs. The Vietnam Vets](https://deepsage.com/article/the-250-foot-arch-vs-the-vietnam-vets/): When a massive government monument meets a legal restraining order, things get weirdly bureaucratic and incredibly expensive.
 - [Five chickens and a dream: The fight against 'AI slop' in gaming](https://deepsage.com/article/five-chickens-and-a-dream-the-fight-against-ai-slop-in-gaming/): After a trailer went viral for all the wrong reasons, Amplitude Studios is proving that humans (and poultry) are still behind the keyboard.
@@ -38,4 +39,3 @@
 - [The Half-Life 2 of AI isn't a smarter chatbot](https://deepsage.com/article/the-half-life-2-of-ai-isn-t-a-smarter-chatbot/): We're waiting for a grand technical breakthrough, but the real revolution might just be a very complex way to prove a human actually touched the keyboard.
 - [A Judge Just Told Trump His 'Anti-Woke' Tech Blacklist is Illegal](https://deepsage.com/article/a-judge-just-told-trump-his-anti-woke-tech-blacklist-is-illegal/): When the government tries to punish companies for having a conscience, the courts might actually step in.
 - [The Great Book Burner: Why AI is Eating the Library](https://deepsage.com/article/the-great-book-burner-why-ai-is-eating-the-library/): We used to digitize books to save them; now, we're just turning them into high-grade fuel.
-- [Why Your 'Natural Talent' is Probably a Lie](https://deepsage.com/article/why-your-natural-talent-is-probably-a-lie/): Forget everything you thought you knew about being a prodigy; it turns out greatness is less about DNA and more about the room you're standing in.
