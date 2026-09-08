@@ -5,6 +5,13 @@
     <link>https://deepsage.com/</link>
     <description>Real-world skills through short articles and interactive quizzes.</description>
     <item>
+      <title>The Palmistry Paradox: Why Doctors Are Secretly Fortune Tellers</title>
+      <link>https://deepsage.com/article/the-palmistry-paradox-why-doctors-are-secretly-fortune-tellers/</link>
+      <guid>https://deepsage.com/article/the-palmistry-paradox-why-doctors-are-secretly-fortune-tellers/</guid>
+      <description>Physicians might scoff at crystal balls, but their entire diagnostic toolkit is built on reading the lines of your body.</description>
+      <pubDate>Tue, 08 Sep 2026 21:05:09 +0000</pubDate>
+    </item>
+    <item>
       <title>St Paul's Cathedral and Fabric: A Match Made in... Heaven?</title>
       <link>https://deepsage.com/article/st-paul-s-cathedral-and-fabric-a-match-made-in-heaven/</link>
       <guid>https://deepsage.com/article/st-paul-s-cathedral-and-fabric-a-match-made-in-heaven/</guid>
@@ -130,12 +137,6 @@
       <link>https://deepsage.com/article/google-s-new-vision-from-smart-glasses-to-real-world-context/</link>
       <guid>https://deepsage.com/article/google-s-new-vision-from-smart-glasses-to-real-world-context/</guid>
       <description>The latest Google updates aren't just about better search results; they're about the AI finally understanding the physical world through your eyes.</description>
-    </item>
-    <item>
-      <title>Agentmux: Bringing the Command Line to your iPhone</title>
-      <link>https://deepsage.com/article/agentmux-bringing-the-command-line-to-your-iphone/</link>
-      <guid>https://deepsage.com/article/agentmux-bringing-the-command-line-to-your-iphone/</guid>
-      <description>A new iOS-native workspace is attempting to turn your mobile device into a fully functional cockpit for AI agents.</description>
     </item>
   </channel>
 </rss>

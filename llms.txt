@@ -9,6 +9,7 @@
 - [Skills](https://deepsage.com/skills/): topic landing pages
 
 ## Recent articles
+- [The Palmistry Paradox: Why Doctors Are Secretly Fortune Tellers](https://deepsage.com/article/the-palmistry-paradox-why-doctors-are-secretly-fortune-tellers/): Physicians might scoff at crystal balls, but their entire diagnostic toolkit is built on reading the lines of your body.
 - [St Paul's Cathedral and Fabric: A Match Made in... Heaven?](https://deepsage.com/article/st-paul-s-cathedral-and-fabric-a-match-made-in-heaven/): When one of London's most sacred landmarks decides to vibe with a legendary nightclub, the resulting culture clash is more chaotic than a bass drop at 4 AM.
 - [The $100 Billion Elephant in the Art Gallery](https://deepsage.com/article/the-100-billion-elephant-in-the-art-gallery/): While the tech world obsesses over silicon, a massive cultural shift is happening in the canvas and clay markets.
 - [The 250-Foot Arch vs. The Vietnam Vets](https://deepsage.com/article/the-250-foot-arch-vs-the-vietnam-vets/): When a massive government monument meets a legal restraining order, things get weirdly bureaucratic and incredibly expensive.
@@ -38,4 +39,3 @@
 - [Panic is actually paying you back (and no, it's not a new game)](https://deepsage.com/article/panic-is-actually-paying-you-back-and-no-it-s-not-a-new-game/): The makers of the Playdate handheld are passing Supreme Court-ordered tariff refunds directly to their customers.
 - [The Half-Life 2 of AI isn't a smarter chatbot](https://deepsage.com/article/the-half-life-2-of-ai-isn-t-a-smarter-chatbot/): We're waiting for a grand technical breakthrough, but the real revolution might just be a very complex way to prove a human actually touched the keyboard.
 - [A Judge Just Told Trump His 'Anti-Woke' Tech Blacklist is Illegal](https://deepsage.com/article/a-judge-just-told-trump-his-anti-woke-tech-blacklist-is-illegal/): When the government tries to punish companies for having a conscience, the courts might actually step in.
-- [The Great Book Burner: Why AI is Eating the Library](https://deepsage.com/article/the-great-book-burner-why-ai-is-eating-the-library/): We used to digitize books to save them; now, we're just turning them into high-grade fuel.
