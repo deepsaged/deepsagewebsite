@@ -779,6 +779,68 @@ table th {
   margin: 0;
 }
 
+/* ── LEVEL 4B OPTIONAL BLOCKS ──
+   Shared shell for key_takeaways/faq_teaser/stat_chart/glossary/timeline/
+   pull_quote/myth_vs_fact/try_this -- hidden by default in the HTML
+   (assets/js/ab-experiments.js removes [hidden] per visitor bucket), see
+   docs/guide-level4b-optional-blocks.md. */
+.optional-block {
+  margin: 32px 0;
+  padding: 20px 24px;
+  background: #00141c66;
+  border: 1px solid #d9b97833;
+  border-radius: 8px;
+}
+
+.optional-block-title {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.key-takeaways-list, .timeline-list {
+  margin: 0;
+  padding-left: 20px;
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.7;
+  color: #ffffff;
+}
+
+.timeline-list { list-style: none; padding-left: 0; }
+.timeline-list li { display: flex; gap: 12px; margin-bottom: 10px; }
+.timeline-date { color: var(--teal); font-weight: 600; min-width: 64px; flex-shrink: 0; }
+
+.pull-quote {
+  border-left: 3px solid var(--teal);
+  font-family: var(--serif);
+}
+.pull-quote p { font-size: 20px; font-style: italic; margin: 0 0 8px; color: #ffffff; }
+.pull-quote cite { font-family: var(--sans); font-size: 13px; color: var(--muted); font-style: normal; }
+
+.stat-chart-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; font-family: var(--sans); font-size: 14px; }
+.stat-chart-label { min-width: 90px; color: var(--muted); flex-shrink: 0; }
+.stat-chart-bar-track { flex: 1; height: 10px; background: #ffffff14; border-radius: 5px; overflow: hidden; }
+.stat-chart-bar { display: block; height: 100%; background: linear-gradient(to right, var(--blue), var(--teal)); }
+.stat-chart-value { min-width: 40px; text-align: right; color: #ffffff; }
+
+.glossary-list { margin: 0; font-family: var(--sans); }
+.glossary-list dt { color: var(--teal); font-weight: 600; margin-top: 10px; }
+.glossary-list dd { margin: 2px 0 0; color: #ffffff; font-size: 14px; }
+
+.myth-fact-pair { margin-bottom: 14px; font-family: var(--sans); font-size: 14px; line-height: 1.6; }
+.myth-fact-label { font-weight: 700; letter-spacing: 0.5px; margin-right: 6px; }
+.myth-line .myth-fact-label { color: #ff6688; }
+.fact-line .myth-fact-label { color: var(--teal); }
+
+.faq-item { margin-bottom: 14px; font-family: var(--sans); }
+.faq-question { font-weight: 600; color: #ffffff; margin: 0 0 4px; }
+.faq-answer { color: var(--muted); font-size: 14px; margin: 0; }
+
 /* ── 404 PAGE ── */
 .not-found { text-align: center; padding: 40px 0; }
 .not-found .page-title { font-size: 96px; margin-bottom: 8px; }
