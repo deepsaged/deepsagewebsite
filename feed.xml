@@ -5,6 +5,13 @@
     <link>https://deepsage.com/</link>
     <description>Real-world skills through short articles and interactive quizzes.</description>
     <item>
+      <title>The Great AI Switcheroo: US Moves to Shadow-Ban Chinese Model Clones</title>
+      <link>https://deepsage.com/article/the-great-ai-switcheroo-us-moves-to-shadow-ban-chinese-model-clones/</link>
+      <guid>https://deepsage.com/article/the-great-ai-switcheroo-us-moves-to-shadow-ban-chinese-model-clones/</guid>
+      <description>Washington is allegedly working behind the scenes to steer Chinese users away from high-end US models toward their local, less-capable versions.</description>
+      <pubDate>Wed, 09 Sep 2026 21:05:53 +0000</pubDate>
+    </item>
+    <item>
       <title>The Palmistry Paradox: Why Doctors Are Secretly Fortune Tellers</title>
       <link>https://deepsage.com/article/the-palmistry-paradox-why-doctors-are-secretly-fortune-tellers/</link>
       <guid>https://deepsage.com/article/the-palmistry-paradox-why-doctors-are-secretly-fortune-tellers/</guid>
@@ -131,12 +138,6 @@
       <link>https://deepsage.com/article/the-agentic-era-how-many-tasks-are-actually-being-automated/</link>
       <guid>https://deepsage.com/article/the-agentic-era-how-many-tasks-are-actually-being-automated/</guid>
       <description>Forget the hype about sentient robots; the real story is in the data showing how much of our actual workflows are already moving to autonomous loops.</description>
-    </item>
-    <item>
-      <title>Google's New Vision: From Smart Glasses to Real-World Context</title>
-      <link>https://deepsage.com/article/google-s-new-vision-from-smart-glasses-to-real-world-context/</link>
-      <guid>https://deepsage.com/article/google-s-new-vision-from-smart-glasses-to-real-world-context/</guid>
-      <description>The latest Google updates aren't just about better search results; they're about the AI finally understanding the physical world through your eyes.</description>
     </item>
   </channel>
 </rss>

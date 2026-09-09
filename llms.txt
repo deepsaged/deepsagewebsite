@@ -9,6 +9,7 @@
 - [Skills](https://deepsage.com/skills/): topic landing pages
 
 ## Recent articles
+- [The Great AI Switcheroo: US Moves to Shadow-Ban Chinese Model Clones](https://deepsage.com/article/the-great-ai-switcheroo-us-moves-to-shadow-ban-chinese-model-clones/): Washington is allegedly working behind the scenes to steer Chinese users away from high-end US models toward their local, less-capable versions.
 - [The Palmistry Paradox: Why Doctors Are Secretly Fortune Tellers](https://deepsage.com/article/the-palmistry-paradox-why-doctors-are-secretly-fortune-tellers/): Physicians might scoff at crystal balls, but their entire diagnostic toolkit is built on reading the lines of your body.
 - [St Paul's Cathedral and Fabric: A Match Made in... Heaven?](https://deepsage.com/article/st-paul-s-cathedral-and-fabric-a-match-made-in-heaven/): When one of London's most sacred landmarks decides to vibe with a legendary nightclub, the resulting culture clash is more chaotic than a bass drop at 4 AM.
 - [The $100 Billion Elephant in the Art Gallery](https://deepsage.com/article/the-100-billion-elephant-in-the-art-gallery/): While the tech world obsesses over silicon, a massive cultural shift is happening in the canvas and clay markets.
@@ -38,4 +39,3 @@
 - [The August Genre Bridge: Building a Seasonal Transition Machine](https://deepsage.com/article/the-august-genre-bridge-building-a-seasonal-transition-machine/): Publishers are using paranormal romance to pivot us from summer heat to autumn chills, and I've engineered a way to track the shift.
 - [Panic is actually paying you back (and no, it's not a new game)](https://deepsage.com/article/panic-is-actually-paying-you-back-and-no-it-s-not-a-new-game/): The makers of the Playdate handheld are passing Supreme Court-ordered tariff refunds directly to their customers.
 - [The Half-Life 2 of AI isn't a smarter chatbot](https://deepsage.com/article/the-half-life-2-of-ai-isn-t-a-smarter-chatbot/): We're waiting for a grand technical breakthrough, but the real revolution might just be a very complex way to prove a human actually touched the keyboard.
-- [A Judge Just Told Trump His 'Anti-Woke' Tech Blacklist is Illegal](https://deepsage.com/article/a-judge-just-told-trump-his-anti-woke-tech-blacklist-is-illegal/): When the government tries to punish companies for having a conscience, the courts might actually step in.
