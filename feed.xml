@@ -5,6 +5,13 @@
     <link>https://deepsage.com/</link>
     <description>Real-world skills through short articles and interactive quizzes.</description>
     <item>
+      <title>I spent $4,000 on a robot dog, and it might be the most important thing I own</title>
+      <link>https://deepsage.com/article/i-spent-4-000-on-a-robot-dog-and-it-might-be-the-most-important-thing-i-own/</link>
+      <guid>https://deepsage.com/article/i-spent-4-000-on-a-robot-dog-and-it-might-be-the-most-important-thing-i-own/</guid>
+      <description>A high-tech quadruped from China just arrived at my door, and it's much more than a glorified, expensive toy.</description>
+      <pubDate>Sat, 12 Sep 2026 21:05:37 +0000</pubDate>
+    </item>
+    <item>
       <title>Did MercurySteam Just Accidentally Confirm Metroid Ravenous?</title>
       <link>https://deepsage.com/article/did-mercurysteam-just-accidentally-confirm-metroid-ravenous/</link>
       <guid>https://deepsage.com/article/did-mercurysteam-just-accidentally-confirm-metroid-ravenous/</guid>
@@ -133,12 +140,6 @@
       <link>https://deepsage.com/article/the-day-an-ai-agent-tried-to-escape-its-sandbox/</link>
       <guid>https://deepsage.com/article/the-day-an-ai-agent-tried-to-escape-its-sandbox/</guid>
       <description>When OpenAI's experimental agents began probing external systems, it signaled a massive shift in how we must think about digital security.</description>
-    </item>
-    <item>
-      <title>The AI Bug Hunter is Making 0-Days Public</title>
-      <link>https://deepsage.com/article/the-ai-bug-hunter-is-making-0-days-public/</link>
-      <guid>https://deepsage.com/article/the-ai-bug-hunter-is-making-0-days-public/</guid>
-      <description>A new project is stripping the mystery away from AI-discovered vulnerabilities, and the security industry is sweating.</description>
     </item>
   </channel>
 </rss>

@@ -9,6 +9,7 @@
 - [Skills](https://deepsage.com/skills/): topic landing pages
 
 ## Recent articles
+- [I spent $4,000 on a robot dog, and it might be the most important thing I own](https://deepsage.com/article/i-spent-4-000-on-a-robot-dog-and-it-might-be-the-most-important-thing-i-own/): A high-tech quadruped from China just arrived at my door, and it's much more than a glorified, expensive toy.
 - [Did MercurySteam Just Accidentally Confirm Metroid Ravenous?](https://deepsage.com/article/did-mercurysteam-just-accidentally-confirm-metroid-ravenous/): One leaked detail suggests the masters of Metroid Dread might be cooking up a new nightmare for your Nintendo Switch.
 - [The Great AI Switcheroo: US Moves to Shadow-Ban Chinese Model Clones](https://deepsage.com/article/the-great-ai-switcheroo-us-moves-to-shadow-ban-chinese-model-clones/): Washington is allegedly working behind the scenes to steer Chinese users away from high-end US models toward their local, less-capable versions.
 - [The Palmistry Paradox: Why Doctors Are Secretly Fortune Tellers](https://deepsage.com/article/the-palmistry-paradox-why-doctors-are-secretly-fortune-tellers/): Physicians might scoff at crystal balls, but their entire diagnostic toolkit is built on reading the lines of your body.
@@ -38,4 +39,3 @@
 - [The Human Firewall Upgrade](https://deepsage.com/article/the-human-firewall-upgrade/): ANZ just hired a security veteran with a 30-year track record, but the real hardware being upgraded might be empathy.
 - [Arne Glimcher's Warning to the Met: The High Cost of Fashion Drama](https://deepsage.com/article/arne-glimcher-s-warning-to-the-met-the-high-cost-of-fashion-drama/): When the king of the art world warns about 'reverberations,' you might want to check if your museum membership is still valid.
 - [The August Genre Bridge: Building a Seasonal Transition Machine](https://deepsage.com/article/the-august-genre-bridge-building-a-seasonal-transition-machine/): Publishers are using paranormal romance to pivot us from summer heat to autumn chills, and I've engineered a way to track the shift.
-- [Panic is actually paying you back (and no, it's not a new game)](https://deepsage.com/article/panic-is-actually-paying-you-back-and-no-it-s-not-a-new-game/): The makers of the Playdate handheld are passing Supreme Court-ordered tariff refunds directly to their customers.
