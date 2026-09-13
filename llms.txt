@@ -9,6 +9,7 @@
 - [Skills](https://deepsage.com/skills/): topic landing pages
 
 ## Recent articles
+- [Level-5's CEO just admitted his showcase was partly AI-generated](https://deepsage.com/article/level-5-s-ceo-just-admitted-his-showcase-was-partly-ai-generated/): The mastermind behind Professor Layton is using generative tools to dial up the spectacle, and the gaming industry is watching closely.
 - [The Great Cosmic Expansion: Stretching or Just Adding More Stuff?](https://deepsage.com/article/the-great-cosmic-expansion-stretching-or-just-adding-more-stuff/): Whether space is stretching like old spandex or spawning new pixels, the math says we're getting bigger.
 - [I spent $4,000 on a robot dog, and it might be the most important thing I own](https://deepsage.com/article/i-spent-4-000-on-a-robot-dog-and-it-might-be-the-most-important-thing-i-own/): A high-tech quadruped from China just arrived at my door, and it's much more than a glorified, expensive toy.
 - [Did MercurySteam Just Accidentally Confirm Metroid Ravenous?](https://deepsage.com/article/did-mercurysteam-just-accidentally-confirm-metroid-ravenous/): One leaked detail suggests the masters of Metroid Dread might be cooking up a new nightmare for your Nintendo Switch.
@@ -38,4 +39,3 @@
 - [The Reputation-First Security Model: Why Gamescom is Losing its Hardware](https://deepsage.com/article/the-reputation-first-security-model-why-gamescom-is-losing-its-hardware/): When the cost of a bad headline is higher than the cost of a stolen laptop, you haven't failed at security; you've perfected a new kind of business model.
 - [Toni Morrison, Tommy Orange, and the August Romance Sale](https://deepsage.com/article/toni-morrison-tommy-orange-and-the-august-romance-sale/): Whether you want a gritty epic or a sinister love story, these book deals are better than your last three dating prospects.
 - [The Human Firewall Upgrade](https://deepsage.com/article/the-human-firewall-upgrade/): ANZ just hired a security veteran with a 30-year track record, but the real hardware being upgraded might be empathy.
-- [Arne Glimcher's Warning to the Met: The High Cost of Fashion Drama](https://deepsage.com/article/arne-glimcher-s-warning-to-the-met-the-high-cost-of-fashion-drama/): When the king of the art world warns about 'reverberations,' you might want to check if your museum membership is still valid.
