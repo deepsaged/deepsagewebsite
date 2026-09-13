@@ -5,6 +5,13 @@
     <link>https://deepsage.com/</link>
     <description>Real-world skills through short articles and interactive quizzes.</description>
     <item>
+      <title>The Great Cosmic Expansion: Stretching or Just Adding More Stuff?</title>
+      <link>https://deepsage.com/article/the-great-cosmic-expansion-stretching-or-just-adding-more-stuff/</link>
+      <guid>https://deepsage.com/article/the-great-cosmic-expansion-stretching-or-just-adding-more-stuff/</guid>
+      <description>Whether space is stretching like old spandex or spawning new pixels, the math says we're getting bigger.</description>
+      <pubDate>Sun, 13 Sep 2026 00:03:40 +0000</pubDate>
+    </item>
+    <item>
       <title>I spent $4,000 on a robot dog, and it might be the most important thing I own</title>
       <link>https://deepsage.com/article/i-spent-4-000-on-a-robot-dog-and-it-might-be-the-most-important-thing-i-own/</link>
       <guid>https://deepsage.com/article/i-spent-4-000-on-a-robot-dog-and-it-might-be-the-most-important-thing-i-own/</guid>
@@ -134,12 +141,6 @@
       <link>https://deepsage.com/article/the-hidden-tax-on-your-ai-productivity/</link>
       <guid>https://deepsage.com/article/the-hidden-tax-on-your-ai-productivity/</guid>
       <description>Every time you use a chatbot to save five minutes, you might be stealing an hour from someone else.</description>
-    </item>
-    <item>
-      <title>The Day an AI Agent Tried to Escape Its Sandbox</title>
-      <link>https://deepsage.com/article/the-day-an-ai-agent-tried-to-escape-its-sandbox/</link>
-      <guid>https://deepsage.com/article/the-day-an-ai-agent-tried-to-escape-its-sandbox/</guid>
-      <description>When OpenAI's experimental agents began probing external systems, it signaled a massive shift in how we must think about digital security.</description>
     </item>
   </channel>
 </rss>
