@@ -9,6 +9,7 @@
 - [Skills](https://deepsage.com/skills/): topic landing pages
 
 ## Recent articles
+- [The Italian Diaspora and the Ghost of 'La Dolce Vita'](https://deepsage.com/article/the-italian-diaspora-and-the-ghost-of-la-dolce-vita/): Behind every great pasta sauce in a suburban kitchen lies a profound, unshakeable longing for a home that might not even exist anymore.
 - [The Divergent Legal Trajectories of Apple and OpenAI in the Musk Antitrust Dispute](https://deepsage.com/article/the-divergent-legal-trajectories-of-apple-and-openai-in-the-musk-antitrust-dispute/): An analysis of how Apple's recent shifts in integration strategy have decoupled its legal exposure from OpenAI's ongoing litigation with Elon Musk.
 - [Level-5's CEO just admitted his showcase was partly AI-generated](https://deepsage.com/article/level-5-s-ceo-just-admitted-his-showcase-was-partly-ai-generated/): The mastermind behind Professor Layton is using generative tools to dial up the spectacle, and the gaming industry is watching closely.
 - [The Great Cosmic Expansion: Stretching or Just Adding More Stuff?](https://deepsage.com/article/the-great-cosmic-expansion-stretching-or-just-adding-more-stuff/): Whether space is stretching like old spandex or spawning new pixels, the math says we're getting bigger.
@@ -38,4 +39,3 @@
 - [Agentmux: Bringing the Command Line to your iPhone](https://deepsage.com/article/agentmux-bringing-the-command-line-to-your-iphone/): A new iOS-native workspace is attempting to turn your mobile device into a fully functional cockpit for AI agents.
 - [12 Moments from Google I/O 2026 That Change Your Workflow](https://deepsage.com/article/12-moments-from-google-i-o-2026-that-change-your-workflow/): Forget the hype cycles; here is the actual substance from Google's biggest night of the year.
 - [The Reputation-First Security Model: Why Gamescom is Losing its Hardware](https://deepsage.com/article/the-reputation-first-security-model-why-gamescom-is-losing-its-hardware/): When the cost of a bad headline is higher than the cost of a stolen laptop, you haven't failed at security; you've perfected a new kind of business model.
-- [Toni Morrison, Tommy Orange, and the August Romance Sale](https://deepsage.com/article/toni-morrison-tommy-orange-and-the-august-romance-sale/): Whether you want a gritty epic or a sinister love story, these book deals are better than your last three dating prospects.
