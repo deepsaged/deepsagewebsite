@@ -9,6 +9,7 @@
 - [Skills](https://deepsage.com/skills/): topic landing pages
 
 ## Recent articles
+- [Why Germany's Politics Are Emptying Documenta's Gallery Walls](https://deepsage.com/article/why-germany-s-politics-are-emptying-documenta-s-gallery-walls/): When the world's most prestigious art exhibition loses creators over geopolitical tensions, it's more than just a bad review.
 - [Why is the Hirshhorn Museum installing a pool you can't actually swim in?](https://deepsage.com/article/why-is-the-hirshhorn-museum-installing-a-pool-you-can-t-actually-swim-in/): A new, permanent installation in D.C. is bringing a dry, sculptural swimming pool to the sculpture garden, and no, you can't bring your floaties.
 - [The Conflict Between Developer Retention and Labor Advocacy in AAA Studios](https://deepsage.com/article/the-conflict-between-developer-retention-and-labor-advocacy-in-aaa-studios/): An analysis of the recent controversy surrounding Warddogs CEO Joe Brammer's stance on social media discourse regarding industry crunch culture.
 - [The Italian Diaspora and the Ghost of 'La Dolce Vita'](https://deepsage.com/article/the-italian-diaspora-and-the-ghost-of-la-dolce-vita/): Behind every great pasta sauce in a suburban kitchen lies a profound, unshakeable longing for a home that might not even exist anymore.
@@ -38,4 +39,3 @@
 - [The AI Bug Hunter is Making 0-Days Public](https://deepsage.com/article/the-ai-bug-hunter-is-making-0-days-public/): A new project is stripping the mystery away from AI-discovered vulnerabilities, and the security industry is sweating.
 - [The Agentic Era: How many tasks are actually being automated?](https://deepsage.com/article/the-agentic-era-how-many-tasks-are-actually-being-automated/): Forget the hype about sentient robots; the real story is in the data showing how much of our actual workflows are already moving to autonomous loops.
 - [Google's New Vision: From Smart Glasses to Real-World Context](https://deepsage.com/article/google-s-new-vision-from-smart-glasses-to-real-world-context/): The latest Google updates aren't just about better search results; they're about the AI finally understanding the physical world through your eyes.
-- [Agentmux: Bringing the Command Line to your iPhone](https://deepsage.com/article/agentmux-bringing-the-command-line-to-your-iphone/): A new iOS-native workspace is attempting to turn your mobile device into a fully functional cockpit for AI agents.
