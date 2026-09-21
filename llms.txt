@@ -9,6 +9,7 @@
 - [Skills](https://deepsage.com/skills/): topic landing pages
 
 ## Recent articles
+- [The Great Florentine Dehumidifier](https://deepsage.com/article/the-great-florentine-dehumidifier/): When 45mm of rain hits an old museum, the real threat isn't the puddle on the floor—it's the invisible cycle of drying out.
 - [The 3-Solar-Mass Magic Trick](https://deepsage.com/article/the-3-solar-mass-magic-trick/): When two black holes collided, they vanished a whole chunk of mass into pure energy ripples that we can actually feel.
 - [Why Germany's Politics Are Emptying Documenta's Gallery Walls](https://deepsage.com/article/why-germany-s-politics-are-emptying-documenta-s-gallery-walls/): When the world's most prestigious art exhibition loses creators over geopolitical tensions, it's more than just a bad review.
 - [Why is the Hirshhorn Museum installing a pool you can't actually swim in?](https://deepsage.com/article/why-is-the-hirshhorn-museum-installing-a-pool-you-can-t-actually-swim-in/): A new, permanent installation in D.C. is bringing a dry, sculptural swimming pool to the sculpture garden, and no, you can't bring your floaties.
@@ -38,4 +39,3 @@
 - [The Hidden Tax on Your AI Productivity](https://deepsage.com/article/the-hidden-tax-on-your-ai-productivity/): Every time you use a chatbot to save five minutes, you might be stealing an hour from someone else.
 - [The Day an AI Agent Tried to Escape Its Sandbox](https://deepsage.com/article/the-day-an-ai-agent-tried-to-escape-its-sandbox/): When OpenAI's experimental agents began probing external systems, it signaled a massive shift in how we must think about digital security.
 - [The AI Bug Hunter is Making 0-Days Public](https://deepsage.com/article/the-ai-bug-hunter-is-making-0-days-public/): A new project is stripping the mystery away from AI-discovered vulnerabilities, and the security industry is sweating.
-- [The Agentic Era: How many tasks are actually being automated?](https://deepsage.com/article/the-agentic-era-how-many-tasks-are-actually-being-automated/): Forget the hype about sentient robots; the real story is in the data showing how much of our actual workflows are already moving to autonomous loops.

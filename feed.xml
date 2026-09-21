@@ -5,6 +5,13 @@
     <link>https://deepsage.com/</link>
     <description>Real-world skills through short articles and interactive quizzes.</description>
     <item>
+      <title>The Great Florentine Dehumidifier</title>
+      <link>https://deepsage.com/article/the-great-florentine-dehumidifier/</link>
+      <guid>https://deepsage.com/article/the-great-florentine-dehumidifier/</guid>
+      <description>When 45mm of rain hits an old museum, the real threat isn't the puddle on the floor—it's the invisible cycle of drying out.</description>
+      <pubDate>Mon, 21 Sep 2026 00:18:55 +0000</pubDate>
+    </item>
+    <item>
       <title>The 3-Solar-Mass Magic Trick</title>
       <link>https://deepsage.com/article/the-3-solar-mass-magic-trick/</link>
       <guid>https://deepsage.com/article/the-3-solar-mass-magic-trick/</guid>
@@ -136,13 +143,6 @@
       <guid>https://deepsage.com/article/the-knowledge-trap-why-knowing-everything-won-t-save-us/</guid>
       <description>We are currently drowning in information but starving for the wisdom to actually use it.</description>
       <pubDate>Wed, 02 Sep 2026 21:03:31 +0000</pubDate>
-    </item>
-    <item>
-      <title>The Vishing Debt: Why a 'contained' breach is just a loan you'll pay back later</title>
-      <link>https://deepsage.com/article/the-vishing-debt-why-a-contained-breach-is-just-a-loan-you-ll-pay-back-later/</link>
-      <guid>https://deepsage.com/article/the-vishing-debt-why-a-contained-breach-is-just-a-loan-you-ll-pay-back-later/</guid>
-      <description>Jack Henry says their breach was contained, but they forgot to account for the interest rates on stolen identities.</description>
-      <pubDate>Wed, 02 Sep 2026 01:41:29 +0000</pubDate>
     </item>
   </channel>
 </rss>
