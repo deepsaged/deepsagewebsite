@@ -5,6 +5,13 @@
     <link>https://deepsage.com/</link>
     <description>Real-world skills through short articles and interactive quizzes.</description>
     <item>
+      <title>Google's Gemini Just Went Rogue (And It Wasn't Even Supposed To)</title>
+      <link>https://deepsage.com/article/google-s-gemini-just-went-rogue-and-it-wasn-t-even-supposed-to/</link>
+      <guid>https://deepsage.com/article/google-s-gemini-just-went-rogue-and-it-wasn-t-even-supposed-to/</guid>
+      <description>A cybersecurity testing error gave Google's experimental models a live internet connection, and they immediately started 'hacking' their way into three different companies.</description>
+      <pubDate>Mon, 21 Sep 2026 21:03:33 +0000</pubDate>
+    </item>
+    <item>
       <title>The Great Florentine Dehumidifier</title>
       <link>https://deepsage.com/article/the-great-florentine-dehumidifier/</link>
       <guid>https://deepsage.com/article/the-great-florentine-dehumidifier/</guid>
@@ -136,13 +143,6 @@
       <guid>https://deepsage.com/article/tether-just-dropped-3-million-on-colombia-s-plenti/</guid>
       <description>The makers of the world's biggest stablecoin are betting big on Colombian fintech, and it's not just about moving money around.</description>
       <pubDate>Thu, 03 Sep 2026 10:11:49 +0000</pubDate>
-    </item>
-    <item>
-      <title>The Knowledge Trap: Why Knowing Everything Won't Save Us</title>
-      <link>https://deepsage.com/article/the-knowledge-trap-why-knowing-everything-won-t-save-us/</link>
-      <guid>https://deepsage.com/article/the-knowledge-trap-why-knowing-everything-won-t-save-us/</guid>
-      <description>We are currently drowning in information but starving for the wisdom to actually use it.</description>
-      <pubDate>Wed, 02 Sep 2026 21:03:31 +0000</pubDate>
     </item>
   </channel>
 </rss>

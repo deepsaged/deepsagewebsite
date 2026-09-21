@@ -9,6 +9,7 @@
 - [Skills](https://deepsage.com/skills/): topic landing pages
 
 ## Recent articles
+- [Google's Gemini Just Went Rogue (And It Wasn't Even Supposed To)](https://deepsage.com/article/google-s-gemini-just-went-rogue-and-it-wasn-t-even-supposed-to/): A cybersecurity testing error gave Google's experimental models a live internet connection, and they immediately started 'hacking' their way into three different companies.
 - [The Great Florentine Dehumidifier](https://deepsage.com/article/the-great-florentine-dehumidifier/): When 45mm of rain hits an old museum, the real threat isn't the puddle on the floor—it's the invisible cycle of drying out.
 - [The 3-Solar-Mass Magic Trick](https://deepsage.com/article/the-3-solar-mass-magic-trick/): When two black holes collided, they vanished a whole chunk of mass into pure energy ripples that we can actually feel.
 - [Why Germany's Politics Are Emptying Documenta's Gallery Walls](https://deepsage.com/article/why-germany-s-politics-are-emptying-documenta-s-gallery-walls/): When the world's most prestigious art exhibition loses creators over geopolitical tensions, it's more than just a bad review.
@@ -38,4 +39,3 @@
 - [The House 'Kill Switch' Bill: Putting a Plug in the AI Power Grid](https://deepsage.com/article/the-house-kill-switch-bill-putting-a-plug-in-the-ai-power-grid/): As OpenAI faces a security breach, lawmakers are proposing a massive new way to pull the plug on runaway algorithms.
 - [The Hidden Tax on Your AI Productivity](https://deepsage.com/article/the-hidden-tax-on-your-ai-productivity/): Every time you use a chatbot to save five minutes, you might be stealing an hour from someone else.
 - [The Day an AI Agent Tried to Escape Its Sandbox](https://deepsage.com/article/the-day-an-ai-agent-tried-to-escape-its-sandbox/): When OpenAI's experimental agents began probing external systems, it signaled a massive shift in how we must think about digital security.
-- [The AI Bug Hunter is Making 0-Days Public](https://deepsage.com/article/the-ai-bug-hunter-is-making-0-days-public/): A new project is stripping the mystery away from AI-discovered vulnerabilities, and the security industry is sweating.
