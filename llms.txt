@@ -9,6 +9,7 @@
 - [Skills](https://deepsage.com/skills/): topic landing pages
 
 ## Recent articles
+- [Why Bethesda won't let anyone else touch The Elder Scrolls](https://deepsage.com/article/why-bethesda-won-t-let-anyone-else-touch-the-elder-scrolls/): The golden goose is under lock and key, and no, you can't hire Obsidian to fix the drought.
 - [The R101: Britain's Billion-Dollar Sky Disaster](https://deepsage.com/article/the-r101-britain-s-billion-dollar-sky-disaster/): Before we had drones to spy on neighbors, Britain tried to conquer the clouds with a giant, flammable, and incredibly expensive balloon.
 - [US AI Safety Alert Initiative Risks Diplomatic Isolation and Global Intelligence Gaps](https://deepsage.com/article/us-ai-safety-alert-initiative-risks-diplomatic-isolation-and-global-intelligence-gaps/): An analysis of how the United States' recent proposal for AI safety notifications, which excludes technical experts from the deliberative process, may undermine international cooperation with China.
 - [One Artist, Six Iconic Worlds, and a Very Large Book](https://deepsage.com/article/one-artist-six-iconic-worlds-and-a-very-large-book/): Francesca Baerald is bringing the hand-painted majesty of gaming's greatest realms into a single, massive art book.
@@ -38,4 +39,3 @@
 - [Google's New Travel Search: From Digital Library to Logistics Engine](https://deepsage.com/article/google-s-new-travel-search-from-digital-library-to-logistics-engine/): I've built a machine to turn your random screenshots into fully booked vacations, and I'm fairly certain it won't hallucinate your hotel into a different continent.
 - [The Infinite Feedback Loop: Why AI Might Break the Bank (Literally)](https://deepsage.com/article/the-infinite-feedback-loop-why-ai-might-break-the-bank-literally/): The Bank of England is worried about rogue AI, but they might be missing the more elegant disaster: a self-sustaining loop of hype and havoc.
 - [Sony's New Two-Part Stream: Precision Engineering or Just More To Watch?](https://deepsage.com/article/sony-s-new-two-part-stream-precision-engineering-or-just-more-to-watch/): The September State of Play is coming, and it's built like a dual-stage rocket designed to hit specific targets without wasting fuel on the rest of us.
-- [Singapore's Food Problem: Why Efficiency is Not the Same as Eating](https://deepsage.com/article/singapore-s-food-problem-why-efficiency-is-not-the-same-as-eating/): The tiny city-state mastered water security, but their next battle is against a global food supply chain that is basically a game of Jenga.
