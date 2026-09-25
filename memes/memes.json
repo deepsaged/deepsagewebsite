@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "_comment": "Single source of truth for dynamic memes. Read by generator/build.py (pages), assets/js/meme-render.js (canvas rendering + limits) and smm/posting pipeline/src/meme_links.py (signing + LLM hints). Slot boxes are fractions of the image. max_chars is enforced by both signer and renderer; the renderer also shrinks the font so text fits max_lines inside the box, and refuses to draw if it cannot.",
+  "memes": [
+    {
+      "id": "this-is-fine",
+      "title": "This is fine",
+      "image": "this-is-fine.jpg",
+      "width": 1226,
+      "height": 864,
+      "use_when": "Everything is obviously on fire but someone calmly insists all is okay: denial, ignoring an obvious problem, pretending things are normal.",
+      "slots": [
+        {"name": "top", "x": 0.03, "y": 0.02, "w": 0.94, "h": 0.2, "max_chars": 80, "max_lines": 2, "style": "caption", "hint": "the situation, e.g. 'ME READING NEWS THAT IS A YEAR OLD'"},
+        {"name": "bottom", "x": 0.03, "y": 0.79, "w": 0.94, "h": 0.19, "max_chars": 80, "max_lines": 2, "style": "caption", "hint": "the calm denial / punchline"}
+      ]
+    },
+    {
+      "id": "roll-safe",
+      "title": "Roll Safe (think about it)",
+      "image": "roll-safe.jpg",
+      "width": 1226,
+      "height": 864,
+      "use_when": "A 'genius' loophole or cheeky flawed logic, tapping the temple: 'you can't X if you don't Y'.",
+      "slots": [
+        {"name": "top", "x": 0.03, "y": 0.02, "w": 0.94, "h": 0.2, "max_chars": 80, "max_lines": 2, "style": "caption", "hint": "setup, e.g. 'CAN'T MISS THE NEWS'"},
+        {"name": "bottom", "x": 0.03, "y": 0.79, "w": 0.94, "h": 0.19, "max_chars": 80, "max_lines": 2, "style": "caption", "hint": "cheeky logic, e.g. 'IF YOU READ IT A YEAR LATER'"}
+      ]
+    },
+    {
+      "id": "distracted-boyfriend",
+      "title": "Distracted boyfriend",
+      "image": "distracted-boyfriend.jpg",
+      "width": 1264,
+      "height": 843,
+      "use_when": "Someone is tempted away from what they have by something new and shiny: switching preferences, new trend vs. old habit.",
+      "slots": [
+        {"name": "new_thing", "x": 0.14, "y": 0.66, "w": 0.3, "h": 0.2, "max_chars": 30, "max_lines": 3, "style": "label", "hint": "the tempting new thing (woman in red, left)"},
+        {"name": "person", "x": 0.49, "y": 0.58, "w": 0.24, "h": 0.2, "max_chars": 30, "max_lines": 3, "style": "label", "hint": "who is tempted (the boyfriend, middle)"},
+        {"name": "current_thing", "x": 0.745, "y": 0.55, "w": 0.2, "h": 0.2, "max_chars": 30, "max_lines": 3, "style": "label", "hint": "what they already have (girlfriend, right)"}
+      ]
+    }
+  ]
+}
