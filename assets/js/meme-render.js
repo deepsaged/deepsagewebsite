@@ -12,6 +12,11 @@
 // Anything else shows the plain template. Caption text only ever reaches
 // the canvas, textContent and attributes -- never innerHTML.
 //
+// Visit attribution: outreach comments append utm_* query params before
+// the fragment (?utm_medium=outreach&utm_content=oc<id>#...). The page then
+// records one click at oauth.deepsage.com/api/click (code "meme:<id>") and
+// carries the same params to the "Read the story" /s/<code>/ link.
+//
 // UMD so node --test can exercise the pure parts (see meme-render.test.js).
 (function (root, factory) {
   if (typeof module !== 'undefined' && module.exports) {
@@ -268,12 +273,53 @@
     });
   }
 
+  var UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
+  var UTM_VALUE_RE = /^[A-Za-z0-9_.-]{1,64}$/;
+  var CLICK_URL = 'https://oauth.deepsage.com/api/click';
+
+  // {utm_*} from a location.search string, or null without utm_medium.
+  // Values outside [A-Za-z0-9_.-]{1,64} are dropped.
+  function trackingParams(search) {
+    var p = new URLSearchParams(search || '');
+    var out = {};
+    UTM_KEYS.forEach(function (k) {
+      var v = p.get(k);
+      if (v && UTM_VALUE_RE.test(v)) out[k] = v;
+    });
+    return out.utm_medium ? out : null;
+  }
+
+  function articleHref(article, tracking) {
+    if (!tracking) return article;
+    return article + '?' + new URLSearchParams(tracking).toString();
+  }
+
+  function clickData(memeId, tracking, clickId) {
+    var data = { code: 'meme:' + memeId, click_id: clickId };
+    UTM_KEYS.forEach(function (k) {
+      data[k] = (tracking && tracking[k]) || '';
+    });
+    return data;
+  }
+
+  function recordVisit(win, memeId, tracking) {
+    if (!tracking || !win.navigator || !win.navigator.sendBeacon) return false;
+    var id = win.crypto && win.crypto.randomUUID ? win.crypto.randomUUID() : Date.now().toString(36) + Math.random().toString(36).slice(2);
+    try {
+      return win.navigator.sendBeacon(CLICK_URL, JSON.stringify(clickData(memeId, tracking, id)));
+    } catch (e) {
+      return false;
+    }
+  }
+
   // Browser entry point. cfg = {meme, publicKey, imageUrl}; els = {canvas,
   // status, caption, articleLink}.
   function init(cfg, els, win) {
     win = win || window;
     var img = new Image();
     var ctx = els.canvas.getContext('2d');
+    var tracking = trackingParams(win.location.search);
+    recordVisit(win, cfg.meme.id, tracking);
 
     function setStatus(msg) {
       els.status.textContent = msg || '';
@@ -330,7 +376,7 @@
         els.caption.textContent = alt;
         els.canvas.setAttribute('aria-label', cfg.meme.title + ' meme: ' + alt);
         if (v.article) {
-          els.articleLink.setAttribute('href', v.article);
+          els.articleLink.setAttribute('href', articleHref(v.article, tracking));
           els.articleLink.hidden = false;
         }
         return true;
@@ -358,6 +404,10 @@
     verifySignature: verifySignature,
     normalizeText: normalizeText,
     validatePayload: validatePayload,
+    trackingParams: trackingParams,
+    articleHref: articleHref,
+    clickData: clickData,
+    recordVisit: recordVisit,
     wrapLines: wrapLines,
     fitSlot: fitSlot,
     layoutMeme: layoutMeme,
