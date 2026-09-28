@@ -7,6 +7,8 @@
 - [Articles](https://deepsage.com/article/): full article index
 - [Quizzes](https://deepsage.com/quiz/): full quiz index
 - [Skills](https://deepsage.com/skills/): topic landing pages
+- [Games](https://deepsage.com/games/): upcoming skill-building games (in development)
+- [Books](https://deepsage.com/books/): one story-driven book per skill (in development)
 
 ## Recent articles
 - [Samsung's Firmware Update: A Very Expensive Way to Kill Your Milk](https://deepsage.com/article/samsung-s-firmware-update-a-very-expensive-way-to-kill-your-milk/): When your refrigerator decides to go on a permanent strike during a software update, you aren't just dealing with a tech glitch—you're dealing with a deli nightmare.
