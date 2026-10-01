@@ -208,9 +208,33 @@ a:hover { opacity: 0.7; }
    the right regardless of whether the switcher renders. */
 .header-controls {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 12px;
+  justify-content: flex-end;
+  gap: 10px;
 }
+
+/* ── HEADER NAV ── Games / Books / Launcher, left of the social icons. */
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.header-nav-link {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding: 5px 8px;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.header-nav-link:hover { background: #d9b97815; opacity: 1; }
 
 /* ── HEADER SOCIAL ──
    Links to DeepSage's own channels, left of the account button -- not the
@@ -256,14 +280,14 @@ a:hover { opacity: 0.7; }
 
 .signin-link {
   font-family: var(--sans);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   text-transform: uppercase;
   border: 1px solid #d9b97844;
   background: transparent;
   color: var(--gold);
-  padding: 7px 16px;
+  padding: 5px 10px;
   border-radius: 2px;
   cursor: pointer;
   transition: background 0.2s, border-color 0.2s;
@@ -317,18 +341,21 @@ a:hover { opacity: 0.7; }
 
 .lang-switcher-btn {
   font-family: var(--sans);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   text-transform: uppercase;
   border: 1px solid #d9b97844;
   background: transparent;
   color: var(--gold);
-  padding: 7px 16px;
+  padding: 5px 10px;
   border-radius: 2px;
   cursor: pointer;
   transition: background 0.2s, border-color 0.2s;
 }
+
+.lang-switcher-btn { display: inline-flex; align-items: center; padding: 4px 7px; }
+.lang-switcher-icon { display: block; }
 
 .lang-switcher-btn:hover { background: #d9b97815; border-color: var(--gold); }
 
@@ -1297,6 +1324,7 @@ table th {
 @media (max-width: 600px) {
   .page-content { padding: 32px 16px; }
   .page-header { flex-direction: column; gap: 16px; }
+  .header-controls { justify-content: center; }
   .page-title { font-size: 38px; }
 }
 
