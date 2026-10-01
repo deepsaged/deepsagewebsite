@@ -1,0 +1,928 @@
+{
+ "schema_version": 1,
+ "generated_at": "2026-10-01T11:51:09Z",
+ "site": "https://deepsage.com",
+ "games": [
+  {
+   "id": "fallacy-noir",
+   "title": "Fallacy Noir",
+   "tagline": "A rain-soaked detective story where every lie hides a broken argument.",
+   "description": [
+    "It is 1947, the city never stops raining, and every witness in the precinct has a story that almost holds together. As a rookie detective with an unusually sharp ear for bad logic, you crack cases by catching the fallacies buried in testimony: the straw man, the false dilemma, the convenient appeal to authority.",
+    "Pin statements to your evidence board, connect contradictions with red string, and confront suspects when you can name exactly why their reasoning fails. Accuse the wrong person on a hunch and the case goes cold. By the last chapter you will hear a slippery slope coming from a block away."
+   ],
+   "genres": [
+    "Detective",
+    "Narrative",
+    "Puzzle"
+   ],
+   "skills": [
+    "Critical Thinking",
+    "Analytical Problem Solving"
+   ],
+   "features": [
+    "12 hand-written cases with over 40 fallacy types hidden in testimony",
+    "An evidence board where you link claims, contradictions and motives",
+    "Interrogations that branch on how precisely you name the flaw",
+    "A casebook that turns every solved fallacy into a quick reference card"
+   ],
+   "capsule_url": "https://deepsage.com/catalog/games/fallacy-noir/capsule.webp",
+   "screenshot_urls": [
+    "https://deepsage.com/catalog/games/fallacy-noir/shot-1.webp",
+    "https://deepsage.com/catalog/games/fallacy-noir/shot-2.webp",
+    "https://deepsage.com/catalog/games/fallacy-noir/shot-3.webp",
+    "https://deepsage.com/catalog/games/fallacy-noir/shot-4.webp"
+   ],
+   "page_url": "https://deepsage.com/games/fallacy-noir/",
+   "release": null
+  },
+  {
+   "id": "prompt-forge",
+   "title": "Prompt Forge",
+   "tagline": "Word your spells precisely, or your golem will take them literally.",
+   "description": [
+    "Deep in a mountain forge lives Brom, an ancient golem who will build anything you ask for, exactly as you ask for it. Ask for \"a sword\" and you get a sword the size of a house. Ask him to \"fix the bridge\" and he may fix it permanently in place. Your job as the forge's new apprentice is to learn how to ask.",
+    "Each commission is a puzzle in clear instructions: give context, set constraints, show examples, and break big jobs into steps. Villagers bring stranger requests as the seasons pass, and Brom's quirks mirror the real habits of modern AI models, so the craft you learn here carries straight over to the tools on your desk."
+   ],
+   "genres": [
+    "Puzzle",
+    "Fantasy",
+    "Crafting"
+   ],
+   "skills": [
+    "Prompt Engineering",
+    "Artificial Intelligence Literacy"
+   ],
+   "features": [
+    "60+ commissions solved by writing instructions, not by clicking",
+    "Brom reacts to vague wording, missing context and conflicting goals",
+    "Unlock rune techniques modeled on real prompting patterns",
+    "A sandbox forge to experiment with your own requests"
+   ],
+   "capsule_url": "https://deepsage.com/catalog/games/prompt-forge/capsule.webp",
+   "screenshot_urls": [
+    "https://deepsage.com/catalog/games/prompt-forge/shot-1.webp",
+    "https://deepsage.com/catalog/games/prompt-forge/shot-2.webp",
+    "https://deepsage.com/catalog/games/prompt-forge/shot-3.webp",
+    "https://deepsage.com/catalog/games/prompt-forge/shot-4.webp"
+   ],
+   "page_url": "https://deepsage.com/games/prompt-forge/",
+   "release": null
+  },
+  {
+   "id": "signal-and-noise",
+   "title": "Signal & Noise",
+   "tagline": "Keep the lighthouse burning by finding the truth hidden in the data.",
+   "description": [
+    "You are the last keeper of a lighthouse on the edge of an ocean made of numbers. Ships only make it home if you can turn raw readings into a picture they can trust. Pick the right chart, pick the right scale, and the storm opens up to show a safe channel. Pick the wrong ones and the fleet sails straight onto the rocks.",
+    "Between storms, rival keepers send out charts of their own, some honest and some bent: truncated axes, cherry-picked ranges, averages hiding outliers. Expose the misleading ones before the harbor believes them. Every run brings new datasets, new weather and new ways for numbers to lie."
+   ],
+   "genres": [
+    "Roguelite",
+    "Puzzle",
+    "Strategy"
+   ],
+   "skills": [
+    "Data Visualization",
+    "Data Literacy",
+    "Data Analytics"
+   ],
+   "features": [
+    "Procedural datasets and storms, so no two voyages are alike",
+    "Build charts from a deck of chart types, scales and encodings",
+    "Spot and debunk misleading graphs from rival lighthouses",
+    "Meta-progression that unlocks new lenses, filters and statistics"
+   ],
+   "capsule_url": "https://deepsage.com/catalog/games/signal-and-noise/capsule.webp",
+   "screenshot_urls": [
+    "https://deepsage.com/catalog/games/signal-and-noise/shot-1.webp",
+    "https://deepsage.com/catalog/games/signal-and-noise/shot-2.webp",
+    "https://deepsage.com/catalog/games/signal-and-noise/shot-3.webp",
+    "https://deepsage.com/catalog/games/signal-and-noise/shot-4.webp"
+   ],
+   "page_url": "https://deepsage.com/games/signal-and-noise/",
+   "release": null
+  },
+  {
+   "id": "firewall-farm",
+   "title": "Firewall Farm",
+   "tagline": "A cozy farming sim where the pests are phishing and the crops are your data.",
+   "description": [
+    "Grandma left you the old farm in Byte Hollow, and with it the village's entire network. Your fields grow data, your barn is a server rack, and every season brings new pests: phishing moths that mimic friendly letters, ransomware crows that lock up the silo, and password weeds that spread wherever someone reused \"harvest123\".",
+    "Plant strong fences, rotate your keys like crops, teach villagers to check who really sent that letter, and decide what the farm actually needs to keep. It is a slow, cozy game with real security thinking underneath: least privilege, backups, patching and privacy by design, all learned one harvest at a time."
+   ],
+   "genres": [
+    "Cozy",
+    "Simulation",
+    "Farming"
+   ],
+   "skills": [
+    "Cybersecurity Management",
+    "Data Privacy Strategy",
+    "Risk Management"
+   ],
+   "features": [
+    "Four seasons of threats modeled on real attack patterns",
+    "Villagers with their own security habits you can help improve",
+    "Backups, patches and access rules that work like farm upkeep",
+    "A privacy almanac that decides which data the farm should never keep"
+   ],
+   "capsule_url": "https://deepsage.com/catalog/games/firewall-farm/capsule.webp",
+   "screenshot_urls": [
+    "https://deepsage.com/catalog/games/firewall-farm/shot-1.webp",
+    "https://deepsage.com/catalog/games/firewall-farm/shot-2.webp",
+    "https://deepsage.com/catalog/games/firewall-farm/shot-3.webp",
+    "https://deepsage.com/catalog/games/firewall-farm/shot-4.webp"
+   ],
+   "page_url": "https://deepsage.com/games/firewall-farm/",
+   "release": null
+  },
+  {
+   "id": "the-negotiators-table",
+   "title": "The Negotiator's Table",
+   "tagline": "Talk a floating city back from the brink, one conversation at a time.",
+   "description": [
+    "The sky city of Aerith is held up by five guilds, and all five have stopped speaking to each other. As the city's newly appointed mediator, you sit down with miners, weavers, sky pilots, archivists and merchants, and try to find what each of them actually needs underneath what they are shouting about.",
+    "Conversations are played with cards: listen, reflect, reframe, name the emotion, propose a trade. Read the tells in each character's face, notice when pride is louder than interest, and build agreements that hold. Push too hard and a district loses power; get it right and whole storylines open up."
+   ],
+   "genres": [
+    "Narrative",
+    "Card Game",
+    "Strategy"
+   ],
+   "skills": [
+    "Conflict Resolution",
+    "Emotional Intelligence",
+    "Leadership"
+   ],
+   "features": [
+    "A card-driven dialogue system built on real mediation techniques",
+    "Characters with hidden interests you uncover by listening",
+    "Choices that ripple across the city and change later negotiations",
+    "Multiple endings shaped by trust rather than by force"
+   ],
+   "capsule_url": "https://deepsage.com/catalog/games/the-negotiators-table/capsule.webp",
+   "screenshot_urls": [
+    "https://deepsage.com/catalog/games/the-negotiators-table/shot-1.webp",
+    "https://deepsage.com/catalog/games/the-negotiators-table/shot-2.webp",
+    "https://deepsage.com/catalog/games/the-negotiators-table/shot-3.webp",
+    "https://deepsage.com/catalog/games/the-negotiators-table/shot-4.webp"
+   ],
+   "page_url": "https://deepsage.com/games/the-negotiators-table/",
+   "release": null
+  },
+  {
+   "id": "cloud-cartographer",
+   "title": "Cloud Cartographer",
+   "tagline": "Build a city in the sky that survives the traffic storms.",
+   "description": [
+    "Your city floats on clouds, and so does everything it runs on. Lay out districts, route the flow of travelers across bridges and airways, and keep the lights on when a festival triples the crowd overnight. Every building is a service; every bridge is a dependency; every storm is a real failure mode.",
+    "Start with one sturdy tower and discover why it creaks under load. Split it into districts, add caches and queues, spread across islands so a single lightning strike cannot take everything down, and automate the crews that rebuild after each storm. It plays like a relaxing city builder until the traffic arrives."
+   ],
+   "genres": [
+    "City Builder",
+    "Simulation",
+    "Strategy"
+   ],
+   "skills": [
+    "Cloud Infrastructure",
+    "Software Architecture",
+    "DevOps Engineering"
+   ],
+   "features": [
+    "Traffic surges, outages and storms modeled on real system failures",
+    "Services, caches, queues and load balancers as city buildings",
+    "Automation crews that deploy, monitor and recover on their own",
+    "A post-storm review screen that shows exactly what broke and why"
+   ],
+   "capsule_url": "https://deepsage.com/catalog/games/cloud-cartographer/capsule.webp",
+   "screenshot_urls": [
+    "https://deepsage.com/catalog/games/cloud-cartographer/shot-1.webp",
+    "https://deepsage.com/catalog/games/cloud-cartographer/shot-2.webp",
+    "https://deepsage.com/catalog/games/cloud-cartographer/shot-3.webp",
+    "https://deepsage.com/catalog/games/cloud-cartographer/shot-4.webp"
+   ],
+   "page_url": "https://deepsage.com/games/cloud-cartographer/",
+   "release": null
+  },
+  {
+   "id": "coin-and-tide",
+   "title": "Coin & Tide",
+   "tagline": "Grow a tiny island economy across fifty years of storms and good seasons.",
+   "description": [
+    "You inherit a small island, a leaky fishing boat and fifty years. Each turn is a season: decide what to spend, what to save, and what to plant for a harvest you may not see for a decade. Coin & Tide makes compounding visible, as a single sapling you planted early grows into the orchard that carries you through a bad storm late in life.",
+    "Traders offer loans with tempting terms, merchants sell insurance against storms that may never come, and a shiny new boat is always one season away. Inflation quietly raises the price of nets, diversification keeps one bad catch from sinking you, and the islanders you help early come back to help you later."
+   ],
+   "genres": [
+    "Strategy",
+    "Management",
+    "Turn-based"
+   ],
+   "skills": [
+    "Financial Literacy",
+    "Risk Management",
+    "Strategic Planning"
+   ],
+   "features": [
+    "Fifty seasons of saving, investing and weathering storms",
+    "Compound growth you can literally watch grow as an orchard",
+    "Loans, insurance and inflation explained through island life",
+    "Random storms and booms that reward a diversified island"
+   ],
+   "capsule_url": "https://deepsage.com/catalog/games/coin-and-tide/capsule.webp",
+   "screenshot_urls": [
+    "https://deepsage.com/catalog/games/coin-and-tide/shot-1.webp",
+    "https://deepsage.com/catalog/games/coin-and-tide/shot-2.webp",
+    "https://deepsage.com/catalog/games/coin-and-tide/shot-3.webp",
+    "https://deepsage.com/catalog/games/coin-and-tide/shot-4.webp"
+   ],
+   "page_url": "https://deepsage.com/games/coin-and-tide/",
+   "release": null
+  },
+  {
+   "id": "expedition-zero",
+   "title": "Expedition Zero",
+   "tagline": "Lead six people across a frozen world where no plan survives the first storm.",
+   "description": [
+    "A research crew of six, a supply sled, and eight hundred kilometers of ice between you and the only way home. You are not the strongest member of the team, or the best navigator. You are the one who has to decide. Expedition Zero is a survival game about leadership under uncertainty: who scouts, who rests, when to push on and when to wait out the storm.",
+    "Every crew member has skills, fears and a breaking point. Delegate well and the team outperforms any one of them; ignore someone's warning and you may lose more than supplies. Plans change daily, information is always incomplete, and the best leaders adapt without losing the trust they have built."
+   ],
+   "genres": [
+    "Survival",
+    "Strategy",
+    "Narrative"
+   ],
+   "skills": [
+    "Leadership",
+    "Team Collaboration",
+    "Adaptability",
+    "Complex Decision Making"
+   ],
+   "features": [
+    "A six-person crew with personalities, trust and morale",
+    "Daily planning where every order trades one risk for another",
+    "Procedural weather and terrain that break even the best plans",
+    "A debrief after each expedition that reviews your key calls"
+   ],
+   "capsule_url": "https://deepsage.com/catalog/games/expedition-zero/capsule.webp",
+   "screenshot_urls": [
+    "https://deepsage.com/catalog/games/expedition-zero/shot-1.webp",
+    "https://deepsage.com/catalog/games/expedition-zero/shot-2.webp",
+    "https://deepsage.com/catalog/games/expedition-zero/shot-3.webp",
+    "https://deepsage.com/catalog/games/expedition-zero/shot-4.webp"
+   ],
+   "page_url": "https://deepsage.com/games/expedition-zero/",
+   "release": null
+  },
+  {
+   "id": "neuron-garden",
+   "title": "Neuron Garden",
+   "tagline": "Grow a glowing neural network and teach it to see the world.",
+   "description": [
+    "Neuron Garden turns machine learning into gardening. Plant layers of luminous neurons, connect them with vines, and feed your garden examples to learn from: pictures of birds, handwritten letters, the sounds of rain. Watch the connections brighten as it learns, and watch weeds of overfitting creep in when you water it too much with the same data.",
+    "Each greenhouse is a new problem, from sorting fruit to predicting the weather. Prune, rebalance and test your garden on examples it has never seen. It is calm, beautiful and surprisingly honest about how real models learn, fail and get better."
+   ],
+   "genres": [
+    "Puzzle",
+    "Simulation",
+    "Relaxing"
+   ],
+   "skills": [
+    "Machine Learning Engineering",
+    "Artificial Intelligence Literacy",
+    "Lifelong Learning"
+   ],
+   "features": [
+    "A living network you grow layer by layer, vine by vine",
+    "Training, validation and overfitting shown as a changing garden",
+    "Greenhouse challenges covering vision, sound and prediction",
+    "A zen mode with no goals, only growing"
+   ],
+   "capsule_url": "https://deepsage.com/catalog/games/neuron-garden/capsule.webp",
+   "screenshot_urls": [
+    "https://deepsage.com/catalog/games/neuron-garden/shot-1.webp",
+    "https://deepsage.com/catalog/games/neuron-garden/shot-2.webp",
+    "https://deepsage.com/catalog/games/neuron-garden/shot-3.webp",
+    "https://deepsage.com/catalog/games/neuron-garden/shot-4.webp"
+   ],
+   "page_url": "https://deepsage.com/games/neuron-garden/",
+   "release": null
+  },
+  {
+   "id": "launch-day",
+   "title": "Launch Day",
+   "tagline": "Ship the product before scope creep eats the whole team.",
+   "description": [
+    "You have one quarter, a small team, and a product idea that everyone loves in a different way. Launch Day is a roguelite about building the right thing: interview users to find the real problem, sketch and test designs, cut features ruthlessly, and ship before the deadline arrives.",
+    "Scope creep is a monster that grows every time you say \"sure, we can add that\". Stakeholders pull the roadmap in different directions, prototypes reveal what users actually do, and every sprint is a fresh draft of cards you play to plan the week. Each run is a new product, a new market and a new chance to get launch day right."
+   ],
+   "genres": [
+    "Roguelite",
+    "Deckbuilder",
+    "Management"
+   ],
+   "skills": [
+    "Product Management",
+    "UX Design",
+    "Project Management"
+   ],
+   "features": [
+    "A deckbuilder where cards are research, design and delivery moves",
+    "User interviews that reveal the problem behind the request",
+    "Scope creep, stakeholders and deadlines as escalating threats",
+    "Procedural products and markets for endless runs"
+   ],
+   "capsule_url": "https://deepsage.com/catalog/games/launch-day/capsule.webp",
+   "screenshot_urls": [
+    "https://deepsage.com/catalog/games/launch-day/shot-1.webp",
+    "https://deepsage.com/catalog/games/launch-day/shot-2.webp",
+    "https://deepsage.com/catalog/games/launch-day/shot-3.webp",
+    "https://deepsage.com/catalog/games/launch-day/shot-4.webp"
+   ],
+   "page_url": "https://deepsage.com/games/launch-day/",
+   "release": null
+  },
+  {
+   "id": "chess-defense",
+   "title": "Chess Defense",
+   "tagline": "Hold your back row against endless waves of enemy chess pieces.",
+   "description": [
+    "Chess Defense turns the oldest strategy game into a siege. Enemy pieces march down the board in waves, each moving by its own chess rules, and you place and move your defenders to hold the back row for as long as you can.",
+    "Every wave asks the same questions a good chess player asks: which threat matters most, which trade is worth it, and which move sets up the next three. The browser prototype is being rebuilt into a full game with campaigns, new piece types and a daily challenge board."
+   ],
+   "genres": [
+    "Strategy",
+    "Tower Defense",
+    "Puzzle"
+   ],
+   "skills": [
+    "Strategic Planning",
+    "Complex Decision Making"
+   ],
+   "features": [
+    "Wave-based defense where every enemy follows real chess movement",
+    "Campaign boards with new terrain and piece types",
+    "A daily challenge board shared by every player",
+    "Replays that show where your defense first began to crack"
+   ],
+   "capsule_url": "https://deepsage.com/catalog/games/chess-defense/capsule.webp",
+   "screenshot_urls": [
+    "https://deepsage.com/catalog/games/chess-defense/shot-1.webp",
+    "https://deepsage.com/catalog/games/chess-defense/shot-2.webp",
+    "https://deepsage.com/catalog/games/chess-defense/shot-3.webp",
+    "https://deepsage.com/catalog/games/chess-defense/shot-4.webp"
+   ],
+   "page_url": "https://deepsage.com/games/chess-defense/",
+   "release": null
+  },
+  {
+   "id": "hypercube-tic-tac-toe",
+   "title": "Hypercube Tic-Tac-Toe",
+   "tagline": "Tic-tac-toe stretched into 2 to 12 dimensions.",
+   "description": [
+    "You know how to win tic-tac-toe on a 3x3 grid. Now play it on a cube, then on a tesseract, then in twelve dimensions, where lines of three run in directions your intuition has never seen.",
+    "Hypercube Tic-Tac-Toe trains the skill of holding a complex space in your head: projecting it, slicing it, and spotting patterns that only appear from the right angle. The full version adds new ways to visualize higher dimensions, puzzle modes and online matches against friends."
+   ],
+   "genres": [
+    "Puzzle",
+    "Strategy",
+    "Abstract"
+   ],
+   "skills": [
+    "Analytical Problem Solving",
+    "Creative Thinking"
+   ],
+   "features": [
+    "Boards from 2 up to 12 dimensions",
+    "Several projection views to rotate and slice the hypercube",
+    "Puzzle mode with handcrafted win-in-N challenges",
+    "An AI opponent that adapts to your level"
+   ],
+   "capsule_url": "https://deepsage.com/catalog/games/hypercube-tic-tac-toe/capsule.webp",
+   "screenshot_urls": [
+    "https://deepsage.com/catalog/games/hypercube-tic-tac-toe/shot-1.webp",
+    "https://deepsage.com/catalog/games/hypercube-tic-tac-toe/shot-2.webp",
+    "https://deepsage.com/catalog/games/hypercube-tic-tac-toe/shot-3.webp",
+    "https://deepsage.com/catalog/games/hypercube-tic-tac-toe/shot-4.webp"
+   ],
+   "page_url": "https://deepsage.com/games/hypercube-tic-tac-toe/",
+   "release": null
+  },
+  {
+   "id": "rupture-pattern-system",
+   "title": "Rupture Pattern System",
+   "tagline": "Break 12 AI guardians by finding the fixed logic behind their moves.",
+   "description": [
+    "Twelve AI guardians protect the system core, and each one plays Rock-Paper-Scissors by a fixed rule. Some mirror you, some counter your last move, some cycle, and the last ones hide their patterns inside patterns. Find the rule and win nine rounds out of ten to break through.",
+    "Rupture Pattern System is a game about noticing: forming a hypothesis, testing it cheaply, and throwing it away the moment the evidence disagrees. The full release expands the ladder with new guardians, a story campaign inside the system and a mode for designing guardians of your own."
+   ],
+   "genres": [
+    "Puzzle",
+    "Cyberpunk",
+    "Strategy"
+   ],
+   "skills": [
+    "Critical Thinking",
+    "Analytical Problem Solving",
+    "Artificial Intelligence Literacy"
+   ],
+   "features": [
+    "A ladder of 12 guardians, each with its own hidden rule",
+    "Hypothesis tools to log, test and discard pattern guesses",
+    "A cyberpunk story campaign inside the system",
+    "A guardian editor for designing and sharing your own"
+   ],
+   "capsule_url": "https://deepsage.com/catalog/games/rupture-pattern-system/capsule.webp",
+   "screenshot_urls": [
+    "https://deepsage.com/catalog/games/rupture-pattern-system/shot-1.webp",
+    "https://deepsage.com/catalog/games/rupture-pattern-system/shot-2.webp",
+    "https://deepsage.com/catalog/games/rupture-pattern-system/shot-3.webp",
+    "https://deepsage.com/catalog/games/rupture-pattern-system/shot-4.webp"
+   ],
+   "page_url": "https://deepsage.com/games/rupture-pattern-system/",
+   "release": null
+  }
+ ],
+ "books": [
+  {
+   "id": "artificial-intelligence-literacy",
+   "skill": "Artificial Intelligence Literacy",
+   "title": "The Machine That Guessed",
+   "subtitle": "How AI really works, told through the mistakes it makes",
+   "overview": "Every AI system you use is, at heart, a very fast guesser. This book follows a curious teenager and her grandmother's old chess computer as they poke, prod and occasionally break the AI tools around them. Each chapter starts with a strange AI failure and works backward to the idea that explains it, so by the end you can predict when an AI will shine, when it will bluff, and what questions to ask before trusting it.",
+   "concepts": [
+    "Prediction vs. understanding",
+    "Training data and bias",
+    "Why models hallucinate",
+    "Where AI is reliable and where it is not",
+    "Using AI tools responsibly"
+   ],
+   "cover_url": "https://deepsage.com/catalog/books/artificial-intelligence-literacy/cover.webp",
+   "page_url": "https://deepsage.com/books/artificial-intelligence-literacy/"
+  },
+  {
+   "id": "machine-learning-engineering",
+   "skill": "Machine Learning Engineering",
+   "title": "From Notebook to Nightshift",
+   "subtitle": "The journey of one model from a laptop experiment to a system millions depend on",
+   "overview": "A promising model works beautifully in a notebook on Friday and falls over in production on Monday. This book tells the story of that model's first year in the real world: messy data pipelines, drifting inputs, silent failures at 3 a.m. and the engineers who learn to catch them. Along the way you learn the craft that turns a clever experiment into a dependable service.",
+   "concepts": [
+    "Data pipelines and feature stores",
+    "Train, validation and test splits",
+    "Model deployment and serving",
+    "Monitoring and data drift",
+    "Reproducibility and versioning"
+   ],
+   "cover_url": "https://deepsage.com/catalog/books/machine-learning-engineering/cover.webp",
+   "page_url": "https://deepsage.com/books/machine-learning-engineering/"
+  },
+  {
+   "id": "prompt-engineering",
+   "skill": "Prompt Engineering",
+   "title": "Say What You Mean",
+   "subtitle": "The art of talking to machines that take you literally",
+   "overview": "A genie grants wishes exactly as spoken, and every wish goes wrong in a new way. In this playful book, a young apprentice learns to phrase requests to a literal-minded genie, and each lesson maps directly onto how to write prompts for today's AI models. You will learn to give context, set constraints, show examples and break big problems into steps, and you will laugh at the genie's disasters along the way.",
+   "concepts": [
+    "Context and role",
+    "Clear constraints",
+    "Few-shot examples",
+    "Step-by-step decomposition",
+    "Evaluating and iterating on outputs"
+   ],
+   "cover_url": "https://deepsage.com/catalog/books/prompt-engineering/cover.webp",
+   "page_url": "https://deepsage.com/books/prompt-engineering/"
+  },
+  {
+   "id": "critical-thinking",
+   "skill": "Critical Thinking",
+   "title": "The Detective in Your Head",
+   "subtitle": "Solving everyday mysteries with evidence, logic and a little doubt",
+   "overview": "Every day you are handed claims dressed as facts: headlines, ads, arguments, rumors. This book turns you into a detective of ideas. Through short cases, from a suspicious miracle diet to a village convinced a ghost stole the bread, you learn to question sources, weigh evidence, spot fallacies and change your mind when the facts demand it.",
+   "concepts": [
+    "Claims vs. evidence",
+    "Common logical fallacies",
+    "Evaluating sources",
+    "Cognitive biases",
+    "Updating beliefs"
+   ],
+   "cover_url": "https://deepsage.com/catalog/books/critical-thinking/cover.webp",
+   "page_url": "https://deepsage.com/books/critical-thinking/"
+  },
+  {
+   "id": "analytical-problem-solving",
+   "skill": "Analytical Problem Solving",
+   "title": "Untangle",
+   "subtitle": "A field guide to breaking big, messy problems into small solvable ones",
+   "overview": "Big problems look impossible because we see them as one giant knot. Untangle follows an engineer, a chef and a city planner as each faces a crisis that seems hopeless, and shows how they pull the knot apart: define the real problem, split it into pieces, test assumptions, and find the root cause instead of the loudest symptom.",
+   "concepts": [
+    "Defining the real problem",
+    "Decomposition and issue trees",
+    "Root cause analysis",
+    "Hypothesis-driven work",
+    "Prioritizing by impact"
+   ],
+   "cover_url": "https://deepsage.com/catalog/books/analytical-problem-solving/cover.webp",
+   "page_url": "https://deepsage.com/books/analytical-problem-solving/"
+  },
+  {
+   "id": "data-literacy",
+   "skill": "Data Literacy",
+   "title": "Numbers Have Feelings Too",
+   "subtitle": "How to read, question and trust the data that shapes your life",
+   "overview": "Numbers don't lie, but they can be framed, cropped, averaged and cherry-picked until they say almost anything. This warm and funny book introduces a cast of personified numbers, from the anxious Outlier to the smug Average, to show how data is collected, summarized and sometimes abused. You will come away able to read a statistic and ask the right questions before believing it.",
+   "concepts": [
+    "Where data comes from",
+    "Averages, medians and spread",
+    "Correlation vs. causation",
+    "Sampling and bias",
+    "Reading charts critically"
+   ],
+   "cover_url": "https://deepsage.com/catalog/books/data-literacy/cover.webp",
+   "page_url": "https://deepsage.com/books/data-literacy/"
+  },
+  {
+   "id": "data-analytics",
+   "skill": "Data Analytics",
+   "title": "The Question Behind the Spreadsheet",
+   "subtitle": "Turning rows of data into decisions people actually make",
+   "overview": "A small bakery is losing money and nobody knows why. Its owner hands a nervous new analyst a messy spreadsheet and one week. This story-driven book follows that week from cleaning the data to exploring it, testing ideas and presenting a finding the owner can act on. It teaches the analytics workflow as a detective story with flour on its hands.",
+   "concepts": [
+    "Asking the right question",
+    "Cleaning messy data",
+    "Exploratory analysis",
+    "Segmentation and trends",
+    "Communicating findings"
+   ],
+   "cover_url": "https://deepsage.com/catalog/books/data-analytics/cover.webp",
+   "page_url": "https://deepsage.com/books/data-analytics/"
+  },
+  {
+   "id": "data-visualization",
+   "skill": "Data Visualization",
+   "title": "Drawing the Invisible",
+   "subtitle": "How great charts reveal what numbers alone hide",
+   "overview": "Florence Nightingale changed how hospitals worked with one diagram. This book tells the stories behind famous charts, from cholera maps to climate stripes, and uses them to teach the principles of good visual design. Learn to choose the right chart, use color with purpose, remove clutter and design a graphic that makes the right point impossible to miss.",
+   "concepts": [
+    "Choosing the right chart",
+    "Visual encoding and perception",
+    "Color and contrast",
+    "Removing chart junk",
+    "Honest vs. misleading visuals"
+   ],
+   "cover_url": "https://deepsage.com/catalog/books/data-visualization/cover.webp",
+   "page_url": "https://deepsage.com/books/data-visualization/"
+  },
+  {
+   "id": "cybersecurity-management",
+   "skill": "Cybersecurity Management",
+   "title": "The Castle Has a Thousand Doors",
+   "subtitle": "Defending organizations when attackers need only one way in",
+   "overview": "A medieval castle hires a new keeper of the gates, and discovers the walls matter far less than the servants who leave side doors open. Told as a castle chronicle that mirrors modern organizations, this book explains threats, defenses, risk and people-first security. It shows how security leaders decide what to protect first when they cannot protect everything.",
+   "concepts": [
+    "Threat modeling",
+    "Defense in depth",
+    "The human factor and phishing",
+    "Incident response",
+    "Security as risk management"
+   ],
+   "cover_url": "https://deepsage.com/catalog/books/cybersecurity-management/cover.webp",
+   "page_url": "https://deepsage.com/books/cybersecurity-management/"
+  },
+  {
+   "id": "data-privacy-strategy",
+   "skill": "Data Privacy Strategy",
+   "title": "The Glass House",
+   "subtitle": "Living, building and leading in a world that remembers everything",
+   "overview": "Imagine living in a house with glass walls where every neighbor keeps notes. That is roughly how our data lives today. This book follows a young product team building an app that people love, and the day they realize how much they know about their users. It explains privacy principles, regulations and design choices that respect people while still building great products.",
+   "concepts": [
+    "Personal data and consent",
+    "Data minimization",
+    "Privacy by design",
+    "GDPR and global regulation",
+    "Trust as a product feature"
+   ],
+   "cover_url": "https://deepsage.com/catalog/books/data-privacy-strategy/cover.webp",
+   "page_url": "https://deepsage.com/books/data-privacy-strategy/"
+  },
+  {
+   "id": "adaptability",
+   "skill": "Adaptability",
+   "title": "Water Finds a Way",
+   "subtitle": "Thriving when the plan, the job and the world keep changing",
+   "overview": "A river never argues with a rock; it goes around, under or through. This book gathers stories of people who faced sudden change, from a chef whose restaurant closed overnight to a pilot improvising a landing, and draws out the habits that let them adapt instead of break. You will learn to loosen your grip on the old plan, learn fast and treat change as information.",
+   "concepts": [
+    "Growth mindset",
+    "Learning agility",
+    "Reframing setbacks",
+    "Experimenting in uncertainty",
+    "Resilience habits"
+   ],
+   "cover_url": "https://deepsage.com/catalog/books/adaptability/cover.webp",
+   "page_url": "https://deepsage.com/books/adaptability/"
+  },
+  {
+   "id": "emotional-intelligence",
+   "skill": "Emotional Intelligence",
+   "title": "The Weather Inside",
+   "subtitle": "Understanding the storms and sunshine in yourself and others",
+   "overview": "Emotions are like weather: they pass through, they can be forecast, and they shape every plan we make. Using this simple metaphor, the book teaches you to notice your own inner weather, read the forecast in other people, and respond instead of react. Short stories from offices, families and friendships show emotional intelligence as a skill you can practice every day.",
+   "concepts": [
+    "Self-awareness",
+    "Self-regulation",
+    "Empathy",
+    "Reading social cues",
+    "Handling difficult conversations"
+   ],
+   "cover_url": "https://deepsage.com/catalog/books/emotional-intelligence/cover.webp",
+   "page_url": "https://deepsage.com/books/emotional-intelligence/"
+  },
+  {
+   "id": "leadership",
+   "skill": "Leadership",
+   "title": "The Last to Eat",
+   "subtitle": "What real leaders do when nobody is watching",
+   "overview": "Leadership is not a title; it is a set of choices, often small and often invisible. This book follows a reluctant new team lead through her first year, from the first awkward one-on-one to the crisis that tests everyone's trust. It covers vision, delegation, feedback and accountability through a story you will recognize from your own workplace.",
+   "concepts": [
+    "Setting direction",
+    "Delegation and ownership",
+    "Giving and receiving feedback",
+    "Building trust",
+    "Leading through crisis"
+   ],
+   "cover_url": "https://deepsage.com/catalog/books/leadership/cover.webp",
+   "page_url": "https://deepsage.com/books/leadership/"
+  },
+  {
+   "id": "team-collaboration",
+   "skill": "Team Collaboration",
+   "title": "The Orchestra Without a Conductor",
+   "subtitle": "How great teams listen, coordinate and create together",
+   "overview": "What happens when an orchestra loses its conductor on the night of the big concert? This lively book follows the musicians as they figure out how to play together without anyone waving a baton. Their story reveals the ingredients of great teamwork: shared goals, clear roles, psychological safety and the courage to speak up when something sounds wrong.",
+   "concepts": [
+    "Shared goals",
+    "Roles and responsibilities",
+    "Psychological safety",
+    "Communication rhythms",
+    "Healthy disagreement"
+   ],
+   "cover_url": "https://deepsage.com/catalog/books/team-collaboration/cover.webp",
+   "page_url": "https://deepsage.com/books/team-collaboration/"
+  },
+  {
+   "id": "creative-thinking",
+   "skill": "Creative Thinking",
+   "title": "The Idea Kitchen",
+   "subtitle": "Recipes for thinking up things that did not exist yesterday",
+   "overview": "Creativity is less lightning bolt and more cooking: you combine ingredients, taste, adjust and try again. The Idea Kitchen serves up techniques as recipes, from mixing unrelated ideas to flipping assumptions upside down, with stories of inventors, artists and ordinary people who cooked up something new. Every chapter ends with a quick exercise you can do in ten minutes.",
+   "concepts": [
+    "Divergent and convergent thinking",
+    "Combining unrelated ideas",
+    "Challenging assumptions",
+    "Constraints as fuel",
+    "Building on others' ideas"
+   ],
+   "cover_url": "https://deepsage.com/catalog/books/creative-thinking/cover.webp",
+   "page_url": "https://deepsage.com/books/creative-thinking/"
+  },
+  {
+   "id": "cloud-infrastructure",
+   "skill": "Cloud Infrastructure",
+   "title": "Castles in the Sky",
+   "subtitle": "What the cloud really is, and how the internet stays up",
+   "overview": "The cloud is not fluffy. It is millions of machines in giant buildings, humming day and night. This book takes you on a tour of an imaginary sky kingdom built on those machines, showing how data centers, networks, storage and virtual servers fit together, and why smart architects plan for things to fail.",
+   "concepts": [
+    "Data centers and regions",
+    "Virtual machines and containers",
+    "Storage and networking",
+    "Scalability and elasticity",
+    "Designing for failure"
+   ],
+   "cover_url": "https://deepsage.com/catalog/books/cloud-infrastructure/cover.webp",
+   "page_url": "https://deepsage.com/books/cloud-infrastructure/"
+  },
+  {
+   "id": "software-architecture",
+   "skill": "Software Architecture",
+   "title": "Blueprints for Invisible Buildings",
+   "subtitle": "Designing software that can grow without collapsing",
+   "overview": "Software has architecture just like cities do, only you cannot see it until the traffic jams start. This book uses the story of a small town growing into a metropolis to explain how software systems are structured, from single buildings to districts connected by roads. You will learn the trade-offs architects weigh and why the simplest design that works is usually the best one.",
+   "concepts": [
+    "Modularity and boundaries",
+    "Monoliths vs. services",
+    "Coupling and cohesion",
+    "Trade-offs and quality attributes",
+    "Evolving an architecture"
+   ],
+   "cover_url": "https://deepsage.com/catalog/books/software-architecture/cover.webp",
+   "page_url": "https://deepsage.com/books/software-architecture/"
+  },
+  {
+   "id": "devops-engineering",
+   "skill": "DevOps Engineering",
+   "title": "The Night the Deploy Broke",
+   "subtitle": "How teams ship faster by breaking down walls",
+   "overview": "At 2 a.m. the website is down, developers blame operations, and operations blames developers. This gripping story follows one company's worst night and the months of change that follow, as the team learns to automate, measure and share responsibility. It explains the practices behind DevOps and shows why culture matters as much as tools.",
+   "concepts": [
+    "Continuous integration and delivery",
+    "Infrastructure as code",
+    "Monitoring and observability",
+    "Blameless postmortems",
+    "Shared ownership"
+   ],
+   "cover_url": "https://deepsage.com/catalog/books/devops-engineering/cover.webp",
+   "page_url": "https://deepsage.com/books/devops-engineering/"
+  },
+  {
+   "id": "full-stack-development",
+   "skill": "Full Stack Development",
+   "title": "One Click, Ten Journeys",
+   "subtitle": "Follow a single button press from screen to server and back",
+   "overview": "When you click a button on a website, a tiny message sets off on an epic journey. This book follows that message as a character, through the browser, across the network, into the server, down to the database and back, meeting the technologies that live at each stop. It is the clearest map of the full stack you will ever read.",
+   "concepts": [
+    "Front end: HTML, CSS and JavaScript",
+    "HTTP and APIs",
+    "Back-end servers",
+    "Databases",
+    "Putting the stack together"
+   ],
+   "cover_url": "https://deepsage.com/catalog/books/full-stack-development/cover.webp",
+   "page_url": "https://deepsage.com/books/full-stack-development/"
+  },
+  {
+   "id": "product-management",
+   "skill": "Product Management",
+   "title": "Build the Right Thing",
+   "subtitle": "How product managers decide what gets made, and what never does",
+   "overview": "Most failed products were built perfectly; they just solved the wrong problem. This book follows a first-time product manager as she learns to listen to users, say no to good ideas, and steer a team toward something people truly need. Filled with real stories of product wins and flops, it teaches the thinking behind great products.",
+   "concepts": [
+    "Understanding user problems",
+    "Prioritization frameworks",
+    "Roadmaps and strategy",
+    "Working with engineers and designers",
+    "Measuring success"
+   ],
+   "cover_url": "https://deepsage.com/catalog/books/product-management/cover.webp",
+   "page_url": "https://deepsage.com/books/product-management/"
+  },
+  {
+   "id": "ux-design",
+   "skill": "UX Design",
+   "title": "Doors That Tell You How to Open Them",
+   "subtitle": "Designing things people understand without instructions",
+   "overview": "Ever pushed a door that said pull? That was a design failure, not yours. This book explores why some things are a joy to use and others make us feel stupid, starting with everyday objects and moving to apps and websites. You will learn how designers research, sketch, test and refine until the right action feels obvious.",
+   "concepts": [
+    "User research",
+    "Affordances and signifiers",
+    "Information architecture",
+    "Prototyping and testing",
+    "Accessibility"
+   ],
+   "cover_url": "https://deepsage.com/catalog/books/ux-design/cover.webp",
+   "page_url": "https://deepsage.com/books/ux-design/"
+  },
+  {
+   "id": "project-management",
+   "skill": "Project Management",
+   "title": "The Bridge Must Open on Tuesday",
+   "subtitle": "Delivering on time when everything tries to slow you down",
+   "overview": "A town has promised its new bridge will open on Tuesday, and the project manager has just discovered the steel is late. This page-turner follows the project from kickoff to ribbon-cutting, showing how to plan, estimate, manage risks and keep people aligned. You will learn the tools of the trade and when to set them aside.",
+   "concepts": [
+    "Scope, time and cost",
+    "Planning and estimation",
+    "Risk management",
+    "Agile and waterfall",
+    "Stakeholder communication"
+   ],
+   "cover_url": "https://deepsage.com/catalog/books/project-management/cover.webp",
+   "page_url": "https://deepsage.com/books/project-management/"
+  },
+  {
+   "id": "digital-marketing-strategy",
+   "skill": "Digital Marketing Strategy",
+   "title": "The Crowded Square",
+   "subtitle": "Getting noticed, trusted and chosen online",
+   "overview": "The internet is a town square with a billion people shouting at once. This book follows a tiny handmade candle shop trying to be heard, as it learns to find its audience, tell its story, choose its channels and measure what works. It covers the strategy behind modern marketing without the jargon.",
+   "concepts": [
+    "Audience and positioning",
+    "Content and storytelling",
+    "Channels and funnels",
+    "Paid vs. organic growth",
+    "Measuring and testing"
+   ],
+   "cover_url": "https://deepsage.com/catalog/books/digital-marketing-strategy/cover.webp",
+   "page_url": "https://deepsage.com/books/digital-marketing-strategy/"
+  },
+  {
+   "id": "search-engine-optimization",
+   "skill": "Search Engine Optimization",
+   "title": "The Librarian of Everything",
+   "subtitle": "How search engines decide what you find, and how to be found",
+   "overview": "Imagine a librarian who has read every page on the internet and must recommend the best one in half a second. This book explains how that librarian works: crawling, indexing, ranking and understanding what people really mean. Then it shows how to create pages the librarian loves, by being genuinely useful rather than tricking the system.",
+   "concepts": [
+    "Crawling and indexing",
+    "Search intent",
+    "Content quality and relevance",
+    "Links and authority",
+    "Technical SEO basics"
+   ],
+   "cover_url": "https://deepsage.com/catalog/books/search-engine-optimization/cover.webp",
+   "page_url": "https://deepsage.com/books/search-engine-optimization/"
+  },
+  {
+   "id": "financial-literacy",
+   "skill": "Financial Literacy",
+   "title": "The Tree That Grew Coins",
+   "subtitle": "Money, saving and investing, explained like a story",
+   "overview": "Two siblings each inherit a small sapling and a handful of coins. One spends quickly, the other plants and waits. Over the years their paths show how saving, investing, debt and compound growth really work. This friendly book makes money concepts easy to understand and gives you practical habits for your own financial life.",
+   "concepts": [
+    "Budgeting and saving",
+    "Compound interest",
+    "Debt and credit",
+    "Investing and diversification",
+    "Inflation and risk"
+   ],
+   "cover_url": "https://deepsage.com/catalog/books/financial-literacy/cover.webp",
+   "page_url": "https://deepsage.com/books/financial-literacy/"
+  },
+  {
+   "id": "strategic-planning",
+   "skill": "Strategic Planning",
+   "title": "Three Moves Ahead",
+   "subtitle": "Thinking like a strategist in business and in life",
+   "overview": "Chess players, generals and CEOs share a habit: they think about where the game is going, not only where it is. This book uses stories from history, sports and business to explain how strategists set goals, analyze the landscape, make choices and adapt their plans as the board changes.",
+   "concepts": [
+    "Vision and goals",
+    "Analyzing the landscape",
+    "Making strategic choices",
+    "Scenario planning",
+    "Turning strategy into action"
+   ],
+   "cover_url": "https://deepsage.com/catalog/books/strategic-planning/cover.webp",
+   "page_url": "https://deepsage.com/books/strategic-planning/"
+  },
+  {
+   "id": "conflict-resolution",
+   "skill": "Conflict Resolution",
+   "title": "The Bridge Between Two Villages",
+   "subtitle": "Turning disagreements into agreements people keep",
+   "overview": "Two villages have fought over the same river for a hundred years. When a young mediator is sent to make peace, she discovers that the fight was never really about water. This fable-like book teaches the tools of conflict resolution: active listening, separating people from problems, finding shared interests and crafting solutions both sides can own.",
+   "concepts": [
+    "Positions vs. interests",
+    "Active listening",
+    "De-escalation",
+    "Negotiation techniques",
+    "Building lasting agreements"
+   ],
+   "cover_url": "https://deepsage.com/catalog/books/conflict-resolution/cover.webp",
+   "page_url": "https://deepsage.com/books/conflict-resolution/"
+  },
+  {
+   "id": "risk-management",
+   "skill": "Risk Management",
+   "title": "The Umbrella Paradox",
+   "subtitle": "Deciding well when you cannot know what will happen",
+   "overview": "Carry an umbrella every day and you look silly on sunny days; never carry one and one day you get soaked. This book explores how people and organizations live with uncertainty, from sailors to startups to hospitals. You will learn to identify risks, weigh likelihood against impact and choose the right amount of protection.",
+   "concepts": [
+    "Identifying risks",
+    "Likelihood and impact",
+    "Mitigation strategies",
+    "Uncertainty and black swans",
+    "Risk appetite"
+   ],
+   "cover_url": "https://deepsage.com/catalog/books/risk-management/cover.webp",
+   "page_url": "https://deepsage.com/books/risk-management/"
+  },
+  {
+   "id": "complex-decision-making",
+   "skill": "Complex Decision Making",
+   "title": "The Fork in the Fog",
+   "subtitle": "Choosing well when there are too many options and too little information",
+   "overview": "Some decisions are easy. The ones that matter rarely are: many options, conflicting goals, missing information and a clock that keeps ticking. Through stories of mountain rescues, medical dilemmas and business gambles, this book gives you practical tools to structure hard choices, avoid common thinking traps and make decisions you can stand behind.",
+   "concepts": [
+    "Framing the decision",
+    "Weighing trade-offs",
+    "Probabilistic thinking",
+    "Decision biases",
+    "Reversible vs. irreversible choices"
+   ],
+   "cover_url": "https://deepsage.com/catalog/books/complex-decision-making/cover.webp",
+   "page_url": "https://deepsage.com/books/complex-decision-making/"
+  },
+  {
+   "id": "lifelong-learning",
+   "skill": "Lifelong Learning",
+   "title": "The Endless Library Card",
+   "subtitle": "How to keep learning for the rest of your life, and enjoy it",
+   "overview": "School ends; learning shouldn't. This inspiring book shares the science of how we learn and the stories of people who picked up new skills at 30, 60 and even 90. You will discover techniques like spaced repetition and deliberate practice, and learn how to stay curious, build habits and make learning a joyful part of everyday life.",
+   "concepts": [
+    "How memory works",
+    "Spaced repetition",
+    "Deliberate practice",
+    "Curiosity and motivation",
+    "Building learning habits"
+   ],
+   "cover_url": "https://deepsage.com/catalog/books/lifelong-learning/cover.webp",
+   "page_url": "https://deepsage.com/books/lifelong-learning/"
+  }
+ ]
+}

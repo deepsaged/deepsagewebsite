@@ -1683,3 +1683,40 @@ table th {
   .media-nav { opacity: 1; }
   .wishlist-row-img { width: 88px; }
 }
+
+/* Deepsage Launcher: games-index promo + /launcher/ download page
+   (docs/sdd/2026-10-01-launcher-download.md). */
+.launcher-cta { display: flex; align-items: center; gap: 18px; margin: 8px 0 28px; padding: 16px 20px; border: 1px solid rgba(217, 185, 120, 0.35); border-radius: 10px; background: linear-gradient(90deg, rgba(217, 185, 120, 0.10), rgba(0, 170, 255, 0.05)); color: var(--text); text-decoration: none; }
+.launcher-cta:hover { border-color: var(--gold); }
+.launcher-cta img { border-radius: 14px; flex: none; }
+.launcher-cta-text { display: flex; flex-direction: column; gap: 4px; flex: 1; }
+.launcher-cta-text strong { color: var(--gold); font-size: 18px; }
+.launcher-cta-text span { color: var(--muted); font-size: 14px; }
+.launcher-cta-button { flex: none; padding: 9px 16px; border-radius: 6px; background: var(--gold); color: var(--dark); font-weight: 600; font-size: 14px; }
+.launcher-page { max-width: 960px; margin: 0 auto; }
+.launcher-hero { display: flex; gap: 28px; align-items: center; margin-bottom: 24px; }
+.launcher-icon { border-radius: 28px; box-shadow: 0 0 40px rgba(217, 185, 120, 0.25); flex: none; }
+.launcher-version { color: var(--muted); font-size: 14px; margin: 0; }
+.launcher-features { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; padding: 0; list-style: none; margin: 0 0 32px; }
+.launcher-features li { padding: 14px 16px; border: 1px solid rgba(143, 180, 194, 0.2); border-radius: 8px; line-height: 1.55; }
+.launcher-features strong { color: var(--gold); display: block; margin-bottom: 4px; }
+.launcher-heading { margin: 0 0 14px; }
+.launcher-downloads { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.launcher-card { padding: 18px; border: 1px solid rgba(143, 180, 194, 0.25); border-radius: 10px; display: flex; flex-direction: column; gap: 10px; }
+.launcher-card h3 { margin: 0; }
+.launcher-card.is-yours { border-color: var(--gold); box-shadow: 0 0 24px rgba(217, 185, 120, 0.15); }
+.launcher-card.muted { opacity: 0.7; }
+.launcher-card-note, .launcher-howto, .launcher-fineprint { color: var(--muted); font-size: 13px; margin: 0; line-height: 1.5; }
+.launcher-howto code { font-size: 12px; word-break: break-all; }
+.launcher-button { display: block; text-align: center; padding: 11px 14px; border-radius: 6px; background: var(--gold); color: var(--dark); font-weight: 600; text-decoration: none; }
+.launcher-button.secondary { background: transparent; color: var(--gold); border: 1px solid var(--gold); }
+.launcher-button[aria-disabled="true"] { opacity: 0.45; cursor: not-allowed; }
+.launcher-risk { padding: 12px; border-radius: 8px; background: rgba(217, 83, 79, 0.10); border: 1px solid rgba(217, 83, 79, 0.35); font-size: 13px; line-height: 1.5; }
+.launcher-risk p { margin: 0 0 8px; font-size: 13px; line-height: 1.5; }
+.launcher-risk label { display: flex; gap: 8px; align-items: center; cursor: pointer; }
+.launcher-fineprint { margin-top: 24px; }
+@media (max-width: 720px) {
+  .launcher-hero { flex-direction: column; text-align: center; }
+  .launcher-features { grid-template-columns: 1fr; }
+  .launcher-cta { flex-direction: column; text-align: center; }
+}
