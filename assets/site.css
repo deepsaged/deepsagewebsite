@@ -1734,6 +1734,10 @@ table th {
 .launcher-card h3 { margin: 0; }
 .launcher-card.is-yours { border-color: var(--gold); box-shadow: 0 0 24px rgba(217, 185, 120, 0.15); }
 .launcher-card.muted { opacity: 0.7; }
+.launcher-more > summary { cursor: pointer; color: var(--muted); font-size: 13px; }
+.launcher-more > summary:hover { color: var(--gold); }
+.launcher-more[open] > summary { margin-bottom: 10px; }
+.launcher-more > * + * { margin-top: 10px; }
 .launcher-card-note, .launcher-howto, .launcher-fineprint { color: var(--muted); font-size: 13px; margin: 0; line-height: 1.5; }
 .launcher-howto code { font-size: 12px; word-break: break-all; }
 .launcher-button { display: block; text-align: center; padding: 11px 14px; border-radius: 6px; background: var(--gold); color: var(--dark); font-weight: 600; text-decoration: none; }

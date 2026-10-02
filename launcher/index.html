@@ -16,7 +16,7 @@
 <link rel="canonical" href="https://deepsage.com/launcher/">
 <link rel="icon" type="image/png" href="/assets/favicon.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<link rel="stylesheet" href="/assets/site.css?v=a424d8d264">
+<link rel="stylesheet" href="/assets/site.css?v=29ae32ce7e">
 <link rel="alternate" hreflang="en" href="https://deepsage.com/launcher/">
 <link rel="alternate" hreflang="es" href="https://deepsage.com/launcher/">
 <link rel="alternate" hreflang="pt" href="https://deepsage.com/launcher/">
@@ -100,7 +100,7 @@
 <li><strong>Updates itself.</strong> The launcher checks for a new version in the background and installs it when you click Update - and your games get updates the same way.</li>
 <li><strong>Starts with your computer.</strong> It opens quietly in your system tray when you log in, so new releases reach you without you doing anything. Closing the window keeps it in the tray. You can turn both off in Settings.</li>
 <li><strong>Checks your hardware.</strong> Before you download a game it tells you whether your PC runs it well, on low settings, or not at all.</li>
-<li><strong>Uses your DeepSage account.</strong> Sign in with the same email or Google account as on this site; your wishlist is shared.</li>
+<li><strong>Uses your DeepSage account.</strong> Sign in with the same email or Google account as on this site (a free account is required); your wishlist is shared, so you can add games and books to it from the app.</li>
 </ul>
 <h2 class="launcher-heading">Download</h2>
 <div class="launcher-downloads">
@@ -108,9 +108,13 @@
 <h3>Linux</h3>
 <p class="launcher-card-note">64-bit (x86_64). Needs a desktop with a system tray.</p>
 <a class="launcher-button" id="download-linux-appimage" href="https://github.com/deepsaged/deepsage-launcher-releases/releases/latest/download/deepsage-launcher_linux_x86_64.AppImage" data-release-asset>AppImage - any distro</a>
-<p class="launcher-howto">Make it executable and run it: <code>chmod +x deepsage-launcher_linux_x86_64.AppImage &amp;&amp; ./deepsage-launcher_linux_x86_64.AppImage</code></p>
+<p class="launcher-howto">Make it executable and run it: <code>chmod +x deepsage-launcher_linux_x86_64.AppImage &amp;&amp; ./deepsage-launcher_linux_x86_64.AppImage</code>. On first start it adds itself to your app menu, and it updates itself from then on.</p>
+<details class="launcher-more">
+<summary>Other Linux package (.deb)</summary>
+<p class="launcher-howto">For Ubuntu, Debian and Mint if you prefer apt. The .deb does <strong>not</strong> update itself - install each new version the same way.</p>
 <a class="launcher-button secondary" id="download-linux-deb" href="https://github.com/deepsaged/deepsage-launcher-releases/releases/latest/download/deepsage-launcher_linux_amd64.deb" data-release-asset>.deb - Ubuntu, Debian, Mint</a>
-<p class="launcher-howto">Install with <code>sudo apt install ./deepsage-launcher_linux_amd64.deb</code>. Auto-update works for the AppImage; with the .deb, install new versions the same way.</p>
+<p class="launcher-howto">Install with <code>sudo apt install ./deepsage-launcher_linux_amd64.deb</code>, remove with <code>sudo apt remove deepsage-launcher</code>.</p>
+</details>
 </section>
 <section class="launcher-card" data-os="windows">
 <h3>Windows</h3>
