@@ -11,6 +11,7 @@
 - [Books](https://deepsage.com/books/): one story-driven book per skill (in development)
 
 ## Recent articles
+- [The Psychological Architecture of Hypervigilance in High-Violence Environments](https://deepsage.com/article/the-psychological-architecture-of-hypervigilance-in-high-violence-environments/): An examination of how systemic violence and socioeconomic instability reshape cognitive processing and neurological stress responses.
 - [The Phantom Inventory Problem](https://deepsage.com/article/the-phantom-inventory-problem/): A $2 million dispute at Kavi Gupta Gallery reveals how 'consignment-back' deals are turning high-value art into digital ghosts.
 - [Is Trump's New Arch a Monument or Just a Giant Midlife Crisis?](https://deepsage.com/article/is-trump-s-new-arch-a-monument-or-just-a-giant-midlife-crisis/): After a high-profile advisory council quit, the AIA is sounding the alarm on a massive new architectural project.
 - [Frank O'Connor's Halo Rescue Plan: Hire the People You Just Fired](https://deepsage.com/article/frank-o-connor-s-halo-rescue-plan-hire-the-people-you-just-fired/): The man who helped build the Master Chief's legend has some very direct advice for Activision's new era of Halo.
@@ -40,4 +41,3 @@
 - [Five chickens and a dream: The fight against 'AI slop' in gaming](https://deepsage.com/article/five-chickens-and-a-dream-the-fight-against-ai-slop-in-gaming/): After a trailer went viral for all the wrong reasons, Amplitude Studios is proving that humans (and poultry) are still behind the keyboard.
 - [The 'Hard Choice' Trap: Why Logic Fails When Life Gets Real](https://deepsage.com/article/the-hard-choice-trap-why-logic-fails-when-life-gets-real/): If you're paralyzed by a decision where both options look equally good (or equally terrible), you aren't bad at math—you're just facing a structural philosophical crisis.
 - [Tether just dropped $3 million on Colombia's Plenti](https://deepsage.com/article/tether-just-dropped-3-million-on-colombia-s-plenti/): The makers of the world's biggest stablecoin are betting big on Colombian fintech, and it's not just about moving money around.
-- [The Knowledge Trap: Why Knowing Everything Won't Save Us](https://deepsage.com/article/the-knowledge-trap-why-knowing-everything-won-t-save-us/): We are currently drowning in information but starving for the wisdom to actually use it.
