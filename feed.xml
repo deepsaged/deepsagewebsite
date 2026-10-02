@@ -5,6 +5,13 @@
     <link>https://deepsage.com/</link>
     <description>Real-world skills through short articles and interactive quizzes.</description>
     <item>
+      <title>The Phantom Inventory Problem</title>
+      <link>https://deepsage.com/article/the-phantom-inventory-problem/</link>
+      <guid>https://deepsage.com/article/the-phantom-inventory-problem/</guid>
+      <description>A $2 million dispute at Kavi Gupta Gallery reveals how 'consignment-back' deals are turning high-value art into digital ghosts.</description>
+      <pubDate>Fri, 02 Oct 2026 00:08:02 +0000</pubDate>
+    </item>
+    <item>
       <title>Is Trump's New Arch a Monument or Just a Giant Midlife Crisis?</title>
       <link>https://deepsage.com/article/is-trump-s-new-arch-a-monument-or-just-a-giant-midlife-crisis/</link>
       <guid>https://deepsage.com/article/is-trump-s-new-arch-a-monument-or-just-a-giant-midlife-crisis/</guid>
@@ -136,13 +143,6 @@
       <guid>https://deepsage.com/article/i-spent-4-000-on-a-robot-dog-and-it-might-be-the-most-important-thing-i-own/</guid>
       <description>A high-tech quadruped from China just arrived at my door, and it's much more than a glorified, expensive toy.</description>
       <pubDate>Sat, 12 Sep 2026 21:05:37 +0000</pubDate>
-    </item>
-    <item>
-      <title>Did MercurySteam Just Accidentally Confirm Metroid Ravenous?</title>
-      <link>https://deepsage.com/article/did-mercurysteam-just-accidentally-confirm-metroid-ravenous/</link>
-      <guid>https://deepsage.com/article/did-mercurysteam-just-accidentally-confirm-metroid-ravenous/</guid>
-      <description>One leaked detail suggests the masters of Metroid Dread might be cooking up a new nightmare for your Nintendo Switch.</description>
-      <pubDate>Thu, 10 Sep 2026 21:07:09 +0000</pubDate>
     </item>
   </channel>
 </rss>
