@@ -1752,3 +1752,30 @@ table th {
   .launcher-features { grid-template-columns: 1fr; }
   .launcher-cta { flex-direction: column; text-align: center; }
 }
+
+/* Language-learning catalog sections (docs/sdd 2026-10-03 language-learning catalog, REQ-LL5..LL7) */
+.catalog-section { margin-top: 36px; }
+.catalog-section-title {
+  font-family: var(--serif);
+  font-size: 26px;
+  color: var(--gold);
+  margin: 0 0 14px;
+}
+.catalog-group-title { font-family: var(--sans); font-size: 18px; margin: 28px 0 12px; }
+.catalog-group-title a { color: inherit; }
+.catalog-group-title a:hover { color: var(--gold); }
+.catalog-jump { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 8px; }
+.catalog-jump a {
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border: 1px solid #d9b97844;
+  border-radius: 3px;
+  padding: 6px 12px;
+  color: var(--gold);
+}
+.catalog-jump a:hover { background: #d9b97815; opacity: 1; }
+.catalog-related { margin-top: 32px; }
+.catalog-related .catalog-heading a { color: inherit; }
+.book-genres { margin: 6px 0 14px; }
