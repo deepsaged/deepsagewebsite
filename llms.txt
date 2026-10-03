@@ -1,12 +1,12 @@
 # DeepSage
 
-> DeepSage teaches real-world skills -- AI literacy, data analysis, critical thinking, and more -- through short articles and interactive quizzes.
+> DeepSage teaches real-world skills -- AI literacy, data analysis, critical thinking, foreign languages and more -- through educational games, story-driven books, short articles and interactive quizzes.
 
 ## Key pages
 - [Home](https://deepsage.com/): what DeepSage is and how it works
 - [Articles](https://deepsage.com/article/): full article index
 - [Quizzes](https://deepsage.com/quiz/): full quiz index
-- [Skills](https://deepsage.com/skills/): topic landing pages
+- [Skills](https://deepsage.com/skills/): 40 skill guides, including 10 foreign languages
 - [Games](https://deepsage.com/games/): upcoming skill-building games (in development)
 - [Books](https://deepsage.com/books/): one story-driven book per skill (in development)
 

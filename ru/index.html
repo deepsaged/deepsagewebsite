@@ -3,15 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ДипСейдж - сигнал из бездны.</title>
-<meta name="description" content="Что-то падает. Что-то пробуждается. Добавьте DeepSage в список желаний.">
-<meta property="og:title" content="ДипСейдж - сигнал из бездны.">
-<meta property="og:description" content="Что-то падает. Что-то пробуждается. Добавьте DeepSage в список желаний.">
-<meta property="og:image" content="">
-<meta property="og:type" content="article">
+<title>DeepSage: обучающие игры и тесты для реальных навыков</title>
+<meta name="description" content="Изучайте ИИ, критическое мышление, анализ данных, лидерство, финансы и 10 иностранных языков с помощью обучающих игр, бесплатных тестов и книг. Вступайте в лист ожидания DeepSage.">
+<meta property="og:title" content="DeepSage: обучающие игры и тесты для реальных навыков">
+<meta property="og:description" content="Изучайте ИИ, критическое мышление, анализ данных, лидерство, финансы и 10 иностранных языков с помощью обучающих игр, бесплатных тестов и книг. Вступайте в лист ожидания DeepSage.">
+<meta property="og:image" content="https://deepsage.com/assets/og-default.png">
+<meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="ДипСейдж - сигнал из бездны.">
-<meta name="twitter:description" content="Что-то падает. Что-то пробуждается. Добавьте DeepSage в список желаний.">
+<meta name="twitter:title" content="DeepSage: обучающие игры и тесты для реальных навыков">
+<meta name="twitter:description" content="Изучайте ИИ, критическое мышление, анализ данных, лидерство, финансы и 10 иностранных языков с помощью обучающих игр, бесплатных тестов и книг. Вступайте в лист ожидания DeepSage.">
+<meta name="twitter:image" content="https://deepsage.com/assets/og-default.png">
 <link rel="canonical" href="https://deepsage.com/ru/"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "logo": "https://deepsage.com/assets/logo.webp", "name": "DeepSage", "sameAs": ["https://www.youtube.com/@deepsagemain"], "url": "https://deepsage.com"}</script><link rel="icon" type="image/png" href="/assets/favicon.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/site.css?v=29ae32ce7e">
@@ -103,13 +104,16 @@
 
   .game-title {
     margin: 0;
-    font-size: clamp(42px, 8vw, 72px);
+    font-size: clamp(30px, 5.5vw, 52px);
     font-family: var(--serif);
     font-weight: 300;
     letter-spacing: 1px;
     color: #ffffff;
     line-height: 1.2;
   }
+
+  /* site.css's .game-title (game store pages) is left-aligned. */
+  .game-info .game-title { text-align: center; }
 
   .game-description,
   .wishlist-call {
@@ -184,13 +188,41 @@
   .game-explainer p:last-child { margin-bottom: 0; }
 
   #latest-content { max-width: 860px; margin: 0 auto; padding: 48px 24px; }
+  #latest-content > .section-title { text-align: center; color: #fff; }
+
+  .home-skills-group {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 20px 0 8px;
+    text-align: center;
+  }
+  .home-skill-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+  .game-explainer .home-skill-links { margin-bottom: 0; }
+  .home-skill-links a {
+    border: 1px solid #d9b97833;
+    border-radius: 3px;
+    padding: 6px 12px;
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--text);
+  }
+  .home-skill-links a:hover { border-color: var(--gold); opacity: 1; }
 
   @media (max-width: 600px) {
-    .game-title { letter-spacing: 0.25em; }
+    .game-title { letter-spacing: 0.5px; }
   }
 
   @media (max-width: 380px) {
-    .game-title { font-size: 38px; letter-spacing: 0.15em; }
+    .game-title { font-size: 28px; letter-spacing: 0; }
   }
 
   @keyframes shoot {
@@ -268,13 +300,14 @@
 <div class="hero-grad-bottom"></div>
 <div class="hero-inner">
 <div class="game-info">
-<h2 class="game-title">DeepSage: учитесь, отправляясь в приключения.</h2>
+<h1 class="game-title">Осваивайте реальные навыки с помощью обучающих игр</h1>
+<p class="game-description">Игры, бесплатные тесты, статьи и книги, с которыми учить ИИ, данные, лидерство и иностранные языки интересно.</p>
 </div>
 <div class="video-wrap">
 <div class="video-ratio">
 <iframe
 src="https://www.youtube.com/embed/QNbl5ciAAJo?rel=0&modestbranding=1&color=black"
-title="DeepSage - Официальный трейлер"
+title="Трейлер обучающей игры DeepSage"
 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 allowfullscreen
 ></iframe>
@@ -282,13 +315,32 @@ allowfullscreen
 </div>
 <div class="game-explainer">
 <h2 class="section-title">Что такое DeepSage?</h2>
-<p>DeepSage - это предстоящая образовательная игра, основанная на простой идее: настоящие знания должны давать ощущение суперспособности. В каждой битве в игре вместо нажатия кнопок используются вопросы и ответы. Сразитесь с соперником, и вы оба будете обмениваться реальными вопросами по таким предметам, как наука, история и логика. Правильно ответьте - и вы победите; ответьте неправильно - и это вам будет стоить. Навыки, необходимые для игры, напрямую связаны с навыками обучения.</p>
-<p>Действие DeepSage разворачивается в научно-фантастическом мире, созданном для того, чтобы придать этим битвам смысл и сделать их достойными внимания - все детали лучше узнать, поиграв.</p>
-<p>Это мир, который стоит исследовать, и каждое сражение в нём - это возможность стать умнее.</p>
+<p>DeepSage - будущая <strong>обучающая игра</strong>, в которой знания - ваша суперсила. Каждый бой - это дуэль вопросов: вы и соперник обмениваетесь настоящими вопросами по науке, истории, логике и другим темам. Ответили верно - победили, ошиблись - расплачиваетесь. Становиться сильнее в игре значит становиться лучше в учёбе.</p>
+<p>Помимо основной игры, мы создаём каталог <strong>обучающих игр</strong>, каждая из которых учит реальному навыку, и пишем по одной <strong>книге</strong> с сюжетом для каждого навыка. Всё устанавливается через бесплатный DeepSage Launcher для Windows и Linux.</p>
+<p>До запуска вы можете учиться каждый день с бесплатными <strong>статьями и тестами</strong>, которые объясняют важные новости технологий, ИИ и науки.</p>
+</div>
+<div class="game-explainer home-skills">
+<h2 class="section-title">Навыки, которые можно освоить</h2>
+<h3 class="home-skills-group">ИИ и данные</h3>
+<p class="home-skill-links"><a href="/ru/skills/artificial-intelligence-literacy/">ИИ-грамотность</a><a href="/ru/skills/machine-learning-engineering/">Инженерия машинного обучения</a><a href="/ru/skills/prompt-engineering/">Промпт-инжиниринг</a><a href="/ru/skills/data-literacy/">Грамотность в работе с данными</a><a href="/ru/skills/data-analytics/">Анализ данных</a><a href="/ru/skills/data-visualization/">Визуализация данных</a></p>
+<h3 class="home-skills-group">Мышление и принятие решений</h3>
+<p class="home-skill-links"><a href="/ru/skills/critical-thinking/">Критическое мышление</a><a href="/ru/skills/analytical-problem-solving/">Аналитическое решение задач</a><a href="/ru/skills/creative-thinking/">Креативное мышление</a><a href="/ru/skills/complex-decision-making/">Принятие сложных решений</a></p>
+<h3 class="home-skills-group">Технологии и разработка</h3>
+<p class="home-skill-links"><a href="/ru/skills/cybersecurity-management/">Управление кибербезопасностью</a><a href="/ru/skills/data-privacy-strategy/">Стратегия защиты персональных данных</a><a href="/ru/skills/cloud-infrastructure/">Облачная инфраструктура</a><a href="/ru/skills/software-architecture/">Архитектура ПО</a><a href="/ru/skills/devops-engineering/">DevOps-инжиниринг</a><a href="/ru/skills/full-stack-development/">Fullstack-разработка</a><a href="/ru/skills/ux-design/">UX-дизайн</a></p>
+<h3 class="home-skills-group">Бизнес и управление</h3>
+<p class="home-skill-links"><a href="/ru/skills/product-management/">Продакт-менеджмент</a><a href="/ru/skills/project-management/">Управление проектами</a><a href="/ru/skills/digital-marketing-strategy/">Стратегия цифрового маркетинга</a><a href="/ru/skills/search-engine-optimization/">Поисковая оптимизация (SEO)</a><a href="/ru/skills/financial-literacy/">Финансовая грамотность</a><a href="/ru/skills/strategic-planning/">Стратегическое планирование</a><a href="/ru/skills/risk-management/">Управление рисками</a></p>
+<h3 class="home-skills-group">Люди и личностный рост</h3>
+<p class="home-skill-links"><a href="/ru/skills/leadership/">Лидерство</a><a href="/ru/skills/emotional-intelligence/">Эмоциональный интеллект</a><a href="/ru/skills/team-collaboration/">Командная работа</a><a href="/ru/skills/conflict-resolution/">Разрешение конфликтов</a><a href="/ru/skills/adaptability/">Адаптивность</a><a href="/ru/skills/lifelong-learning/">Обучение на протяжении всей жизни</a></p>
+</div>
+<div class="game-explainer home-skills">
+<h2 class="section-title">Учите иностранный язык играя</h2>
+<p>10 самых изучаемых языков мира - с практикой в играх и тестах.</p>
+<p class="home-skill-links"><a href="/ru/skills/english/">Изучайте английский язык</a><a href="/ru/skills/spanish/">Изучайте испанский язык</a><a href="/ru/skills/french/">Изучайте французский язык</a><a href="/ru/skills/japanese/">Изучайте японский язык</a><a href="/ru/skills/german/">Изучайте немецкий язык</a><a href="/ru/skills/korean/">Изучайте корейский язык</a><a href="/ru/skills/italian/">Изучайте итальянский язык</a><a href="/ru/skills/chinese/">Изучайте китайский язык</a><a href="/ru/skills/portuguese/">Изучайте португальский язык</a><a href="/ru/skills/hindi/">Изучайте хинди</a></p>
 </div>
 </div>
 </section>
 <section id="latest-content">
+<h2 class="section-title">Новые бесплатные статьи и тесты</h2>
 <!-- LATEST_CONTENT_START -->
 <div class="card-grid">
 <a class="content-card" href="/ru/article/the-psychological-architecture-of-hypervigilance-in-high-violence-environments/">

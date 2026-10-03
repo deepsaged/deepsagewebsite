@@ -3,15 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DeepSage - A Signal From The Void</title>
-<meta name="description" content="Something is falling. Something is waking. Wishlist DeepSage.">
-<meta property="og:title" content="DeepSage - A Signal From The Void">
-<meta property="og:description" content="Something is falling. Something is waking. Wishlist DeepSage.">
-<meta property="og:image" content="">
-<meta property="og:type" content="article">
+<title>DeepSage: Educational Games &amp; Quizzes to Learn Real Skills</title>
+<meta name="description" content="Learn AI, critical thinking, data, leadership, money skills and 10 foreign languages through educational games, free quizzes and story-driven books. Join the DeepSage wishlist.">
+<meta property="og:title" content="DeepSage: Educational Games &amp; Quizzes to Learn Real Skills">
+<meta property="og:description" content="Learn AI, critical thinking, data, leadership, money skills and 10 foreign languages through educational games, free quizzes and story-driven books. Join the DeepSage wishlist.">
+<meta property="og:image" content="https://deepsage.com/assets/og-default.png">
+<meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="DeepSage - A Signal From The Void">
-<meta name="twitter:description" content="Something is falling. Something is waking. Wishlist DeepSage.">
+<meta name="twitter:title" content="DeepSage: Educational Games &amp; Quizzes to Learn Real Skills">
+<meta name="twitter:description" content="Learn AI, critical thinking, data, leadership, money skills and 10 foreign languages through educational games, free quizzes and story-driven books. Join the DeepSage wishlist.">
+<meta name="twitter:image" content="https://deepsage.com/assets/og-default.png">
 <link rel="canonical" href="https://deepsage.com/"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "logo": "https://deepsage.com/assets/logo.webp", "name": "DeepSage", "sameAs": ["https://www.youtube.com/@deepsagemain"], "url": "https://deepsage.com"}</script><link rel="icon" type="image/png" href="/assets/favicon.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/site.css?v=29ae32ce7e">
@@ -103,13 +104,16 @@
 
   .game-title {
     margin: 0;
-    font-size: clamp(42px, 8vw, 72px);
+    font-size: clamp(30px, 5.5vw, 52px);
     font-family: var(--serif);
     font-weight: 300;
     letter-spacing: 1px;
     color: #ffffff;
     line-height: 1.2;
   }
+
+  /* site.css's .game-title (game store pages) is left-aligned. */
+  .game-info .game-title { text-align: center; }
 
   .game-description,
   .wishlist-call {
@@ -184,13 +188,41 @@
   .game-explainer p:last-child { margin-bottom: 0; }
 
   #latest-content { max-width: 860px; margin: 0 auto; padding: 48px 24px; }
+  #latest-content > .section-title { text-align: center; color: #fff; }
+
+  .home-skills-group {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 20px 0 8px;
+    text-align: center;
+  }
+  .home-skill-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+  .game-explainer .home-skill-links { margin-bottom: 0; }
+  .home-skill-links a {
+    border: 1px solid #d9b97833;
+    border-radius: 3px;
+    padding: 6px 12px;
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--text);
+  }
+  .home-skill-links a:hover { border-color: var(--gold); opacity: 1; }
 
   @media (max-width: 600px) {
-    .game-title { letter-spacing: 0.25em; }
+    .game-title { letter-spacing: 0.5px; }
   }
 
   @media (max-width: 380px) {
-    .game-title { font-size: 38px; letter-spacing: 0.15em; }
+    .game-title { font-size: 28px; letter-spacing: 0; }
   }
 
   @keyframes shoot {
@@ -268,13 +300,14 @@
 <div class="hero-grad-bottom"></div>
 <div class="hero-inner">
 <div class="game-info">
-<h2 class="game-title">DeepSage: Learn Through Adventure</h2>
+<h1 class="game-title">Learn Real Skills Through Educational Games</h1>
+<p class="game-description">Games, free quizzes, articles and books that make learning AI, data, leadership and foreign languages fun.</p>
 </div>
 <div class="video-wrap">
 <div class="video-ratio">
 <iframe
 src="https://www.youtube.com/embed/QNbl5ciAAJo?rel=0&modestbranding=1&color=black"
-title="DeepSage - Official Trailer"
+title="DeepSage edutainment game trailer"
 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 allowfullscreen
 ></iframe>
@@ -282,13 +315,32 @@ allowfullscreen
 </div>
 <div class="game-explainer">
 <h2 class="section-title">What Is DeepSage?</h2>
-<p>DeepSage is an upcoming edutainment game built around a simple idea: real knowledge should feel like a superpower. Every battle in the game is fought with questions and answers instead of button-mashing. Face a rival, and you're both trading real questions across subjects like science, history, and logic. Answer well and you prevail; answer wrong and it costs you. Skill at the game <em>is</em> skill at learning.</p>
-<p>DeepSage is set in a science-fiction world built to give those battles a story worth showing up for - the details are best discovered by playing.</p>
-<p>It&#39;s a world worth exploring - and every fight in it is a chance to actually get smarter.</p>
+<p>DeepSage is an upcoming <strong>edutainment game</strong> where knowledge is your superpower. Every battle is a quiz duel: you and your rival trade real questions on science, history, logic and more. Answer well and you win; answer wrong and it costs you. Getting better at the game means getting better at learning.</p>
+<p>Alongside the main game we are building a catalog of <strong>educational games</strong> that each teach a real skill, and writing one story-driven <strong>book</strong> for every skill. They all install through the free DeepSage Launcher for Windows and Linux.</p>
+<p>Until launch, you can learn every day with free <strong>articles and quizzes</strong> that explain the tech, AI and science stories that matter.</p>
+</div>
+<div class="game-explainer home-skills">
+<h2 class="section-title">Skills You Can Learn</h2>
+<h3 class="home-skills-group">AI &amp; Data</h3>
+<p class="home-skill-links"><a href="/skills/artificial-intelligence-literacy/">Artificial Intelligence Literacy</a><a href="/skills/machine-learning-engineering/">Machine Learning Engineering</a><a href="/skills/prompt-engineering/">Prompt Engineering</a><a href="/skills/data-literacy/">Data Literacy</a><a href="/skills/data-analytics/">Data Analytics</a><a href="/skills/data-visualization/">Data Visualization</a></p>
+<h3 class="home-skills-group">Thinking &amp; Decision-Making</h3>
+<p class="home-skill-links"><a href="/skills/critical-thinking/">Critical Thinking</a><a href="/skills/analytical-problem-solving/">Analytical Problem Solving</a><a href="/skills/creative-thinking/">Creative Thinking</a><a href="/skills/complex-decision-making/">Complex Decision Making</a></p>
+<h3 class="home-skills-group">Technology &amp; Engineering</h3>
+<p class="home-skill-links"><a href="/skills/cybersecurity-management/">Cybersecurity Management</a><a href="/skills/data-privacy-strategy/">Data Privacy Strategy</a><a href="/skills/cloud-infrastructure/">Cloud Infrastructure</a><a href="/skills/software-architecture/">Software Architecture</a><a href="/skills/devops-engineering/">DevOps Engineering</a><a href="/skills/full-stack-development/">Full Stack Development</a><a href="/skills/ux-design/">UX Design</a></p>
+<h3 class="home-skills-group">Business &amp; Management</h3>
+<p class="home-skill-links"><a href="/skills/product-management/">Product Management</a><a href="/skills/project-management/">Project Management</a><a href="/skills/digital-marketing-strategy/">Digital Marketing Strategy</a><a href="/skills/search-engine-optimization/">Search Engine Optimization</a><a href="/skills/financial-literacy/">Financial Literacy</a><a href="/skills/strategic-planning/">Strategic Planning</a><a href="/skills/risk-management/">Risk Management</a></p>
+<h3 class="home-skills-group">People &amp; Personal Growth</h3>
+<p class="home-skill-links"><a href="/skills/leadership/">Leadership</a><a href="/skills/emotional-intelligence/">Emotional Intelligence</a><a href="/skills/team-collaboration/">Team Collaboration</a><a href="/skills/conflict-resolution/">Conflict Resolution</a><a href="/skills/adaptability/">Adaptability</a><a href="/skills/lifelong-learning/">Lifelong Learning</a></p>
+</div>
+<div class="game-explainer home-skills">
+<h2 class="section-title">Learn a Foreign Language Through Play</h2>
+<p>The 10 most studied languages in the world, practiced through games and quizzes.</p>
+<p class="home-skill-links"><a href="/skills/english/">Learn English</a><a href="/skills/spanish/">Learn Spanish</a><a href="/skills/french/">Learn French</a><a href="/skills/japanese/">Learn Japanese</a><a href="/skills/german/">Learn German</a><a href="/skills/korean/">Learn Korean</a><a href="/skills/italian/">Learn Italian</a><a href="/skills/chinese/">Learn Chinese</a><a href="/skills/portuguese/">Learn Portuguese</a><a href="/skills/hindi/">Learn Hindi</a></p>
 </div>
 </div>
 </section>
 <section id="latest-content">
+<h2 class="section-title">Latest Free Articles &amp; Quizzes</h2>
 <!-- LATEST_CONTENT_START -->
 <div class="card-grid">
 <a class="content-card" href="/article/the-psychological-architecture-of-hypervigilance-in-high-violence-environments/">

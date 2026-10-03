@@ -3,15 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>딥세이지 - 심연에서 보내는 신호</title>
-<meta name="description" content="무언가가 떨어지고 있다. 무언가가 깨어나고 있다. DeepSage를 위시리스트에 추가하세요.">
-<meta property="og:title" content="딥세이지 - 심연에서 보내는 신호">
-<meta property="og:description" content="무언가가 떨어지고 있다. 무언가가 깨어나고 있다. DeepSage를 위시리스트에 추가하세요.">
-<meta property="og:image" content="">
-<meta property="og:type" content="article">
+<title>DeepSage: 교육용 게임과 퀴즈로 진짜 스킬 배우기</title>
+<meta name="description" content="AI, 비판적 사고, 데이터, 리더십, 금융 지식, 10개 외국어를 교육용 게임, 무료 퀴즈, 스토리 책으로 배우세요. DeepSage 위시리스트에 참여하세요.">
+<meta property="og:title" content="DeepSage: 교육용 게임과 퀴즈로 진짜 스킬 배우기">
+<meta property="og:description" content="AI, 비판적 사고, 데이터, 리더십, 금융 지식, 10개 외국어를 교육용 게임, 무료 퀴즈, 스토리 책으로 배우세요. DeepSage 위시리스트에 참여하세요.">
+<meta property="og:image" content="https://deepsage.com/assets/og-default.png">
+<meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="딥세이지 - 심연에서 보내는 신호">
-<meta name="twitter:description" content="무언가가 떨어지고 있다. 무언가가 깨어나고 있다. DeepSage를 위시리스트에 추가하세요.">
+<meta name="twitter:title" content="DeepSage: 교육용 게임과 퀴즈로 진짜 스킬 배우기">
+<meta name="twitter:description" content="AI, 비판적 사고, 데이터, 리더십, 금융 지식, 10개 외국어를 교육용 게임, 무료 퀴즈, 스토리 책으로 배우세요. DeepSage 위시리스트에 참여하세요.">
+<meta name="twitter:image" content="https://deepsage.com/assets/og-default.png">
 <link rel="canonical" href="https://deepsage.com/ko/"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "logo": "https://deepsage.com/assets/logo.webp", "name": "DeepSage", "sameAs": ["https://www.youtube.com/@deepsagemain"], "url": "https://deepsage.com"}</script><link rel="icon" type="image/png" href="/assets/favicon.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/site.css?v=29ae32ce7e">
@@ -103,13 +104,16 @@
 
   .game-title {
     margin: 0;
-    font-size: clamp(42px, 8vw, 72px);
+    font-size: clamp(30px, 5.5vw, 52px);
     font-family: var(--serif);
     font-weight: 300;
     letter-spacing: 1px;
     color: #ffffff;
     line-height: 1.2;
   }
+
+  /* site.css's .game-title (game store pages) is left-aligned. */
+  .game-info .game-title { text-align: center; }
 
   .game-description,
   .wishlist-call {
@@ -184,13 +188,41 @@
   .game-explainer p:last-child { margin-bottom: 0; }
 
   #latest-content { max-width: 860px; margin: 0 auto; padding: 48px 24px; }
+  #latest-content > .section-title { text-align: center; color: #fff; }
+
+  .home-skills-group {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 20px 0 8px;
+    text-align: center;
+  }
+  .home-skill-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+  .game-explainer .home-skill-links { margin-bottom: 0; }
+  .home-skill-links a {
+    border: 1px solid #d9b97833;
+    border-radius: 3px;
+    padding: 6px 12px;
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--text);
+  }
+  .home-skill-links a:hover { border-color: var(--gold); opacity: 1; }
 
   @media (max-width: 600px) {
-    .game-title { letter-spacing: 0.25em; }
+    .game-title { letter-spacing: 0.5px; }
   }
 
   @media (max-width: 380px) {
-    .game-title { font-size: 38px; letter-spacing: 0.15em; }
+    .game-title { font-size: 28px; letter-spacing: 0; }
   }
 
   @keyframes shoot {
@@ -268,27 +300,47 @@
 <div class="hero-grad-bottom"></div>
 <div class="hero-inner">
 <div class="game-info">
-<h2 class="game-title">딥세이지: 모험을 통해 배우세요.</h2>
+<h1 class="game-title">교육용 게임으로 진짜 스킬을 배우세요</h1>
+<p class="game-description">AI, 데이터, 리더십, 외국어 공부를 재미있게 만들어 주는 게임, 무료 퀴즈, 아티클, 책.</p>
 </div>
 <div class="video-wrap">
 <div class="video-ratio">
 <iframe
 src="https://www.youtube.com/embed/QNbl5ciAAJo?rel=0&modestbranding=1&color=black"
-title="딥세이지 - 공식 예고편"
+title="교육용 게임 DeepSage 트레일러"
 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 allowfullscreen
 ></iframe>
 </div>
 </div>
 <div class="game-explainer">
-<h2 class="section-title">딥세이지란 무엇인가요?</h2>
-<p>딥세이지는 단순한 아이디어를 바탕으로 제작된 새로운 교육용 게임으로, 진정한 지식은 마치 초능력처럼 느껴져야 한다는 개념을 담고 있습니다. 게임 속 모든 전투는 버튼을 마구 누르는 대신 질문과 답변을 통해 이루어집니다. 상대와 맞서 싸우면서 과학, 역사, 논리 등 다양한 분야의 실제 질문을 주고받습니다. 정답을 잘 맞히면 승리하고, 틀리면 불이익을 받습니다. 이 게임에서 뛰어난 실력을 발휘하는 것은 곧 학습 능력 향상으로 이어집니다.</p>
-<p>딥세이지는 흥미진진한 이야기를 펼쳐낼 수 있도록 설계된 미래적인 세계관을 배경으로 하며, 게임을 직접 플레이하면서 그 디테일을 자세히 알아가는 것이 좋습니다.</p>
-<p>이 세계는 탐험할 가치가 있으며, 이 안에서 벌어지는 모든 전투는 진정으로 더 똑똑해질 기회가 될 수 있습니다.</p>
+<h2 class="section-title">DeepSage란?</h2>
+<p>DeepSage는 지식이 곧 초능력이 되는 출시 예정 <strong>에듀테인먼트 게임</strong>입니다. 모든 전투는 퀴즈 대결입니다. 당신과 라이벌이 과학, 역사, 논리 등 진짜 문제를 주고받습니다. 맞히면 이기고, 틀리면 대가를 치릅니다. 게임 실력이 늘수록 배우는 힘도 함께 늘어납니다.</p>
+<p>메인 게임과 함께, 각각 실제 스킬을 가르치는 <strong>교육용 게임</strong> 라인업을 개발하고 있으며 스킬마다 스토리가 있는 <strong>책</strong>을 한 권씩 쓰고 있습니다. 모두 Windows와 Linux용 무료 DeepSage 런처로 설치할 수 있습니다.</p>
+<p>출시 전까지는 중요한 테크, AI, 과학 소식을 쉽게 풀어 주는 무료 <strong>아티클과 퀴즈</strong>로 매일 공부할 수 있습니다.</p>
+</div>
+<div class="game-explainer home-skills">
+<h2 class="section-title">배울 수 있는 스킬</h2>
+<h3 class="home-skills-group">AI와 데이터</h3>
+<p class="home-skill-links"><a href="/ko/skills/artificial-intelligence-literacy/">AI 리터러시</a><a href="/ko/skills/machine-learning-engineering/">머신러닝 엔지니어링</a><a href="/ko/skills/prompt-engineering/">프롬프트 엔지니어링</a><a href="/ko/skills/data-literacy/">데이터 리터러시</a><a href="/ko/skills/data-analytics/">데이터 분석</a><a href="/ko/skills/data-visualization/">데이터 시각화</a></p>
+<h3 class="home-skills-group">사고력과 의사결정</h3>
+<p class="home-skill-links"><a href="/ko/skills/critical-thinking/">비판적 사고</a><a href="/ko/skills/analytical-problem-solving/">분석적 문제 해결</a><a href="/ko/skills/creative-thinking/">창의적 사고</a><a href="/ko/skills/complex-decision-making/">복잡한 의사결정</a></p>
+<h3 class="home-skills-group">기술과 엔지니어링</h3>
+<p class="home-skill-links"><a href="/ko/skills/cybersecurity-management/">사이버 보안 관리</a><a href="/ko/skills/data-privacy-strategy/">데이터 프라이버시 전략</a><a href="/ko/skills/cloud-infrastructure/">클라우드 인프라</a><a href="/ko/skills/software-architecture/">소프트웨어 아키텍처</a><a href="/ko/skills/devops-engineering/">데브옵스 엔지니어링</a><a href="/ko/skills/full-stack-development/">풀스택 개발</a><a href="/ko/skills/ux-design/">UX 디자인</a></p>
+<h3 class="home-skills-group">비즈니스와 경영</h3>
+<p class="home-skill-links"><a href="/ko/skills/product-management/">프로덕트 매니지먼트</a><a href="/ko/skills/project-management/">프로젝트 관리</a><a href="/ko/skills/digital-marketing-strategy/">디지털 마케팅 전략</a><a href="/ko/skills/search-engine-optimization/">검색엔진 최적화(SEO)</a><a href="/ko/skills/financial-literacy/">금융 이해력</a><a href="/ko/skills/strategic-planning/">전략 기획</a><a href="/ko/skills/risk-management/">리스크 관리</a></p>
+<h3 class="home-skills-group">대인관계와 자기계발</h3>
+<p class="home-skill-links"><a href="/ko/skills/leadership/">리더십</a><a href="/ko/skills/emotional-intelligence/">감성 지능(EQ)</a><a href="/ko/skills/team-collaboration/">팀워크</a><a href="/ko/skills/conflict-resolution/">갈등 해결</a><a href="/ko/skills/adaptability/">적응력</a><a href="/ko/skills/lifelong-learning/">평생 학습</a></p>
+</div>
+<div class="game-explainer home-skills">
+<h2 class="section-title">게임으로 외국어 배우기</h2>
+<p>세계에서 가장 많이 배우는 10개 언어를 게임과 퀴즈로 연습하세요.</p>
+<p class="home-skill-links"><a href="/ko/skills/english/">영어 배우기</a><a href="/ko/skills/spanish/">스페인어 배우기</a><a href="/ko/skills/french/">프랑스어 배우기</a><a href="/ko/skills/japanese/">일본어 배우기</a><a href="/ko/skills/german/">독일어 배우기</a><a href="/ko/skills/korean/">한국어 배우기</a><a href="/ko/skills/italian/">이탈리아어 배우기</a><a href="/ko/skills/chinese/">중국어 배우기</a><a href="/ko/skills/portuguese/">포르투갈어 배우기</a><a href="/ko/skills/hindi/">힌디어 배우기</a></p>
 </div>
 </div>
 </section>
 <section id="latest-content">
+<h2 class="section-title">최신 무료 아티클과 퀴즈</h2>
 <!-- LATEST_CONTENT_START -->
 <div class="card-grid">
 <a class="content-card" href="/ko/article/the-psychological-architecture-of-hypervigilance-in-high-violence-environments/">

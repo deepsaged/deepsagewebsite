@@ -3,15 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DeepSage: un segnale proveniente dal vuoto.</title>
-<meta name="description" content="Qualcosa sta cadendo. Qualcosa si sta risvegliando. Aggiungi DeepSage alla tua lista dei desideri.">
-<meta property="og:title" content="DeepSage: un segnale proveniente dal vuoto.">
-<meta property="og:description" content="Qualcosa sta cadendo. Qualcosa si sta risvegliando. Aggiungi DeepSage alla tua lista dei desideri.">
-<meta property="og:image" content="">
-<meta property="og:type" content="article">
+<title>DeepSage: giochi educativi e quiz per imparare competenze reali</title>
+<meta name="description" content="Impara IA, pensiero critico, dati, leadership, finanza e 10 lingue straniere con giochi educativi, quiz gratuiti e libri con una storia. Unisciti alla lista dei desideri di DeepSage.">
+<meta property="og:title" content="DeepSage: giochi educativi e quiz per imparare competenze reali">
+<meta property="og:description" content="Impara IA, pensiero critico, dati, leadership, finanza e 10 lingue straniere con giochi educativi, quiz gratuiti e libri con una storia. Unisciti alla lista dei desideri di DeepSage.">
+<meta property="og:image" content="https://deepsage.com/assets/og-default.png">
+<meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="DeepSage: un segnale proveniente dal vuoto.">
-<meta name="twitter:description" content="Qualcosa sta cadendo. Qualcosa si sta risvegliando. Aggiungi DeepSage alla tua lista dei desideri.">
+<meta name="twitter:title" content="DeepSage: giochi educativi e quiz per imparare competenze reali">
+<meta name="twitter:description" content="Impara IA, pensiero critico, dati, leadership, finanza e 10 lingue straniere con giochi educativi, quiz gratuiti e libri con una storia. Unisciti alla lista dei desideri di DeepSage.">
+<meta name="twitter:image" content="https://deepsage.com/assets/og-default.png">
 <link rel="canonical" href="https://deepsage.com/it/"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "logo": "https://deepsage.com/assets/logo.webp", "name": "DeepSage", "sameAs": ["https://www.youtube.com/@deepsagemain"], "url": "https://deepsage.com"}</script><link rel="icon" type="image/png" href="/assets/favicon.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/site.css?v=29ae32ce7e">
@@ -103,13 +104,16 @@
 
   .game-title {
     margin: 0;
-    font-size: clamp(42px, 8vw, 72px);
+    font-size: clamp(30px, 5.5vw, 52px);
     font-family: var(--serif);
     font-weight: 300;
     letter-spacing: 1px;
     color: #ffffff;
     line-height: 1.2;
   }
+
+  /* site.css's .game-title (game store pages) is left-aligned. */
+  .game-info .game-title { text-align: center; }
 
   .game-description,
   .wishlist-call {
@@ -184,13 +188,41 @@
   .game-explainer p:last-child { margin-bottom: 0; }
 
   #latest-content { max-width: 860px; margin: 0 auto; padding: 48px 24px; }
+  #latest-content > .section-title { text-align: center; color: #fff; }
+
+  .home-skills-group {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 20px 0 8px;
+    text-align: center;
+  }
+  .home-skill-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+  .game-explainer .home-skill-links { margin-bottom: 0; }
+  .home-skill-links a {
+    border: 1px solid #d9b97833;
+    border-radius: 3px;
+    padding: 6px 12px;
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--text);
+  }
+  .home-skill-links a:hover { border-color: var(--gold); opacity: 1; }
 
   @media (max-width: 600px) {
-    .game-title { letter-spacing: 0.25em; }
+    .game-title { letter-spacing: 0.5px; }
   }
 
   @media (max-width: 380px) {
-    .game-title { font-size: 38px; letter-spacing: 0.15em; }
+    .game-title { font-size: 28px; letter-spacing: 0; }
   }
 
   @keyframes shoot {
@@ -268,13 +300,14 @@
 <div class="hero-grad-bottom"></div>
 <div class="hero-inner">
 <div class="game-info">
-<h2 class="game-title">DeepSage: Impara attraverso l’avventura.</h2>
+<h1 class="game-title">Impara competenze reali con i giochi educativi</h1>
+<p class="game-description">Giochi, quiz gratuiti, articoli e libri che rendono divertente imparare IA, dati, leadership e lingue straniere.</p>
 </div>
 <div class="video-wrap">
 <div class="video-ratio">
 <iframe
 src="https://www.youtube.com/embed/QNbl5ciAAJo?rel=0&modestbranding=1&color=black"
-title="DeepSage - Trailer ufficiale"
+title="Trailer del gioco educativo DeepSage"
 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 allowfullscreen
 ></iframe>
@@ -282,13 +315,32 @@ allowfullscreen
 </div>
 <div class="game-explainer">
 <h2 class="section-title">Cos&#39;è DeepSage?</h2>
-<p>DeepSage è un nuovo gioco educativo e divertente basato su un concetto semplice: la vera conoscenza dovrebbe dare la sensazione di possedere un superpotere. Invece di premere freneticamente i pulsanti, ogni sfida nel gioco si svolge attraverso domande e risposte. Affronta un avversario e entrambi vi scambiate domande reali su argomenti come scienza, storia e logica. Rispondi correttamente e vinci; rispondi in modo errato e ne paghi le conseguenze. L'abilità nel gioco equivale all'abilità nell'apprendimento.</p>
-<p>DeepSage è ambientato in un mondo di fantascienza creato appositamente per dare alle battaglie una trama degna di essere raccontata: i dettagli migliori si scoprono giocando.</p>
-<p>È un mondo che vale la pena esplorare, e ogni sfida che si presenta è un’opportunità per migliorare e crescere.</p>
+<p>DeepSage è un <strong>gioco educativo</strong> in arrivo in cui la conoscenza è il tuo superpotere. Ogni battaglia è un duello a quiz: tu e il tuo rivale vi scambiate domande vere di scienza, storia, logica e altro. Rispondi bene e vinci; sbagli e paghi. Migliorare nel gioco significa migliorare nell'imparare.</p>
+<p>Oltre al gioco principale stiamo creando un catalogo di <strong>giochi educativi</strong> che insegnano ciascuno una competenza reale, e scrivendo un <strong>libro</strong> con una storia per ogni competenza. Tutto si installa con il DeepSage Launcher gratuito per Windows e Linux.</p>
+<p>Fino al lancio puoi imparare ogni giorno con <strong>articoli e quiz</strong> gratuiti che spiegano le notizie di tecnologia, IA e scienza che contano.</p>
+</div>
+<div class="game-explainer home-skills">
+<h2 class="section-title">Competenze che puoi imparare</h2>
+<h3 class="home-skills-group">IA e dati</h3>
+<p class="home-skill-links"><a href="/it/skills/artificial-intelligence-literacy/">Alfabetizzazione all&#39;IA</a><a href="/it/skills/machine-learning-engineering/">Ingegneria del machine learning</a><a href="/it/skills/prompt-engineering/">Prompt engineering</a><a href="/it/skills/data-literacy/">Alfabetizzazione ai dati</a><a href="/it/skills/data-analytics/">Analisi dei dati</a><a href="/it/skills/data-visualization/">Visualizzazione dei dati</a></p>
+<h3 class="home-skills-group">Pensiero e decisioni</h3>
+<p class="home-skill-links"><a href="/it/skills/critical-thinking/">Pensiero critico</a><a href="/it/skills/analytical-problem-solving/">Problem solving analitico</a><a href="/it/skills/creative-thinking/">Pensiero creativo</a><a href="/it/skills/complex-decision-making/">Decisioni complesse</a></p>
+<h3 class="home-skills-group">Tecnologia e ingegneria</h3>
+<p class="home-skill-links"><a href="/it/skills/cybersecurity-management/">Gestione della sicurezza informatica</a><a href="/it/skills/data-privacy-strategy/">Strategia di privacy dei dati</a><a href="/it/skills/cloud-infrastructure/">Infrastruttura cloud</a><a href="/it/skills/software-architecture/">Architettura del software</a><a href="/it/skills/devops-engineering/">Ingegneria DevOps</a><a href="/it/skills/full-stack-development/">Sviluppo full stack</a><a href="/it/skills/ux-design/">UX design</a></p>
+<h3 class="home-skills-group">Business e management</h3>
+<p class="home-skill-links"><a href="/it/skills/product-management/">Product management</a><a href="/it/skills/project-management/">Project management</a><a href="/it/skills/digital-marketing-strategy/">Strategia di marketing digitale</a><a href="/it/skills/search-engine-optimization/">Ottimizzazione SEO</a><a href="/it/skills/financial-literacy/">Educazione finanziaria</a><a href="/it/skills/strategic-planning/">Pianificazione strategica</a><a href="/it/skills/risk-management/">Gestione del rischio</a></p>
+<h3 class="home-skills-group">Persone e crescita personale</h3>
+<p class="home-skill-links"><a href="/it/skills/leadership/">Leadership</a><a href="/it/skills/emotional-intelligence/">Intelligenza emotiva</a><a href="/it/skills/team-collaboration/">Lavoro di squadra</a><a href="/it/skills/conflict-resolution/">Risoluzione dei conflitti</a><a href="/it/skills/adaptability/">Adattabilità</a><a href="/it/skills/lifelong-learning/">Apprendimento permanente</a></p>
+</div>
+<div class="game-explainer home-skills">
+<h2 class="section-title">Impara una lingua straniera giocando</h2>
+<p>Le 10 lingue più studiate al mondo, da praticare con giochi e quiz.</p>
+<p class="home-skill-links"><a href="/it/skills/english/">Impara l&#39;inglese</a><a href="/it/skills/spanish/">Impara lo spagnolo</a><a href="/it/skills/french/">Impara il francese</a><a href="/it/skills/japanese/">Impara il giapponese</a><a href="/it/skills/german/">Impara il tedesco</a><a href="/it/skills/korean/">Impara il coreano</a><a href="/it/skills/italian/">Impara l&#39;italiano</a><a href="/it/skills/chinese/">Impara il cinese</a><a href="/it/skills/portuguese/">Impara il portoghese</a><a href="/it/skills/hindi/">Impara l&#39;hindi</a></p>
 </div>
 </div>
 </section>
 <section id="latest-content">
+<h2 class="section-title">Ultimi articoli e quiz gratuiti</h2>
 <!-- LATEST_CONTENT_START -->
 <div class="card-grid">
 <a class="content-card" href="/it/article/the-psychological-architecture-of-hypervigilance-in-high-violence-environments/">

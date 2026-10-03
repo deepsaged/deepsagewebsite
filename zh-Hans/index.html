@@ -3,15 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>深渊智者--来自虚空的讯号</title>
-<meta name="description" content="有什么东西正在坠落。有什么东西正在苏醒。请将 DeepSage 添加到您的心愿单。">
-<meta property="og:title" content="深渊智者--来自虚空的讯号">
-<meta property="og:description" content="有什么东西正在坠落。有什么东西正在苏醒。请将 DeepSage 添加到您的心愿单。">
-<meta property="og:image" content="">
-<meta property="og:type" content="article">
+<title>DeepSage：用教育游戏和测验学习真正的技能</title>
+<meta name="description" content="通过教育游戏、免费测验和故事书学习人工智能、批判性思维、数据、领导力、理财和 10 门外语。加入 DeepSage 心愿单。">
+<meta property="og:title" content="DeepSage：用教育游戏和测验学习真正的技能">
+<meta property="og:description" content="通过教育游戏、免费测验和故事书学习人工智能、批判性思维、数据、领导力、理财和 10 门外语。加入 DeepSage 心愿单。">
+<meta property="og:image" content="https://deepsage.com/assets/og-default.png">
+<meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="深渊智者--来自虚空的讯号">
-<meta name="twitter:description" content="有什么东西正在坠落。有什么东西正在苏醒。请将 DeepSage 添加到您的心愿单。">
+<meta name="twitter:title" content="DeepSage：用教育游戏和测验学习真正的技能">
+<meta name="twitter:description" content="通过教育游戏、免费测验和故事书学习人工智能、批判性思维、数据、领导力、理财和 10 门外语。加入 DeepSage 心愿单。">
+<meta name="twitter:image" content="https://deepsage.com/assets/og-default.png">
 <link rel="canonical" href="https://deepsage.com/zh-Hans/"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "logo": "https://deepsage.com/assets/logo.webp", "name": "DeepSage", "sameAs": ["https://www.youtube.com/@deepsagemain"], "url": "https://deepsage.com"}</script><link rel="icon" type="image/png" href="/assets/favicon.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/site.css?v=29ae32ce7e">
@@ -103,13 +104,16 @@
 
   .game-title {
     margin: 0;
-    font-size: clamp(42px, 8vw, 72px);
+    font-size: clamp(30px, 5.5vw, 52px);
     font-family: var(--serif);
     font-weight: 300;
     letter-spacing: 1px;
     color: #ffffff;
     line-height: 1.2;
   }
+
+  /* site.css's .game-title (game store pages) is left-aligned. */
+  .game-info .game-title { text-align: center; }
 
   .game-description,
   .wishlist-call {
@@ -184,13 +188,41 @@
   .game-explainer p:last-child { margin-bottom: 0; }
 
   #latest-content { max-width: 860px; margin: 0 auto; padding: 48px 24px; }
+  #latest-content > .section-title { text-align: center; color: #fff; }
+
+  .home-skills-group {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 20px 0 8px;
+    text-align: center;
+  }
+  .home-skill-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+  .game-explainer .home-skill-links { margin-bottom: 0; }
+  .home-skill-links a {
+    border: 1px solid #d9b97833;
+    border-radius: 3px;
+    padding: 6px 12px;
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--text);
+  }
+  .home-skill-links a:hover { border-color: var(--gold); opacity: 1; }
 
   @media (max-width: 600px) {
-    .game-title { letter-spacing: 0.25em; }
+    .game-title { letter-spacing: 0.5px; }
   }
 
   @media (max-width: 380px) {
-    .game-title { font-size: 38px; letter-spacing: 0.15em; }
+    .game-title { font-size: 28px; letter-spacing: 0; }
   }
 
   @keyframes shoot {
@@ -268,13 +300,14 @@
 <div class="hero-grad-bottom"></div>
 <div class="hero-inner">
 <div class="game-info">
-<h2 class="game-title">深奥智者：在冒险中学习。</h2>
+<h1 class="game-title">用教育游戏学习真正的技能</h1>
+<p class="game-description">游戏、免费测验、文章和书籍，让学习人工智能、数据、领导力和外语变得有趣。</p>
 </div>
 <div class="video-wrap">
 <div class="video-ratio">
 <iframe
 src="https://www.youtube.com/embed/QNbl5ciAAJo?rel=0&modestbranding=1&color=black"
-title="《深渊智者》--官方预告片"
+title="教育游戏 DeepSage 预告片"
 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 allowfullscreen
 ></iframe>
@@ -282,13 +315,32 @@ allowfullscreen
 </div>
 <div class="game-explainer">
 <h2 class="section-title">DeepSage 是什么？</h2>
-<p>《深渊智者》是一款即将推出的寓教于乐游戏，其核心理念很简单：真正的知识应该让人感觉如同拥有了超能力。游戏中的每一场战斗都通过问答的形式进行，而不是简单的按键操作。面对对手时，双方将就科学、历史和逻辑等学科进行真实的问答。回答正确，就能获胜；回答错误，就会付出代价。在游戏中掌握的技能，实际上就是学习的技能。</p>
-<p>《深渊智者》的故事背景设定在一个科幻世界中，这个世界旨在为那些战斗赋予引人入胜的剧情，让玩家乐于参与其中--最好的方式是通过游戏来体验其中的细节。</p>
-<p>这是一个值得探索的世界--而其中的每一次战斗，都是一次真正提升自我的机会。</p>
+<p>DeepSage 是一款即将推出的<strong>寓教于乐游戏</strong>，在这里知识就是你的超能力。每一场战斗都是一场答题对决：你和对手互相出题，题目涵盖科学、历史、逻辑等真实知识。答对就赢，答错就要付出代价。玩得越好，学得越好。</p>
+<p>除了主游戏，我们还在打造一系列<strong>教育游戏</strong>，每款都教授一项真正的技能，并为每项技能撰写一本故事驱动的<strong>书</strong>。所有内容都可以通过免费的 DeepSage 启动器在 Windows 和 Linux 上安装。</p>
+<p>在正式发布之前，你可以每天通过免费的<strong>文章和测验</strong>学习，了解重要的科技、人工智能和科学新闻。</p>
+</div>
+<div class="game-explainer home-skills">
+<h2 class="section-title">你可以学习的技能</h2>
+<h3 class="home-skills-group">人工智能与数据</h3>
+<p class="home-skill-links"><a href="/zh-Hans/skills/artificial-intelligence-literacy/">人工智能素养</a><a href="/zh-Hans/skills/machine-learning-engineering/">机器学习工程</a><a href="/zh-Hans/skills/prompt-engineering/">提示词工程</a><a href="/zh-Hans/skills/data-literacy/">数据素养</a><a href="/zh-Hans/skills/data-analytics/">数据分析</a><a href="/zh-Hans/skills/data-visualization/">数据可视化</a></p>
+<h3 class="home-skills-group">思维与决策</h3>
+<p class="home-skill-links"><a href="/zh-Hans/skills/critical-thinking/">批判性思维</a><a href="/zh-Hans/skills/analytical-problem-solving/">分析性问题解决</a><a href="/zh-Hans/skills/creative-thinking/">创造性思维</a><a href="/zh-Hans/skills/complex-decision-making/">复杂决策</a></p>
+<h3 class="home-skills-group">技术与工程</h3>
+<p class="home-skill-links"><a href="/zh-Hans/skills/cybersecurity-management/">网络安全管理</a><a href="/zh-Hans/skills/data-privacy-strategy/">数据隐私策略</a><a href="/zh-Hans/skills/cloud-infrastructure/">云基础设施</a><a href="/zh-Hans/skills/software-architecture/">软件架构</a><a href="/zh-Hans/skills/devops-engineering/">DevOps 工程</a><a href="/zh-Hans/skills/full-stack-development/">全栈开发</a><a href="/zh-Hans/skills/ux-design/">用户体验设计</a></p>
+<h3 class="home-skills-group">商业与管理</h3>
+<p class="home-skill-links"><a href="/zh-Hans/skills/product-management/">产品管理</a><a href="/zh-Hans/skills/project-management/">项目管理</a><a href="/zh-Hans/skills/digital-marketing-strategy/">数字营销策略</a><a href="/zh-Hans/skills/search-engine-optimization/">搜索引擎优化（SEO）</a><a href="/zh-Hans/skills/financial-literacy/">财商</a><a href="/zh-Hans/skills/strategic-planning/">战略规划</a><a href="/zh-Hans/skills/risk-management/">风险管理</a></p>
+<h3 class="home-skills-group">人际与个人成长</h3>
+<p class="home-skill-links"><a href="/zh-Hans/skills/leadership/">领导力</a><a href="/zh-Hans/skills/emotional-intelligence/">情商</a><a href="/zh-Hans/skills/team-collaboration/">团队协作</a><a href="/zh-Hans/skills/conflict-resolution/">冲突解决</a><a href="/zh-Hans/skills/adaptability/">适应能力</a><a href="/zh-Hans/skills/lifelong-learning/">终身学习</a></p>
+</div>
+<div class="game-explainer home-skills">
+<h2 class="section-title">在游戏中学外语</h2>
+<p>全球最热门的 10 门外语，用游戏和测验来练习。</p>
+<p class="home-skill-links"><a href="/zh-Hans/skills/english/">学习英语</a><a href="/zh-Hans/skills/spanish/">学习西班牙语</a><a href="/zh-Hans/skills/french/">学习法语</a><a href="/zh-Hans/skills/japanese/">学习日语</a><a href="/zh-Hans/skills/german/">学习德语</a><a href="/zh-Hans/skills/korean/">学习韩语</a><a href="/zh-Hans/skills/italian/">学习意大利语</a><a href="/zh-Hans/skills/chinese/">学习中文</a><a href="/zh-Hans/skills/portuguese/">学习葡萄牙语</a><a href="/zh-Hans/skills/hindi/">学习印地语</a></p>
 </div>
 </div>
 </section>
 <section id="latest-content">
+<h2 class="section-title">最新免费文章和测验</h2>
 <!-- LATEST_CONTENT_START -->
 <div class="card-grid">
 <a class="content-card" href="/zh-Hans/article/the-psychological-architecture-of-hypervigilance-in-high-violence-environments/">
