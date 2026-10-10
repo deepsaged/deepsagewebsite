@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DeepSage: Lernspiele und Quiz für echte Fähigkeiten</title>
+<meta name="description" content="Kostenlose Quiz und Artikel schon jetzt, dazu Lernspiele und erzählerische Bücher in Entwicklung zu KI, kritischem Denken, Daten, Führung, Finanzen und 10 Fremdsprachen.">
+<meta property="og:title" content="DeepSage: Lernspiele und Quiz für echte Fähigkeiten">
+<meta property="og:description" content="Kostenlose Quiz und Artikel schon jetzt, dazu Lernspiele und erzählerische Bücher in Entwicklung zu KI, kritischem Denken, Daten, Führung, Finanzen und 10 Fremdsprachen.">
+<meta property="og:image" content="https://deepsage.com/assets/og-default.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DeepSage: Lernspiele und Quiz für echte Fähigkeiten">
+<meta name="twitter:description" content="Kostenlose Quiz und Artikel schon jetzt, dazu Lernspiele und erzählerische Bücher in Entwicklung zu KI, kritischem Denken, Daten, Führung, Finanzen und 10 Fremdsprachen.">
+<meta name="twitter:image" content="https://deepsage.com/assets/og-default.png">
+<link rel="canonical" href="https://deepsage.com/de/"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "logo": "https://deepsage.com/assets/logo.webp", "name": "DeepSage", "sameAs": ["https://www.youtube.com/@deepsagemain"], "url": "https://deepsage.com"}</script><link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/site.css?v=49316d5d9a">
+<link rel="alternate" hreflang="en" href="https://deepsage.com/">
+<link rel="alternate" hreflang="es" href="https://deepsage.com/es/">
+<link rel="alternate" hreflang="pt" href="https://deepsage.com/pt/">
+<link rel="alternate" hreflang="fr" href="https://deepsage.com/fr/">
+<link rel="alternate" hreflang="de" href="https://deepsage.com/de/">
+<link rel="alternate" hreflang="ru" href="https://deepsage.com/ru/">
+<link rel="alternate" hreflang="ja" href="https://deepsage.com/ja/">
+<link rel="alternate" hreflang="zh-Hans" href="https://deepsage.com/zh-Hans/">
+<link rel="alternate" hreflang="ko" href="https://deepsage.com/ko/">
+<link rel="alternate" hreflang="it" href="https://deepsage.com/it/">
+<link rel="alternate" hreflang="hi" href="https://deepsage.com/hi/">
+<link rel="alternate" hreflang="x-default" href="https://deepsage.com/"><style>
+  /* ── Homepage-only styles ──
+     Shared page shell (.page-container/.page-header/.page-footer/.page-content)
+     and shared typography now live in site.css / base.html - everything below
+     is unique to the hero/wishlist experience on this page only. */
+
+  #hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+    background: #000;
+    margin: -48px -24px 0;
+    padding: 0 24px;
+  }
+
+  #starCanvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  .hero-grad-top {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 10%, #001828aa 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .hero-grad-bottom {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 35%;
+    background: linear-gradient(to top, #000 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 860px;
+    padding: 24px 0 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .game-info {
+    width: 100%;
+    max-width: 780px;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 0;
+  }
+
+  .game-title {
+    margin: 0;
+    font-size: clamp(30px, 5.5vw, 52px);
+    font-family: var(--serif);
+    font-weight: 300;
+    letter-spacing: 1px;
+    color: #ffffff;
+    line-height: 1.2;
+  }
+
+  /* site.css's .game-title (game store pages) is left-aligned. */
+  .game-info .game-title { text-align: center; }
+
+  .game-description,
+  .wishlist-call {
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text);
+    margin: 0;
+  }
+
+  .wishlist-call {
+    color: #d9b97888;
+    font-size: 15px;
+  }
+
+  .game-explainer {
+    width: 100%;
+    max-width: 700px;
+    margin-top: 48px;
+    text-align: left;
+  }
+
+  .game-explainer .section-title {
+    text-align: center;
+    color: #fff;
+  }
+
+  .game-explainer p {
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+
+  .game-explainer p:last-child { margin-bottom: 0; }
+
+  #latest-content { max-width: 860px; margin: 0 auto; padding: 48px 24px; }
+  #latest-content > .section-title { text-align: center; color: #fff; }
+
+  .home-skills-group {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 20px 0 8px;
+    text-align: center;
+  }
+  .home-skill-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+  .game-explainer .home-skill-links { margin-bottom: 0; }
+  .home-skill-links a {
+    border: 1px solid #d9b97833;
+    border-radius: 3px;
+    padding: 6px 12px;
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--text);
+  }
+  .home-skill-links a:hover { border-color: var(--gold); opacity: 1; }
+
+  @media (max-width: 600px) {
+    .game-title { letter-spacing: 0.5px; }
+  }
+
+  @media (max-width: 380px) {
+    .game-title { font-size: 28px; letter-spacing: 0; }
+  }
+
+  @keyframes shoot {
+    0%   { transform: translateX(0) translateY(0); opacity: 0; }
+    5%   { opacity: 1; }
+    80%  { opacity: 0.6; }
+    100% { transform: translateX(180px) translateY(60px); opacity: 0; }
+  }
+
+  /* ── COOKIE CONSENT BANNER (homepage-only feature) ── */
+  /* Cookie consent banner/modal styles now live in site.css (shared,
+     site-wide) since the banner itself moved to base.html. */
+</style><script src="/assets/js/generated/6af1da928bcbbb97.js"></script><script src="/assets/js/generated/3be2650171b52938.js"></script><script>
+    window.dsLangUrls = {"de": "https://deepsage.com/de/", "en": "https://deepsage.com/", "es": "https://deepsage.com/es/", "fr": "https://deepsage.com/fr/", "hi": "https://deepsage.com/hi/", "it": "https://deepsage.com/it/", "ja": "https://deepsage.com/ja/", "ko": "https://deepsage.com/ko/", "pt": "https://deepsage.com/pt/", "ru": "https://deepsage.com/ru/", "zh-Hans": "https://deepsage.com/zh-Hans/"};
+    window.dsCurrentLang = "de";
+  </script><script src="/assets/js/lang-preference.js"></script><script src="/assets/js/ab-experiments.js"></script><script src="/assets/js/generated/b5755bbca0921e9d.js"></script></head>
+<body>
+<section class="page-container">
+<div class="page-grad-top"></div>
+<div class="page-grad-bottom"></div>
+<div class="page-content">
+<div class="top-banner" id="topBanner">
+<span class="top-banner-text">Das neue Lernspiel DeepSage <a href="/de/world/" class="top-banner-link">kommt</a>. Kostenlose Quiz und Artikel gibt es schon jetzt.</span>
+</div>
+<div class="page-header">
+<a href="/de/" class="page-logo-link" aria-label="DeepSage home"><img class="page-logo" src="/assets/logo.webp" alt="DeepSage" width="1628" height="351"></a>
+<div class="header-controls">
+<nav class="header-nav" aria-label="Main">
+<a class="header-nav-link" href="/de/games/">Spiele</a>
+<a class="header-nav-link" href="/de/books/">Bücher</a>
+</nav>
+<div class="header-social">
+<a class="header-social-link" href="https://www.youtube.com/@DeepSageMain" target="_blank" rel="noopener me" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5l6.3 3.5-6.3 3.5Z"/></svg></a>
+<a class="header-social-link" href="https://www.instagram.com/deepsaged/" target="_blank" rel="noopener me" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 2 .3 2.4.5.6.2 1 .5 1.5 1 .4.4.7.8 1 1.5.2.4.4 1.2.5 2.4.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 2-.5 2.4-.2.6-.5 1-1 1.5-.4.4-.8.7-1.5 1-.4.2-1.2.4-2.4.5-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-2-.3-2.4-.5-.6-.2-1-.5-1.5-1-.4-.4-.7-.8-1-1.5-.2-.4-.4-1.2-.5-2.4-.1-1.3-.1-1.7-.1-4.9s0-3.6.1-4.9c.1-1.2.3-2 .5-2.4.2-.6.5-1 1-1.5.4-.4.8-.7 1.5-1 .4-.2 1.2-.4 2.4-.5C8.4 2.2 8.8 2.2 12 2.2Zm0 1.8c-3.1 0-3.5 0-4.7.1-1 0-1.6.2-1.9.4-.5.2-.8.4-1.2.7-.3.4-.5.7-.7 1.2-.1.3-.3.9-.4 1.9-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c0 1 .2 1.6.4 1.9.2.5.4.8.7 1.2.4.3.7.5 1.2.7.3.1.9.3 1.9.4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1 0 1.6-.2 1.9-.4.5-.2.8-.4 1.2-.7.3-.4.5-.7.7-1.2.1-.3.3-.9.4-1.9.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c0-1-.2-1.6-.4-1.9-.2-.5-.4-.8-.7-1.2-.4-.3-.7-.5-1.2-.7-.3-.1-.9-.3-1.9-.4-1.2-.1-1.6-.1-4.7-.1Zm0 3.1a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8Zm0 1.8a3.1 3.1 0 1 0 0 6.2 3.1 3.1 0 0 0 0-6.2Zm5.1-2.9a1.1 1.1 0 1 1 0 2.3 1.1 1.1 0 0 1 0-2.3Z"/></svg></a>
+<a class="header-social-link" href="https://www.threads.com/@deepsaged" target="_blank" rel="noopener me" aria-label="Threads" title="Threads"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12.2 24c-3.4 0-6-1-7.9-2.9C2.4 19.1 1.4 16.2 1.4 12.3v-.6c0-3.9 1-6.7 3-8.7C6.3 1 8.9 0 12.2 0h.1c2.6 0 4.8.7 6.5 2 1.5 1.2 2.6 2.9 3.2 5l-2.5.7c-.5-1.6-1.3-2.9-2.4-3.7-1.2-1-2.7-1.4-4.8-1.4h-.1c-2.5 0-4.5.8-5.9 2.3-1.3 1.5-2 3.7-2 6.5v.6c0 2.8.7 5 2 6.5 1.4 1.5 3.4 2.3 5.9 2.3 2.1 0 3.7-.5 4.8-1.4a4 4 0 0 0 1.5-2.9c0-1-.3-1.8-1-2.5a5 5 0 0 0-.8-.6c-.2 1.4-.7 2.5-1.5 3.4-1 1.1-2.4 1.7-4.1 1.7-1.3 0-2.5-.4-3.3-1.1a3.7 3.7 0 0 1-1.3-2.9c0-1.2.5-2.3 1.4-3 1-.8 2.3-1.2 4-1.2.9 0 1.7.1 2.5.3 0-.9-.3-1.6-.8-2-.5-.5-1.3-.8-2.3-.8-1.3 0-2.4.4-3.4 1.3l-1.7-1.8c1.4-1.3 3.1-2 5.1-2 1.7 0 3.1.5 4.1 1.5 1 .9 1.5 2.2 1.6 3.9.9.4 1.6.8 2.2 1.4 1 1 1.6 2.3 1.6 3.9 0 1.7-.7 3.2-2.1 4.4-1.5 1.4-3.6 2.1-6.2 2.1Zm-.6-9.4c-1 0-1.8.2-2.3.6-.4.3-.6.7-.6 1.2 0 .5.2.9.6 1.2.4.3 1 .5 1.6.5 1 0 1.8-.3 2.4-1 .5-.5.7-1.3.8-2.3-.7-.2-1.6-.2-2.5-.2Z"/></svg></a>
+<a class="header-social-link" href="https://x.com/deepsagemain" target="_blank" rel="noopener me" aria-label="X" title="X"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M18.2 2h3.3l-7.2 8.3L23 22h-6.6l-5.2-6.8L5.3 22H2l7.7-8.8L2 2h6.8l4.7 6.2L18.2 2Zm-1.2 18h1.8L7.1 4h-2l12 16Z"/></svg></a>
+</div>
+<div class="lang-switcher">
+<button class="lang-switcher-btn" onclick="toggleLangMenu()" type="button" aria-label="Deutsch" title="Deutsch"><svg class="lang-switcher-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M12.87 15.07l-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/></svg></button>
+<div id="lang-dropdown" class="lang-dropdown">
+<a href="https://deepsage.com/" class="lang-option" data-lang="en" onclick="return dsSwitchLang(event, 'en', 'https://deepsage.com/')">English</a>
+<a href="https://deepsage.com/es/" class="lang-option" data-lang="es" onclick="return dsSwitchLang(event, 'es', 'https://deepsage.com/es/')">Español</a>
+<a href="https://deepsage.com/pt/" class="lang-option" data-lang="pt" onclick="return dsSwitchLang(event, 'pt', 'https://deepsage.com/pt/')">Português</a>
+<a href="https://deepsage.com/fr/" class="lang-option" data-lang="fr" onclick="return dsSwitchLang(event, 'fr', 'https://deepsage.com/fr/')">Français</a>
+<a href="https://deepsage.com/de/" class="lang-option lang-option-active" data-lang="de" onclick="return dsSwitchLang(event, 'de', 'https://deepsage.com/de/')">Deutsch</a>
+<a href="https://deepsage.com/ru/" class="lang-option" data-lang="ru" onclick="return dsSwitchLang(event, 'ru', 'https://deepsage.com/ru/')">Русский</a>
+<a href="https://deepsage.com/ja/" class="lang-option" data-lang="ja" onclick="return dsSwitchLang(event, 'ja', 'https://deepsage.com/ja/')">日本語</a>
+<a href="https://deepsage.com/zh-Hans/" class="lang-option" data-lang="zh-Hans" onclick="return dsSwitchLang(event, 'zh-Hans', 'https://deepsage.com/zh-Hans/')">简体中文</a>
+<a href="https://deepsage.com/ko/" class="lang-option" data-lang="ko" onclick="return dsSwitchLang(event, 'ko', 'https://deepsage.com/ko/')">한국어</a>
+<a href="https://deepsage.com/it/" class="lang-option" data-lang="it" onclick="return dsSwitchLang(event, 'it', 'https://deepsage.com/it/')">Italiano</a>
+<a href="https://deepsage.com/hi/" class="lang-option" data-lang="hi" onclick="return dsSwitchLang(event, 'hi', 'https://deepsage.com/hi/')">हिन्दी</a>
+</div>
+</div>
+</div>
+</div>
+<section id="hero">
+<canvas id="starCanvas"></canvas>
+<div class="hero-grad-top"></div>
+<div class="hero-grad-bottom"></div>
+<div class="hero-inner">
+<div class="game-info">
+<h1 class="game-title">Echte Fähigkeiten lernen mit Lernspielen</h1>
+<p class="game-description">Kostenlose Quiz und Artikel sind schon online. Unsere Lernspiele und Bücher zu KI, Daten, Führung und Fremdsprachen sind in Entwicklung.</p>
+</div>
+<div class="game-explainer">
+<h2 class="section-title">Was ist DeepSage?</h2>
+<p>DeepSage ist ein kommendes <strong>Lernspiel</strong>, in dem Wissen deine Superkraft ist. Jeder Kampf ist ein Quiz-Duell: Du und dein Gegner stellt euch echte Fragen aus Naturwissenschaft, Geschichte, Logik und mehr. Richtige Antwort, du gewinnst; falsche Antwort, es kostet dich. Wer im Spiel besser wird, wird besser im Lernen.</p>
+<p>Neben dem Hauptspiel entwickeln wir einen Katalog von <strong>Lernspielen</strong>, die jeweils um eine echte Fähigkeit herum gestaltet sind, und schreiben zu jeder Fähigkeit ein erzählerisches <strong>Buch</strong>. Installiert werden sie künftig über den kostenlosen DeepSage Launcher für Windows und Linux.</p>
+<p>Bis zum Start kannst du jeden Tag mit kostenlosen <strong>Artikeln und Quiz</strong> lernen, die die wichtigen Themen aus Tech, KI und Wissenschaft erklären.</p>
+</div>
+<div class="game-explainer home-skills">
+<h2 class="section-title">Fähigkeiten, die du lernen kannst</h2>
+<h3 class="home-skills-group">KI und Daten</h3>
+<p class="home-skill-links"><a href="/de/skills/artificial-intelligence-literacy/">KI-Kompetenz</a><a href="/de/skills/machine-learning-engineering/">Machine Learning Engineering</a><a href="/de/skills/prompt-engineering/">Prompt Engineering</a><a href="/de/skills/data-literacy/">Datenkompetenz</a><a href="/de/skills/data-analytics/">Datenanalyse</a><a href="/de/skills/data-visualization/">Datenvisualisierung</a></p>
+<h3 class="home-skills-group">Denken und Entscheiden</h3>
+<p class="home-skill-links"><a href="/de/skills/critical-thinking/">Kritisches Denken</a><a href="/de/skills/analytical-problem-solving/">Analytisches Problemlösen</a><a href="/de/skills/creative-thinking/">Kreatives Denken</a><a href="/de/skills/complex-decision-making/">Komplexe Entscheidungsfindung</a></p>
+<h3 class="home-skills-group">Technologie und Engineering</h3>
+<p class="home-skill-links"><a href="/de/skills/cybersecurity-management/">Cybersicherheitsmanagement</a><a href="/de/skills/data-privacy-strategy/">Datenschutzstrategie</a><a href="/de/skills/cloud-infrastructure/">Cloud-Infrastruktur</a><a href="/de/skills/software-architecture/">Softwarearchitektur</a><a href="/de/skills/devops-engineering/">DevOps Engineering</a><a href="/de/skills/full-stack-development/">Full-Stack-Entwicklung</a><a href="/de/skills/ux-design/">UX-Design</a></p>
+<h3 class="home-skills-group">Business und Management</h3>
+<p class="home-skill-links"><a href="/de/skills/product-management/">Produktmanagement</a><a href="/de/skills/project-management/">Projektmanagement</a><a href="/de/skills/digital-marketing-strategy/">Digitale Marketingstrategie</a><a href="/de/skills/search-engine-optimization/">Suchmaschinenoptimierung (SEO)</a><a href="/de/skills/financial-literacy/">Finanzwissen</a><a href="/de/skills/strategic-planning/">Strategische Planung</a><a href="/de/skills/risk-management/">Risikomanagement</a></p>
+<h3 class="home-skills-group">Menschen und persönliche Entwicklung</h3>
+<p class="home-skill-links"><a href="/de/skills/leadership/">Führung</a><a href="/de/skills/emotional-intelligence/">Emotionale Intelligenz</a><a href="/de/skills/team-collaboration/">Teamarbeit</a><a href="/de/skills/conflict-resolution/">Konfliktlösung</a><a href="/de/skills/adaptability/">Anpassungsfähigkeit</a><a href="/de/skills/lifelong-learning/">Lebenslanges Lernen</a></p>
+</div>
+<div class="game-explainer home-skills">
+<h2 class="section-title">Fremdsprachen spielerisch lernen</h2>
+<p>Die 10 meistgelernten Sprachen der Welt, geübt mit Spielen und Quiz.</p>
+<p class="home-skill-links"><a href="/de/skills/english/">Englisch lernen</a><a href="/de/skills/spanish/">Spanisch lernen</a><a href="/de/skills/french/">Französisch lernen</a><a href="/de/skills/japanese/">Japanisch lernen</a><a href="/de/skills/german/">Deutsch lernen</a><a href="/de/skills/korean/">Koreanisch lernen</a><a href="/de/skills/italian/">Italienisch lernen</a><a href="/de/skills/chinese/">Chinesisch lernen</a><a href="/de/skills/portuguese/">Portugiesisch lernen</a><a href="/de/skills/hindi/">Hindi lernen</a></p>
+</div>
+</div>
+</section>
+<section id="latest-content">
+<h2 class="section-title">Neueste kostenlose Artikel und Quiz</h2>
+<!-- LATEST_CONTENT_START -->
+<div class="card-grid">
+<a class="content-card" href="/de/article/the-r101-britain-s-billion-dollar-sky-disaster/">
+<img class="content-card-thumb" src="/de/article/the-r101-britain-s-billion-dollar-sky-disaster/hero.webp" alt="Die R101: Großbritanniens große Luftschiffkatastrophe">
+<div class="content-card-body">
+<span class="content-card-badge">Artikel</span>
+<div class="content-card-title">Die R101: Großbritanniens große Luftschiffkatastrophe</div>
+<div class="content-card-preview">Bevor wir Drohnen zur Überwachung der Nachbarschaft einsetzten, versuchte Großbritannien, die Wolken mit einem riesigen, brennbaren und unglaublich teuren Ballon zu erobern.</div>
+</div>
+</a>
+<a class="content-card" href="/de/quiz/r-101-britain-s-sky-high-ambition-and-epic-fail/">
+<img class="content-card-thumb" src="/de/quiz/r-101-britain-s-sky-high-ambition-and-epic-fail/hero.webp" alt="R.101: Großbritanniens ehrgeiziges, aber letztlich gescheitertes Luftschiffprojekt">
+<div class="content-card-body">
+<span class="content-card-badge">Quiz</span>
+<div class="content-card-title">R.101: Großbritanniens ehrgeiziges, aber letztlich gescheitertes Luftschiffprojekt</div>
+<div class="content-card-preview">5Fragen – testen Sie Ihr Wissen.</div>
+</div>
+</a>
+<a class="content-card" href="/de/article/the-3-solar-mass-magic-trick/">
+<img class="content-card-thumb" src="/de/article/the-3-solar-mass-magic-trick/hero.webp" alt="Der faszinierende Trick mit den drei Sonnenmassen">
+<div class="content-card-body">
+<span class="content-card-badge">Artikel</span>
+<div class="content-card-title">Der faszinierende Trick mit den drei Sonnenmassen</div>
+<div class="content-card-preview">Als zwei Schwarze Löcher kollidierten, verschwand ein großer Teil ihrer Masse und wurde in reine Energiewellen umgewandelt, die wir tatsächlich wahrnehmen können.</div>
+</div>
+</a>
+<a class="content-card" href="/de/quiz/ripples-in-the-spacetime-fabric/">
+<img class="content-card-thumb" src="/de/quiz/ripples-in-the-spacetime-fabric/hero.webp" alt="Wellen im Gefüge der Raumzeit">
+<div class="content-card-body">
+<span class="content-card-badge">Quiz</span>
+<div class="content-card-title">Wellen im Gefüge der Raumzeit</div>
+<div class="content-card-preview">5Fragen – testen Sie Ihr Wissen.</div>
+</div>
+</a>
+<a class="content-card" href="/de/article/the-italian-diaspora-and-the-ghost-of-la-dolce-vita/">
+<img class="content-card-thumb" src="/de/article/the-italian-diaspora-and-the-ghost-of-la-dolce-vita/hero.webp" alt="Die italienische Diaspora und der Geist von „La Dolce Vita“">
+<div class="content-card-body">
+<span class="content-card-badge">Artikel</span>
+<div class="content-card-title">Die italienische Diaspora und der Geist von „La Dolce Vita“</div>
+<div class="content-card-preview">Hinter jeder großartigen Pasta-Soße, die in einer Vorortküche zubereitet wird, verbirgt sich eine tiefe, unerschütterliche Sehnsucht nach einem Zuhause, das vielleicht gar nicht mehr existiert.</div>
+</div>
+</a>
+<a class="content-card" href="/de/quiz/the-great-italian-longing-diaspora-nostalgia/">
+<img class="content-card-thumb" src="/de/quiz/the-great-italian-longing-diaspora-nostalgia/hero.webp" alt="Die große italienische Sehnsucht: Diaspora und Nostalgie">
+<div class="content-card-body">
+<span class="content-card-badge">Quiz</span>
+<div class="content-card-title">Die große italienische Sehnsucht: Diaspora und Nostalgie</div>
+<div class="content-card-preview">5Fragen – testen Sie Ihr Wissen.</div>
+</div>
+</a>
+</div><!-- LATEST_CONTENT_END -->
+</section>
+<div class="page-footer">
+<div class="footer-links">
+<a href="/de/">Startseite</a>
+<span class="footer-divider">·</span>
+<a href="/de/article/">Artikel</a>
+<span class="footer-divider">·</span>
+<a href="/de/quiz/">Quizfragen</a>
+<span class="footer-divider">·</span>
+<a href="/de/skills/">Fähigkeiten</a>
+<span class="footer-divider">·</span>
+<a href="/tags/">Schlagwörter</a>
+<span class="footer-divider">·</span>
+<a href="/de/games/">Spiele</a>
+<span class="footer-divider">·</span>
+<a href="/de/books/">Bücher</a>
+</div>
+<div class="footer-legal">
+<a href="/privacy-policy/">Datenschutzrichtlinie</a>
+<span class="footer-divider">·</span>
+<a href="/terms-of-service/">Nutzungsbedingungen</a>
+<span class="footer-divider">·</span>
+<a href="/cookie-policy/">Cookie-Richtlinie</a>
+<span class="footer-divider">·</span>
+<a href="/contact/">Kontakt</a>
+<span class="footer-divider">·</span>
+<a href="/impressum/">Impressum</a>
+<span class="footer-divider">·</span>
+<a href="#" id="cookiePrefsLink">Cookie-Einstellungen</a>
+</div>
+<p class="footer-copyright">DeepSage · © 2026</p>
+</div>
+</div>
+</section>
+<div id="cookieBanner">
+<div class="cookie-banner-container">
+<div class="cookie-banner-text">
+Nur mit Ihrer Einwilligung verwenden wir optionale Cookies von Google Analytics, um zu verstehen, wie die Website genutzt wird; Google kann diese Daten in den USA verarbeiten. Details finden Sie in unserer <a href="/privacy-policy/" target="_blank">Datenschutzrichtlinie</a> und unserer <a href="/cookie-policy/" target="_blank">Cookie-Richtlinie</a>.
+</div>
+<div class="cookie-banner-buttons">
+<button id="cookieReject">Nicht unbedingt notwendige Elemente ablehnen.</button>
+<button id="cookieCustomize">Anpassen</button>
+<button id="cookieAccept">Alle akzeptieren</button>
+</div>
+</div>
+</div>
+<div id="cookieModal">
+<div class="cookie-modal-content">
+<h2>Cookie-Einstellungen</h2>
+<div class="cookie-preference">
+<input type="checkbox" id="cookieEssential" checked disabled>
+<label for="cookieEssential">Wichtig; unverzichtbar</label>
+</div>
+<div class="cookie-preference-description">
+Für die grundlegende Funktionalität der Website erforderlich (immer aktiviert).
+</div>
+<div class="cookie-preference">
+<input type="checkbox" id="cookieAnalytics">
+<label for="cookieAnalytics">Analyse</label>
+</div>
+<div class="cookie-preference-description">
+Hilft uns zu verstehen, wie Sie die Website nutzen, damit wir Ihr Nutzererlebnis verbessern können.
+</div>
+<div class="cookie-modal-buttons">
+<button id="cookieModalCancel">Abbrechen</button>
+<button id="cookieModalSave">Auswahl speichern</button>
+</div>
+</div>
+</div><script src="/assets/js/generated/0befd7597c6f1e22.js"></script><script src="/assets/js/generated/60f64805f674428c.js"></script></body>
+</html>

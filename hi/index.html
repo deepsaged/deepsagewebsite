@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DeepSage: असली स्किल सीखने के लिए शैक्षिक गेम और क्विज़</title>
+<meta name="description" content="मुफ़्त क्विज़ और लेख अभी उपलब्ध हैं; एआई, आलोचनात्मक सोच, डेटा, नेतृत्व, पैसे और 10 विदेशी भाषाओं के लिए शैक्षिक गेम और कहानी-आधारित किताबें विकास में हैं।">
+<meta property="og:title" content="DeepSage: असली स्किल सीखने के लिए शैक्षिक गेम और क्विज़">
+<meta property="og:description" content="मुफ़्त क्विज़ और लेख अभी उपलब्ध हैं; एआई, आलोचनात्मक सोच, डेटा, नेतृत्व, पैसे और 10 विदेशी भाषाओं के लिए शैक्षिक गेम और कहानी-आधारित किताबें विकास में हैं।">
+<meta property="og:image" content="https://deepsage.com/assets/og-default.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DeepSage: असली स्किल सीखने के लिए शैक्षिक गेम और क्विज़">
+<meta name="twitter:description" content="मुफ़्त क्विज़ और लेख अभी उपलब्ध हैं; एआई, आलोचनात्मक सोच, डेटा, नेतृत्व, पैसे और 10 विदेशी भाषाओं के लिए शैक्षिक गेम और कहानी-आधारित किताबें विकास में हैं।">
+<meta name="twitter:image" content="https://deepsage.com/assets/og-default.png">
+<link rel="canonical" href="https://deepsage.com/hi/"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "logo": "https://deepsage.com/assets/logo.webp", "name": "DeepSage", "sameAs": ["https://www.youtube.com/@deepsagemain"], "url": "https://deepsage.com"}</script><link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/site.css?v=49316d5d9a">
+<link rel="alternate" hreflang="en" href="https://deepsage.com/">
+<link rel="alternate" hreflang="es" href="https://deepsage.com/es/">
+<link rel="alternate" hreflang="pt" href="https://deepsage.com/pt/">
+<link rel="alternate" hreflang="fr" href="https://deepsage.com/fr/">
+<link rel="alternate" hreflang="de" href="https://deepsage.com/de/">
+<link rel="alternate" hreflang="ru" href="https://deepsage.com/ru/">
+<link rel="alternate" hreflang="ja" href="https://deepsage.com/ja/">
+<link rel="alternate" hreflang="zh-Hans" href="https://deepsage.com/zh-Hans/">
+<link rel="alternate" hreflang="ko" href="https://deepsage.com/ko/">
+<link rel="alternate" hreflang="it" href="https://deepsage.com/it/">
+<link rel="alternate" hreflang="hi" href="https://deepsage.com/hi/">
+<link rel="alternate" hreflang="x-default" href="https://deepsage.com/"><style>
+  /* ── Homepage-only styles ──
+     Shared page shell (.page-container/.page-header/.page-footer/.page-content)
+     and shared typography now live in site.css / base.html - everything below
+     is unique to the hero/wishlist experience on this page only. */
+
+  #hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+    background: #000;
+    margin: -48px -24px 0;
+    padding: 0 24px;
+  }
+
+  #starCanvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  .hero-grad-top {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 10%, #001828aa 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .hero-grad-bottom {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 35%;
+    background: linear-gradient(to top, #000 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 860px;
+    padding: 24px 0 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .game-info {
+    width: 100%;
+    max-width: 780px;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 0;
+  }
+
+  .game-title {
+    margin: 0;
+    font-size: clamp(30px, 5.5vw, 52px);
+    font-family: var(--serif);
+    font-weight: 300;
+    letter-spacing: 1px;
+    color: #ffffff;
+    line-height: 1.2;
+  }
+
+  /* site.css's .game-title (game store pages) is left-aligned. */
+  .game-info .game-title { text-align: center; }
+
+  .game-description,
+  .wishlist-call {
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text);
+    margin: 0;
+  }
+
+  .wishlist-call {
+    color: #d9b97888;
+    font-size: 15px;
+  }
+
+  .game-explainer {
+    width: 100%;
+    max-width: 700px;
+    margin-top: 48px;
+    text-align: left;
+  }
+
+  .game-explainer .section-title {
+    text-align: center;
+    color: #fff;
+  }
+
+  .game-explainer p {
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+
+  .game-explainer p:last-child { margin-bottom: 0; }
+
+  #latest-content { max-width: 860px; margin: 0 auto; padding: 48px 24px; }
+  #latest-content > .section-title { text-align: center; color: #fff; }
+
+  .home-skills-group {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 20px 0 8px;
+    text-align: center;
+  }
+  .home-skill-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+  .game-explainer .home-skill-links { margin-bottom: 0; }
+  .home-skill-links a {
+    border: 1px solid #d9b97833;
+    border-radius: 3px;
+    padding: 6px 12px;
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--text);
+  }
+  .home-skill-links a:hover { border-color: var(--gold); opacity: 1; }
+
+  @media (max-width: 600px) {
+    .game-title { letter-spacing: 0.5px; }
+  }
+
+  @media (max-width: 380px) {
+    .game-title { font-size: 28px; letter-spacing: 0; }
+  }
+
+  @keyframes shoot {
+    0%   { transform: translateX(0) translateY(0); opacity: 0; }
+    5%   { opacity: 1; }
+    80%  { opacity: 0.6; }
+    100% { transform: translateX(180px) translateY(60px); opacity: 0; }
+  }
+
+  /* ── COOKIE CONSENT BANNER (homepage-only feature) ── */
+  /* Cookie consent banner/modal styles now live in site.css (shared,
+     site-wide) since the banner itself moved to base.html. */
+</style><script src="/assets/js/generated/6af1da928bcbbb97.js"></script><script src="/assets/js/generated/3be2650171b52938.js"></script><script>
+    window.dsLangUrls = {"de": "https://deepsage.com/de/", "en": "https://deepsage.com/", "es": "https://deepsage.com/es/", "fr": "https://deepsage.com/fr/", "hi": "https://deepsage.com/hi/", "it": "https://deepsage.com/it/", "ja": "https://deepsage.com/ja/", "ko": "https://deepsage.com/ko/", "pt": "https://deepsage.com/pt/", "ru": "https://deepsage.com/ru/", "zh-Hans": "https://deepsage.com/zh-Hans/"};
+    window.dsCurrentLang = "hi";
+  </script><script src="/assets/js/lang-preference.js"></script><script src="/assets/js/ab-experiments.js"></script><script src="/assets/js/generated/f24451bbb652d249.js"></script></head>
+<body>
+<section class="page-container">
+<div class="page-grad-top"></div>
+<div class="page-grad-bottom"></div>
+<div class="page-content">
+<div class="top-banner" id="topBanner">
+<span class="top-banner-text">नया शिक्षाप्रद मनोरंजन गेम DeepSage <a href="/hi/world/" class="top-banner-link">जल्द आ रहा है</a>। मुफ़्त क्विज़ और लेख अभी उपलब्ध हैं।</span>
+</div>
+<div class="page-header">
+<a href="/hi/" class="page-logo-link" aria-label="DeepSage home"><img class="page-logo" src="/assets/logo.webp" alt="DeepSage" width="1628" height="351"></a>
+<div class="header-controls">
+<nav class="header-nav" aria-label="Main">
+<a class="header-nav-link" href="/hi/games/">खेल</a>
+<a class="header-nav-link" href="/hi/books/">किताबें</a>
+</nav>
+<div class="header-social">
+<a class="header-social-link" href="https://www.youtube.com/@DeepSageMain" target="_blank" rel="noopener me" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5l6.3 3.5-6.3 3.5Z"/></svg></a>
+<a class="header-social-link" href="https://www.instagram.com/deepsaged/" target="_blank" rel="noopener me" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 2 .3 2.4.5.6.2 1 .5 1.5 1 .4.4.7.8 1 1.5.2.4.4 1.2.5 2.4.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 2-.5 2.4-.2.6-.5 1-1 1.5-.4.4-.8.7-1.5 1-.4.2-1.2.4-2.4.5-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-2-.3-2.4-.5-.6-.2-1-.5-1.5-1-.4-.4-.7-.8-1-1.5-.2-.4-.4-1.2-.5-2.4-.1-1.3-.1-1.7-.1-4.9s0-3.6.1-4.9c.1-1.2.3-2 .5-2.4.2-.6.5-1 1-1.5.4-.4.8-.7 1.5-1 .4-.2 1.2-.4 2.4-.5C8.4 2.2 8.8 2.2 12 2.2Zm0 1.8c-3.1 0-3.5 0-4.7.1-1 0-1.6.2-1.9.4-.5.2-.8.4-1.2.7-.3.4-.5.7-.7 1.2-.1.3-.3.9-.4 1.9-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c0 1 .2 1.6.4 1.9.2.5.4.8.7 1.2.4.3.7.5 1.2.7.3.1.9.3 1.9.4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1 0 1.6-.2 1.9-.4.5-.2.8-.4 1.2-.7.3-.4.5-.7.7-1.2.1-.3.3-.9.4-1.9.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c0-1-.2-1.6-.4-1.9-.2-.5-.4-.8-.7-1.2-.4-.3-.7-.5-1.2-.7-.3-.1-.9-.3-1.9-.4-1.2-.1-1.6-.1-4.7-.1Zm0 3.1a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8Zm0 1.8a3.1 3.1 0 1 0 0 6.2 3.1 3.1 0 0 0 0-6.2Zm5.1-2.9a1.1 1.1 0 1 1 0 2.3 1.1 1.1 0 0 1 0-2.3Z"/></svg></a>
+<a class="header-social-link" href="https://www.threads.com/@deepsaged" target="_blank" rel="noopener me" aria-label="Threads" title="Threads"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12.2 24c-3.4 0-6-1-7.9-2.9C2.4 19.1 1.4 16.2 1.4 12.3v-.6c0-3.9 1-6.7 3-8.7C6.3 1 8.9 0 12.2 0h.1c2.6 0 4.8.7 6.5 2 1.5 1.2 2.6 2.9 3.2 5l-2.5.7c-.5-1.6-1.3-2.9-2.4-3.7-1.2-1-2.7-1.4-4.8-1.4h-.1c-2.5 0-4.5.8-5.9 2.3-1.3 1.5-2 3.7-2 6.5v.6c0 2.8.7 5 2 6.5 1.4 1.5 3.4 2.3 5.9 2.3 2.1 0 3.7-.5 4.8-1.4a4 4 0 0 0 1.5-2.9c0-1-.3-1.8-1-2.5a5 5 0 0 0-.8-.6c-.2 1.4-.7 2.5-1.5 3.4-1 1.1-2.4 1.7-4.1 1.7-1.3 0-2.5-.4-3.3-1.1a3.7 3.7 0 0 1-1.3-2.9c0-1.2.5-2.3 1.4-3 1-.8 2.3-1.2 4-1.2.9 0 1.7.1 2.5.3 0-.9-.3-1.6-.8-2-.5-.5-1.3-.8-2.3-.8-1.3 0-2.4.4-3.4 1.3l-1.7-1.8c1.4-1.3 3.1-2 5.1-2 1.7 0 3.1.5 4.1 1.5 1 .9 1.5 2.2 1.6 3.9.9.4 1.6.8 2.2 1.4 1 1 1.6 2.3 1.6 3.9 0 1.7-.7 3.2-2.1 4.4-1.5 1.4-3.6 2.1-6.2 2.1Zm-.6-9.4c-1 0-1.8.2-2.3.6-.4.3-.6.7-.6 1.2 0 .5.2.9.6 1.2.4.3 1 .5 1.6.5 1 0 1.8-.3 2.4-1 .5-.5.7-1.3.8-2.3-.7-.2-1.6-.2-2.5-.2Z"/></svg></a>
+<a class="header-social-link" href="https://x.com/deepsagemain" target="_blank" rel="noopener me" aria-label="X" title="X"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M18.2 2h3.3l-7.2 8.3L23 22h-6.6l-5.2-6.8L5.3 22H2l7.7-8.8L2 2h6.8l4.7 6.2L18.2 2Zm-1.2 18h1.8L7.1 4h-2l12 16Z"/></svg></a>
+</div>
+<div class="lang-switcher">
+<button class="lang-switcher-btn" onclick="toggleLangMenu()" type="button" aria-label="हिन्दी" title="हिन्दी"><svg class="lang-switcher-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M12.87 15.07l-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/></svg></button>
+<div id="lang-dropdown" class="lang-dropdown">
+<a href="https://deepsage.com/" class="lang-option" data-lang="en" onclick="return dsSwitchLang(event, 'en', 'https://deepsage.com/')">English</a>
+<a href="https://deepsage.com/es/" class="lang-option" data-lang="es" onclick="return dsSwitchLang(event, 'es', 'https://deepsage.com/es/')">Español</a>
+<a href="https://deepsage.com/pt/" class="lang-option" data-lang="pt" onclick="return dsSwitchLang(event, 'pt', 'https://deepsage.com/pt/')">Português</a>
+<a href="https://deepsage.com/fr/" class="lang-option" data-lang="fr" onclick="return dsSwitchLang(event, 'fr', 'https://deepsage.com/fr/')">Français</a>
+<a href="https://deepsage.com/de/" class="lang-option" data-lang="de" onclick="return dsSwitchLang(event, 'de', 'https://deepsage.com/de/')">Deutsch</a>
+<a href="https://deepsage.com/ru/" class="lang-option" data-lang="ru" onclick="return dsSwitchLang(event, 'ru', 'https://deepsage.com/ru/')">Русский</a>
+<a href="https://deepsage.com/ja/" class="lang-option" data-lang="ja" onclick="return dsSwitchLang(event, 'ja', 'https://deepsage.com/ja/')">日本語</a>
+<a href="https://deepsage.com/zh-Hans/" class="lang-option" data-lang="zh-Hans" onclick="return dsSwitchLang(event, 'zh-Hans', 'https://deepsage.com/zh-Hans/')">简体中文</a>
+<a href="https://deepsage.com/ko/" class="lang-option" data-lang="ko" onclick="return dsSwitchLang(event, 'ko', 'https://deepsage.com/ko/')">한국어</a>
+<a href="https://deepsage.com/it/" class="lang-option" data-lang="it" onclick="return dsSwitchLang(event, 'it', 'https://deepsage.com/it/')">Italiano</a>
+<a href="https://deepsage.com/hi/" class="lang-option lang-option-active" data-lang="hi" onclick="return dsSwitchLang(event, 'hi', 'https://deepsage.com/hi/')">हिन्दी</a>
+</div>
+</div>
+</div>
+</div>
+<section id="hero">
+<canvas id="starCanvas"></canvas>
+<div class="hero-grad-top"></div>
+<div class="hero-grad-bottom"></div>
+<div class="hero-inner">
+<div class="game-info">
+<h1 class="game-title">शैक्षिक गेम से असली स्किल सीखें</h1>
+<p class="game-description">मुफ़्त क्विज़ और लेख अभी उपलब्ध हैं। एआई, डेटा, नेतृत्व और विदेशी भाषाओं के लिए हमारे शैक्षिक गेम और किताबें विकास में हैं।</p>
+</div>
+<div class="game-explainer">
+<h2 class="section-title">DeepSage क्या है?</h2>
+<p>DeepSage एक आने वाला <strong>शैक्षिक गेम (एडुटेनमेंट गेम)</strong> है, जिसमें ज्ञान ही आपकी सुपरपावर है। हर लड़ाई एक क्विज़ मुकाबला है: आप और आपका प्रतिद्वंद्वी विज्ञान, इतिहास, तर्क और कई विषयों के असली सवाल एक-दूसरे से पूछते हैं। सही जवाब दिया तो जीत, गलत दिया तो नुकसान। गेम में बेहतर होने का मतलब है सीखने में बेहतर होना।</p>
+<p>मुख्य गेम के साथ हम <strong>शैक्षिक गेम</strong> की एक सूची बना रहे हैं, जिनमें से हर एक किसी वास्तविक कौशल के इर्द-गिर्द डिज़ाइन किया गया है, और हर कौशल के लिए एक कहानी-आधारित <strong>किताब</strong> लिख रहे हैं। ये आगे चलकर Windows और Linux के लिए मुफ़्त DeepSage Launcher से इंस्टॉल होंगे।</p>
+<p>लॉन्च तक आप हर दिन मुफ्त <strong>लेखों और क्विज़</strong> से सीख सकते हैं, जो टेक, AI और विज्ञान की ज़रूरी खबरों को आसान भाषा में समझाते हैं।</p>
+</div>
+<div class="game-explainer home-skills">
+<h2 class="section-title">आप कौन-सी स्किल सीख सकते हैं</h2>
+<h3 class="home-skills-group">AI और डेटा</h3>
+<p class="home-skill-links"><a href="/hi/skills/artificial-intelligence-literacy/">AI साक्षरता</a><a href="/hi/skills/machine-learning-engineering/">मशीन लर्निंग इंजीनियरिंग</a><a href="/hi/skills/prompt-engineering/">प्रॉम्प्ट इंजीनियरिंग</a><a href="/hi/skills/data-literacy/">डेटा साक्षरता</a><a href="/hi/skills/data-analytics/">डेटा एनालिटिक्स</a><a href="/hi/skills/data-visualization/">डेटा विज़ुअलाइज़ेशन</a></p>
+<h3 class="home-skills-group">सोच और निर्णय</h3>
+<p class="home-skill-links"><a href="/hi/skills/critical-thinking/">आलोचनात्मक सोच</a><a href="/hi/skills/analytical-problem-solving/">विश्लेषणात्मक समस्या समाधान</a><a href="/hi/skills/creative-thinking/">रचनात्मक सोच</a><a href="/hi/skills/complex-decision-making/">जटिल निर्णय लेना</a></p>
+<h3 class="home-skills-group">टेक्नोलॉजी और इंजीनियरिंग</h3>
+<p class="home-skill-links"><a href="/hi/skills/cybersecurity-management/">साइबर सुरक्षा प्रबंधन</a><a href="/hi/skills/data-privacy-strategy/">डेटा गोपनीयता रणनीति</a><a href="/hi/skills/cloud-infrastructure/">क्लाउड इंफ्रास्ट्रक्चर</a><a href="/hi/skills/software-architecture/">सॉफ़्टवेयर आर्किटेक्चर</a><a href="/hi/skills/devops-engineering/">DevOps इंजीनियरिंग</a><a href="/hi/skills/full-stack-development/">फ़ुल स्टैक डेवलपमेंट</a><a href="/hi/skills/ux-design/">UX डिज़ाइन</a></p>
+<h3 class="home-skills-group">बिज़नेस और मैनेजमेंट</h3>
+<p class="home-skill-links"><a href="/hi/skills/product-management/">प्रोडक्ट मैनेजमेंट</a><a href="/hi/skills/project-management/">प्रोजेक्ट मैनेजमेंट</a><a href="/hi/skills/digital-marketing-strategy/">डिजिटल मार्केटिंग रणनीति</a><a href="/hi/skills/search-engine-optimization/">सर्च इंजन ऑप्टिमाइज़ेशन (SEO)</a><a href="/hi/skills/financial-literacy/">वित्तीय साक्षरता</a><a href="/hi/skills/strategic-planning/">रणनीतिक योजना</a><a href="/hi/skills/risk-management/">जोखिम प्रबंधन</a></p>
+<h3 class="home-skills-group">लोग और व्यक्तिगत विकास</h3>
+<p class="home-skill-links"><a href="/hi/skills/leadership/">नेतृत्व</a><a href="/hi/skills/emotional-intelligence/">भावनात्मक बुद्धिमत्ता</a><a href="/hi/skills/team-collaboration/">टीम वर्क</a><a href="/hi/skills/conflict-resolution/">विवाद समाधान</a><a href="/hi/skills/adaptability/">अनुकूलनशीलता</a><a href="/hi/skills/lifelong-learning/">आजीवन सीखना</a></p>
+</div>
+<div class="game-explainer home-skills">
+<h2 class="section-title">खेल-खेल में विदेशी भाषा सीखें</h2>
+<p>दुनिया की 10 सबसे ज़्यादा सीखी जाने वाली भाषाएँ, गेम और क्विज़ के साथ अभ्यास करें।</p>
+<p class="home-skill-links"><a href="/hi/skills/english/">अंग्रेज़ी सीखें</a><a href="/hi/skills/spanish/">स्पेनिश सीखें</a><a href="/hi/skills/french/">फ़्रेंच सीखें</a><a href="/hi/skills/japanese/">जापानी सीखें</a><a href="/hi/skills/german/">जर्मन सीखें</a><a href="/hi/skills/korean/">कोरियाई सीखें</a><a href="/hi/skills/italian/">इतालवी सीखें</a><a href="/hi/skills/chinese/">चीनी सीखें</a><a href="/hi/skills/portuguese/">पुर्तगाली सीखें</a><a href="/hi/skills/hindi/">हिंदी सीखें</a></p>
+</div>
+</div>
+</section>
+<section id="latest-content">
+<h2 class="section-title">नए मुफ्त लेख और क्विज़</h2>
+<!-- LATEST_CONTENT_START -->
+<div class="card-grid">
+<a class="content-card" href="/hi/article/the-r101-britain-s-billion-dollar-sky-disaster/">
+<img class="content-card-thumb" src="/hi/article/the-r101-britain-s-billion-dollar-sky-disaster/hero.webp" alt="आर101: ब्रिटेन की बड़ी हवाई पोत दुर्घटना">
+<div class="content-card-body">
+<span class="content-card-badge">लेख</span>
+<div class="content-card-title">आर101: ब्रिटेन की बड़ी हवाई पोत दुर्घटना</div>
+<div class="content-card-preview">हमारे पास पड़ोसी देशों पर जासूसी करने के लिए ड्रोन आने से पहले, ब्रिटेन ने एक विशाल, ज्वलनशील और अविश्वसनीय रूप से महंगे गुब्बारे का उपयोग करके बादलों पर नियंत्रण पाने का प्रयास किया।</div>
+</div>
+</a>
+<a class="content-card" href="/hi/quiz/r-101-britain-s-sky-high-ambition-and-epic-fail/">
+<img class="content-card-thumb" src="/hi/quiz/r-101-britain-s-sky-high-ambition-and-epic-fail/hero.webp" alt="आर.101: ब्रिटेन की महत्वाकांक्षी और असफल परियोजना।">
+<div class="content-card-body">
+<span class="content-card-badge">प्रश्नोत्तरी</span>
+<div class="content-card-title">आर.101: ब्रिटेन की महत्वाकांक्षी और असफल परियोजना।</div>
+<div class="content-card-preview">5प्रश्न – अपने ज्ञान का परीक्षण करें।</div>
+</div>
+</a>
+<a class="content-card" href="/hi/article/the-3-solar-mass-magic-trick/">
+<img class="content-card-thumb" src="/hi/article/the-3-solar-mass-magic-trick/hero.webp" alt="तीन सौर द्रव्यमान का जादुई करतब">
+<div class="content-card-body">
+<span class="content-card-badge">लेख</span>
+<div class="content-card-title">तीन सौर द्रव्यमान का जादुई करतब</div>
+<div class="content-card-preview">जब दो ब्लैक होल आपस में टकराए, तो उन्होंने द्रव्यमान के एक बड़े हिस्से को शुद्ध ऊर्जा तरंगों में बदल दिया, जिसे हम वास्तव में महसूस कर सकते हैं।</div>
+</div>
+</a>
+<a class="content-card" href="/hi/quiz/ripples-in-the-spacetime-fabric/">
+<img class="content-card-thumb" src="/hi/quiz/ripples-in-the-spacetime-fabric/hero.webp" alt="अंतरिक्ष-समय की संरचना में उत्पन्न होने वाली तरंगें">
+<div class="content-card-body">
+<span class="content-card-badge">प्रश्नोत्तरी</span>
+<div class="content-card-title">अंतरिक्ष-समय की संरचना में उत्पन्न होने वाली तरंगें</div>
+<div class="content-card-preview">5प्रश्न – अपने ज्ञान का परीक्षण करें।</div>
+</div>
+</a>
+<a class="content-card" href="/hi/article/the-italian-diaspora-and-the-ghost-of-la-dolce-vita/">
+<img class="content-card-thumb" src="/hi/article/the-italian-diaspora-and-the-ghost-of-la-dolce-vita/hero.webp" alt="इतालवी प्रवासी समुदाय और ‘ला डोल्से वीटा’ की स्मृति">
+<div class="content-card-body">
+<span class="content-card-badge">लेख</span>
+<div class="content-card-title">इतालवी प्रवासी समुदाय और ‘ला डोल्से वीटा’ की स्मृति</div>
+<div class="content-card-preview">किसी उपनगरीय रसोई में बनने वाले हर स्वादिष्ट पास्ता सॉस के पीछे एक गहरा, अटूट लालसा छिपा होता है – एक ऐसे घर की लालसा, जो शायद अब मौजूद भी नहीं है।</div>
+</div>
+</a>
+<a class="content-card" href="/hi/quiz/the-great-italian-longing-diaspora-nostalgia/">
+<img class="content-card-thumb" src="/hi/quiz/the-great-italian-longing-diaspora-nostalgia/hero.webp" alt="महान इतालवी लालसा: प्रवासी और पुरानी यादें">
+<div class="content-card-body">
+<span class="content-card-badge">प्रश्नोत्तरी</span>
+<div class="content-card-title">महान इतालवी लालसा: प्रवासी और पुरानी यादें</div>
+<div class="content-card-preview">5प्रश्न – अपने ज्ञान का परीक्षण करें।</div>
+</div>
+</a>
+</div><!-- LATEST_CONTENT_END -->
+</section>
+<div class="page-footer">
+<div class="footer-links">
+<a href="/hi/">घर</a>
+<span class="footer-divider">·</span>
+<a href="/hi/article/">लेख</a>
+<span class="footer-divider">·</span>
+<a href="/hi/quiz/">प्रश्नोत्तरी</a>
+<span class="footer-divider">·</span>
+<a href="/hi/skills/">कौशल</a>
+<span class="footer-divider">·</span>
+<a href="/tags/">टैग</a>
+<span class="footer-divider">·</span>
+<a href="/hi/games/">खेल</a>
+<span class="footer-divider">·</span>
+<a href="/hi/books/">किताबें</a>
+</div>
+<div class="footer-legal">
+<a href="/privacy-policy/">गोपनीयता नीति</a>
+<span class="footer-divider">·</span>
+<a href="/terms-of-service/">सेवा की शर्तें</a>
+<span class="footer-divider">·</span>
+<a href="/cookie-policy/">कुकी नीति</a>
+<span class="footer-divider">·</span>
+<a href="/contact/">संपर्क</a>
+<span class="footer-divider">·</span>
+<a href="/impressum/">Impressum</a>
+<span class="footer-divider">·</span>
+<a href="#" id="cookiePrefsLink">कुकी प्राथमिकताएँ</a>
+</div>
+<p class="footer-copyright">डीपसेज · © 2026</p>
+</div>
+</div>
+</section>
+<div id="cookieBanner">
+<div class="cookie-banner-container">
+<div class="cookie-banner-text">
+केवल आपकी सहमति से हम साइट के उपयोग को समझने के लिए वैकल्पिक Google Analytics कुकीज़ का उपयोग करते हैं; Google इस डेटा को अमेरिका में प्रोसेस कर सकता है। विवरण के लिए हमारी <a href="/privacy-policy/" target="_blank">गोपनीयता नीति</a> और <a href="/cookie-policy/" target="_blank">कुकी नीति</a> देखें।
+</div>
+<div class="cookie-banner-buttons">
+<button id="cookieReject">गैर-आवश्यक वस्तुओं को अस्वीकार करें।</button>
+<button id="cookieCustomize">अनुकूलित करें</button>
+<button id="cookieAccept">सभी स्वीकार करें</button>
+</div>
+</div>
+</div>
+<div id="cookieModal">
+<div class="cookie-modal-content">
+<h2>कुकी प्राथमिकताएँ</h2>
+<div class="cookie-preference">
+<input type="checkbox" id="cookieEssential" checked disabled>
+<label for="cookieEssential">आवश्यक</label>
+</div>
+<div class="cookie-preference-description">
+साइट की बुनियादी कार्यक्षमता के लिए आवश्यक (हमेशा सक्रिय)।
+</div>
+<div class="cookie-preference">
+<input type="checkbox" id="cookieAnalytics">
+<label for="cookieAnalytics">विश्लेषण</label>
+</div>
+<div class="cookie-preference-description">
+यह हमें यह समझने में मदद करता है कि आप साइट का उपयोग कैसे करते हैं, ताकि हम आपके अनुभव को बेहतर बना सकें।
+</div>
+<div class="cookie-modal-buttons">
+<button id="cookieModalCancel">रद्द करें</button>
+<button id="cookieModalSave">चयनों को सहेजें</button>
+</div>
+</div>
+</div><script src="/assets/js/generated/0befd7597c6f1e22.js"></script><script src="/assets/js/generated/60f64805f674428c.js"></script></body>
+</html>
