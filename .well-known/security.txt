@@ -1,0 +1,6 @@
+Contact: mailto:contact@deepsage.com
+Contact: https://deepsage.com/contact/
+Expires: 2027-10-17T00:00:00Z
+Preferred-Languages: en, de
+Canonical: https://deepsage.com/.well-known/security.txt
+Policy: https://deepsage.com/privacy-policy/
