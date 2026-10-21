@@ -1,0 +1,38 @@
+{
+  "cta_copy": {
+    "control": 0.5,
+    "bold": 0.5
+  },
+  "key_takeaways_visibility": {
+    "hidden": 0.5,
+    "shown": 0.5
+  },
+  "faq_teaser_visibility": {
+    "hidden": 0.5,
+    "shown": 0.5
+  },
+  "stat_chart_visibility": {
+    "hidden": 0.5,
+    "shown": 0.5
+  },
+  "glossary_visibility": {
+    "hidden": 0.5,
+    "shown": 0.5
+  },
+  "timeline_visibility": {
+    "hidden": 0.5,
+    "shown": 0.5
+  },
+  "pull_quote_visibility": {
+    "hidden": 0.5,
+    "shown": 0.5
+  },
+  "myth_vs_fact_visibility": {
+    "hidden": 0.5,
+    "shown": 0.5
+  },
+  "try_this_visibility": {
+    "hidden": 0.5,
+    "shown": 0.5
+  }
+}
