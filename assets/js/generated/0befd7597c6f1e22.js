@@ -1,0 +1,332 @@
+
+
+
+/* ── Cookie consent management (site-wide) ── */
+(function() {
+  const CONSENT_KEY = 'deepsage_cookie_consent';
+  const CONSENT_EXPIRY = 12 * 30 * 24 * 60 * 60 * 1000; // 12 months
+
+  function getStoredConsent() {
+    const stored = localStorage.getItem(CONSENT_KEY);
+    if (!stored) return null;
+    try {
+      const consent = JSON.parse(stored);
+      const now = Date.now();
+      if (now - consent.timestamp > CONSENT_EXPIRY) {
+        localStorage.removeItem(CONSENT_KEY);
+        return null;
+      }
+      return consent;
+    } catch (error) {
+      console.error("Invalid consent data:", error);
+      localStorage.removeItem(CONSENT_KEY);
+      return null;
+    }
+  }
+
+  function saveConsent(essential, analytics, marketing) {
+    localStorage.setItem(CONSENT_KEY, JSON.stringify({
+      essential: true, analytics, marketing, timestamp: Date.now(),
+    }));
+  }
+
+  // Referral handling (REQ-LC2): window.dsStagedRef (staged in memory by
+  // stageReferral() up in <head>) is only read here, once consent is
+  // decided -- accepting analytics promotes it into the ds_pending_*
+  // localStorage keys recordUserSignup() reads; declining also deletes any
+  // legacy ds_ref_staged cookie from pre-2026-10-04 builds. Called from
+  // loadCookiesBasedOnConsent() below, the single choke point both paths
+  // (page-load-with-stored-consent, and the banner/modal buttons) go through.
+  var REF_COOKIE = 'ds_ref_staged';
+
+  function promoteStagedReferralIfConsented() {
+    var FLAG = 'ds_attribution_captured';
+    if (localStorage.getItem(FLAG)) return; // only ever promoted once per browser
+    var data = window.dsStagedRef;
+    if (!data) return;
+    localStorage.setItem('ds_pending_ref', data.ref || '');
+    localStorage.setItem('ds_pending_utm_source', data.utm_source || '');
+    localStorage.setItem('ds_pending_utm_medium', data.utm_medium || '');
+    localStorage.setItem('ds_pending_utm_campaign', data.utm_campaign || '');
+    localStorage.setItem('ds_pending_utm_content', data.utm_content || '');
+    localStorage.setItem('ds_pending_referrer', data.referrer || '');
+    localStorage.setItem('ds_pending_landing', data.landing || '');
+    localStorage.setItem('ds_pending_first_visit_at', data.first_visit_at || '');
+    localStorage.setItem(FLAG, '1');
+  }
+
+  function loadCookiesBasedOnConsent(consent) {
+    window.dsAnalyticsConsent = !!consent.analytics;
+    gtag('consent', 'update', {
+      'analytics_storage': consent.analytics ? 'granted' : 'denied',
+    });
+    if (consent.analytics) {
+      window.dsLoadAnalytics();
+      promoteStagedReferralIfConsented();
+    } else {
+      window.dsDeleteCookie(REF_COOKIE);
+      purgeAnalyticsData();
+    }
+  }
+
+  // Withdrawing consent (Art. 7(3) GDPR) also removes what the consent
+  // allowed us to store: GA cookies, attribution and A/B buckets.
+  function purgeAnalyticsData() {
+    document.cookie.split(';').forEach(function(part) {
+      var name = part.split('=')[0].trim();
+      if (name === '_ga' || name.indexOf('_ga_') === 0 || name === '_gid') {
+        var host = location.hostname.replace(/^www\./, '');
+        ['', '; domain=' + host, '; domain=.' + host].forEach(function(domain) {
+          document.cookie = name + '=; path=/; max-age=0' + domain;
+        });
+      }
+    });
+    Object.keys(localStorage).forEach(function(key) {
+      if (key.indexOf('ds_pending_') === 0 || key.indexOf('ds_experiment_') === 0 || key === 'ds_attribution_captured') {
+        localStorage.removeItem(key);
+      }
+    });
+  }
+
+  function initializeCookieBanner() {
+    const storedConsent = getStoredConsent();
+    const banner = document.getElementById('cookieBanner');
+    if (!banner) return;
+
+    if (!storedConsent) {
+      banner.classList.add('show');
+    } else {
+      banner.classList.remove('show');
+      loadCookiesBasedOnConsent(storedConsent);
+    }
+  }
+
+  document.getElementById('cookieAccept').addEventListener('click', function() {
+    saveConsent(true, true, false);
+    loadCookiesBasedOnConsent({ essential: true, analytics: true, marketing: false });
+    document.getElementById('cookieBanner').classList.remove('show');
+  });
+
+  document.getElementById('cookieReject').addEventListener('click', function() {
+    saveConsent(true, false, false);
+    loadCookiesBasedOnConsent({ essential: true, analytics: false, marketing: false });
+    document.getElementById('cookieBanner').classList.remove('show');
+  });
+
+  document.getElementById('cookieCustomize').addEventListener('click', function() {
+    const storedConsent = getStoredConsent();
+    if (storedConsent) {
+      document.getElementById('cookieAnalytics').checked = storedConsent.analytics;
+    }
+    document.getElementById('cookieModal').classList.add('show');
+  });
+
+  var prefsLink = document.getElementById('cookiePrefsLink');
+  if (prefsLink) {
+    prefsLink.addEventListener('click', function(event) {
+      event.preventDefault();
+      document.getElementById('cookieCustomize').click();
+    });
+  }
+
+  document.getElementById('cookieModalCancel').addEventListener('click', function() {
+    document.getElementById('cookieModal').classList.remove('show');
+  });
+
+  document.getElementById('cookieModalSave').addEventListener('click', function() {
+    const analytics = document.getElementById('cookieAnalytics').checked;
+    saveConsent(true, analytics, false);
+    loadCookiesBasedOnConsent({ essential: true, analytics, marketing: false });
+    document.getElementById('cookieModal').classList.remove('show');
+    document.getElementById('cookieBanner').classList.remove('show');
+    // GA already running on this page keeps writing cookies; a reload
+    // starts the page without it (and purges again on load).
+    if (!analytics && window.dsAnalyticsLoaded) location.reload();
+  });
+
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      const modal = document.getElementById('cookieModal');
+      if (modal.classList.contains('show')) {
+        document.getElementById('cookieModalCancel').click();
+      }
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', initializeCookieBanner);
+})();
+
+/* ── Share button click tracking (site-wide, event delegation) ── */
+document.addEventListener('click', function(e) {
+  const btn = e.target.closest('.share-btn');
+  if (!btn) return;
+  let method = 'twitter';
+  if (btn.href.indexOf('facebook.com') !== -1) method = 'facebook';
+  else if (btn.href.indexOf('linkedin.com') !== -1) method = 'linkedin';
+  const contentType = location.pathname.startsWith('/quiz/') ? 'quiz'
+    : location.pathname.startsWith('/article/') ? 'article' : 'other';
+  window.dsTrack('share', { method, content_type: contentType, item_id: location.pathname });
+});
+
+/* ── Outbound link click tracking (site-wide, event delegation) ──
+   Reward signal for the article-structure MAB (docs/spec-mab-article-structure.md
+   Phase C): click-through to other pages, including off-site references.
+   Fires for any <a> whose resolved host differs from the current page's
+   host -- covers both external links and, since this runs per-page, any
+   link out of the current article to elsewhere on deepsage.com counts as
+   "click-through to another site page" for on-site anchors specifically
+   tagged data-ds-internal-link (added selectively, not by default, so this
+   doesn't fire on every nav/footer link). */
+document.addEventListener('click', function(e) {
+  const link = e.target.closest('a[href]');
+  if (!link) return;
+  let url;
+  try {
+    url = new URL(link.href, location.href);
+  } catch (err) {
+    return;
+  }
+  const isExternal = url.host !== location.host;
+  const isTaggedInternal = link.hasAttribute('data-ds-internal-link');
+  if (!isExternal && !isTaggedInternal) return;
+  window.dsTrack('outbound_click', {
+    destination: url.href,
+    is_external: isExternal,
+    item_id: location.pathname,
+  });
+});
+
+/* ── Level 4a client-side A/B layer (docs/spec-mab-article-structure.md
+   Phase E) -- fetches precomputed bucket weights and buckets/mutates the
+   page. Fails silently (404/parse error) so a missing or stale
+   experiments.json degrades to today's unmodified control experience,
+   never a broken page. */
+if (window.DsAbExperiments) {
+  fetch('/assets/experiments.json')
+    .then(function (r) { return r.ok ? r.json() : {}; })
+    .catch(function () { return {}; })
+    .then(function (config) { window.DsAbExperiments.init(config); });
+}
+
+/* ── Language preference resolution (site-wide) ── */
+function toggleLangMenu() {
+  var dd = document.getElementById('lang-dropdown');
+  if (dd) dd.classList.toggle('open');
+}
+
+document.addEventListener('click', function (e) {
+  var dropdown = document.getElementById('lang-dropdown');
+  var switcher = document.querySelector('.lang-switcher');
+  if (dropdown && switcher && !switcher.contains(e.target)) dropdown.classList.remove('open');
+});
+
+function dsPersistLangOverride(lang) {
+  localStorage.setItem('deepsage_lang', lang);
+  var sf = window._sf;
+  var user = sf && sf.auth.currentUser;
+  if (user && sf.setPreferredLang) {
+    sf.setPreferredLang(user.uid, lang).catch(function (err) {
+      console.error('Failed to save language preference:', err);
+    });
+  }
+}
+window.dsPersistLangOverride = dsPersistLangOverride;
+
+function dsSwitchLang(event, lang, url) {
+  // NOTE: this duplicates the localStorage write from dsPersistLangOverride
+  // (kept above, unchanged) because dsSwitchLang needs to await the Firestore
+  // write before navigating, while dsPersistLangOverride is a fire-and-forget
+  // helper used by the settings page (Task 4, templates/settings.html's
+  // dsSettingsChangeLang), which navigates on its own right after calling it.
+  localStorage.setItem('deepsage_lang', lang);
+  var sf = window._sf;
+  var user = sf && sf.auth.currentUser;
+  if (user && sf.setPreferredLang) {
+    event.preventDefault();
+    // Firestore writes can hang indefinitely (e.g. retrying with backoff
+    // against a misconfigured/unreachable database) instead of ever
+    // resolving or rejecting, which would leave the user stuck on the page
+    // forever. Race against a timeout so navigation always happens even if
+    // the preference write never settles.
+    var navigated = false;
+    function navigate() {
+      if (navigated) return;
+      navigated = true;
+      window.location.href = url;
+    }
+    sf.setPreferredLang(user.uid, lang)
+      .catch(function (err) { console.error('Failed to save language preference:', err); })
+      .finally(navigate);
+    setTimeout(navigate, 1500);
+    return false;
+  }
+  return true;
+}
+window.dsSwitchLang = dsSwitchLang;
+
+var dsLangResolved = false;
+window.dsOnAuthReady = function (user) {
+  if (dsLangResolved) return;
+  dsLangResolved = true;
+  if (!window.DsLangPreference || !window.dsLangUrls || Object.keys(window.dsLangUrls).length === 0) return;
+
+  var storedOverride = localStorage.getItem('deepsage_lang');
+  var browserLang = navigator.language;
+
+  function apply(firestorePref) {
+    var result = window.DsLangPreference.resolveRedirect({
+      currentLang: window.dsCurrentLang,
+      langUrls: window.dsLangUrls,
+      storedOverride: storedOverride,
+      firestorePref: firestorePref || null,
+      browserLang: browserLang,
+    });
+    if (!result) return;
+    // Guard against redirecting to the page the visitor is already on (e.g.
+    // a casing mismatch between currentLang and a lang_urls key, or a
+    // trailing-slash inconsistency) -- without this, a data mismatch could
+    // send the visitor into a same-page redirect loop.
+    if (result.url === window.location.pathname || result.url === window.location.href) return;
+    if (result.persistOverride) localStorage.setItem('deepsage_lang', result.lang);
+    // Use replace(), not `.href =`, because this is an automatic redirect
+    // the visitor never asked for (either the Firestore-preference tier, or
+    // the browser-auto-detect tier, which by design never persists and so
+    // re-fires on every page load). `.href =` would push a new history
+    // entry each time, trapping Back-button presses by immediately
+    // re-redirecting forward again. Explicit user-initiated switches
+    // (dsSwitchLang, dsSettingsChangeLang) intentionally keep using
+    // `.href =` since those SHOULD be normal, back-button-able navigations.
+    window.location.replace(result.url);
+  }
+
+  var sf = window._sf;
+  if (user && sf && sf.getPreferredLang) {
+    sf.getPreferredLang(user.uid).then(apply).catch(function () { apply(null); });
+  } else {
+    apply(null);
+  }
+};
+
+// Fallback for when Firebase Auth never calls back at all (CDN blocked,
+// offline, script failed to load). This is a timer, not a DOMContentLoaded
+// listener, on purpose: this inline <script> runs near the bottom of
+// <body>, so DOMContentLoaded fires essentially immediately after it
+// registers -- long before Firebase's first onAuthStateChanged callback
+// (an unconditionally async, IndexedDB-backed read) has any real chance to
+// resolve. Since dsOnAuthReady is latched to only run once (dsLangResolved),
+// firing on DOMContentLoaded would deterministically win the race on every
+// normal page load and permanently blind language resolution to a logged-in
+// user's Firestore preferredLang -- the real Firebase callback would arrive
+// later and be silently ignored. 3000ms is generous: a working IndexedDB
+// read typically resolves in well under 100ms, so in the overwhelmingly
+// common case Firebase claims the latch long before this timer fires, and
+// this fallback only actually matters when Firebase never calls back at
+// all -- in which case treating the visitor as logged-out for
+// language-resolution purposes (falling through to localStorage override /
+// browser auto-detect, neither of which need Firebase) is the correct
+// degraded behavior. 3s is still well under what a user would notice as a
+// late background redirect.
+
+// No Firebase without accounts (REQ-AO2): resolve the language right away.
+window.dsOnAuthReady(null);
+

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DeepSage: навчальні ігри та вікторини для здобуття практичних навичок</title>
+<meta name="description" content="Безкоштовні тести та статті вже доступні, а зараз ми розробляємо навчальні ігри та книги, побудовані на основі сюжетних ліній, для розвитку навичок роботи зі штучним інтелектом, критичного мислення, аналізу даних, лідерських якостей, фінансової грамотності та вивчення 10 іноземних мов.">
+<meta property="og:title" content="DeepSage: навчальні ігри та вікторини для здобуття практичних навичок">
+<meta property="og:description" content="Безкоштовні тести та статті вже доступні, а зараз ми розробляємо навчальні ігри та книги, побудовані на основі сюжетних ліній, для розвитку навичок роботи зі штучним інтелектом, критичного мислення, аналізу даних, лідерських якостей, фінансової грамотності та вивчення 10 іноземних мов.">
+<meta property="og:image" content="https://deepsage.com/assets/og-default.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DeepSage: навчальні ігри та вікторини для здобуття практичних навичок">
+<meta name="twitter:description" content="Безкоштовні тести та статті вже доступні, а зараз ми розробляємо навчальні ігри та книги, побудовані на основі сюжетних ліній, для розвитку навичок роботи зі штучним інтелектом, критичного мислення, аналізу даних, лідерських якостей, фінансової грамотності та вивчення 10 іноземних мов.">
+<meta name="twitter:image" content="https://deepsage.com/assets/og-default.png">
+<link rel="canonical" href="https://deepsage.com/uk/"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "logo": "https://deepsage.com/assets/logo.webp", "name": "DeepSage", "sameAs": ["https://www.youtube.com/@deepsagemain"], "url": "https://deepsage.com"}</script><link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/site.css?v=e9c79bbb5c">
+<link rel="alternate" hreflang="en" href="https://deepsage.com/">
+<link rel="alternate" hreflang="es" href="https://deepsage.com/es/">
+<link rel="alternate" hreflang="de" href="https://deepsage.com/de/">
+<link rel="alternate" hreflang="ru" href="https://deepsage.com/ru/">
+<link rel="alternate" hreflang="uk" href="https://deepsage.com/uk/">
+<link rel="alternate" hreflang="zh-Hans" href="https://deepsage.com/zh-Hans/">
+<link rel="alternate" hreflang="hi" href="https://deepsage.com/hi/">
+<link rel="alternate" hreflang="x-default" href="https://deepsage.com/"><style>
+  /* ── Homepage-only styles ──
+     The front-page grid, panels and deck are shared rules in site.css
+     (docs/sdd/2026-10-17-dense-layout.md). Only the star field lives here:
+     it is a fixed background behind the whole page, not a screen of its own. */
+  #starCanvas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .home-skills-group {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 0 0 6px;
+  }
+  .home-skill-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 0;
+  }
+  .home-skill-links a {
+    border: 1px solid #d9b97833;
+    border-radius: 3px;
+    padding: 4px 10px;
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--text);
+  }
+  .home-skill-links a:hover { border-color: var(--gold); opacity: 1; }
+  .home-panel .section-title { font-size: 22px; margin: 0 0 10px; }
+</style><script src="/assets/js/generated/6af1da928bcbbb97.js"></script><script src="/assets/js/generated/3be2650171b52938.js"></script><script>
+    window.dsLangUrls = {"de": "https://deepsage.com/de/", "en": "https://deepsage.com/", "es": "https://deepsage.com/es/", "hi": "https://deepsage.com/hi/", "ru": "https://deepsage.com/ru/", "uk": "https://deepsage.com/uk/", "zh-Hans": "https://deepsage.com/zh-Hans/"};
+    window.dsCurrentLang = "uk";
+  </script><script src="/assets/js/lang-preference.js"></script><script src="/assets/js/ab-experiments.js"></script><script src="/assets/js/engagement.js" defer></script><script src="/assets/js/generated/69a19bb9a8298c7c.js"></script></head>
+<body>
+<section class="page-container">
+<div class="page-grad-top"></div>
+<div class="page-grad-bottom"></div>
+<div class="page-content">
+<div class="top-banner" id="topBanner">
+<span class="top-banner-text">Нова розважально-освітня гра DeepSage <a href="/uk/world/" class="top-banner-link">наближається</a>Зараз ви можете безкоштовно пройти тести та прочитати статті.</span>
+</div>
+<div class="page-header">
+<a href="/uk/" class="page-logo-link" aria-label="DeepSage home"><img class="page-logo" src="/assets/logo.webp" alt="DeepSage" width="1628" height="351"></a>
+<div class="header-controls">
+<nav class="header-nav" aria-label="Main">
+<a class="header-nav-link" href="/uk/games/">Ігри</a>
+<a class="header-nav-link" href="/uk/books/">Книги</a>
+</nav>
+<div class="header-social">
+<a class="header-social-link" href="https://www.youtube.com/@DeepSageMain" target="_blank" rel="noopener me" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5l6.3 3.5-6.3 3.5Z"/></svg></a>
+<a class="header-social-link" href="https://www.instagram.com/deepsaged/" target="_blank" rel="noopener me" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 2 .3 2.4.5.6.2 1 .5 1.5 1 .4.4.7.8 1 1.5.2.4.4 1.2.5 2.4.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 2-.5 2.4-.2.6-.5 1-1 1.5-.4.4-.8.7-1.5 1-.4.2-1.2.4-2.4.5-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-2-.3-2.4-.5-.6-.2-1-.5-1.5-1-.4-.4-.7-.8-1-1.5-.2-.4-.4-1.2-.5-2.4-.1-1.3-.1-1.7-.1-4.9s0-3.6.1-4.9c.1-1.2.3-2 .5-2.4.2-.6.5-1 1-1.5.4-.4.8-.7 1.5-1 .4-.2 1.2-.4 2.4-.5C8.4 2.2 8.8 2.2 12 2.2Zm0 1.8c-3.1 0-3.5 0-4.7.1-1 0-1.6.2-1.9.4-.5.2-.8.4-1.2.7-.3.4-.5.7-.7 1.2-.1.3-.3.9-.4 1.9-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c0 1 .2 1.6.4 1.9.2.5.4.8.7 1.2.4.3.7.5 1.2.7.3.1.9.3 1.9.4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1 0 1.6-.2 1.9-.4.5-.2.8-.4 1.2-.7.3-.4.5-.7.7-1.2.1-.3.3-.9.4-1.9.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c0-1-.2-1.6-.4-1.9-.2-.5-.4-.8-.7-1.2-.4-.3-.7-.5-1.2-.7-.3-.1-.9-.3-1.9-.4-1.2-.1-1.6-.1-4.7-.1Zm0 3.1a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8Zm0 1.8a3.1 3.1 0 1 0 0 6.2 3.1 3.1 0 0 0 0-6.2Zm5.1-2.9a1.1 1.1 0 1 1 0 2.3 1.1 1.1 0 0 1 0-2.3Z"/></svg></a>
+<a class="header-social-link" href="https://www.threads.com/@deepsaged" target="_blank" rel="noopener me" aria-label="Threads" title="Threads"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12.2 24c-3.4 0-6-1-7.9-2.9C2.4 19.1 1.4 16.2 1.4 12.3v-.6c0-3.9 1-6.7 3-8.7C6.3 1 8.9 0 12.2 0h.1c2.6 0 4.8.7 6.5 2 1.5 1.2 2.6 2.9 3.2 5l-2.5.7c-.5-1.6-1.3-2.9-2.4-3.7-1.2-1-2.7-1.4-4.8-1.4h-.1c-2.5 0-4.5.8-5.9 2.3-1.3 1.5-2 3.7-2 6.5v.6c0 2.8.7 5 2 6.5 1.4 1.5 3.4 2.3 5.9 2.3 2.1 0 3.7-.5 4.8-1.4a4 4 0 0 0 1.5-2.9c0-1-.3-1.8-1-2.5a5 5 0 0 0-.8-.6c-.2 1.4-.7 2.5-1.5 3.4-1 1.1-2.4 1.7-4.1 1.7-1.3 0-2.5-.4-3.3-1.1a3.7 3.7 0 0 1-1.3-2.9c0-1.2.5-2.3 1.4-3 1-.8 2.3-1.2 4-1.2.9 0 1.7.1 2.5.3 0-.9-.3-1.6-.8-2-.5-.5-1.3-.8-2.3-.8-1.3 0-2.4.4-3.4 1.3l-1.7-1.8c1.4-1.3 3.1-2 5.1-2 1.7 0 3.1.5 4.1 1.5 1 .9 1.5 2.2 1.6 3.9.9.4 1.6.8 2.2 1.4 1 1 1.6 2.3 1.6 3.9 0 1.7-.7 3.2-2.1 4.4-1.5 1.4-3.6 2.1-6.2 2.1Zm-.6-9.4c-1 0-1.8.2-2.3.6-.4.3-.6.7-.6 1.2 0 .5.2.9.6 1.2.4.3 1 .5 1.6.5 1 0 1.8-.3 2.4-1 .5-.5.7-1.3.8-2.3-.7-.2-1.6-.2-2.5-.2Z"/></svg></a>
+<a class="header-social-link" href="https://x.com/deepsagemain" target="_blank" rel="noopener me" aria-label="X" title="X"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M18.2 2h3.3l-7.2 8.3L23 22h-6.6l-5.2-6.8L5.3 22H2l7.7-8.8L2 2h6.8l4.7 6.2L18.2 2Zm-1.2 18h1.8L7.1 4h-2l12 16Z"/></svg></a>
+</div>
+<div class="lang-switcher">
+<button class="lang-switcher-btn" onclick="toggleLangMenu()" type="button" aria-label="Українська" title="Українська"><svg class="lang-switcher-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M12.87 15.07l-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/></svg></button>
+<div id="lang-dropdown" class="lang-dropdown">
+<a href="https://deepsage.com/" class="lang-option" data-lang="en" onclick="return dsSwitchLang(event, 'en', 'https://deepsage.com/')">English</a>
+<a href="https://deepsage.com/es/" class="lang-option" data-lang="es" onclick="return dsSwitchLang(event, 'es', 'https://deepsage.com/es/')">Español</a>
+<a href="https://deepsage.com/de/" class="lang-option" data-lang="de" onclick="return dsSwitchLang(event, 'de', 'https://deepsage.com/de/')">Deutsch</a>
+<a href="https://deepsage.com/ru/" class="lang-option" data-lang="ru" onclick="return dsSwitchLang(event, 'ru', 'https://deepsage.com/ru/')">Русский</a>
+<a href="https://deepsage.com/uk/" class="lang-option lang-option-active" data-lang="uk" onclick="return dsSwitchLang(event, 'uk', 'https://deepsage.com/uk/')">Українська</a>
+<a href="https://deepsage.com/zh-Hans/" class="lang-option" data-lang="zh-Hans" onclick="return dsSwitchLang(event, 'zh-Hans', 'https://deepsage.com/zh-Hans/')">简体中文</a>
+<a href="https://deepsage.com/hi/" class="lang-option" data-lang="hi" onclick="return dsSwitchLang(event, 'hi', 'https://deepsage.com/hi/')">हिन्दी</a>
+</div>
+</div>
+</div>
+</div>
+<canvas id="starCanvas"></canvas>
+<section class="home-deck">
+<h1 class="page-title">Опануйте корисні навички за допомогою навчальних ігор</h1>
+<p>Уже зараз доступні безкоштовні вікторини та статті. Ми працюємо над створенням навчальних ігор і книг, присвячених темам штучного інтелекту, аналізу даних, лідерству та іноземним мовам.</p>
+</section>
+<section id="latest-content">
+<h2 class="section-bar">Останні безкоштовні статті та вікторини</h2>
+<!-- LATEST_CONTENT_START -->
+<div class="front-grid">
+<a class="front-lead" href="/uk/article/the-2-000-year-old-glitch-in-our-history-books/">
+<img src="/uk/article/the-2-000-year-old-glitch-in-our-history-books/hero.webp" alt="Помилка, яка проіснувала 2,000 років у наших підручниках історії.">
+<div class="front-lead-body">
+<span class="content-card-badge">Стаття</span>
+<div class="front-lead-title">Помилка, яка проіснувала 2,000 років у наших підручниках історії.</div>
+<div class="front-lead-preview">Зітлілий бронзовий злиток, знайдений на місці затонулого римського судна, змушує істориків переосмислити все, що вони вважали відомим про давні технології.</div>
+</div>
+</a>
+<div class="front-rail">
+<a class="front-rail-item" href="/uk/quiz/the-gears-of-time-the-antikythera-mystery/">
+<img src="/uk/quiz/the-gears-of-time-the-antikythera-mystery/hero.webp" alt="Механізми часу: Таємниця Антикітерського механізму." loading="lazy">
+<div class="front-rail-text">
+<span class="content-card-badge">Вікторина</span>
+<div class="front-rail-title">Механізми часу: Таємниця Антикітерського механізму.</div>
+</div>
+</a>
+<a class="front-rail-item" href="/uk/article/how-often-does-chance-alone-build-streaks-ciceros-dice-answer/">
+<img src="/uk/article/how-often-does-chance-alone-build-streaks-ciceros-dice-answer/hero.webp" alt="Приборкання випадковості. Частина 1: Як часто лише випадковість може призвести до серії успіхів? Відповідь у кубиках Цицерона." loading="lazy">
+<div class="front-rail-text">
+<span class="content-card-badge">Стаття</span>
+<div class="front-rail-title">Приборкання випадковості. Частина 1: Як часто лише випадковість може призвести до серії успіхів? Відповідь у кубиках Цицерона.</div>
+</div>
+</a>
+<a class="front-rail-item" href="/uk/article/the-salty-mystery-of-the-archaean-oceans/">
+<img src="/uk/article/the-salty-mystery-of-the-archaean-oceans/hero.webp" alt="Загадкова солоність архейських океанів." loading="lazy">
+<div class="front-rail-text">
+<span class="content-card-badge">Стаття</span>
+<div class="front-rail-title">Загадкова солоність архейських океанів.</div>
+</div>
+</a>
+<a class="front-rail-item" href="/uk/quiz/salty-beginnings-earth-s-ancient-oceans/">
+<img src="/uk/quiz/salty-beginnings-earth-s-ancient-oceans/hero.webp" alt="Солоні витоки: стародавні океани Землі." loading="lazy">
+<div class="front-rail-text">
+<span class="content-card-badge">Вікторина</span>
+<div class="front-rail-title">Солоні витоки: стародавні океани Землі.</div>
+</div>
+</a>
+</div>
+</div>
+<div class="card-grid">
+<a class="content-card" href="/uk/article/the-screwdriver-that-triggered-a-nuclear-nightmare/">
+<img class="content-card-thumb" src="/uk/article/the-screwdriver-that-triggered-a-nuclear-nightmare/hero.webp" alt="Викрутка, яка стала причиною ядерного кошмару." loading="lazy">
+<div class="content-card-body">
+<span class="content-card-badge">Стаття</span>
+<div class="content-card-title">Викрутка, яка стала причиною ядерного кошмару.</div>
+<div class="content-card-preview">Через одну невелику помилку під час роботи з інструментом сфера з плутонію розміром із м’яч для софтболу перетворилася на смертоносну радіаційну установку.</div>
+</div>
+</a>
+<a class="content-card" href="/uk/quiz/tickling-the-dragon-the-demon-core-chronicles/">
+<img class="content-card-thumb" src="/uk/quiz/tickling-the-dragon-the-demon-core-chronicles/hero.webp" alt="Дратуючи Дракона: Хроніки Демонічного Ядра" loading="lazy">
+<div class="content-card-body">
+<span class="content-card-badge">Вікторина</span>
+<div class="content-card-title">Дратуючи Дракона: Хроніки Демонічного Ядра</div>
+<div class="content-card-preview">«Демонічне ядро» - це була сфера з легованого сплаву, що містила плутоній і галій, вагою 6,2 кілограма. Який був приблизний діаметр цієї сфери?</div>
+</div>
+</a>
+<a class="content-card" href="/uk/article/the-r101-britain-s-billion-dollar-sky-disaster/">
+<img class="content-card-thumb" src="/uk/article/the-r101-britain-s-billion-dollar-sky-disaster/hero.webp" alt="R101: Велика катастрофа британського дирижабля" loading="lazy">
+<div class="content-card-body">
+<span class="content-card-badge">Стаття</span>
+<div class="content-card-title">R101: Велика катастрофа британського дирижабля</div>
+<div class="content-card-preview">До того, як у нас з’явилися дрони для стеження за сусідами, Британія намагалася підкорити хмари за допомогою величезної, легкозаймистої та неймовірно дорогої повітряної кулі.</div>
+</div>
+</a>
+<a class="content-card" href="/uk/quiz/r-101-britain-s-sky-high-ambition-and-epic-fail/">
+<img class="content-card-thumb" src="/uk/quiz/r-101-britain-s-sky-high-ambition-and-epic-fail/hero.webp" alt="R.101: Надмірні амбіції Британії та грандіозний провал" loading="lazy">
+<div class="content-card-body">
+<span class="content-card-badge">Вікторина</span>
+<div class="content-card-title">R.101: Надмірні амбіції Британії та грандіозний провал</div>
+<div class="content-card-preview">Літальний апарат R.101 мав стати справжньою перлиною британської авіаційної промисловості. Якою була його головна мета?</div>
+</div>
+</a>
+<a class="content-card" href="/uk/article/the-3-solar-mass-magic-trick/">
+<img class="content-card-thumb" src="/uk/article/the-3-solar-mass-magic-trick/hero.webp" alt="Дивовижний трюк із трьома сонячними масами" loading="lazy">
+<div class="content-card-body">
+<span class="content-card-badge">Стаття</span>
+<div class="content-card-title">Дивовижний трюк із трьома сонячними масами</div>
+<div class="content-card-preview">Коли дві чорні діри зіткнулися, вони перетворили значну частину своєї маси на чисту енергію: це спричинило коливання у просторі-часі, які наші прилади могли зафіксувати.</div>
+</div>
+</a>
+<a class="content-card" href="/uk/quiz/ripples-in-the-spacetime-fabric/">
+<img class="content-card-thumb" src="/uk/quiz/ripples-in-the-spacetime-fabric/hero.webp" alt="Хвилі у тканині простору-часу" loading="lazy">
+<div class="content-card-body">
+<span class="content-card-badge">Вікторина</span>
+<div class="content-card-title">Хвилі у тканині простору-часу</div>
+<div class="content-card-preview">У 2016 році організація LIGO оголосила про виявлення злиття двох чорних дір. Яка кількість маси перетворилася на чисту, хвилеподібну енергію під час цього космічного зіткнення?</div>
+</div>
+</a>
+<a class="content-card" href="/uk/article/the-italian-diaspora-and-the-ghost-of-la-dolce-vita/">
+<img class="content-card-thumb" src="/uk/article/the-italian-diaspora-and-the-ghost-of-la-dolce-vita/hero.webp" alt="Італійська діаспора та привид «Солодкого життя»" loading="lazy">
+<div class="content-card-body">
+<span class="content-card-badge">Стаття</span>
+<div class="content-card-title">Італійська діаспора та привид «Солодкого життя»</div>
+<div class="content-card-preview">За кожним чудовим соусом для пасти, який готують на кухні у приміському будинку, криється глибока, нездоланна туга за домом, який, можливо, вже й не існує.</div>
+</div>
+</a>
+<a class="content-card" href="/uk/quiz/the-great-italian-longing-diaspora-nostalgia/">
+<img class="content-card-thumb" src="/uk/quiz/the-great-italian-longing-diaspora-nostalgia/hero.webp" alt="Велика італійська туга: діаспора та ностальгія" loading="lazy">
+<div class="content-card-body">
+<span class="content-card-badge">Вікторина</span>
+<div class="content-card-title">Велика італійська туга: діаспора та ностальгія</div>
+<div class="content-card-preview">У контексті італійської діаспори, що саме описує «міф про вічне повернення»?</div>
+</div>
+</a>
+<a class="content-card" href="/uk/article/the-great-cosmic-expansion-stretching-or-just-adding-more-stuff/">
+<img class="content-card-thumb" src="/uk/article/the-great-cosmic-expansion-stretching-or-just-adding-more-stuff/hero.webp" alt="Велике космічне розширення: чи це розтягування, чи просто додавання більшої кількості матерії?" loading="lazy">
+<div class="content-card-body">
+<span class="content-card-badge">Стаття</span>
+<div class="content-card-title">Велике космічне розширення: чи це розтягування, чи просто додавання більшої кількості матерії?</div>
+<div class="content-card-preview">Незалежно від того, чи розширюється простір, як старий спандекс, чи породжує нові пікселі, математика показує, що ми стаємо більшими.</div>
+</div>
+</a>
+<a class="content-card" href="/uk/article/the-hard-choice-trap-why-logic-fails-when-life-gets-real/">
+<img class="content-card-thumb" src="/uk/article/the-hard-choice-trap-why-logic-fails-when-life-gets-real/hero.webp" alt="Пастка «важкого вибору»: чому логіка перестає працювати, коли реальне життя ставить перед нами складні завдання" loading="lazy">
+<div class="content-card-body">
+<span class="content-card-badge">Стаття</span>
+<div class="content-card-title">Пастка «важкого вибору»: чому логіка перестає працювати, коли реальне життя ставить перед нами складні завдання</div>
+<div class="content-card-preview">Якщо ви не можете прийняти рішення, бо обидва варіанти здаються однаково привабливими (або однаково жахливими), справа не в тому, що у вас погано з математикою, а просто ви зіткнулися зі складною філософською дилемою.</div>
+</div>
+</a>
+<a class="content-card" href="/uk/quiz/decision-paralysis-philosophy-s-guide-to-not-losing-your-mind/">
+<img class="content-card-thumb" src="/uk/quiz/decision-paralysis-philosophy-s-guide-to-not-losing-your-mind/hero.webp" alt="Параліч від надміру варіантів: філософський посібник, як не збожеволіти" loading="lazy">
+<div class="content-card-body">
+<span class="content-card-badge">Вікторина</span>
+<div class="content-card-title">Параліч від надміру варіантів: філософський посібник, як не збожеволіти</div>
+<div class="content-card-preview">На думку філософа Рут Чанг, яка є визначальною ознакою «складного вибору»?</div>
+</div>
+</a>
+<a class="content-card" href="/uk/article/why-your-natural-talent-is-probably-a-lie/">
+<img class="content-card-thumb" src="/uk/article/why-your-natural-talent-is-probably-a-lie/hero.webp" alt="Чому ваша «природна обдарованість», швидше за все, – це міф" loading="lazy">
+<div class="content-card-body">
+<span class="content-card-badge">Стаття</span>
+<div class="content-card-title">Чому ваша «природна обдарованість», швидше за все, – це міф</div>
+<div class="content-card-preview">Забудьте все, що ви знали про обдарованих людей; виявляється, що велич полягає не стільки в генетиці, скільки в оточенні, в якому ви перебуваєте.</div>
+</div>
+</a>
+</div>
+<!-- LATEST_CONTENT_END -->
+</section>
+<section class="home-panels">
+<div class="home-panel game-explainer">
+<h2 class="section-title">Що таке DeepSage?</h2>
+<p>DeepSage – це майбутня <strong>навчальна гра</strong>, де знання – ваша суперсила. Кожна битва – це дуель у форматі вікторини: ви та ваш суперник обмінюєтесь реальними запитаннями з природничих наук, історії, логіки тощо. Правильна відповідь – і ви перемагаєте; неправильна – і ви програєте. Чим краще ви граєте, тим краще ви навчаєтесь.</p>
+<p>Окрім основної гри, ми створюємо каталог <strong>навчальних ігор</strong>, кожна з яких розроблена для розвитку певної практичної навички, а також пишемо одну <strong>книгу</strong>, сюжет якої пов’язаний з кожною з цих навичок. Їх можна буде встановити за допомогою безкоштовної програми DeepSage Launcher для Windows і Linux.</p>
+<p>До запуску ви можете щодня поглиблювати свої знання за допомогою безкоштовних <strong>статей і тестів</strong>, у яких пояснюються важливі події та новини зі світу технологій, штучного інтелекту та науки.</p>
+</div>
+<div class="home-panel home-skills">
+<h2 class="section-title">Навички, які розвиватимуть наші ігри</h2>
+<div class="home-skills-columns">
+<div>
+<h3 class="home-skills-group">ШІ та дані</h3>
+<p class="home-skill-links"><a href="/uk/skills/artificial-intelligence-literacy/">ШІ-грамотність</a><a href="/uk/skills/machine-learning-engineering/">Інженерія машинного навчання</a><a href="/uk/skills/prompt-engineering/">Промпт-інжиніринг</a><a href="/uk/skills/data-literacy/">Грамотність у роботі з даними</a><a href="/uk/skills/data-analytics/">Аналіз даних</a><a href="/uk/skills/data-visualization/">Візуалізація даних</a></p>
+</div>
+<div>
+<h3 class="home-skills-group">Мислення та ухвалення рішень</h3>
+<p class="home-skill-links"><a href="/uk/skills/critical-thinking/">Критичне мислення</a><a href="/uk/skills/analytical-problem-solving/">Аналітичне розв&#39;язання задач</a><a href="/uk/skills/creative-thinking/">Креативне мислення</a><a href="/uk/skills/complex-decision-making/">Ухвалення складних рішень</a></p>
+</div>
+<div>
+<h3 class="home-skills-group">Технології та розробка</h3>
+<p class="home-skill-links"><a href="/uk/skills/cybersecurity-management/">Управління кібербезпекою</a><a href="/uk/skills/data-privacy-strategy/">Стратегія захисту персональних даних</a><a href="/uk/skills/cloud-infrastructure/">Хмарна інфраструктура</a><a href="/uk/skills/software-architecture/">Архітектура ПЗ</a><a href="/uk/skills/devops-engineering/">DevOps-інжиніринг</a><a href="/uk/skills/full-stack-development/">Fullstack-розробка</a><a href="/uk/skills/ux-design/">UX-дизайн</a></p>
+</div>
+<div>
+<h3 class="home-skills-group">Бізнес і управління</h3>
+<p class="home-skill-links"><a href="/uk/skills/product-management/">Продакт-менеджмент</a><a href="/uk/skills/project-management/">Управління проєктами</a><a href="/uk/skills/digital-marketing-strategy/">Стратегія цифрового маркетингу</a><a href="/uk/skills/search-engine-optimization/">Пошукова оптимізація (SEO)</a><a href="/uk/skills/financial-literacy/">Фінансова грамотність</a><a href="/uk/skills/strategic-planning/">Стратегічне планування</a><a href="/uk/skills/risk-management/">Управління ризиками</a></p>
+</div>
+<div>
+<h3 class="home-skills-group">Люди та особистісне зростання</h3>
+<p class="home-skill-links"><a href="/uk/skills/leadership/">Лідерство</a><a href="/uk/skills/emotional-intelligence/">Емоційний інтелект</a><a href="/uk/skills/team-collaboration/">Командна робота</a><a href="/uk/skills/conflict-resolution/">Розв&#39;язання конфліктів</a><a href="/uk/skills/adaptability/">Адаптивність</a><a href="/uk/skills/lifelong-learning/">Навчання впродовж життя</a></p>
+</div>
+</div>
+</div>
+<div class="home-panel home-skills home-languages">
+<h2 class="section-title">Вивчайте іноземну мову в ігровій формі</h2>
+<p>Десять найпопулярніших мов у світі, які вивчають за допомогою ігор та вікторин.</p>
+<p class="home-skill-links"><a href="/uk/skills/english/">Вивчайте англійську мову</a><a href="/uk/skills/spanish/">Вивчайте іспанську мову</a><a href="/uk/skills/french/">Вивчайте французьку мову</a><a href="/uk/skills/japanese/">Вивчайте японську мову</a><a href="/uk/skills/german/">Вивчайте німецьку мову</a><a href="/uk/skills/korean/">Вивчайте корейську мову</a><a href="/uk/skills/italian/">Вивчайте італійську мову</a><a href="/uk/skills/chinese/">Вивчайте китайську мову</a><a href="/uk/skills/portuguese/">Вивчайте португальську мову</a><a href="/uk/skills/hindi/">Вивчайте гінді</a></p>
+</div>
+</section>
+<div class="page-footer">
+<div class="footer-links">
+<a href="/uk/">Додому / Головна</a>
+<span class="footer-divider">·</span>
+<a href="/uk/article/">Статті</a>
+<span class="footer-divider">·</span>
+<a href="/uk/quiz/">Вікторини</a>
+<span class="footer-divider">·</span>
+<a href="/uk/skills/">Навички</a>
+<span class="footer-divider">·</span>
+<a href="/tags/">Теги</a>
+<span class="footer-divider">·</span>
+<a href="/uk/games/">Ігри</a>
+<span class="footer-divider">·</span>
+<a href="/uk/books/">Книги</a>
+</div>
+<div class="footer-legal">
+<a href="/privacy-policy/">Політика конфіденційності</a>
+<span class="footer-divider">·</span>
+<a href="/terms-of-service/">Умови використання</a>
+<span class="footer-divider">·</span>
+<a href="/cookie-policy/">Політика щодо файлів cookie</a>
+<span class="footer-divider">·</span>
+<a href="/contact/">Контакти</a>
+<span class="footer-divider">·</span>
+<a href="/impressum/">Impressum</a>
+<span class="footer-divider">·</span>
+<a href="#" id="cookiePrefsLink">Налаштування файлів cookie</a>
+</div>
+<p class="footer-copyright">DeepSage · © 2026</p>
+</div>
+</div>
+</section>
+<div id="cookieBanner">
+<div class="cookie-banner-container">
+<div class="cookie-banner-text">
+Ми використовуємо додаткові файли cookie Google Analytics, але лише за вашої згоди, щоб зрозуміти, як використовується наш сайт; Google може обробляти ці дані в США. Див. нашу <a href="/privacy-policy/" target="_blank">Політика конфіденційності</a> і <a href="/cookie-policy/" target="_blank">Політика щодо файлів cookie</a> для отримання детальної інформації.
+</div>
+<div class="cookie-banner-buttons">
+<button id="cookieReject">Відхилити все</button>
+<button id="cookieCustomize">Налаштувати</button>
+<button id="cookieAccept">Прийняти все</button>
+</div>
+</div>
+</div>
+<div id="cookieModal">
+<div class="cookie-modal-content">
+<h2>Налаштування файлів cookie</h2>
+<div class="cookie-preference">
+<input type="checkbox" id="cookieEssential" checked disabled>
+<label for="cookieEssential">Необхідний; важливий; істотний</label>
+</div>
+<div class="cookie-preference-description">
+Необхідно для забезпечення базової функціональності сайту (завжди ввімкнено)
+</div>
+<div class="cookie-preference">
+<input type="checkbox" id="cookieAnalytics">
+<label for="cookieAnalytics">Аналітика</label>
+</div>
+<div class="cookie-preference-description">
+Допомагає нам зрозуміти, як ви використовуєте сайт, щоб покращити ваш досвід користування
+</div>
+<div class="cookie-modal-buttons">
+<button id="cookieModalCancel">Скасувати</button>
+<button id="cookieModalSave">Зберегти вибрані параметри</button>
+</div>
+</div>
+</div><script src="/assets/js/generated/0befd7597c6f1e22.js"></script><script src="/assets/js/generated/60f64805f674428c.js"></script></body>
+</html>
