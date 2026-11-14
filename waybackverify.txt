@@ -1,0 +1,8 @@
+Wayback Machine removal request, Internet Archive ticket 1660257.
+Requested by Volodymyr Kochetkov, operator of deepsage.com.
+
+Remove only these captures (period 2026-10-03 to 2026-10-12):
+20261003010804 https://deepsage.com/memes/distracted-boyfriend/?utm_source=bluesky&utm_medium=outreach&utm_campaign=outreach&utm_content=oc95
+20261004095926 https://deepsage.com/memes/distracted-boyfriend/?utm_source=bluesky&utm_medium=outreach&utm_campaign=outreach&utm_content=oc163
+
+This is not a request to exclude the domain or the /memes/ path from future archiving.
