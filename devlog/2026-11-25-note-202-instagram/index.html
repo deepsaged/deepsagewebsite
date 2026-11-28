@@ -1,0 +1,32 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The pinky finger incident 🤖 · DeepSage devlog</title><link rel="canonical" href="https://deepsage.com/devlog/2026-11-25-note-202-instagram/">
+<meta name="description" content="Swipe through the contact sheet to see the chaos: our low-poly robot wandering a stone environment, a drone model, and the current state of our FPS hands. 
+
+We decided to simplify things by unifying a">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/site.css?v=31984a1d1b">
+<script src="/assets/js/generated/6af1da928bcbbb97.js"></script>
+<script src="/assets/js/generated/3be2650171b52938.js"></script>
+<script>
+    window.dsLangUrls = {"de": "https://deepsage.com/de/", "en": "https://deepsage.com/", "es": "https://deepsage.com/es/", "hi": "https://deepsage.com/hi/", "ru": "https://deepsage.com/ru/", "uk": "https://deepsage.com/uk/", "zh-Hans": "https://deepsage.com/zh-Hans/"};
+    window.dsCurrentLang = "en";
+  </script>
+<script src="/assets/js/lang-preference.js"></script>
+<script src="/assets/js/ab-experiments.js"></script>
+<script src="/assets/js/engagement.js" defer></script>
+<script src="/assets/js/generated/4825b2fceb6e69fa.js"></script>
+</head><body><section class="page-container"><div class="page-content" style="max-width:760px;margin:0 auto">
+<div class="page-header"><a href="/" class="page-logo-link" aria-label="DeepSage home">
+<img class="page-logo" src="/assets/logo.webp" alt="DeepSage" width="1628" height="351"></a></div>
+<article class="article-body"><p class="article-kicker">Devlog · our FPS</p><h1>The pinky finger incident 🤖</h1>
+<figure><img src="img_bip_1.webp" alt="A contact sheet showing a low-poly robot in a stone environment, a 3D model of a drone, and a first-person view of robotic hands." loading="lazy" style="max-width:100%;border-radius:8px"></figure>
+<h2>The Pinky Problem</h2>
+<p>In our latest push for our FPS, we attempted a massive architectural simplification. To streamline our animation pipeline and reduce overhead, we decided to unify all weapon classes to utilize a single, standardized pair of robot arms.</p>
+<p>We relied heavily on our automated coding agents to handle the re-skinning and pose-matching logic. On paper, the logic was sound. However, the first implementation hit a significant snag: while the main digits followed the new animation controller perfectly, the little finger simply stopped following the pose. It’s as if the solver decided the pinky was optional for the mission.</p>
+<p>As you can see in the attached contact sheet, the environment and drone assets are looking stable, but the first-person view of the hands reveals the glitch. The robotic hand is currently missing its structural integrity in the smallest digit. We are back to fine-tuning the constraints to ensure every finger—even the tiny ones—stays attached to the logic.</p>
+<h2>DeepSage #IndieDev #GameDev</h2>
+<p><em>Written with AI assistance. The pictures are real screenshots of the game in development.</em></p>
+<p><a href="/games/">DeepSage games</a> · <a href="/">deepsage.com</a></p>
+</article></div></section></body></html>
